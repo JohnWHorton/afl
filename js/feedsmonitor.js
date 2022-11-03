@@ -110,6 +110,7 @@ var fa_instagram = '<span style="color: #808080; font-size: 36px;" title="Instag
 var fa_twitter = '<span style="color: #40beeb; font-size: 30px;" title="Twitter"><center><i class="fab fa-twitter"></i></center></span>';
 var fa_facebook = '<span style="color: #4267b2; font-size: 30px;" title="Facebook"><center><i class="fab fa-facebook-f"></i></center></span>';
 var fa_telegram = '<span style="color: #22b8f0; font-size: 30px;" title="Instagram"><center><i class="fab fa-telegram-plane"></i></center></span>';
+var fa_viber = '<span style="color: #22b8f0; font-size: 30px;" title="Instagram"><center><i class="fab fa-viber"></i></center></span>';
 var fa_vk = '<span style="color: #40beeb; font-size: 30px;"><center title="Telegram"><i class="fab fa-vk"></i></center></span>';
 var fa_positive = '<span style="color: #71bf32;"><center><i class="fas fa-long-arrow-alt-up"></i></center></span>';
 var fa_neutral = '<span style="color: #40beeb;"><center><i class="fas fa-minus"></i></center></span>';
@@ -278,6 +279,8 @@ function transformData() {
 		if(mydata[i].social_network.toLowerCase()=="twitter") { mydata[i].social_network = '<div>'+fa_twitter+'</div>'; }
 		if(mydata[i].social_network.toLowerCase()=="instagram") { mydata[i].social_network = '<div>'+fa_instagram+'</div>'; }
 		if(mydata[i].social_network.toLowerCase()=="facebook") { mydata[i].social_network = '<div>'+fa_facebook+'</div>'; }
+		if(mydata[i].social_network.toLowerCase()=="telegram") { mydata[i].social_network = '<div>'+fa_telegram+'</div>'; }
+		if(mydata[i].social_network.toLowerCase()=="viber") { mydata[i].social_network = '<div>'+fa_viber+'</div>'; }
 		
 		mydata[i].pic_url = '<img src="'+mydata[i].pic_url+'" onerror="this.src=&quot;https://rogueeye.systems/images/twitterProfile.png&quot;" class="picture">';
 //		mydata[i].pic_url = '<img src="'+mydata[i].pic_url+'" onerror="this.src=&quot;https://'+hostname+'/images/twitterProfile.png&quot;" class="picture">';
@@ -1419,6 +1422,7 @@ function setPieSeries(theData, chartname) {
 		if(tmptext=="Twitter") { theicon=fa_twitter; } 
 		if(tmptext=="Facebook") { theicon=fa_facebook; } 
 		if(tmptext=="Telegram") { theicon=fa_telegram; } 
+		if(tmptext=="Viber") { theicon=fa_viber; } 
 		if(tmptext=="VKontakte") { theicon=fa_vk; } 
 		if(tmptext=="RSS") { theicon=fa_rss; } 
 		if(tmptext=="NewsContent") { theicon=fa_newscontent; } 
