@@ -46,7 +46,8 @@ var enlang = 	["EN",
 			"Saturday",
 			"Sunday",
 			"Schedule day",
-			"Schedule hour"
+			"Schedule hour",
+			"Spider schedule"
 ];
 
 var frlang =   ["FR",
