@@ -37,6 +37,24 @@ mm = String(initfromdate.getMonth() + 1).padStart(2, "0");
 yyyy = initfromdate.getFullYear();
 var fromdate = yyyy + "-" + mm + "-" + dd;
 
+$.ajax({
+  type: 'GET',
+  url: '../../api.php',
+  dataType: 'json',
+  contentType: false,
+  cache: false,
+  xhrFields: {
+    withCredentials: true
+  },
+
+  complete: function (xhr) {
+    console.log("complete xhr", xhr.status)
+    if (xhr.status == 401) {
+      window.open("https://login.rogueeye.systems/login.php.", "_self");
+    }
+  }
+})
+
 $(document).ready(function () {
   getData();
 });
@@ -50,7 +68,7 @@ function updateSchedule(id, newSchedule) {
     contentType: "application/json; charset=UTF-8",
     dataType: "json",
     data: JSON.stringify(parms),
-    success: function (response) {},
+    success: function (response) { },
     error: function () {
       alert("Error!");
     },
@@ -250,7 +268,7 @@ function doUpdateSource(id) {
     url: "http://195.154.17.15:9045/api/v1/update/" + id,
     contentType: "application/json; charset=UTF-8",
     dataType: "json",
-    data:  JSON.stringify({
+    data: JSON.stringify({
       "name": "DgheF",
       "period": "weekly",
       "hour": "21",
@@ -272,9 +290,9 @@ function doUpdateSource(id) {
       scheduledata2 = [...scheduledata];
       // makeScheduleTable();
     },
-      error: function () {
-        alert("Error!");
-      },
+    error: function () {
+      alert("Error!");
+    },
   });
 
   console.log("hello");

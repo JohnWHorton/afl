@@ -138,6 +138,24 @@ var fa_whatsapp =
 var fa_youtube =
   '<span style="color: #22b8f0;"><center><i class="fab fa-youtube" style="color:red"></i></center></span>';
 
+$.ajax({
+  type: 'GET',
+  url: '../../api.php',
+  dataType: 'json',
+  contentType: false,
+  cache: false,
+  xhrFields: {
+    withCredentials: true
+  },
+
+  complete: function (xhr) {
+    console.log("complete xhr", xhr.status)
+    if (xhr.status == 401) {
+      window.open("https://login.rogueeye.systems/login.php.", "_self");
+    }
+  }
+})
+
 $(document).ready(function () {
   hostname = window.location.hostname;
   winlocpath = window.location.pathname.toLowerCase();
