@@ -4,6 +4,7 @@ var tableleft = "";
 var tableright = "";
 var game = 1;
 var radiogrp = 1;
+var selectedgames = [];
 
 const rounds = {
   matches: [
@@ -774,14 +775,16 @@ $(document).ready(function () {
     <td>
       <div class="form-check">
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
+          <input id=${rounds.matches[i].id}-${rounds.matches[i].home.team.name.replaceAll(" ", "-")} 
+          type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
         rounds.matches[i].home.team.name +
         `
         </label>
         </div>
         <div class="form-check">
         <label class="form-check-label">
-          <input type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
+        <input id=${rounds.matches[i].id}-${rounds.matches[i].away.team.name.replaceAll(" ", "-")} 
+        type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
         rounds.matches[i].away.team.name +
         `
         </label>
@@ -821,14 +824,16 @@ $(document).ready(function () {
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
+              <input id=${rounds.matches[i].id}-${rounds.matches[i].home.team.name.replaceAll(" ", "-")} 
+              type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
         rounds.matches[i].home.team.name +
         `
             </label>
             </div>
             <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
+              <input id=${rounds.matches[i].id}-${rounds.matches[i].away.team.name.replaceAll(" ", "-")} 
+              type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
         rounds.matches[i].away.team.name +
         `
             </label>
@@ -837,7 +842,7 @@ $(document).ready(function () {
       </tr> `;
     }
   }
-  console.log("tableright", tableright);
+  // console.log("tableright", tableright);
   document.getElementById("tableleft").innerHTML = tableleft;
   document.getElementById("tableright").innerHTML = tableright;
 });
@@ -854,8 +859,45 @@ function gameSelected(game) {
   console.log("game", game);
   var x = document.getElementById(`${game}`).checked;
   console.log("checked", x);
-  var games = document.getElementsByClassName("agame");
-  for (var i = 0; i < games.length; i++) {
-    console.log("games", games[i]);
+
+  if (x == true) {
+    if (!selectedgames.includes(game)) {
+      selectedgames.push(game);
+    }
+  } else {
+    if (selectedgames.includes(game)) {
+      for(var i=0; i<selectedgames.length; i++) {
+        if(selectedgames[i]==game) {
+          selectedgames.splice(i, 1);
+          break;
+        }
+      }
+    }
+  }
+  console.log("selected games count", selectedgames.length);
+  console.log("rounds.matches", rounds.matches);
+  console.log("selected games", selectedgames);
+  if(selectedgames.length==6) {
+    
+    for(var j=0; j<rounds.matches.length; j++) {
+      
+      if(!selectedgames.includes(rounds.matches[j].id.toString())) {
+        $("#"+rounds.matches[j].id.toString()).attr("disabled", true);
+        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].home.team.name.replaceAll(" ", "-")).attr("disabled", true);
+        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].away.team.name.replaceAll(" ", "-")).attr("disabled", true);
+      }
+
+    }
+  }if(selectedgames.length!=6) {
+    
+    for(var j=0; j<rounds.matches.length; j++) {
+      
+      if(!selectedgames.includes(rounds.matches[j].id.toString())) {
+        $("#"+rounds.matches[j].id.toString()).attr("disabled", false);
+        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].home.team.name.replaceAll(" ", "-")).attr("disabled", false);
+        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].away.team.name.replaceAll(" ", "-")).attr("disabled", false);
+      }
+
+    }
   }
 }
