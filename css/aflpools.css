@@ -477,13 +477,16 @@ p {
     max-width: 500px;
 }
 .colcontainer {
-    margin: 50px;
-    padding: 50px;
+    margin: 30px;
+    padding: 30px;
 }
 .custom-control-label::before, 
 .custom-control-label::after {
     margin-top: 0;
     width: 2rem;
     height: 2rem;
+}
+.form-check-input {
+    margin-top: -5px;
 }
 
