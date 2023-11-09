@@ -5,6 +5,12 @@ var tableright = "";
 var game = 1;
 var radiogrp = 1;
 var selectedgames = [];
+var logemail = "";
+var logpword = "";
+var chkbox = false;
+var regemail = "";
+var regpwrd = "";
+var repregpword = "";
 
 const rounds = {
   matches: [
@@ -848,9 +854,36 @@ $(document).ready(function () {
 });
 
 function doLogin() {
-  // alert("Login");
   $(".logincontainer").show();
+
 }
+function loginEvent() {
+  // loginemail=document.getElementById("emailaddress").value;
+  logemail=$("#lemail").val();
+  logpword=$("#lpassword").val();
+  if ($("#defaultCheck1").is(":checked")){
+    chkbox=true;
+  } else {
+    chkbox=false;
+  }
+  console.log(logemail)
+  console.log(logpword)
+  console.log(chkbox)
+
+}
+function registerEvent() {
+  // loginemail=document.getElementById("emailaddress").value;
+  regemail=$("#remail").val();
+  regpword=$("#rpassword").val();
+  repregpword=$("#rrpassword").val();
+  
+  console.log(regemail)
+  console.log(regpword)
+  console.log(repregpword)
+
+}
+
+
 function matchClicked(match, homeaway) {
   // alert(match+" - "+homeaway);
   console.log(match + " - " + homeaway);
