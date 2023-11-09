@@ -1,4 +1,4 @@
-body {0
+body {
 	width: 100%;
 /*	background: transparent;*/
 	background-color: rgba(16, 16, 16, 0.9);
@@ -51,6 +51,7 @@ body {0
 }
 .afldata {
     margin-top: 200px;
+    margin-left: 200px;
 }
 .buttonlogin {
     background-color: dodgerblue;    
@@ -187,7 +188,7 @@ thead {
     border: none;
     outline: 0;
     box-shadow: none;
-    -webkit-appearance: textfield;
+    /* -webkit-appearance: textfield; */
 }
 
 .row {
@@ -475,7 +476,7 @@ p {
     padding-left: 0!important;
 }
 .table {
-    max-width: 550px;
+    max-width: 600px;
 }
 .colcontainer {
     margin: 30px;
@@ -488,7 +489,7 @@ p {
     height: 2rem;
 }
 .form-check-input {
-    /* margin-top: -5px; */
+    margin-top: -5px;
 }
 .agame {
     margin-right: 5px;
