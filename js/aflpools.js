@@ -6,6 +6,7 @@ var game = 1;
 var radiogrp = 1;
 var selectedgames = [];
 
+
 const rounds = {
   matches: [
     {
@@ -743,6 +744,9 @@ const rounds = {
 // var results;
 
 $(document).ready(function () {
+  // temp testing
+ setLocalStorage();
+  //end test
   for (i = 0; i < rounds.matches.length; i++) {
     if (i < 5) {
       tableleft +=
@@ -847,6 +851,26 @@ $(document).ready(function () {
   document.getElementById("tableright").innerHTML = tableright;
 });
 
+function updateSchedule(id, newSchedule) {
+  var parms = { operation: "updateSchedule", id: id, newSchedule: newSchedule };
+
+  $.ajax({
+    type: "POST",
+    url: "../php/feedsource.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) { },
+    error: function () {
+      alert("Error!");
+    },
+  });
+}
+
+function setLocalStorage(userdata) {
+  localStorage.setItem('aflname', 'Obaseki Nosa');
+  localStorage.setItem('aflpassword', 'abcdefgh');
+}
 function doLogin() {
   // alert("Login");
   $(".logincontainer").show();
@@ -888,7 +912,8 @@ function gameSelected(game) {
       }
 
     }
-  }if(selectedgames.length!=6) {
+  }
+  if(selectedgames.length!=6) {
     
     for(var j=0; j<rounds.matches.length; j++) {
       

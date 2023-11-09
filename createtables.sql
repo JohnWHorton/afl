@@ -1,34 +1,68 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Nov 09, 2023 at 12:23 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-CREATE TABLE `feedsources` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`fmtype` VARCHAR(128) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
-	`fmsource` VARCHAR(128) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`fmname` VARCHAR(128) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`fmurl` VARCHAR(128) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`fmschedule` VARCHAR(128) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`date_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`date_update` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	PRIMARY KEY (`id`) USING BTREE,
-	UNIQUE INDEX `fmurl` (`fmurl`) USING BTREE
-)
-COLLATE='utf8mb4_general_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=1
-;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `test`
+--
 
-CREATE TABLE `saved` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',
-	`social` TINYINT(1) NOT NULL DEFAULT '0',
-	`websites` TINYINT(1) NOT NULL DEFAULT '0',
-	`rss` TINYINT(1) NOT NULL DEFAULT '0',
-	`forums` TINYINT(1) NOT NULL DEFAULT '0',
-	`subcats` VARCHAR(1024) NOT NULL DEFAULT '0' COLLATE 'utf8mb4_general_ci',
-	PRIMARY KEY (`id`) USING BTREE
-)
-COLLATE='utf8mb4_general_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=1
-;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `phoneno` varchar(20) NOT NULL,
+  `pswd` varbinary(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`) VALUES
+(10, 'John Horton', 'john@me.com', '65432199', 0x3164363931316466373931323533383339316331646536663833383037373538);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
