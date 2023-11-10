@@ -21,7 +21,8 @@
                 data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation">
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,36 +44,37 @@
                             role="button"
                             data-toggle="dropdown"
                             aria-haspopup="true"
-                            aria-expanded="false">
+                            aria-expanded="false"
+                        >
                             Dropdown
                         </a>
-                        <div class="dropdown-menu"
-                            aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else
-                                here</a>
+                            <a class="dropdown-item" href="#">
+                                Something else
+                                here
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
-                <button type="button" class="btn btn-primary loginbtn"
-                    onclick="doLogin()">Login</button>
+                <button type="button" class="btn btn-primary loginbtn" onclick="$('#loginbox').show(); $('#registerbox').hide();">Login</button>
                 <form class="form-inline my-2 my-lg-0">
                     <input
                         class="form-control mr-sm-2"
                         type="search"
                         placeholder="Search"
-                        aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0"
-                        type="submit">Search</button>
+                        aria-label="Search"
+                    >
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
-        <div class="container logincontainer" style="display: none">
+        <div id="loginbox" class="container logincontainer" style="display: none">
             <form>
                 <div class="form-group">
                     <label for="emailaddress">Email address</label>
@@ -81,7 +83,8 @@
                         class="form-control"
                         id="lemail"
                         aria-describedby="emailHelp"
-                        placeholder="Enter email">
+                        placeholder="Enter email"
+                    >
                     <small id="emailHelp" class="form-text text-muted">
                         We'll never share your
                         email with anyone
@@ -91,83 +94,94 @@
                 <div class="form-group">
                     <label for="current-password">Password</label>
                     <input
-                        type="current-password"
+                        type="password"
                         class="form-control"
                         id="lpassword"
-                        placeholder="Enter Password">
+                        placeholder="Enter Password"
+                    >
                 </div>
                 <div class="form-check">
                     <input
                         class="form-check-input"
                         type="checkbox"
                         value
-                        id="defaultCheck1">
+                        id="defaultCheck1"
+                    >
                     <label class="form-check-label" for="defaultCheck1">
                         Remember me
                     </label>
                 </div>
                 <div style="justify-content: center">
                     <center>
-                        <button type="button"
-                            class="btn btn-primary buttonlogin"
-                            onclick="loginEvent()">
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="loginEvent()">
                             Login
                         </button>
+                        <br>
+                        <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#" style="color: white;">
+                            Don't have an account? Register
+                        </a>
                     </center>
                 </div>
             </form>
         </div>
         <!-- <form action="action_page.php"> -->
-        <div class="container logincontainer" style="display: none">
+        <div id="registerbox" class="container logincontainer" style="display: none">
             <form>
-                 <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="remail"
-                                placeholder="Enter Email"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="rpassword">Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="rpassword"
-                                placeholder="Enter Password"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="rrpassword">Repeat Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="rrpassword"
-                                placeholder="Repeat Password"
-                                required>
-                        </div>
-                    <p>By creating an account you agree to our <a href="#">Terms
-                            & Privacy</a>.</p>
-                    <button type="submit" class="btn btn-primary buttonlogin"
-                        onclick="registerEvent()">Register</button>
-                        <br><a onclick="doLogin()" href="#" style="color: white;">
-                            Already have an account? Sign in</a>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="remail"
+                        placeholder="Enter Email"
+                        required
+                    >
                 </div>
-
-            </form>
-        </div>
-        <div>
-            <img
-                src="https://resources.afl.com.au/afl/photo/2020/05/11/ed2d1dec-415d-4dd2-a78b-3faa4d00e943/afl-logo-small.png"
-                class="d-block" style="margin-left:43%; width:10%">
-            <h1
-                style="padding-top: 2rem; width: 100%; color:#00529b; padding-left: 44%;">AFL
-                Pools</h1>
-        </div>
-        <div id="afldata">
+                <div class="form-group">
+                    <label for="rpassword">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="rpassword"
+                        placeholder="Enter Password"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="rrpassword">Repeat Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="rrpassword"
+                        placeholder="Repeat Password"
+                        required
+                    >
+                </div>
+                <p>By creating an account you agree to our
+                    <a href="#">
+                        Terms
+                            & Privacy
+                    </a>.
+                </p>
+                <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
+                <br>
+                <a onclick="doLogin()" href="#" style="color: white;">
+                    Already have an account? Sign in
+                </a>
+            </div>
+        </form>
+    </div>
+    <div>
+        <img src="https://resources.afl.com.au/afl/photo/2020/05/11/ed2d1dec-415d-4dd2-a78b-3faa4d00e943/afl-logo-small.png" class="d-block" style="margin-left:43%; width:10%">
+        <h1 style="text-align:center; padding-top: 2rem; width: 100%; color:#c3e1fb; font-family:Verdana, Geneva, Tahoma, sans-serif;font-style: italic;">
+            Community Footie
+                Pools
+        </h1>
+    </div>
+    <div id="afldata">
+        <center>
             <div class="colcontainer">
-                <div class="row">
+                <div class="row" style="width: 100%!important;">
                     <div>
                         <div>
                             <table class="table">
@@ -201,10 +215,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </center>
     </div>
-    <script type="text/javascript" src="./js/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/popper.min.js"></script>
-    <script type="text/javascript" src="./js/aflpools.js"></script>
-    <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
+</div>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/popper.min.js"></script>
+<script type="text/javascript" src="./js/aflpools.js"></script>
+<script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
 </body>

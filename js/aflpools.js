@@ -857,42 +857,46 @@ $(document).ready(function () {
   document.getElementById("tableright").innerHTML = tableright;
 });
 
-function updateSchedule(id, newSchedule) {
-  var parms = { operation: "updateSchedule", id: id, newSchedule: newSchedule };
-
-  $.ajax({
-    type: "POST",
-    url: "../php/feedsource.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) { },
-    error: function () {
-      alert("Error!");
-    },
-  });
-}
-
 function setLocalStorage(userdata) {
-  localStorage.setItem('aflname', 'Obaseki Nosa');
+  localStorage.setItem('aflemail', 'Obaseki Nosa');
   localStorage.setItem('aflpassword', 'abcdefgh');
 }
-function doLogin() {
-  $(".logincontainer").show();
 
-}
 function loginEvent() {
-  // loginemail=document.getElementById("emailaddress").value;
+  // e.preventDefault();
+  
   logemail=$("#lemail").val();
   logpword=$("#lpassword").val();
+
   if ($("#defaultCheck1").is(":checked")){
     chkbox=true;
   } else {
     chkbox=false;
   }
-  console.log(logemail)
-  console.log(logpword)
-  console.log(chkbox)
+
+  console.log(logemail);
+  console.log(logpword);
+  console.log(chkbox);
+
+  var parms = { operation: "loginUser", email: logemail, pswd: logpword };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) { 
+      if(response.length==0) {
+        alert("Login is incorrect. Try again");
+      } else {
+      $('#loginbox').hide();
+      }
+    },
+    error: function () {
+      alert("Error!");
+    },
+  });
 
 }
 function registerEvent() {
@@ -904,6 +908,23 @@ function registerEvent() {
   console.log(regemail)
   console.log(regpword)
   console.log(repregpword)
+
+  var parms = { operation: "addUser", email: regemail, pswd: regpword };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) { 
+      $('#loginbox').hide();
+      $('#registerbox').hide();
+    },
+    error: function () {
+      alert("Error!");
+    },
+  });
 
 }
 
