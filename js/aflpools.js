@@ -855,6 +855,12 @@ $(document).ready(function () {
   // console.log("tableright", tableright);
   document.getElementById("tableleft").innerHTML = tableleft;
   document.getElementById("tableright").innerHTML = tableright;
+  
+  let file = "fetch_info.txt"
+  fetch(file)
+    .then(x => x.text())
+    .then(y => document.getElementById("info").innerHTML = y);
+  
 });
 
 function setLocalStorage(userdata) {
