@@ -11,7 +11,8 @@ var chkbox = false;
 var regemail = "";
 var regpwrd = "";
 var repregpword = "";
-
+var modal = document.getElementById("loginbox");
+var modal2 = document.getElementById("loginbox");
 
 const rounds = {
   matches: [
@@ -752,6 +753,7 @@ const rounds = {
 $(document).ready(function () {
   // temp testing
  setLocalStorage();
+ 
   //end test
   for (i = 0; i < rounds.matches.length; i++) {
     if (i < 5) {
@@ -862,7 +864,14 @@ $(document).ready(function () {
     .then(y => document.getElementById("info").innerHTML = y);
   
 });
-
+function showHideLoginbox() {
+  if($('#loginbox').is(':visible')) {
+    $('#loginbox').hide();
+  } else {
+    $('#loginbox').show(); 
+    $('#registerbox').hide();
+  } 
+}
 function setLocalStorage(userdata) {
   localStorage.setItem('aflemail', 'Obaseki Nosa');
   localStorage.setItem('aflpassword', 'abcdefgh');

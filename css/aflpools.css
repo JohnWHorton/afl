@@ -10,9 +10,89 @@ body {
 	min-height: 800px;
 	overflow-y: scroll;
 	overflow-x: hidden;
-    
+    color:#c3e1fb!important;
 
 }
+
+/* change the background color */
+.navbar-custom {
+    color: #c3e1fb!important;
+    background-color: rgba(16, 16, 16, 0.4);
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+
+
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:focus .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: pink;
+}
+
+/* for dropdowns only */
+.navbar-custom .navbar-nav .dropdown-menu {
+    background-color: rgba(16, 16, 16, 0.9)
+}
+
+/* dropdown item text color */
+.navbar-custom .navbar-nav .dropdown-item {
+    color:#c3e1fb!important;
+}
+
+/* dropdown item hover or focus */
+.navbar-custom .navbar-nav .dropdown-item:hover,
+.navbar-custom .navbar-nav .dropdown-item:focus {
+    color: #eeeeee;
+  
+}
+ /* navbar end  */
+ /* modal start */
+ /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #00529b; /* Fallback color */
+  }
+ 
+  /* Modal Content */
+  .modal-content {
+    /* background-color: #f30808; */
+    /* margin: 10px; */
+    padding: 20px;
+    border: 1px solid #f00606;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* modal end */
+ .center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
 
 .flex-container {
   display: flex;
@@ -61,8 +141,18 @@ body {
 .logincontainer {
     display: flex;
     max-width: 300px;
-    max-height: 600px;
-    background-color: #00529b;
+    max-height: 360px;
+    background-color: #00529b!important;
+    color: white;
+    margin-top: 50px;
+    
+}
+
+.registercontainer {
+    display: flex;
+    max-width: 300px;
+    max-height: 400px;
+    background-color: #00529b!important;
     color: white;
     margin-top: 50px;
     
@@ -92,7 +182,7 @@ select, input, textarea, button {
 	border-radius: 2px;
 	border-color: darkgray;
 	margin-top: 10px;
-	text-align: center;
+	text-align: left;
 	color: white;
 	height: 100%; 
 	color: #ffffff;
@@ -214,10 +304,14 @@ hr {
 /*    border-top: 0 solid #dee2e6;
     border-top-color: transparent;*/
 	border-top: 1px solid #ddd;
-	color: red !important;
+	color:#c3e1fb!important;
     text-align: left!important;
 }
-
+#info {
+    font-size: 18px;
+    color:#c3e1fb!important;
+    overflow: hidden;
+}
 .poststable td{ 
 	height: 14px 
 }
@@ -249,7 +343,7 @@ hr {
   height: auto;
 }
 a {
-    color: #ffffff;
+    color:#c3e1fb;
     text-decoration: none;
     background-color: transparent;
 }
