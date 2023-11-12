@@ -44,9 +44,9 @@ function addUser($conn, $email, $pswd)
   $resparr = array();
 
 //   $sql = "INSERT INTO users (name, email, phoneno, pswd) 
-  $sql = "INSERT INTO users (email, pswd) 
+  $sql = "INSERT INTO users (email, pswd, datecreated, dateupdated) 
 			VALUES 
-			('$email',MD5('$pswd'))";
+			('$email',MD5('$pswd', now(), now())";
 			// ('$name','$email','$phoneno',MD5('$pswd'))";
 
   if ($conn->query($sql) === TRUE) {

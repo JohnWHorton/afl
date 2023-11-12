@@ -157,6 +157,17 @@ body {
     margin-top: 50px;
     
 }
+
+.paypalcontainer {
+    display: flex;
+    max-width: 600px;
+    max-height: auto;
+    background-color: #00529b!important;
+    color: white;
+    margin-top: 50px;
+    
+}
+
 .form-check {
     margin-bottom: 5px;
 }

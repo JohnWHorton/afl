@@ -942,7 +942,9 @@ function registerEvent() {
   });
 
 }
-
+function showPayPal() {
+  $('#pp').show();
+}
 
 function matchClicked(match, homeaway) {
   // alert(match+" - "+homeaway);
