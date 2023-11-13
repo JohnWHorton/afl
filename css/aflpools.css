@@ -29,7 +29,7 @@ body {
 .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:focus .nav-link,
 .navbar-custom .nav-item:hover .nav-link {
-    color: pink;
+    color: rgb(192, 214, 255);
 }
 
 /* for dropdowns only */
@@ -43,11 +43,15 @@ body {
 }
 
 /* dropdown item hover or focus */
-.navbar-custom .navbar-nav .dropdown-item:hover,
-.navbar-custom .navbar-nav .dropdown-item:focus {
-    color: #eeeeee;
-  
+.navbar-custom .navbar-nav .dropdown-item:hover {
+    background-image: none;
+    background-color: blue;
 }
+.navbar-custom .navbar-nav .dropdown-item:focus {
+   background-image: none;
+    background-color: red;  
+}
+
  /* navbar end  */
  /* modal start */
  /* The Modal (background) */
@@ -162,12 +166,15 @@ body {
     display: flex;
     max-width: 600px;
     max-height: auto;
-    background-color: #00529b!important;
+    background-color: #63abed!important;
     color: white;
     margin-top: 50px;
     
 }
-
+.overlay-content {
+    width: 40px;
+    display: none;
+}
 .form-check {
     margin-bottom: 5px;
 }
