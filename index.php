@@ -20,7 +20,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
 <body>
     <nav class="navbar navbar-expand-lg navbar-custom">
         <span style="font-size: 1.5rem; margin-right: 1rem;">HerdNerd</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,7 +36,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <a class="nav-link" href="#">Link</a>
                 </li> -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -59,7 +61,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
-                <img src="./images/aflstadium.png" class="center-block" style="height:9rem; margin-top: 10px; border-radius: 50%; ">
+                <img src="./images/aflstadium.png" class="center-block"
+                    style="height:9rem; margin-top: 10px; border-radius: 50%; ">
             </div>
             <div class="col-sm-4" style="text-align:center; margin: auto; font-style: italic; ">
                 <h1>
@@ -68,16 +71,19 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </h1>
             </div>
             <div class="col-sm-4">
-                <img src="./images/aflstadium.png" class="center-block" style="height:9rem; margin-top: 10px; border-radius: 50%; ">
+                <img src="./images/aflstadium.png" class="center-block"
+                    style="height:9rem; margin-top: 10px; border-radius: 50%; ">
             </div>
         </div>
     </div>
 
-    <div id="loginbox" class="container logincontainer modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
+    <div id="loginbox" class="container logincontainer modal modal-content"
+        style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
         <form style="padding: 10px;">
             <div class="form-group">
                 <label for="emailaddress">Email address</label>
-                <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp"
+                    placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">
                     We'll never share your
                     email with anyone
@@ -108,7 +114,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </form>
     </div>
     <!-- <form action="action_page.php"> -->
-    <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 2rem;">
+    <div id="registerbox" class="container registercontainer modal modal-content"
+        style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 2rem;">
         <form style="padding: 10px;">
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -186,30 +193,26 @@ require_once './paypal_standard_checkout_in_php/config.php';
     </div>
     </div>
 
-    <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
-        <div>XXXXXXXXXXXXXXXXXX</div>
+    <div id="pp" class="paypalcontainer panel modal modal-content"
+        style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
+
         <!-- <div class="overlay hidden">
             <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
         </div> -->
+        <div class="form-group">
+            <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700;">Deposit amount (min $20)</label>
+            <input type="number" class="form-control" id="amt" name="amt" value=20 onchange="depositing()">
+        </div>
 
         <div class="panel-heading">
-<<<<<<< HEAD
             <h5 id="pt" class="panel-title">
-=======
-            <div onclick="$('.paypalcontainer').hide();" style="text-align: right; padding: 10px; font-weight: 900; cursor:pointer;">X</div>
-            <h5 class="panel-title">
-                <!-- <?php //echo '$' . $itemPrice; ?> with PayPal -->
-                <!-- <label for="depositamt">Amount to deposit (min $20 AUD)</label>
-                <input type="number" class="form-control" id="depositamt" aria-describedby="numberHelp" placeholder="Enter amount" -->
-                <!-- onchange="$itemPrice = $('#depositamt').val();"> -->
->>>>>>> eebe497653c3ccd3dce5125c36d760039a4c1936
             </h5>
 
             <!-- Product Info -->
             <p id="pt2">
             </p>
-            <p><b>Price:</b>
-                <?php echo '$' . $itemPrice . ' ' . $currency; ?>
+            <p id="pt3">
+
             </p>
 
             <div class="panel-body">
@@ -226,7 +229,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <script type="text/javascript" src="./js/aflpools.js"></script>
     <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>"></script>
     <script>
         paypal.Buttons({
             // Sets up the transaction when a payment button is clicked
@@ -254,7 +258,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             },
                             "quantity": "1",
                             "category": "DIGITAL_GOODS"
-                        }, ]
+                        },]
                     }],
                     application_context: {
                         shipping_preference: 'NO_SHIPPING'
@@ -263,7 +267,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             },
             // Finalize the transaction after payer approval
             onApprove: (data, actions) => {
-                return actions.order.capture().then(function(orderData) {
+                return actions.order.capture().then(function (orderData) {
                     setProcessing(true);
 
                     var postData = {
@@ -271,12 +275,12 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         order_id: orderData.id
                     };
                     fetch('paypal_standard_checkout_in_php/paypal_checkout_validate.php', {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json'
-                            },
-                            body: encodeFormData(postData)
-                        })
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: encodeFormData(postData)
+                    })
                         .then((response) => response.json())
                         .then((result) => {
                             if (result.status == 1) {
@@ -286,7 +290,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                                 messageContainer.classList.remove("hidden");
                                 messageContainer.textContent = result.msg;
 
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     messageContainer.classList.add("hidden");
                                     messageText.textContent = "";
                                 }, 5000);

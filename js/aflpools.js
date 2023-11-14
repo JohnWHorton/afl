@@ -18,6 +18,8 @@ var itemNumber = "BET20";
 var itemName = "Pool ticket";
 var itemPrice = "30";
 var currency = "AUD"; 
+var depamt = "0";
+var depcurr = "AUD";
 
 const rounds = {
   matches: [
@@ -949,10 +951,15 @@ function registerEvent() {
 }
 function showPayPal() {
   $('#pp').show();
-  document.getElementById("pt").innerHTML = `Deposit $${itemPrice} ${currency} to my account`;
-  document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;  
+  
+  // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
+  // document.getElementById("pt3").innerHTML = "";
 }
 
+function depositing() {
+  itemPrice=$('#amt').val();
+  document.getElementById("pt").innerHTML = `Depositing  $${itemPrice} ${currency} to my account`;
+}
 function matchClicked(match, homeaway) {
   // alert(match+" - "+homeaway);
   console.log(match + " - " + homeaway);
