@@ -948,7 +948,6 @@ function registerEvent() {
 
 }
 function showPayPal() {
-  
   $('#pp').show();
   document.getElementById("pt").innerHTML = `Deposit $${itemPrice} ${currency} to my account`;
   document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;  
