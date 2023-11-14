@@ -187,18 +187,17 @@ require_once './paypal_standard_checkout_in_php/config.php';
     </div>
 
     <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
-        <div class="overlay hidden">
+        <div>XXXXXXXXXXXXXXXXXX</div>
+        <!-- <div class="overlay hidden">
             <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
-        </div>
+        </div> -->
 
         <div class="panel-heading">
-            <h3 class="panel-title">Charge
-                <?php echo '$' . $itemPrice; ?> with PayPal
-            </h3>
+            <h5 id="pt" class="panel-title">
+            </h5>
 
             <!-- Product Info -->
-            <p><b>Item Name:</b>
-                <?php echo $itemName; ?>
+            <p id="pt2">
             </p>
             <p><b>Price:</b>
                 <?php echo '$' . $itemPrice . ' ' . $currency; ?>
@@ -217,6 +216,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <script type="text/javascript" src="./js/popper.min.js"></script>
     <script type="text/javascript" src="./js/aflpools.js"></script>
     <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
+
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>"></script>
     <script>
         paypal.Buttons({
@@ -224,24 +224,24 @@ require_once './paypal_standard_checkout_in_php/config.php';
             createOrder: (data, actions) => {
                 return actions.order.create({
                     "purchase_units": [{
-                        "custom_id": "<?php echo $itemNumber; ?>",
-                        "description": "<?php echo $itemName; ?>",
+                        "custom_id": `${itemNumber}`,
+                        "description": `${itemName}`,
                         "amount": {
-                            "currency_code": "<?php echo $currency; ?>",
-                            "value": <?php echo $itemPrice; ?>,
+                            "currency_code": `${currency}`,
+                            "value": `${itemPrice}`,
                             "breakdown": {
                                 "item_total": {
-                                    "currency_code": "<?php echo $currency; ?>",
-                                    "value": <?php echo $itemPrice; ?>
+                                    "currency_code": `${currency}`,
+                                    "value": `${itemPrice}`
                                 }
                             }
                         },
                         "items": [{
-                            "name": "<?php echo $itemName; ?>",
-                            "description": "<?php echo $itemName; ?>",
+                            "name": `${itemName}`,
+                            "description": `${itemName}`,
                             "unit_amount": {
-                                "currency_code": "<?php echo $currency; ?>",
-                                "value": <?php echo $itemPrice; ?>
+                                "currency_code": `${currency}`,
+                                "value": `${itemPrice}`
                             },
                             "quantity": "1",
                             "category": "DIGITAL_GOODS"

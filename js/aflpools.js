@@ -14,6 +14,11 @@ var repregpword = "";
 var modal = document.getElementById("loginbox");
 var modal2 = document.getElementById("loginbox");
 
+var itemNumber = "BET20";
+var itemName = "Pool ticket";
+var itemPrice = "30";
+var currency = "AUD"; 
+
 const rounds = {
   matches: [
     {
@@ -943,7 +948,10 @@ function registerEvent() {
 
 }
 function showPayPal() {
+  
   $('#pp').show();
+  document.getElementById("pt").innerHTML = `Deposit $${itemPrice} ${currency} to my account`;
+  document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;  
 }
 
 function matchClicked(match, homeaway) {

@@ -1,9 +1,9 @@
 <?php 
  
 // Product Details 
-$itemNumber = "BET20"; 
-$itemName = "Enter Pool"; 
-$itemPrice = 20;  
+// $itemNumber = "BET20"; 
+// $itemName = "Pool ticket"; 
+// $itemPrice = 20;  
 $currency = "AUD"; 
  
 /* PayPal REST API configuration 
