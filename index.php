@@ -192,9 +192,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
 
         <div class="panel-heading">
-            <h3 class="panel-title">Charge
-                <?php echo '$' . $itemPrice; ?> with PayPal
-            </h3>
+            <div onclick="$('.paypalcontainer').hide();" style="text-align: right; padding: 10px; font-weight: 900; cursor:pointer;">X</div>
+            <h5 class="panel-title">
+                <!-- <?php //echo '$' . $itemPrice; ?> with PayPal -->
+                <!-- <label for="depositamt">Amount to deposit (min $20 AUD)</label>
+                <input type="number" class="form-control" id="depositamt" aria-describedby="numberHelp" placeholder="Enter amount" -->
+                <!-- onchange="$itemPrice = $('#depositamt').val();"> -->
+            </h5>
 
             <!-- Product Info -->
             <p><b>Item Name:</b>

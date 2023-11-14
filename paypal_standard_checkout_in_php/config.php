@@ -3,7 +3,7 @@
 // Product Details 
 $itemNumber = "BET20"; 
 $itemName = "Enter Pool"; 
-$itemPrice = 20;  
+$itemPrice = 0;  
 $currency = "AUD"; 
  
 /* PayPal REST API configuration 

@@ -943,6 +943,7 @@ function registerEvent() {
 
 }
 function showPayPal() {
+  $itemPrice=123.99;
   $('#pp').show();
 }
 

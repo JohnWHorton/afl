@@ -33,6 +33,7 @@ if(!empty($_POST['paypal_order_check']) && !empty($_POST['order_id'])){
             if(!empty($purchase_unit['amount'])){ 
                 $currency_code = $purchase_unit['amount']['currency_code']; 
                 $amount_value = $purchase_unit['amount']['value']; 
+                console.log("amount value", $amount_value)
             } 
  
             if(!empty($purchase_unit['payments']['captures'][0])){ 
