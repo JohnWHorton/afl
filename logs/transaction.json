@@ -1,0 +1,103 @@
+{
+    "id": "0GF399329G499282G",
+    "intent": "CAPTURE",
+    "status": "COMPLETED",
+    "purchase_units": [
+        {
+            "reference_id": "default",
+            "amount": {
+                "currency_code": "AUD",
+                "value": "2000.00",
+                "breakdown": {
+                    "item_total": {
+                        "currency_code": "AUD",
+                        "value": "2000.00"
+                    },
+                    "shipping": {
+                        "currency_code": "AUD",
+                        "value": "0.00"
+                    },
+                    "handling": {
+                        "currency_code": "AUD",
+                        "value": "0.00"
+                    },
+                    "insurance": {
+                        "currency_code": "AUD",
+                        "value": "0.00"
+                    },
+                    "shipping_discount": {
+                        "currency_code": "AUD",
+                        "value": "0.00"
+                    }
+                }
+            },
+            "payee": {
+                "email_address": "john.horton86-facilitator@gmail.com",
+                "merchant_id": "N8LQYXWSLFUVY"
+            },
+            "description": "Pool ticket",
+            "custom_id": "BET20",
+            "soft_descriptor": "PAYPAL *TESTFACILIT",
+            "items": [
+                {
+                    "name": "Pool ticket",
+                    "unit_amount": {
+                        "currency_code": "AUD",
+                        "value": "2000.00"
+                    },
+                    "tax": {
+                        "currency_code": "AUD",
+                        "value": "0.00"
+                    },
+                    "quantity": "1",
+                    "description": "Pool ticket"
+                }
+            ],
+            "payments": {
+                "captures": [
+                    {
+                        "id": "4AM25573P48130317",
+                        "status": "PENDING",
+                        "status_details": {
+                            "reason": "RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION"
+                        },
+                        "amount": {
+                            "currency_code": "AUD",
+                            "value": "2000.00"
+                        },
+                        "final_capture": true,
+                        "seller_protection": {
+                            "status": "ELIGIBLE",
+                            "dispute_categories": [
+                                "ITEM_NOT_RECEIVED",
+                                "UNAUTHORIZED_TRANSACTION"
+                            ]
+                        },
+                        "create_time": "2023-11-14T15:40:08Z",
+                        "update_time": "2023-11-14T15:40:08Z"
+                    }
+                ]
+            }
+        }
+    ],
+    "payer": {
+        "name": {
+            "given_name": "m",
+            "surname": "accm"
+        },
+        "email_address": "tiffaman@gmail.com",
+        "payer_id": "R3RMP5TBYZ88G",
+        "address": {
+            "country_code": "AU"
+        }
+    },
+    "create_time": "2023-11-14T15:36:28Z",
+    "update_time": "2023-11-14T15:40:08Z",
+    "links": [
+        {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/0GF399329G499282G",
+            "rel": "self",
+            "method": "GET"
+        }
+    ]
+}
