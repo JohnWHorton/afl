@@ -280,7 +280,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         .then((result) => {
                             console.log("paypal_checkout_validate result", result);
                             if (result.status == 1) {
-                                window.location.href = "paypal_standard_checkout_in_php/payment-status.php?checkout_ref_id=" + result.ref_id;
+                                alert("Payment SUCCESS!");
+                                // window.location.href = "paypal_standard_checkout_in_php/payment-status.php?checkout_ref_id=" + result.ref_id;
                             } else {
                                 const messageContainer = document.querySelector("#paymentResponse");
                                 messageContainer.classList.remove("hidden");
