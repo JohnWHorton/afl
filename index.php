@@ -192,7 +192,11 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
         </div>
         <div class="form-group">
-            <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700;">Deposit amount (min $20)</label>
+            <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700;">Deposit amount (min $20)
+                <span style="font-weight: 700; margin-left: 230px; font-size: 22px;" onclick="$('.paypalcontainer').hide();">
+                    X
+                </span>
+            </label>
             <input type="number" class="form-control" id="amt" name="amt" value=20 onchange="depositing()">
         </div>
 
