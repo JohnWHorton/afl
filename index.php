@@ -51,7 +51,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </li> -->
             </ul>
             <text>
-                <span style="margin-right: 1rem; font-size: 1rem;">Welcome to the game</span>
+                <span id="welcome" style="margin-right: 1rem; font-size: 1rem;"></span>
             </text>
             <button type="button" class="btn btn-primary loginbtn" onclick="showHideLoginbox()">Login</button>
         </div>

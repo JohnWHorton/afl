@@ -8,6 +8,7 @@ var selectedgames = [];
 var logemail = "";
 var logpword = "";
 var chkbox = false;
+var loggedin = false;
 var regemail = "";
 var regpwrd = "";
 var repregpword = "";
@@ -759,7 +760,9 @@ const rounds = {
 
 $(document).ready(function () {
   // temp testing
- setLocalStorage();
+  setLocalStorage();
+  
+  document.getElementById("welcome").innerHTML = "Welcome to the game";
  
   //end test
   for (i = 0; i < rounds.matches.length; i++) {
@@ -911,8 +914,13 @@ function loginEvent() {
     success: function (response) { 
       if(response.length==0) {
         alert("Login is incorrect. Try again");
+        logemail = "";
+        logpword = "";
+        loggedin = false;
       } else {
-      $('#loginbox').hide();
+        $('#loginbox').hide();
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
       }
     },
     error: function () {
@@ -950,7 +958,11 @@ function registerEvent() {
 
 }
 function showPayPal() {
-  $('#pp').show();
+  if (loggedin) {
+    $('#pp').show();
+  } else {
+    $('#loginbox').show();
+  }
   
   // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
   // document.getElementById("pt3").innerHTML = "";
