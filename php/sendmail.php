@@ -1,10 +1,4 @@
 <?php
-require 'vendor/autoload.php';
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-$mail = new PHPMailer();
-
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
