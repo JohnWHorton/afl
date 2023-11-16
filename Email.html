@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sending Email</title>
+<script src="js/smtp.js"></script>
+<script type="text/javascript">
+function sendMail() {
+Email.send({
+SecureToken : "e897669f-4158-4aa8-9ec9-b427bb86a779",
+To : 'tiffaman@gmail.com',
+From : "aflpools@gmail.com",
+Subject: "AFL Pools password reset",
+Body: "Please click the link to reset your password - Link"
+})
+.then(function (message) {
+alert("Email successfully sent")
+});
+}
+</script>
+</head>
+<body>
+<form method="post">
+<input type="button" value="Send Mail"onclick="sendMail()" />
+</form>
+</body>
+</html>
