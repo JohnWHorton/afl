@@ -967,6 +967,32 @@ function showPayPal() {
   // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
   // document.getElementById("pt3").innerHTML = "";
 }
+function updateDeposit(refid) {
+  var parms = { operation: "updateDeposit", email: logemail, refid: refid };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        alert("Login is incorrect. Try again");
+        logemail = "";
+        logpword = "";
+        loggedin = false;
+      } else {
+        $('#loginbox').hide();
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
+      }
+    },
+    error: function () {
+      alert("Error!");
+    },
+  })
+}
 
 function depositing() {
   itemPrice=$('#amt').val();
