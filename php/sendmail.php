@@ -3,8 +3,8 @@
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "forgotPswd";
-$email = isset($request->email) ? $request->email : "john_horton54@outlook.com";
-
+$email = isset($request->email) ? $request->email : "";
+//  sender  aflpools@gmail.com
 $resparr = array();
 
 if ($operation == "forgotPswd") {

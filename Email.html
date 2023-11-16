@@ -7,10 +7,10 @@
 function sendMail() {
 Email.send({
 SecureToken : "e897669f-4158-4aa8-9ec9-b427bb86a779",
-To : 'tiffaman@gmail.com',
+To : 'aflpools@gmail.com',
 From : "aflpools@gmail.com",
 Subject: "AFL Pools password reset",
-Body: "Please click the link to reset your password - Link"
+Body: "Enter the verification code below"+"\r\n"+"blah blah"
 })
 .then(function (message) {
 alert("Email successfully sent")
