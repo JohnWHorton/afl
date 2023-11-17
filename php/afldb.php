@@ -74,8 +74,8 @@ function addUser($conn, $email, $pswd)
 function loginUser($conn, $email, $pswd)
 {
   $resp = array();
-  $sql = `SELECT  email FROM users
-          WHERE email = '$email' AND pswd = MD5('$pswd')`;
+  $sql = "SELECT  email FROM users
+          WHERE email = '$email' AND pswd = MD5('$pswd')";
 
   $result = $conn->query($sql);
 
@@ -90,10 +90,10 @@ function loginUser($conn, $email, $pswd)
 function resetPassword($conn, $email, $pswd)
 {
   $resp = array();
-  $sql = `UPDATE users
+  $sql = "UPDATE users
             SET pswd = MD5('$pswd'),
             dateupdated = now()
-            WHERE email = '$email'`;
+            WHERE email = '$email'";
 
   $result = $conn->query($sql);
 
