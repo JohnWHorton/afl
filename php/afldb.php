@@ -18,12 +18,14 @@ if ($conn -> connect_errno) {
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "";
-// $name = isset($request->name) ? $request->name : "Chris Schaap";
-$name = isset($request->name) ? $request->name : "";
 $email = isset($request->email) ? $request->email : "";
-$phoneno = isset($request->phoneno) ? $request->phoneno : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
 
+// testing stand alone
+// $operation = "resetPassword";
+// $email = "john.horton86@gmail.com";
+// $pswd = "Ashleigh1!";
+//
 $resparr = array();
 
 if ($operation == "addUser") {
@@ -32,6 +34,10 @@ if ($operation == "addUser") {
 if ($operation == "loginUser") {
   $resparr = loginUser($conn, $email, $pswd);
 }
+if ($operation == "resetPassword") {
+  $resparr = resetPassword($conn, $email, $pswd);
+}
+
 
 // var_dump($resparr);
 echo json_encode($resparr);
@@ -46,8 +52,7 @@ function addUser($conn, $email, $pswd)
 //   $sql = "INSERT INTO users (name, email, phoneno, pswd) 
   $sql = "INSERT INTO users (email, pswd, datecreated, dateupdated) 
 			VALUES 
-			('$email',MD5('$pswd', now(), now())";
-			// ('$name','$email','$phoneno',MD5('$pswd'))";
+			('$email',MD5('$pswd'), now(), now())";
 
   if ($conn->query($sql) === TRUE) {
     array_push($resparr, 'success', $sql);
@@ -74,5 +79,19 @@ function loginUser($conn, $email, $pswd)
   
   return $resp;
 }
+function resetPassword($conn, $email, $pswd)
+{
+  $resp = array();
+  $sql = "UPDATE users 
+            SET pswd = MD5('$pswd'), 
+            dateupdated = now() 
+            WHERE email = '$email'";
+	// echo $sql;
+
+  $result = $conn->query($sql);
+  
+  return $resp;
+}
+
 
 ?>

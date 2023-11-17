@@ -18,9 +18,10 @@ var modal2 = document.getElementById("loginbox");
 var itemNumber = "BET20";
 var itemName = "Pool ticket";
 var itemPrice = "30";
-var currency = "AUD"; 
+var currency = "AUD";
 var depamt = "0";
 var depcurr = "AUD";
+var rndvalcode = 0;
 
 const rounds = {
   matches: [
@@ -761,9 +762,9 @@ const rounds = {
 $(document).ready(function () {
   // temp testing
   setLocalStorage();
-  
+
   document.getElementById("welcome").innerHTML = "Welcome to the game";
- 
+
   //end test
   for (i = 0; i < rounds.matches.length; i++) {
     if (i < 5) {
@@ -797,7 +798,9 @@ $(document).ready(function () {
     <td>
       <div class="form-check">
         <label class="form-check-label">
-          <input id=${rounds.matches[i].id}-${rounds.matches[i].home.team.name.replaceAll(" ", "-")} 
+          <input id=${rounds.matches[i].id}-${rounds.matches[
+          i
+        ].home.team.name.replaceAll(" ", "-")} 
           type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
         rounds.matches[i].home.team.name +
         `
@@ -805,7 +808,9 @@ $(document).ready(function () {
         </div>
         <div class="form-check">
         <label class="form-check-label">
-        <input id=${rounds.matches[i].id}-${rounds.matches[i].away.team.name.replaceAll(" ", "-")} 
+        <input id=${rounds.matches[i].id}-${rounds.matches[
+          i
+        ].away.team.name.replaceAll(" ", "-")} 
         type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
         rounds.matches[i].away.team.name +
         `
@@ -846,7 +851,9 @@ $(document).ready(function () {
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input id=${rounds.matches[i].id}-${rounds.matches[i].home.team.name.replaceAll(" ", "-")} 
+              <input id=${rounds.matches[i].id}-${rounds.matches[
+          i
+        ].home.team.name.replaceAll(" ", "-")} 
               type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
         rounds.matches[i].home.team.name +
         `
@@ -854,7 +861,9 @@ $(document).ready(function () {
             </div>
             <div class="form-check">
             <label class="form-check-label">
-              <input id=${rounds.matches[i].id}-${rounds.matches[i].away.team.name.replaceAll(" ", "-")} 
+              <input id=${rounds.matches[i].id}-${rounds.matches[
+          i
+        ].away.team.name.replaceAll(" ", "-")} 
               type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
         rounds.matches[i].away.team.name +
         `
@@ -867,36 +876,35 @@ $(document).ready(function () {
   // console.log("tableright", tableright);
   document.getElementById("tableleft").innerHTML = tableleft;
   document.getElementById("tableright").innerHTML = tableright;
-  
-  let file = "fetch_info.txt"
+
+  let file = "fetch_info.txt";
   fetch(file)
-    .then(x => x.text())
-    .then(y => document.getElementById("info").innerHTML = y);
-  
+    .then((x) => x.text())
+    .then((y) => (document.getElementById("info").innerHTML = y));
 });
 function showHideLoginbox() {
-  if($('#loginbox').is(':visible')) {
-    $('#loginbox').hide();
+  if ($("#loginbox").is(":visible")) {
+    $("#loginbox").hide();
   } else {
-    $('#loginbox').show(); 
-    $('#registerbox').hide();
-  } 
+    $("#loginbox").show();
+    $("#registerbox").hide();
+  }
 }
 function setLocalStorage(userdata) {
-  localStorage.setItem('aflemail', 'Obaseki Nosa');
-  localStorage.setItem('aflpassword', 'abcdefgh');
+  localStorage.setItem("aflemail", "Obaseki Nosa");
+  localStorage.setItem("aflpassword", "abcdefgh");
 }
 
 function loginEvent() {
   // e.preventDefault();
-  
-  logemail=$("#lemail").val();
-  logpword=$("#lpassword").val();
 
-  if ($("#defaultCheck1").is(":checked")){
-    chkbox=true;
+  logemail = $("#lemail").val();
+  logpword = $("#lpassword").val();
+
+  if ($("#defaultCheck1").is(":checked")) {
+    chkbox = true;
   } else {
-    chkbox=false;
+    chkbox = false;
   }
 
   console.log(logemail);
@@ -911,14 +919,14 @@ function loginEvent() {
     contentType: "application/json; charset=UTF-8",
     dataType: "json",
     data: JSON.stringify(parms),
-    success: function (response) { 
-      if(response.length==0) {
+    success: function (response) {
+      if (response.length == 0) {
         alert("Login is incorrect. Try again");
         logemail = "";
         logpword = "";
         loggedin = false;
       } else {
-        $('#loginbox').hide();
+        $("#loginbox").hide();
         document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
         loggedin = true;
       }
@@ -927,19 +935,18 @@ function loginEvent() {
       alert("Error!");
     },
   });
-
 }
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
-  regemail=$("#remail").val();
-  regpword=$("#rpassword").val();
-  repregpword=$("#rrpassword").val();
-  
-  console.log(regemail)
-  console.log(regpword)
-  console.log(repregpword)
+  regemail = $("#remail").val();
+  regpwrd = $("#rpassword").val();
+  repregpword = $("#rrpassword").val();
 
-  var parms = { operation: "addUser", email: regemail, pswd: regpword };
+  console.log(regemail);
+  console.log(regpwrd);
+  console.log(repregpword);
+  if ((regpwrd > "") & (regpwrd == repregpword)) {
+  var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
 
   $.ajax({
     type: "POST",
@@ -947,23 +954,88 @@ function registerEvent() {
     contentType: "application/json; charset=UTF-8",
     dataType: "json",
     data: JSON.stringify(parms),
-    success: function (response) { 
-      $('#loginbox').hide();
-      $('#registerbox').hide();
+    success: function (response) {
+      $("#loginbox").hide();
+      $("#registerbox").hide();
     },
     error: function () {
       alert("Error!");
     },
+  })
+} else {
+  alert("invalid password or passwords do not match");
+}
+}
+function resetPassword() {
+  regemail = $("#remail").val();
+  regpwrd = $("#newpword").val();
+  repregpword = $("#rnewpword").val();
+
+  console.log(regemail);
+  console.log(regpwrd);
+  console.log(repregpword);
+
+  if ((regpwrd > "") & (regpwrd == repregpword)) {
+    var parms = { operation: "resetPassword", email: regemail, pswd: regpwrd };
+
+    $.ajax({
+      type: "POST",
+      url: "./php/afldb.php",
+      contentType: "application/json; charset=UTF-8",
+      dataType: "json",
+      data: JSON.stringify(parms),
+      success: function (response) {
+        $("#forgotbox").hide();
+        $("#registerbox").hide();
+        $("#loginbox").show();
+      },
+      error: function () {
+        alert("Error!");
+      },
+    })
+  } else {
+    alert("invalid password or passwords do not match");
+  }
+}
+function forgotPassword() {
+  rndvalcode = Math.trunc(Math.random() * (999999 - 111111) + 111111);
+  let toemail = $("#lemail").val();
+  console.log("toemail", toemail);
+  let dummyobj = {
+    SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
+    To: "" + toemail,
+    From: "aflpools@gmail.com",
+    Subject: "AFL Pools password reset",
+    Body: "Enter the verification code below" + "\r\n" + rndvalcode.toString(),
+  };
+  console.log("dummyobj", dummyobj);
+
+  Email.send(dummyobj).then(function (message) {
+    alert("Email successfully sent");
   });
 
+  document.getElementById("valEmail").innerHTML =
+    document.getElementById("lemail").value;
+  console.log("generated code", rndvalcode);
+  $("#loginbox").hide();
+  $("#forgotbox").show();
+}
+function chkValCode() {
+  let vc = $("#valcode").val();
+  console.log("vc", vc);
+  if (vc == rndvalcode.toString()) {
+    $("#vc").hide();
+    $("#chkemailmsg").hide();
+    $("#newpassword").show();
+  }
 }
 function showPayPal() {
   if (loggedin) {
-    $('#pp').show();
+    $("#pp").show();
   } else {
-    $('#loginbox').show();
+    $("#loginbox").show();
   }
-  
+
   // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
   // document.getElementById("pt3").innerHTML = "";
 }
@@ -983,7 +1055,7 @@ function updateDeposit(refid) {
         logpword = "";
         loggedin = false;
       } else {
-        $('#loginbox').hide();
+        $("#loginbox").hide();
         document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
         loggedin = true;
       }
@@ -991,12 +1063,14 @@ function updateDeposit(refid) {
     error: function () {
       alert("Error!");
     },
-  })
+  });
 }
 
 function depositing() {
-  itemPrice=$('#amt').val();
-  document.getElementById("pt").innerHTML = `Depositing  $${itemPrice} ${currency} to my account`;
+  itemPrice = $("#amt").val();
+  document.getElementById(
+    "pt"
+  ).innerHTML = `Depositing  $${itemPrice} ${currency} to my account`;
 }
 function matchClicked(match, homeaway) {
   // alert(match+" - "+homeaway);
@@ -1013,8 +1087,8 @@ function gameSelected(game) {
     }
   } else {
     if (selectedgames.includes(game)) {
-      for(var i=0; i<selectedgames.length; i++) {
-        if(selectedgames[i]==game) {
+      for (var i = 0; i < selectedgames.length; i++) {
+        if (selectedgames[i] == game) {
           selectedgames.splice(i, 1);
           break;
         }
@@ -1024,28 +1098,42 @@ function gameSelected(game) {
   console.log("selected games count", selectedgames.length);
   console.log("rounds.matches", rounds.matches);
   console.log("selected games", selectedgames);
-  if(selectedgames.length==6) {
-    
-    for(var j=0; j<rounds.matches.length; j++) {
-      
-      if(!selectedgames.includes(rounds.matches[j].id.toString())) {
-        $("#"+rounds.matches[j].id.toString()).attr("disabled", true);
-        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].home.team.name.replaceAll(" ", "-")).attr("disabled", true);
-        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].away.team.name.replaceAll(" ", "-")).attr("disabled", true);
+  if (selectedgames.length == 6) {
+    for (var j = 0; j < rounds.matches.length; j++) {
+      if (!selectedgames.includes(rounds.matches[j].id.toString())) {
+        $("#" + rounds.matches[j].id.toString()).attr("disabled", true);
+        $(
+          "#" +
+            rounds.matches[j].id.toString() +
+            "-" +
+            rounds.matches[j].home.team.name.replaceAll(" ", "-")
+        ).attr("disabled", true);
+        $(
+          "#" +
+            rounds.matches[j].id.toString() +
+            "-" +
+            rounds.matches[j].away.team.name.replaceAll(" ", "-")
+        ).attr("disabled", true);
       }
-
     }
   }
-  if(selectedgames.length!=6) {
-    
-    for(var j=0; j<rounds.matches.length; j++) {
-      
-      if(!selectedgames.includes(rounds.matches[j].id.toString())) {
-        $("#"+rounds.matches[j].id.toString()).attr("disabled", false);
-        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].home.team.name.replaceAll(" ", "-")).attr("disabled", false);
-        $("#"+rounds.matches[j].id.toString()+"-"+rounds.matches[j].away.team.name.replaceAll(" ", "-")).attr("disabled", false);
+  if (selectedgames.length != 6) {
+    for (var j = 0; j < rounds.matches.length; j++) {
+      if (!selectedgames.includes(rounds.matches[j].id.toString())) {
+        $("#" + rounds.matches[j].id.toString()).attr("disabled", false);
+        $(
+          "#" +
+            rounds.matches[j].id.toString() +
+            "-" +
+            rounds.matches[j].home.team.name.replaceAll(" ", "-")
+        ).attr("disabled", false);
+        $(
+          "#" +
+            rounds.matches[j].id.toString() +
+            "-" +
+            rounds.matches[j].away.team.name.replaceAll(" ", "-")
+        ).attr("disabled", false);
       }
-
     }
   }
 }
