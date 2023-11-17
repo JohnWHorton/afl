@@ -945,26 +945,36 @@ function registerEvent() {
   console.log(regemail);
   console.log(regpwrd);
   console.log(repregpword);
-  if ((regpwrd > "") & (regpwrd == repregpword)) {
-  var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
 
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      $("#loginbox").hide();
-      $("#registerbox").hide();
-    },
-    error: function () {
-      alert("Error!");
-    },
-  })
-} else {
-  alert("invalid password or passwords do not match");
-}
+  if ((regpwrd > "") & (regpwrd == repregpword)) {
+    var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
+
+    $.ajax({
+      type: "POST",
+      url: "./php/afldb.php",
+      contentType: "application/json; charset=UTF-8",
+      dataType: "json",
+      data: JSON.stringify(parms),
+      success: function (response) {
+        if (response[1] == "record already exists") {
+          console.log("response", response);
+          alert("User already exists, please login");
+          $("#loginbox").show();
+          $("#registerbox").hide();
+        } else {
+          $("#loginbox").hide();
+          $("#registerbox").hide();
+        }
+      },
+      error: function (xhr, textStatus, error) {
+        console.log(xhr.statusText);
+        console.log(textStatus);
+        console.log(error);
+      },
+    });
+  } else {
+    alert("invalid password or passwords do not match");
+  }
 }
 function resetPassword() {
   regemail = $("#remail").val();
@@ -992,7 +1002,7 @@ function resetPassword() {
       error: function () {
         alert("Error!");
       },
-    })
+    });
   } else {
     alert("invalid password or passwords do not match");
   }
