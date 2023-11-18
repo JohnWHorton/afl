@@ -1,5 +1,5 @@
 <?php
-// Include the configuration file  
+// Include the configuration file
 require_once './paypal_standard_checkout_in_php/config.php';
 ?>
 <!DOCTYPE html>
@@ -58,6 +58,15 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <button type="button" class="btn btn-primary loginbtn" onclick="showHideLoginbox()">Login</button>
         </div>
     </nav>
+    <div class="container msgcontainer modal modal-content">
+        <div>
+            <span class="msg"></span>
+            <button class="btn btn-secondary" style="margin: 0 0 0 150px; padding: 0; min-width: 20px"
+            onclick="$('.msgcontainer').hide();">&times;</button>
+            
+        </div>
+
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
@@ -126,11 +135,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <div class="form-group">
                 <label for="rpassword">Password</label>
-                <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
+                <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value=""
+                    required>
             </div>
             <div class="form-group">
                 <label for="rrpassword">Repeat Password</label>
-                <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value="" required>
+                <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value=""
+                    required>
             </div>
             <p>
                 By creating an account you agree to our
@@ -159,11 +170,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div id="newpassword" style="display: none;">
                 <div class="form-group">
                     <label for="newpword">Password</label>
-                    <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value="" required>
+                    <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value=""
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="rnewpword">Repeat Password</label>
-                    <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value="" required>
+                    <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value=""
+                        required>
                 </div>
                 <center>
                     <button type="button" class="btn btn-primary buttonlogin" onclick="resetPassword()">Reset</button>
@@ -172,7 +185,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div id="chkemailmsg">
                 <center>
                     <button type="button" class="btn btn-primary buttonlogin" onclick="chkValCode()">Send</button>
-                    <div >
+                    <div>
                         <p>Check your email for the validation code</p>
                         <p>Check your spam folder if no email recieved</p>
                     </div>
@@ -262,6 +275,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
         </div>
     </div>
+
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/popper.min.js"></script>
     <script type="text/javascript" src="./js/aflpools.js"></script>

@@ -762,6 +762,7 @@ const rounds = {
 $(document).ready(function () {
   // temp testing
   setLocalStorage();
+  $('.toast').toast({autohide: false});
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
@@ -921,7 +922,8 @@ function loginEvent() {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        alert("Login is incorrect. Try again");
+        $('.msg').html("Login is incorrect. Try again");
+        $('.msgcontainer').show();
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -932,7 +934,8 @@ function loginEvent() {
       }
     },
     error: function () {
-      alert("Error!");
+      $('.msg').html("Error");
+      $('.msgcontainer').show();
     },
   });
 }
@@ -958,7 +961,8 @@ function registerEvent() {
       success: function (response) {
         if (response[1] == "exists") {
           console.log("response", response);
-          alert("User already exists, please login");
+          $('.msg').html("User already exists, please login");
+          $('.msgcontainer').show();
           $("#loginbox").show();
           $("#registerbox").hide();
         }
@@ -977,7 +981,8 @@ function registerEvent() {
       },
     });
   } else {
-    alert("invalid password or passwords do not match");
+    $('.msg').html("Invalid password or passwords do not match");
+    $('.msgcontainer').show();
   }
 }
 function resetPassword() {
@@ -999,16 +1004,26 @@ function resetPassword() {
       dataType: "json",
       data: JSON.stringify(parms),
       success: function (response) {
-        $("#forgotbox").hide();
-        $("#registerbox").hide();
-        $("#loginbox").show();
+        if (response[0] == "success") {
+          $("#forgotbox").hide();
+          $("#registerbox").hide();
+          $("#loginbox").show();
+        } else {          
+          console.log("reset error", response[1]);
+
+          $('.msgcontainer').show();
+          $('.msg').html("reset failed. see log");
+          $('.msgcontainer').show();
+        }
       },
       error: function () {
-        alert("Error!");
+        $('.msg').html("Error");
+        $('.msgcontainer').show();
       },
     });
   } else {
-    alert("invalid password or passwords do not match");
+    $('.msg').html("Invalid password or passwords do not match");
+    $('.msgcontainer').show();
   }
 }
 function forgotPassword() {
@@ -1025,7 +1040,8 @@ function forgotPassword() {
   console.log("dummyobj", dummyobj);
 
   Email.send(dummyobj).then(function (message) {
-    alert("Email successfully sent");
+    $('.msg').html("Email successfully sent");
+    $('.msgcontainer').show();
   });
 
   document.getElementById("valEmail").innerHTML =
@@ -1064,7 +1080,8 @@ function updateDeposit(refid) {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        alert("Login is incorrect. Try again");
+        $('.msg').html("Login is incorrect. Try again");
+        $('.msgcontainer').show();
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -1075,7 +1092,8 @@ function updateDeposit(refid) {
       }
     },
     error: function () {
-      alert("Error!");
+      $('.msg').html("Error");
+      $('.msgcontainer').show();
     },
   });
 }
@@ -1087,7 +1105,6 @@ function depositing() {
   ).innerHTML = `Depositing  $${itemPrice} ${currency} to my account`;
 }
 function matchClicked(match, homeaway) {
-  // alert(match+" - "+homeaway);
   console.log(match + " - " + homeaway);
 }
 function gameSelected(game) {
