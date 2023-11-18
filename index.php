@@ -159,6 +159,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </a>
             </center>
     </div>
+    
     <div id="forgotbox" class="container registercontainer modal modal-content"
         style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 2rem;">
         <form style="padding: 10px;">
@@ -237,7 +238,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
         </center>
     </div>
-    </div>
+
 
     <div id="pp" class="paypalcontainer panel modal modal-content"
         style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
@@ -284,7 +285,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
     <script
         src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>"></script>
-    <script>
+    <!-- <script>
         paypal.Buttons({
             // Sets up the transaction when a payment button is clicked
             createOrder: (data, actions) => {
@@ -376,5 +377,5 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 document.querySelector(".overlay").classList.add("hidden");
             }
         }
-    </script>
+    </script> -->
 </body>

@@ -67,6 +67,17 @@ body {
     overflow: auto; /* Enable scroll if needed */
     background-color: #00529b; /* Fallback color */
   }
+  .modal {
+	width: 100%;
+	background-color: rgba(0,0,0,0.3);
+	border-radius: 2px;
+	border-color: darkgray;
+	margin-top: 10px;
+	text-align: left;
+	color: white;
+	height: 100%; 
+	color: #ffffff;
+}
  
   /* Modal Content */
   .modal-content {
@@ -119,15 +130,6 @@ body {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-}
-
-.teamlogo {
-    max-width: 100px;
-    min-width: 100px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10%;
-    flex: 2 1;
 }
 
 .loginbtn {
@@ -188,13 +190,6 @@ body {
     margin-bottom: 5px;
 }
 
-.toast-body {
-    background-color: #000000;
-}
-
-.matches {
-    min-width: 250px;
-}
 select, input, textarea, button { 
 	outline:none; 
 	background-color: white;
@@ -207,17 +202,7 @@ select, input, textarea, button {
     color: white;	
 }
 
-.modal {
-	width: 100%;
-	background-color: rgba(0,0,0,0.3);
-	border-radius: 2px;
-	border-color: darkgray;
-	margin-top: 10px;
-	text-align: left;
-	color: white;
-	height: 100%; 
-	color: #ffffff;
-}
+
 .modal-header {
 	  border-bottom: 0;
 	  padding: 5px;

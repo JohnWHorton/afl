@@ -23,751 +23,84 @@ var depamt = "0";
 var depcurr = "AUD";
 var rndvalcode = 0;
 
-const rounds = {
-  matches: [
-    {
-      id: 4787,
-      providerId: "CD_M20230140101",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 16,
-          providerId: "CD_T120",
-          name: "Richmond",
-          abbreviation: "RICH",
-          nickname: "Tigers",
-          club: {
-            id: 22,
-            providerId: "CD_O25",
-            name: "Richmond",
-            abbreviation: "Tigers",
-            nickname: "Tigers",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 8,
-          behinds: 10,
-          totalScore: 58,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 5,
-          providerId: "CD_T30",
-          name: "Carlton",
-          abbreviation: "CARL",
-          nickname: "Blues",
-          club: {
-            id: 1,
-            providerId: "CD_O5",
-            name: "Carlton",
-            abbreviation: "Blues",
-            nickname: "Blues",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 8,
-          behinds: 10,
-          totalScore: 58,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 13,
-        providerId: "CD_V40",
-        name: "MCG",
-        abbreviation: "MCG",
-        location: "Melbourne",
-        state: "VIC",
-        timezone: "Australia/Melbourne",
-        landOwner: "Wurundjeri",
-      },
-      utcStartTime: "2023-03-16T08:20:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://premier.ticketek.com.au/shows/show.aspx?sh=RICHM0123",
-      },
-    },
-    {
-      id: 4786,
-      providerId: "CD_M20230140102",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 10,
-          providerId: "CD_T70",
-          name: "Geelong Cats",
-          abbreviation: "GEEL",
-          nickname: "Cats",
-          club: {
-            id: 15,
-            providerId: "CD_O11",
-            name: "Geelong Cats",
-            abbreviation: "Cats",
-            nickname: "Cats",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 16,
-          behinds: 7,
-          totalScore: 103,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 3,
-          providerId: "CD_T40",
-          name: "Collingwood",
-          abbreviation: "COLL",
-          nickname: "Magpies",
-          club: {
-            id: 12,
-            providerId: "CD_O6",
-            name: "Collingwood",
-            abbreviation: "Magpies",
-            nickname: "Magpies",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 19,
-          behinds: 11,
-          totalScore: 125,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 13,
-        providerId: "CD_V40",
-        name: "MCG",
-        abbreviation: "MCG",
-        location: "Melbourne",
-        state: "VIC",
-        timezone: "Australia/Melbourne",
-        landOwner: "Wurundjeri",
-      },
-      utcStartTime: "2023-03-17T08:40:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://premier.ticketek.com.au/shows/show.aspx?sh=GEELO0123",
-      },
-    },
-    {
-      id: 4785,
-      providerId: "CD_M20230140103",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 6,
-          providerId: "CD_T100",
-          name: "North Melbourne",
-          abbreviation: "NMFC",
-          nickname: "Kangaroos",
-          club: {
-            id: 20,
-            providerId: "CD_O20",
-            name: "North Melbourne",
-            abbreviation: "Kangaroos",
-            nickname: "Kangaroos",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 12,
-          behinds: 15,
-          totalScore: 87,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 18,
-          providerId: "CD_T150",
-          name: "West Coast Eagles",
-          abbreviation: "WCE",
-          nickname: "Eagles",
-          club: {
-            id: 23,
-            providerId: "CD_O30",
-            name: "West Coast Eagles",
-            abbreviation: "Eagles",
-            nickname: "Eagles",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 12,
-          behinds: 10,
-          totalScore: 82,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 3,
-        providerId: "CD_V190",
-        name: "Marvel Stadium",
-        abbreviation: "MRVL",
-        location: "Melbourne",
-        state: "VIC",
-        timezone: "Australia/Melbourne",
-        landOwner: "Wurundjeri",
-      },
-      utcStartTime: "2023-03-18T02:45:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://www.ticketmaster.com.au/north-melbourne-v-west-coast-eagles-docklands-18-03-2023/event/25005E4F9795186B",
-      },
-    },
-    {
-      id: 4788,
-      providerId: "CD_M20230140104",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 7,
-          providerId: "CD_T110",
-          name: "Port Adelaide",
-          abbreviation: "PORT",
-          nickname: "Power",
-          club: {
-            id: 19,
-            providerId: "CD_O24",
-            name: "Port Adelaide",
-            abbreviation: "Power",
-            nickname: "Power",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 18,
-          behinds: 18,
-          totalScore: 126,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 2,
-          providerId: "CD_T20",
-          name: "Brisbane Lions",
-          abbreviation: "BL",
-          nickname: "Lions",
-          club: {
-            id: 13,
-            providerId: "CD_O3",
-            name: "Brisbane Lions",
-            abbreviation: "Lions",
-            nickname: "Lions",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 11,
-          behinds: 6,
-          totalScore: 72,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 31,
-        providerId: "CD_V6",
-        name: "Adelaide Oval",
-        abbreviation: "AO",
-        location: "Adelaide",
-        state: "SA",
-        timezone: "Australia/Adelaide",
-        landOwner: "Kaurna",
-      },
-      utcStartTime: "2023-03-18T05:35:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://premier.ticketek.com.au/shows/Show.aspx?sh=PORTA0123",
-      },
-    },
-    {
-      id: 4791,
-      providerId: "CD_M20230140105",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 17,
-          providerId: "CD_T90",
-          name: "Melbourne",
-          abbreviation: "MELB",
-          nickname: "Demons",
-          club: {
-            id: 14,
-            providerId: "CD_O18",
-            name: "Melbourne",
-            abbreviation: "Demons",
-            nickname: "Demons",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 17,
-          behinds: 13,
-          totalScore: 115,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 8,
-          providerId: "CD_T140",
-          name: "Western Bulldogs",
-          abbreviation: "WB",
-          nickname: "Bulldogs",
-          club: {
-            id: 25,
-            providerId: "CD_O31",
-            name: "Western Bulldogs",
-            abbreviation: "Bulldogs",
-            nickname: "Bulldogs",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 9,
-          behinds: 11,
-          totalScore: 65,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 13,
-        providerId: "CD_V40",
-        name: "MCG",
-        abbreviation: "MCG",
-        location: "Melbourne",
-        state: "VIC",
-        timezone: "Australia/Melbourne",
-        landOwner: "Wurundjeri",
-      },
-      utcStartTime: "2023-03-18T08:25:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://premier.ticketek.com.au/shows/show.aspx?sh=MELBO0123",
-      },
-    },
-    {
-      id: 4789,
-      providerId: "CD_M20230140106",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 4,
-          providerId: "CD_T1000",
-          name: "Gold Coast Suns",
-          abbreviation: "GCFC",
-          nickname: "Suns",
-          club: {
-            id: 9,
-            providerId: "CD_O14",
-            name: "Gold Coast Suns",
-            abbreviation: "Suns",
-            nickname: "Suns",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 9,
-          behinds: 7,
-          totalScore: 61,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 13,
-          providerId: "CD_T160",
-          name: "Sydney Swans",
-          abbreviation: "SYD",
-          nickname: "Swans",
-          club: {
-            id: 24,
-            providerId: "CD_O28",
-            name: "Sydney Swans",
-            abbreviation: "Swans",
-            nickname: "Swans",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 16,
-          behinds: 14,
-          totalScore: 110,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 11,
-        providerId: "CD_V81",
-        name: "Heritage Bank Stadium",
-        abbreviation: "HBS",
-        location: "Gold Coast",
-        state: "QLD",
-        timezone: "Australia/Brisbane",
-        landOwner: "Yugambeh ",
-      },
-      utcStartTime: "2023-03-18T09:00:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://hotshow4.ticketek.com.au/shows/show.aspx?sh=SUNS0123",
-      },
-    },
-    {
-      id: 4790,
-      providerId: "CD_M20230140107",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 15,
-          providerId: "CD_T1010",
-          name: "GWS Giants",
-          abbreviation: "GWS",
-          nickname: "Giants",
-          club: {
-            id: 5,
-            providerId: "CD_O16",
-            name: "GWS Giants",
-            abbreviation: "Giants",
-            nickname: "Giants",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 15,
-          behinds: 16,
-          totalScore: 106,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 1,
-          providerId: "CD_T10",
-          name: "Adelaide Crows",
-          abbreviation: "ADEL",
-          nickname: "Crows",
-          club: {
-            id: 3,
-            providerId: "CD_O1",
-            name: "Adelaide Crows",
-            abbreviation: "Crows",
-            nickname: "Crows",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 12,
-          behinds: 18,
-          totalScore: 90,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 8,
-        providerId: "CD_V43",
-        name: "GIANTS Stadium",
-        abbreviation: "GS",
-        location: "Sydney",
-        state: "NSW",
-        timezone: "Australia/Sydney",
-        landOwner: "Wann-gal",
-      },
-      utcStartTime: "2023-03-19T02:10:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://www.ticketmaster.com.au/gws-giants-v-adelaide-crows-olympic-park-19-03-2023/event/13005E48A51E4A2F",
-      },
-    },
-    {
-      id: 4792,
-      providerId: "CD_M20230140108",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 9,
-          providerId: "CD_T80",
-          name: "Hawthorn",
-          abbreviation: "HAW",
-          nickname: "Hawks",
-          club: {
-            id: 16,
-            providerId: "CD_O17",
-            name: "Hawthorn",
-            abbreviation: "Hawks",
-            nickname: "Hawks",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 9,
-          behinds: 11,
-          totalScore: 65,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 12,
-          providerId: "CD_T50",
-          name: "Essendon",
-          abbreviation: "ESS",
-          nickname: "Bombers",
-          club: {
-            id: 10,
-            providerId: "CD_O9",
-            name: "Essendon",
-            abbreviation: "Bombers",
-            nickname: "Bombers",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 19,
-          behinds: 10,
-          totalScore: 124,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 13,
-        providerId: "CD_V40",
-        name: "MCG",
-        abbreviation: "MCG",
-        location: "Melbourne",
-        state: "VIC",
-        timezone: "Australia/Melbourne",
-        landOwner: "Wurundjeri",
-      },
-      utcStartTime: "2023-03-19T04:20:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://premier.ticketek.com.au/shows/show.aspx?sh=HAWTH0123",
-      },
-    },
-    {
-      id: 4793,
-      providerId: "CD_M20230140109",
-      compSeason: {
-        id: 52,
-        providerId: "CD_S2023014",
-        name: "2023 Toyota AFL Premiership",
-        shortName: "Premiership",
-        currentRoundNumber: 28,
-      },
-      round: {
-        id: 758,
-        providerId: "CD_R202301401",
-        abbreviation: "Rd 1",
-        name: "Round 1",
-        roundNumber: 1,
-        byes: [],
-      },
-      home: {
-        team: {
-          id: 11,
-          providerId: "CD_T130",
-          name: "St Kilda",
-          abbreviation: "STK",
-          nickname: "Saints",
-          club: {
-            id: 21,
-            providerId: "CD_O27",
-            name: "St Kilda",
-            abbreviation: "Saints",
-            nickname: "Saints",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 10,
-          behinds: 7,
-          totalScore: 67,
-          superGoals: 0,
-        },
-      },
-      away: {
-        team: {
-          id: 14,
-          providerId: "CD_T60",
-          name: "Fremantle",
-          abbreviation: "FRE",
-          nickname: "Dockers",
-          club: {
-            id: 6,
-            providerId: "CD_O10",
-            name: "Fremantle",
-            abbreviation: "Dockers",
-            nickname: "Dockers",
-          },
-          teamType: "MEN",
-        },
-        score: {
-          goals: 7,
-          behinds: 10,
-          totalScore: 52,
-          superGoals: 0,
-        },
-      },
-      venue: {
-        id: 3,
-        providerId: "CD_V190",
-        name: "Marvel Stadium",
-        abbreviation: "MRVL",
-        location: "Melbourne",
-        state: "VIC",
-        timezone: "Australia/Melbourne",
-        landOwner: "Wurundjeri",
-      },
-      utcStartTime: "2023-03-19T05:40:00.000+0000",
-      status: "CONCLUDED",
-      metadata: {
-        ticket_link:
-          "https://www.ticketmaster.com.au/st-kilda-v-fremantle-docklands-19-03-2023/event/25005E4F9B1F1BDB",
-      },
-    },
-  ],
-};
-
-// var results;
+var games = [
+  {
+    gameid: "4787",
+    homename: "Richmond",
+    homeimg: "Richmond.svg",
+    awayname: "Carlton",
+    awayimg: "Carlton.svg",
+  },
+  {
+    gameid: "4786",
+    homename: "Geelong Cats",
+    homeimg: "GeelongCats.svg",
+    awayname: "Collingwood",
+    awayimg: "Collingwood.svg",
+  },
+  {
+    gameid: "4785",
+    homename: "North Melbourne",
+    homeimg: "NorthMelbourne.svg",
+    awayname: "West Coast Eagles",
+    awayimg: "WestCoastEagles.svg",
+  },
+  {
+    gameid: "4788",
+    homename: "Port Adelaide",
+    homeimg: "PortAdelaide.svg",
+    awayname: "Brisbane Lions",
+    awayimg: "BrisbaneLions.svg",
+  },
+  {
+    gameid: "4791",
+    homename: "Melbourne",
+    homeimg: "Melbourne.svg",
+    awayname: "Western Bulldogs",
+    awayimg: "WesternBulldogs.svg",
+  },
+  {
+    gameid: "4789",
+    homename: "Gold Coast Suns",
+    homeimg: "GoldCoastSuns.svg",
+    awayname: "Sydney Swans",
+    awayimg: "SydneySwans.svg",
+  },
+  {
+    gameid: "4790",
+    homename: "GWS Giants",
+    homeimg: "GWSGiants.svg",
+    awayname: "Adelaide Crows",
+    awayimg: "AdelaideCrows.svg",
+  },
+  {
+    gameid: "4792",
+    homename: "Hawthorn",
+    homeimg: "Hawthorn.svg",
+    awayname: "Essendon",
+    awayimg: "Essendon.svg",
+  },
+  {
+    gameid: "4793",
+    homename: "St Kilda",
+    homeimg: "StKilda.svg",
+    awayname: "Fremantle",
+    awayimg: "Fremantle.svg",
+  },
+];
 
 $(document).ready(function () {
-  // temp testing
+  
   setLocalStorage();
-  $('.toast').toast({autohide: false});
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
-  //end test
-  for (i = 0; i < rounds.matches.length; i++) {
+  for (i = 0; i < games.length; i++) {
+    let gameid = games[i].gameid;
+    let homename = games[i].homename;
+    let homeimg = games[i].homeimg;
+    let awayname = games[i].awayname;
+    let awayimg = games[i].awayimg;    
     if (i < 5) {
       tableleft +=
         `
@@ -776,97 +109,90 @@ $(document).ready(function () {
       <div>
         
           <input class="agame" id="` +
-        rounds.matches[i].id.toString() +
+        gameid +
         `" 
-            onchange="gameSelected('${rounds.matches[i].id.toString()}')" 
+            onchange="gameSelected('${gameid}')" 
             type="checkbox" class="form-check-input" value="">Game ${game++}
        
         </div>
     </td>
     <td><img src="./images/` +
-        rounds.matches[i].home.team.name.replaceAll(" ", "") +
-        `.svg" alt="` +
-        rounds.matches[i].home.team.name +
+        homeimg +
+        `" alt="` +
+        homename +
         `" width="100"
       height="100"></td>
     <td style="font-size: 2rem;font-weight: 700;">VS</td>
     <td><img src="./images/` +
-        rounds.matches[i].away.team.name.replaceAll(" ", "") +
-        `.svg" alt="` +
-        rounds.matches[i].away.team.name +
+        awayimg +
+        `" alt="` +
+        awayname +
         `" width="100"
       height="100"></td>
     <td>
       <div class="form-check">
         <label class="form-check-label">
-          <input id=${rounds.matches[i].id}-${rounds.matches[
-          i
-        ].home.team.name.replaceAll(" ", "-")} 
+          <input id=${gameid} 
           type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
-        rounds.matches[i].home.team.name +
+        homename +
         `
         </label>
         </div>
         <div class="form-check">
         <label class="form-check-label">
-        <input id=${rounds.matches[i].id}-${rounds.matches[
-          i
-        ].away.team.name.replaceAll(" ", "-")} 
+        <input id=${gameid} 
         type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
-        rounds.matches[i].away.team.name +
+        awayname +
         `
         </label>
         </div>
     </td>
-  </tr>
-  `;
-    } else {
+    </tr>
+   `;
+  } else 
+    {
       tableright +=
         `
-    <tr>
-    <td>
+      <tr>
+      <td>
         <div class="form-check">
             <label class="form-check-label">
               <input class="agame" id="` +
-        rounds.matches[i].id.toString() +
+        gameid +
         `"  
-        onchange="gameSelected('${rounds.matches[i].id.toString()}')"
+        onchange="gameSelected('${gameid}')"
         type="checkbox" class="form-check-input" value="">
               <span style="padding-top: 15px;">Game ${game++}</span>
             </label>
             </div>
         </td>
         <td><img src="./images/` +
-        rounds.matches[i].home.team.name.replaceAll(" ", "") +
-        `.svg" alt="` +
-        rounds.matches[i].home.team.name +
+        homeimg +
+        `" alt="` +
+        homename +
         `" width="100"
           height="100"></td>
         <td style="font-size: 2rem;font-weight: 700;">VS</td>
         <td><img src="./images/` +
-        rounds.matches[i].away.team.name.replaceAll(" ", "") +
-        `.svg" alt="` +
-        rounds.matches[i].away.team.name +
+        awayimg +
+        `" alt="` +
+        awayname +
         `" width="100"
           height="100"></td>
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input id=${rounds.matches[i].id}-${rounds.matches[
-          i
-        ].home.team.name.replaceAll(" ", "-")} 
+              <input id=${gameid} 
               type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
-        rounds.matches[i].home.team.name +
+        homename +
         `
             </label>
             </div>
             <div class="form-check">
             <label class="form-check-label">
-              <input id=${rounds.matches[i].id}-${rounds.matches[
-          i
-        ].away.team.name.replaceAll(" ", "-")} 
+              <input id=${gameid} 
               type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
-        rounds.matches[i].away.team.name +
+        awayname +
         `
             </label>
             </div>
@@ -874,7 +200,7 @@ $(document).ready(function () {
       </tr> `;
     }
   }
-  // console.log("tableright", tableright);
+  console.log("tableright", tableright);
   document.getElementById("tableleft").innerHTML = tableleft;
   document.getElementById("tableright").innerHTML = tableright;
 
@@ -883,6 +209,7 @@ $(document).ready(function () {
     .then((x) => x.text())
     .then((y) => (document.getElementById("info").innerHTML = y));
 });
+
 function showHideLoginbox() {
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
@@ -1127,10 +454,10 @@ function gameSelected(game) {
     }
   }
   console.log("selected games count", selectedgames.length);
-  console.log("rounds.matches", rounds.matches);
+  console.log("rounds.matches", games);
   console.log("selected games", selectedgames);
   if (selectedgames.length == 6) {
-    for (var j = 0; j < rounds.matches.length; j++) {
+    for (var j = 0; j <games.length; j++) {
       if (!selectedgames.includes(rounds.matches[j].id.toString())) {
         $("#" + rounds.matches[j].id.toString()).attr("disabled", true);
         $(
