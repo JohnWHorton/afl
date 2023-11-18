@@ -956,14 +956,18 @@ function registerEvent() {
       dataType: "json",
       data: JSON.stringify(parms),
       success: function (response) {
-        if (response[1] == "record already exists") {
+        if (response[1] == "exists") {
           console.log("response", response);
           alert("User already exists, please login");
           $("#loginbox").show();
           $("#registerbox").hide();
-        } else {
+        }
+        if (response[0] == "success") {
           $("#loginbox").hide();
           $("#registerbox").hide();
+          logemail = regemail;
+          document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+          loggedin = true;
         }
       },
       error: function (xhr, textStatus, error) {

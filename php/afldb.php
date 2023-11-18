@@ -52,21 +52,19 @@ function addUser($conn, $email, $pswd)
 
   // echo ("num-rows" . $result->num_rows . "\n");
   if ($result->num_rows > 0) {
-    array_push($resparr, 'success', 'record already exists');
+    array_push($resparr, 'error', 'exists');
     return $resparr;
+  } 
+
+  $sql = "INSERT INTO users (email, pswd, datecreated, dateupdated)
+			VALUES
+			('$email',MD5('$pswd'), now(), now())";
+
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "added");
   } else {
-    array_push($resparr, 'success', 'ok');
+    array_push($resparr, 'error', $sql);
   }
-
-  // $sql = "INSERT INTO users (email, pswd, datecreated, dateupdated)
-	// 		VALUES
-	// 		('$email',MD5('$pswd'), now(), now())";
-
-  // if ($conn->query($sql) === true) {
-  //   array_push($resparr, 'success', $sql);
-  // } else {
-  //   array_push($resparr, 'error', $sql);
-  // }
 
   return $resparr;
 }
