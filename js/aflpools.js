@@ -22,6 +22,7 @@ var currency = "AUD";
 var depamt = "0";
 var depcurr = "AUD";
 var rndvalcode = 0;
+var checkedcnt = 0;
 
 var games = [
   {
@@ -90,7 +91,6 @@ var games = [
 ];
 
 $(document).ready(function () {
-  
   setLocalStorage();
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
@@ -100,57 +100,56 @@ $(document).ready(function () {
     let homename = games[i].homename;
     let homeimg = games[i].homeimg;
     let awayname = games[i].awayname;
-    let awayimg = games[i].awayimg;    
+    let awayimg = games[i].awayimg;
     if (i < 5) {
       tableleft +=
         `
     <tr>
     <td>
-      <div>
-        
+      <div>        
           <input class="agame" id="` +
         gameid +
         `" 
             onchange="gameSelected('${gameid}')" 
-            type="checkbox" class="form-check-input" value="">Game ${game++}
-       
+            type="checkbox" class="form-check-input" value="">Game ${game++}       
         </div>
     </td>
     <td><img src="./images/` +
         homeimg +
         `" alt="` +
         homename +
-        `" width="100"
-      height="100"></td>
+        `" width="100" height="100"></td>
     <td style="font-size: 2rem;font-weight: 700;">VS</td>
     <td><img src="./images/` +
         awayimg +
         `" alt="` +
         awayname +
-        `" width="100"
-      height="100"></td>
+        `" width="100" height="100"></td>
     <td>
       <div class="form-check">
         <label class="form-check-label">
-          <input id=${gameid} 
-          type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
+          <input id=${homename} 
+          type="radio" class="form-check-input" name="optradio${radiogrp}"
+          onclick="setWinner('${gameid}', '${homename}')"
+          style="font-size: 20px;">` +
         homename +
         `
         </label>
         </div>
         <div class="form-check">
         <label class="form-check-label">
-        <input id=${gameid} 
-        type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
+        <input id=${awayname} 
+        type="radio" class="form-check-input" name="optradio${radiogrp++}"         
+        onclick="setWinner('${gameid}', '${awayname}')"
+        style="font-size: 20px;">` +
         awayname +
         `
         </label>
-        </div>
+      </div>
     </td>
     </tr>
    `;
-  } else 
-    {
+    } else {
       tableright +=
         `
       <tr>
@@ -182,16 +181,20 @@ $(document).ready(function () {
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input id=${gameid} 
-              type="radio" class="form-check-input" name="optradio${radiogrp}" style="font-size: 20px;">` +
+              <input id=${homename} 
+              type="radio" class="form-check-input" name="optradio${radiogrp}" 
+              onclick="setWinner('${gameid}', '${homename}')"
+              style="font-size: 20px;">` +
         homename +
         `
             </label>
             </div>
             <div class="form-check">
             <label class="form-check-label">
-              <input id=${gameid} 
-              type="radio" class="form-check-input" name="optradio${radiogrp++}" style="font-size: 20px;">` +
+              <input id=${awayname} 
+              type="radio" class="form-check-input" name="optradio${radiogrp++}"               
+              onclick="setWinner('${gameid}', '${awayname}')"
+              style="font-size: 20px;">` +
         awayname +
         `
             </label>
@@ -199,8 +202,11 @@ $(document).ready(function () {
         </td>
       </tr> `;
     }
+    games.checked = false;
+    games.winner = "";
   }
-  console.log("tableright", tableright);
+  console.log("games", games);
+  // console.log("tableright", tableright);
   document.getElementById("tableleft").innerHTML = tableleft;
   document.getElementById("tableright").innerHTML = tableright;
 
@@ -249,8 +255,8 @@ function loginEvent() {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        $('.msg').html("Login is incorrect. Try again");
-        $('.msgcontainer').show();
+        $(".msg").html("Login is incorrect. Try again");
+        $(".msgcontainer").show();
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -261,8 +267,8 @@ function loginEvent() {
       }
     },
     error: function () {
-      $('.msg').html("Error");
-      $('.msgcontainer').show();
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
     },
   });
 }
@@ -288,8 +294,8 @@ function registerEvent() {
       success: function (response) {
         if (response[1] == "exists") {
           console.log("response", response);
-          $('.msg').html("User already exists, please login");
-          $('.msgcontainer').show();
+          $(".msg").html("User already exists, please login");
+          $(".msgcontainer").show();
           $("#loginbox").show();
           $("#registerbox").hide();
         }
@@ -308,8 +314,8 @@ function registerEvent() {
       },
     });
   } else {
-    $('.msg').html("Invalid password or passwords do not match");
-    $('.msgcontainer').show();
+    $(".msg").html("Invalid password or passwords do not match");
+    $(".msgcontainer").show();
   }
 }
 function resetPassword() {
@@ -335,22 +341,22 @@ function resetPassword() {
           $("#forgotbox").hide();
           $("#registerbox").hide();
           $("#loginbox").show();
-        } else {          
+        } else {
           console.log("reset error", response[1]);
 
-          $('.msgcontainer').show();
-          $('.msg').html("reset failed. see log");
-          $('.msgcontainer').show();
+          $(".msgcontainer").show();
+          $(".msg").html("reset failed. see log");
+          $(".msgcontainer").show();
         }
       },
       error: function () {
-        $('.msg').html("Error");
-        $('.msgcontainer').show();
+        $(".msg").html("Error");
+        $(".msgcontainer").show();
       },
     });
   } else {
-    $('.msg').html("Invalid password or passwords do not match");
-    $('.msgcontainer').show();
+    $(".msg").html("Invalid password or passwords do not match");
+    $(".msgcontainer").show();
   }
 }
 function forgotPassword() {
@@ -367,8 +373,8 @@ function forgotPassword() {
   console.log("dummyobj", dummyobj);
 
   Email.send(dummyobj).then(function (message) {
-    $('.msg').html("Email successfully sent");
-    $('.msgcontainer').show();
+    $(".msg").html("Email successfully sent");
+    $(".msgcontainer").show();
   });
 
   document.getElementById("valEmail").innerHTML =
@@ -407,8 +413,8 @@ function updateDeposit(refid) {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        $('.msg').html("Login is incorrect. Try again");
-        $('.msgcontainer').show();
+        $(".msg").html("Login is incorrect. Try again");
+        $(".msgcontainer").show();
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -419,8 +425,8 @@ function updateDeposit(refid) {
       }
     },
     error: function () {
-      $('.msg').html("Error");
-      $('.msgcontainer').show();
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
     },
   });
 }
@@ -434,64 +440,51 @@ function depositing() {
 function matchClicked(match, homeaway) {
   console.log(match + " - " + homeaway);
 }
-function gameSelected(game) {
-  console.log("game", game);
-  var x = document.getElementById(`${game}`).checked;
-  console.log("checked", x);
+function setWinner(gid, win) {
+  for (let i = 0; i < games.length; i++) {
+    if (games[i].gameid == gid) {
+      games[i].winname = win;
+      console.log("setWinner", games[i]);
+      break;
+    }
+  }
+}
 
-  if (x == true) {
-    if (!selectedgames.includes(game)) {
-      selectedgames.push(game);
+function gameSelected(gid) {
+  console.log("games", games);
+  console.log("game", game);
+
+  for (let i = 0; i < games.length; i++) {
+    if (games[i].gameid == gid) {
+      games[i].checked = !games[i].checked;
+      break;
+    }
+  }
+
+  checkedcnt = 0;
+  for (let i = 0; i < games.length; i++) {
+    if (games[i].checked) {
+      checkedcnt++;
+      console.log("gamesSelected", games[i].gameid);
+    }
+  }
+  
+  
+  console.log("checkedcnt", checkedcnt);
+
+  if (checkedcnt == 6) {
+    for (let i = 0; i < games.length; i++) {
+      if (!games[i].checked) {
+        $("#" + games[i].gameid).attr("disabled", true);
+        $("#" + games[i].homename).attr("disabled", true);
+        $("#" + games[i].awayname).attr("disabled", true);
+      }
     }
   } else {
-    if (selectedgames.includes(game)) {
-      for (var i = 0; i < selectedgames.length; i++) {
-        if (selectedgames[i] == game) {
-          selectedgames.splice(i, 1);
-          break;
-        }
-      }
-    }
-  }
-  console.log("selected games count", selectedgames.length);
-  console.log("rounds.matches", games);
-  console.log("selected games", selectedgames);
-  if (selectedgames.length == 6) {
-    for (var j = 0; j <games.length; j++) {
-      if (!selectedgames.includes(rounds.matches[j].id.toString())) {
-        $("#" + rounds.matches[j].id.toString()).attr("disabled", true);
-        $(
-          "#" +
-            rounds.matches[j].id.toString() +
-            "-" +
-            rounds.matches[j].home.team.name.replaceAll(" ", "-")
-        ).attr("disabled", true);
-        $(
-          "#" +
-            rounds.matches[j].id.toString() +
-            "-" +
-            rounds.matches[j].away.team.name.replaceAll(" ", "-")
-        ).attr("disabled", true);
-      }
-    }
-  }
-  if (selectedgames.length != 6) {
-    for (var j = 0; j < rounds.matches.length; j++) {
-      if (!selectedgames.includes(rounds.matches[j].id.toString())) {
-        $("#" + rounds.matches[j].id.toString()).attr("disabled", false);
-        $(
-          "#" +
-            rounds.matches[j].id.toString() +
-            "-" +
-            rounds.matches[j].home.team.name.replaceAll(" ", "-")
-        ).attr("disabled", false);
-        $(
-          "#" +
-            rounds.matches[j].id.toString() +
-            "-" +
-            rounds.matches[j].away.team.name.replaceAll(" ", "-")
-        ).attr("disabled", false);
-      }
+    for (let i = 0; i < games.length; i++) {
+      $("#" + games[i].gameid).attr("disabled", false);
+      $("#" + games[i].homename).attr("disabled", false);
+      $("#" + games[i].awayname).attr("disabled", false);
     }
   }
 }

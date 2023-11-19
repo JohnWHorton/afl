@@ -284,8 +284,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <script src="js/smtp.js"></script>
 
     <script
-        src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>"></script>
-    <!-- <script>
+        src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>">
+    </script>
+    <script>
         paypal.Buttons({
             // Sets up the transaction when a payment button is clicked
             createOrder: (data, actions) => {
@@ -377,5 +378,5 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 document.querySelector(".overlay").classList.add("hidden");
             }
         }
-    </script> -->
+    </script>
 </body>
