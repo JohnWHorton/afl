@@ -25,16 +25,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <!-- <li class="nav-item active">
-                    <a class="nav-link" href="#">
-                        Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li> -->
+            <ul class="navbar-nav mr-auto">                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,9 +39,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a class="dropdown-item" href="#">Show my history</a>
                     </div>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li> -->
             </ul>
             <text>
                 <span id="welcome" style="margin-right: 1rem; font-size: 1rem;"></span>
@@ -67,7 +55,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
 
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 0;">
         <div class="row">
             <div class="col-sm-4">
                 <img src="./images/aflstadium.png" class="center-block"
@@ -75,9 +63,11 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <div class="col-sm-4" style="text-align:center; margin: auto; font-style: italic; ">
                 <h1>
-                    Community Footie
-                    Pools
+                    Community Footie Pools
                 </h1>
+                <div id="betnow" style="width: 200px; height: 100px; margin: 20px auto auto auto; display: none;">
+                    <button class="btn betnowbtn" onclick="makebet()">Bet Now</button>
+                </div>
             </div>
             <div class="col-sm-4">
                 <img src="./images/aflstadium.png" class="center-block"
@@ -284,8 +274,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <script src="js/smtp.js"></script>
 
     <script
-        src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>"></script>
-    <!-- <script>
+        src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>">
+    </script>
+    <script>
         paypal.Buttons({
             // Sets up the transaction when a payment button is clicked
             createOrder: (data, actions) => {
@@ -377,5 +368,5 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 document.querySelector(".overlay").classList.add("hidden");
             }
         }
-    </script> -->
+    </script>
 </body>
