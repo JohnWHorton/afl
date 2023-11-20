@@ -439,6 +439,10 @@ function depositing() {
 }
 
 function setWinner(gid, win) {
+  if(!loggedin) {
+    $("#loginbox").show();
+    return;
+  }
   for (let i = 0; i < games.length; i++) {
     if (games[i].gameid == gid) {
       games[i].winname = win;
@@ -453,6 +457,10 @@ function setWinner(gid, win) {
 function gameSelected(gid) {
   console.log("games", games);
   console.log("game", game);
+  if(!loggedin) {
+    $("#loginbox").show();
+    return;
+  }
 
   for (let i = 0; i < games.length; i++) {
     if (games[i].gameid == gid) {

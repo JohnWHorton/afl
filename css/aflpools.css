@@ -153,14 +153,15 @@ body {
 .msgcontainer {
     position:absolute;   
     display: none; 
-    margin-left: 40%;
-    margin-top: 2rem;
+    margin-left: 78%;
     max-width: 400px;
     max-height: 70px;
-    background-color: #302929!important;
+    background-color: #00529b!important;
+    color:white!important;
     margin-top: 30px;
     z-index: 9;
     border-radius: 0%;
+    border: opx;
 }
 
 .logincontainer {
@@ -169,7 +170,8 @@ body {
     max-height: 360px;
     background-color: #00529b!important;
     color: white;
-    margin-top: 50px;    
+    margin-top: 50px;
+    overflow: hidden;
 }
 
 .registercontainer {
@@ -178,7 +180,8 @@ body {
     max-height: 400px;
     background-color: #00529b!important;
     color: white;
-    margin-top: 50px;    
+    margin-top: 50px;   
+    overflow: hidden; 
 }
 
 .paypalcontainer {
@@ -187,7 +190,8 @@ body {
     max-height: auto;
     background-color: #63abed!important;
     color: white;
-    margin-top: 50px;    
+    margin-top: 50px;
+    overflow: hidden;
 }
 .overlay-content {
     width: 40px;
