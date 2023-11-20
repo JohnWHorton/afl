@@ -17,7 +17,7 @@ body {
 /* change the background color */
 .navbar-custom {
     color: #c3e1fb!important;
-    background-color: rgba(16, 16, 16, 0.4);
+    background-color: rgba(16, 16, 16, 1);
 }
 
 /* change the brand and text color */
@@ -45,13 +45,29 @@ body {
 /* dropdown item hover or focus */
 .navbar-custom .navbar-nav .dropdown-item:hover {
     background-image: none;
-    background-color: blue;
+    background-color: rgb(4, 4, 4);
 }
 .navbar-custom .navbar-nav .dropdown-item:focus {
    background-image: none;
-   background-color: red;  
+   background-color: rgb(160, 158, 158);  
 }
 
+.navbar-collapse {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    display: flex;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;..");
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    width: fit-content;
+}
  /* navbar end  */
  /* modal start */
  /* The Modal (background) */
@@ -186,6 +202,7 @@ body {
     color: white;
     margin-top: 50px;
     overflow: hidden;
+    opacity: 1;
 }
 
 .registercontainer {
@@ -474,3 +491,6 @@ p {
 .agame {
     margin-right: 5px;
 }
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }

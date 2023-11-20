@@ -9,7 +9,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width">
     <title>AFL Pools</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
     <!-- should always be last-->
@@ -18,24 +18,20 @@ require_once './paypal_standard_checkout_in_php/config.php';
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-sm navbar-dark sticky-top" >
-
+    <nav class="navbar navbar-expand-sm navbar-custom sticky-top">
         <span style="font-size: 1.5rem; margin-right: 1rem;">AFL Pools</span>
-
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="collapse_target">
-            
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">                
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My account
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" onclick="showPayPal()">Deposit funds</a>
                         <a class="dropdown-item" href="#">What's my balance</a>
                         <!-- <div class="dropdown-divider"></div> -->
@@ -62,7 +58,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <div class="container-fluid" style="margin-top: 0;">
         <div class="row">
             <div class="col-sm-4">
-                <img src="./images/aflstadium.png" class="center-block img-fluid"
+                <img src="./images/aflstadium.png" class="center-block"
                     style="height:9rem; margin-top: 10px; border-radius: 50%; ">
             </div>
             <div class="col-sm-4" style="text-align:center; margin: auto; font-style: italic; ">
@@ -74,14 +70,14 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </div>
             <div class="col-sm-4">
-                <img src="./images/aflstadium.png" class="center-block img-fluid"
+                <img src="./images/aflstadium.png" class="center-block"
                     style="height:9rem; margin-top: 10px; border-radius: 50%; ">
             </div>
         </div>
     </div>
 
     <div id="loginbox" class="container logincontainer modal modal-content"
-        style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
+        style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
         <form style="padding: 10px;">
             <div class="form-group">
                 <label for="emailaddress">Email address</label>
@@ -121,7 +117,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     </div>
     <!-- <form action="action_page.php"> -->
     <div id="registerbox" class="container registercontainer modal modal-content"
-        style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 5rem;">
+        style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 2rem;">
         <form style="padding: 10px;">
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -155,7 +151,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     </div>
     
     <div id="forgotbox" class="container registercontainer modal modal-content"
-        style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 5rem;">
+        style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 2rem;">
         <form style="padding: 10px;">
             <div id="valEmail" class="form-group"></div>
             <div id="vc" class="form-group">
@@ -223,7 +219,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <tbody id="tableright"></tbody>
                         </table>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
+                    <div class="col-3" style="min-width: 30%; max-width: 30%;">
                         <pre>
                             <span id="info"></span>
                         </pre>
@@ -235,7 +231,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
 
     <div id="pp" class="paypalcontainer panel modal modal-content"
-        style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
+        style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 2rem;">
 
         <div class="overlay hidden">
             <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
