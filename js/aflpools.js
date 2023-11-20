@@ -128,7 +128,7 @@ $(document).ready(function () {
     <td>
       <div class="form-check">
         <label class="form-check-label">
-          <input id=${homename} 
+          <input id=${homename.replaceAll(" ","")}
           type="radio" class="form-check-input" name="optradio${radiogrp}"
           onclick="setWinner('${gameid}', '${homename}')"
           style="font-size: 20px;">` +
@@ -138,7 +138,7 @@ $(document).ready(function () {
         </div>
         <div class="form-check">
         <label class="form-check-label">
-        <input id=${awayname} 
+        <input id=${awayname.replaceAll(" ","")} 
         type="radio" class="form-check-input" name="optradio${radiogrp++}"         
         onclick="setWinner('${gameid}', '${awayname}')"
         style="font-size: 20px;">` +
@@ -181,7 +181,7 @@ $(document).ready(function () {
         <td>
           <div class="form-check">
             <label class="form-check-label">
-              <input id=${homename} 
+              <input id=${homename.replaceAll(" ","")} 
               type="radio" class="form-check-input" name="optradio${radiogrp}" 
               onclick="setWinner('${gameid}', '${homename}')"
               style="font-size: 20px;">` +
@@ -191,7 +191,7 @@ $(document).ready(function () {
             </div>
             <div class="form-check">
             <label class="form-check-label">
-              <input id=${awayname} 
+              <input id=${awayname.replaceAll(" ","")} 
               type="radio" class="form-check-input" name="optradio${radiogrp++}"               
               onclick="setWinner('${gameid}', '${awayname}')"
               style="font-size: 20px;">` +
@@ -437,9 +437,7 @@ function depositing() {
     "pt"
   ).innerHTML = `Depositing  $${itemPrice} ${currency} to my account`;
 }
-function matchClicked(match, homeaway) {
-  console.log(match + " - " + homeaway);
-}
+
 function setWinner(gid, win) {
   for (let i = 0; i < games.length; i++) {
     if (games[i].gameid == gid) {
@@ -448,6 +446,8 @@ function setWinner(gid, win) {
       break;
     }
   }
+
+  betcnt();
 }
 
 function gameSelected(gid) {
@@ -457,7 +457,10 @@ function gameSelected(gid) {
   for (let i = 0; i < games.length; i++) {
     if (games[i].gameid == gid) {
       games[i].checked = !games[i].checked;
-      break;
+    }
+    if(!games[i].checked) {
+      $(`#${games[i].homename.replaceAll(" ","")}`).attr("checked", false);
+      $(`#${games[i].awayname.replaceAll(" ","")}`).attr("checked", false);
     }
   }
 
@@ -466,25 +469,46 @@ function gameSelected(gid) {
     if (games[i].checked) {
       checkedcnt++;
       console.log("gamesSelected", games[i].gameid);
-    }
+    } 
   }
-  
-  
+
   console.log("checkedcnt", checkedcnt);
 
   if (checkedcnt == 6) {
     for (let i = 0; i < games.length; i++) {
       if (!games[i].checked) {
-        $("#" + games[i].gameid).attr("disabled", true);
-        $("#" + games[i].homename).attr("disabled", true);
-        $("#" + games[i].awayname).attr("disabled", true);
+        $(`#${games[i].gameid}`).attr("disabled", true);
+        $(`#${games[i].homename.replaceAll(" ","")}`).attr("disabled", true);
+        $(`#${games[i].awayname.replaceAll(" ","")}`).attr("disabled", true);
+        $(`#${games[i].homename.replaceAll(" ","")}`).attr("checked", false);
+        $(`#${games[i].awayname.replaceAll(" ","")}`).attr("checked", false);
+        games[i].winname="";
       }
     }
   } else {
     for (let i = 0; i < games.length; i++) {
-      $("#" + games[i].gameid).attr("disabled", false);
-      $("#" + games[i].homename).attr("disabled", false);
-      $("#" + games[i].awayname).attr("disabled", false);
+      $(`#${games[i].gameid}`).attr("disabled", false);
+      $(`#${games[i].homename.replaceAll(" ","")}`).attr("disabled", false);
+      $(`#${games[i].awayname.replaceAll(" ","")}`).attr("disabled", false);
     }
   }
+  betcnt();
+}
+
+function betcnt() {
+  let betcnt = 0;
+  for (let i = 0; i < games.length; i++) {
+    if (games[i].checked && games[i].winname > "") {
+      betcnt++;
+      console.log("betcnt", betcnt);
+    }
+  }
+  if (betcnt == 6) {
+    $("#betnow").show();
+  } else {
+    $("#betnow").hide();
+  }
+}
+function makebet() {
+  console.log("make bet");
 }

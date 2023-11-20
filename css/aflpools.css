@@ -132,6 +132,13 @@ body {
     margin-left: -15px;
 }
 
+.betnowbtn {
+    color: #000;
+    background-color: yellow;
+    border-color: #007bff;
+    font-weight: 700;
+    margin-top: 30px;
+}
 .loginbtn {
     margin-right: 50px;
 }

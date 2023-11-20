@@ -65,8 +65,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <h1>
                     Community Footie Pools
                 </h1>
-                <div id="betnow" style="width: 200px; height: 100px; margin: 20px auto auto auto;">
-                    <button class="btn btn-primary" onclick="betnow()">Bet Now</button>
+                <div id="betnow" style="width: 200px; height: 100px; margin: 20px auto auto auto; display: none;">
+                    <button class="btn betnowbtn" onclick="makebet()">Bet Now</button>
                 </div>
             </div>
             <div class="col-sm-4">
