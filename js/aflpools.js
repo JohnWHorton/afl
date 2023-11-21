@@ -523,6 +523,8 @@ function betcnt() {
   }
 }
 function makebet() {
+
+  // check funds =>$20
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked) {
       console.log("make bet", games[i]);
@@ -542,7 +544,10 @@ function makebet() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-        alert("Bet made");
+      console.log("Bet made", parms);
+      //reduce funds by $20
+      // display bet with ticket number
+      
     },
     error: function () {
       $(".msg").html("Error");
