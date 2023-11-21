@@ -13,7 +13,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <title>AFL Pools</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
     <!-- should always be last-->
-    <link rel="stylesheet" href="./css/aflpools.css" type="text/css">
+    <link rel="stylesheet" href="./css/aflpools2.css" type="text/css">
     <!------ Include the above in your HEAD tag ---------->
 </head>
 
@@ -273,7 +273,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/popper.min.js"></script>
-    <script type="text/javascript" src="./js/aflpools.js"></script>
+    <script type="text/javascript" src="./js/aflpools2.js"></script>
     <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
     <script src="js/smtp.js"></script>
 
