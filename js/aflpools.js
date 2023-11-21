@@ -9,6 +9,7 @@ var logemail = "";
 var logpword = "";
 var chkbox = false;
 var loggedin = false;
+var loggedInUser;
 var regemail = "";
 var regpwrd = "";
 var repregpword = "";
@@ -101,6 +102,8 @@ $(document).ready(function () {
     let homeimg = games[i].homeimg;
     let awayname = games[i].awayname;
     let awayimg = games[i].awayimg;
+    let checked = false;
+    let winname = "";
     if (i < 5) {
       tableleft +=
         `
@@ -202,8 +205,6 @@ $(document).ready(function () {
         </td>
       </tr> `;
     }
-    games.checked = false;
-    games.winner = "";
   }
   console.log("games", games);
   // console.log("tableright", tableright);
@@ -261,9 +262,12 @@ function loginEvent() {
         logpword = "";
         loggedin = false;
       } else {
+        response[0].pswd = "";
+        loggedInUser = response[0];
         $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
         loggedin = true;
+        console.log("User", loggedInUser);
       }
     },
     error: function () {
@@ -458,6 +462,7 @@ function gameSelected(gid) {
   console.log("games", games);
   console.log("game", game);
   if (!loggedin) {
+    $(`#${gid}`).prop("checked", false);
     $("#loginbox").show();
     return;
   }
@@ -518,5 +523,30 @@ function betcnt() {
   }
 }
 function makebet() {
-  console.log("make bet");
+  for (let i = 0; i < games.length; i++) {
+    if (games[i].checked) {
+      console.log("make bet", games[i]);
+    }
+  }
+
+  let betthis = games.filter((games) => games.checked === true);
+  let betthisjson = JSON.stringify(betthis);
+  console.log("betthisjson", betthisjson);
+
+  var parms = { operation: "makebet", email: loggedInUser.email, betthisjson: betthisjson };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+        alert("Bet made");
+    },
+    error: function () {
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
+    },
+  });
 }

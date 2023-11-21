@@ -19,6 +19,7 @@ $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "";
 $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
+$betthisjson = isset($request->betthisjson) ? $request->betthisjson : "";
 
 // testing stand alone
 // $operation = "addUser";
@@ -38,7 +39,11 @@ if ($operation == "loginUser") {
 if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
+if ($operation == "makebet") {
+  $resparr = makebet($conn, $email, $betthisjson);
+}
 // var_dump($resparr);
+
 echo json_encode($resparr);
 
 function addUser($conn, $email, $pswd)
@@ -72,7 +77,7 @@ function addUser($conn, $email, $pswd)
 function loginUser($conn, $email, $pswd)
 {
   $resparr = array();
-  $sql = "SELECT  email FROM users
+  $sql = "SELECT * FROM users
           WHERE email = '$email' AND pswd = MD5('$pswd')";
 
   $result = $conn->query($sql);
@@ -99,5 +104,21 @@ function resetPassword($conn, $email, $pswd)
     array_push($resparr, 'error', $conn->error);
   }
   
+  return $resparr;
+}
+
+function makebet($conn, $email, $betthisjson)
+{
+  $resparr = array();
+  $sql = "INSERT INTO bets (email, betthisjson)
+			VALUES
+			('$email','$betthisjson')";
+
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "added");
+  } else {
+    array_push($resparr, 'error', $sql);
+  }
+
   return $resparr;
 }
