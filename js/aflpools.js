@@ -92,7 +92,7 @@ var games = [
 ];
 
 $(document).ready(function () {
-  setLocalStorage();
+  // setLocalStorage();
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
@@ -104,7 +104,13 @@ $(document).ready(function () {
     let awayimg = games[i].awayimg;
     let checked = false;
     let winname = "";
-    if (i < 5) {
+
+    // let file = "fetch_info.txt";
+    // fetch(file)
+    //   .then((x) => x.text())
+    //   .then((y) => (document.getElementById("info").innerHTML = y));
+
+   
       tableleft +=
         `
     <tr>
@@ -114,7 +120,7 @@ $(document).ready(function () {
         gameid +
         `" 
             onchange="gameSelected('${gameid}')" 
-            type="checkbox" class="form-check-input" value="">Game ${game++}       
+            type="checkbox" class="form-check-input" value="">
         </div>
     </td>
     <td><img src="./images/` +
@@ -122,12 +128,12 @@ $(document).ready(function () {
         `" alt="` +
         homename +
         `" width="60" height="60"></td>
-    <td style="font-size: 2rem;font-weight: 700;">VS</td>
+    <td style="font-size: 1rem;font-weight: 700;">VS</td>
     <td><img src="./images/` +
         awayimg +
         `" alt="` +
         awayname +
-        `" width="100" height="100"></td>
+        `" width="60" height="60"></td>
     <td>
       <div class="form-check">
         <label class="form-check-label">
@@ -152,69 +158,12 @@ $(document).ready(function () {
     </td>
     </tr>
    `;
-    } else {
-      tableright +=
-        `
-      <tr>
-      <td>
-        <div class="form-check">
-            <label class="form-check-label">
-              <input class="agame" id="` +
-        gameid +
-        `"  
-        onchange="gameSelected('${gameid}')"
-        type="checkbox" class="form-check-input" value="">
-              <span style="padding-top: 15px;">Game ${game++}</span>
-            </label>
-            </div>
-        </td>
-        <td><img src="./images/` +
-        homeimg +
-        `" alt="` +
-        homename +
-        `" width="100"
-          height="100"></td>
-        <td style="font-size: 2rem;font-weight: 700;">VS</td>
-        <td><img src="./images/` +
-        awayimg +
-        `" alt="` +
-        awayname +
-        `" width="100"
-          height="100"></td>
-        <td>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input id=${homename.replaceAll(" ", "")} 
-              type="radio" class="form-check-input" name="optradio${radiogrp}" 
-              onclick="setWinner('${gameid}', '${homename}')"
-              style="font-size: 20px;">` +
-        homename +
-        `
-            </label>
-            </div>
-            <div class="form-check">
-            <label class="form-check-label">
-              <input id=${awayname.replaceAll(" ", "")} 
-              type="radio" class="form-check-input" name="optradio${radiogrp++}"               
-              onclick="setWinner('${gameid}', '${awayname}')"
-              style="font-size: 20px;">` +
-        awayname +
-        `
-            </label>
-            </div>
-        </td>
-      </tr> `;
-    }
+    
   }
   console.log("games", games);
-  // console.log("tableright", tableright);
   document.getElementById("tableleft").innerHTML = tableleft;
-  document.getElementById("tableright").innerHTML = tableright;
 
-  let file = "fetch_info.txt";
-  fetch(file)
-    .then((x) => x.text())
-    .then((y) => (document.getElementById("info").innerHTML = y));
+
 });
 
 function showHideLoginbox() {
@@ -518,6 +467,8 @@ function betcnt() {
   }
   if (betcnt == 6) {
     $("#betnow").show();
+    // document.getElementById("betnow").focus(); 
+    window.scrollTo(0, document.body.scrollHeight);
   } else {
     $("#betnow").hide();
   }

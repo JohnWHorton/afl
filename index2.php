@@ -208,7 +208,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </table>
 
                     </div>
-                    <div class="" col-sm-0 col-md-1"></div>
+                    <div class="col-sm-0 col-md-1"></div>
                     <div class="col-sm-12 col-md-5">
                         <table class="table">
                             <thead>

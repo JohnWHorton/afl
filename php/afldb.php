@@ -20,6 +20,7 @@ $operation = isset($request->operation) ? $request->operation : "";
 $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
 $betthisjson = isset($request->betthisjson) ? $request->betthisjson : "";
+$amount = isset($request->amount) ? $request->amount : 0;
 
 // testing stand alone
 // $operation = "addUser";
@@ -40,7 +41,7 @@ if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
 if ($operation == "makebet") {
-  $resparr = makebet($conn, $email, $betthisjson);
+  $resparr = makebet($conn, $email, $betthisjson, $amount);
 }
 // var_dump($resparr);
 
@@ -107,12 +108,12 @@ function resetPassword($conn, $email, $pswd)
   return $resparr;
 }
 
-function makebet($conn, $email, $betthisjson)
+function makebet($conn, $email, $betthisjson, $amount)
 {
   $resparr = array();
-  $sql = "INSERT INTO bets (email, betthisjson)
+  $sql = "INSERT INTO bets (email, betthisjson, amount, datecreated)
 			VALUES
-			('$email','$betthisjson')";
+			('$email','$betthisjson', $amount, now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");

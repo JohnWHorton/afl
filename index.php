@@ -19,7 +19,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
+    <nav class="navbar navbar-custom navbar-expand-sm navbar-dark sticky-top">
 
         <span style="font-size: 1.5rem; margin-right: 1rem;">AFL Pools</span>
 
@@ -62,27 +62,22 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <div class="container-fluid" style="margin-top: 0;">
         <div class="row">
             <div class="col-sm-4">
-                <img src="./images/aflstadium.png" class="center-block img-fluid"
-                    style="height:9rem; margin-top: 10px; border-radius: 50%; ">
             </div>
-            <div class="col-sm-4" style="text-align:center; margin: auto; font-style: italic; ">
-                <h1>
+            <div class="col-sm-4" style="text-align:center; margin-top: 20px; font-style: italic; ">
+                <h2>
                     Community Footie Pools
                 </h1>
-                <div id="betnow" style="width: 200px; height: 100px; margin: 20px auto auto auto; display: none;">
-                    <button class="btn betnowbtn" onclick="makebet()">Bet Now</button>
-                </div>
             </div>
             <div class="col-sm-4">
                 <img src="./images/aflstadium.png" class="center-block img-fluid"
-                    style="height:9rem; margin-top: 10px; border-radius: 50%; ">
+                    style="height:5rem; margin: auto; border-radius: 50%; ">
             </div>
         </div>
     </div>
 
     <div id="loginbox" class="container logincontainer modal modal-content"
         style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
-        <form style="padding: 10px;">
+        <form style="padding: 10px;" autocomplete="off">
             <div class="form-group">
                 <label for="emailaddress">Email address</label>
                 <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp"
@@ -95,7 +90,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <div class="form-group">
                 <label for="current-password">Password</label>
-                <input type="password" class="form-control" id="lpassword" placeholder="Enter Password">
+                <input type="password" class="form-control" id="lpassword" value="" placeholder="Enter Password">
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value id="defaultCheck1">
@@ -148,7 +143,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <center>
                 <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
                 <br>
-                <a onclick="doLogin()" href="#" style="color: white;">
+                <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: white;">
                     Already have an account? Sign in
                 </a>
             </center>
@@ -189,46 +184,44 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </form>
     </div>
     <div id="afldata">
-        <center>
+       
             <div class="colcontainer">
                 <div class="row" style="width: 100%!important;">
-                    <div class="col-sm-12 col-md-5">
+                    <div class="col-sm-0 col-md-3"></div>
+                        <div class="col-sm-12 col-md-6" style="margin-left: 1rem;>
+                            <h4 style="text-align: center;">How to play</h4>
+                                <span style="font-size: 18px;">
+                                        Deposit funds (min $20)</br></br>
+                                        Select any 6 games and make a prediction for the Winner of each game.</br></br>
+                                        Place a bet of $20.</br></br>
+                                        The pool which accumulated from the number of bets will form the <span style="color:Yellow">PRIZE POOL</span>
+                                        and be shared by the Winners.</br></br>
+                                        If there are no Winners, the pool will be carried forward to the next round.</br></br>
+                                </span>
+                            <h4 style="text-align: center; color: gold;">Good luck</h4>                  
+                        </div>
+                    </div>
+                </div>
+                <center>
+                <div class="row" style="width: 100%!important;">
+                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-12 col-md-6">
 
                         <table class="table">
                             <thead>
-                                <!-- <tr>
-                                        <th>Select 6 games</th>
-                                        <th>Home Team</th>
-                                        <th></th>
-                                        <th>Away Team</th>
-                                        <th>Select Winner</th>
-                                    </tr> -->
                             </thead>
                             <tbody id="tableleft"></tbody>
                         </table>
 
                     </div>
-                    <div class="" col-sm-0 col-md-1"></div>
-                    <div class="col-sm-12 col-md-5">
-                        <table class="table">
-                            <thead>
-                                <!-- <tr>
-                                    <th>Select 6 games</th>
-                                    <th>Home Team</th>
-                                    <th></th>
-                                    <th>Away Team</th>
-                                    <th>Select Winner</th>
-                                </tr> -->
-                            </thead>
-                            <tbody id="tableright"></tbody>
-                        </table>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-lg-3">
-                        <pre>
-                            <span id="info"></span>
-                        </pre>
-                    </div>
+                    <div class="col-sm-0 col-md-3"></div>
                 </div>
+            </div>
+            
+            <div id="betnow" style="display: none;">
+                <center>
+                    <button class="btn betnowbtn"  onclick="makebet()">Bet Now</button>
+                </center>
             </div>
         </center>
     </div>
