@@ -6,6 +6,12 @@ $user = 'john';
 $pass = 'john';
 $charset = 'utf8mb4';
 
+// $host = '13.49.223.11';
+// $db = 'afl';
+// $user = 'aflpools';
+// $pass = 'V4513john';
+// $charset = 'utf8mb4';
+
 $conn = new mysqli($host, $user, $pass, $db);
 
 // Check connection
