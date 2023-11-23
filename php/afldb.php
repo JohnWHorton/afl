@@ -27,11 +27,13 @@ $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
 $betthisjson = isset($request->betthisjson) ? $request->betthisjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
+$roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-// $operation = "addUser";
+$operation = "games";
 // $email = "john.horton86@gmail.com";
 // $pswd = "Ashleigh1!";
+$roundnumber = 1;
 //
 
 $resparr = array();
@@ -58,10 +60,31 @@ if ($operation == "withdrawalrequest") {
 if ($operation == "withdrawalcompleted") {
   $resparr = withdrawalcompleted($conn, $email, $amount);
 }
+if ($operation == "games") {
+  $resparr = games($conn, $roundnumber);
+}
 // var_dump($resparr);
 
 echo json_encode($resparr);
 
+function games($conn, $roundnumber)
+{
+  $resparr = array();
+  $sql = "SELECT * FROM games
+          WHERE roundnumber = '$roundnumber'";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  } else {
+    array_push($resparr, []);
+  }
+
+  return $resparr;
+}
 function addUser($conn, $email, $pswd)
 {
 
