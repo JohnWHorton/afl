@@ -6,6 +6,12 @@ $user = 'john';
 $pass = 'john';
 $charset = 'utf8mb4';
 
+// $host = '13.49.223.11';
+// $db = 'afl';
+// $user = 'aflpools';
+// $pass = 'V4513john';
+// $charset = 'utf8mb4';
+
 $conn = new mysqli($host, $user, $pass, $db);
 
 // Check connection
@@ -42,6 +48,15 @@ if ($operation == "resetPassword") {
 }
 if ($operation == "makebet") {
   $resparr = makebet($conn, $email, $betthisjson, $amount);
+}
+if ($operation == "deposit") {
+  $resparr = deposit($conn, $email, $betthisjson, $amount);
+}
+if ($operation == "withdrawalrequest") {
+  $resparr = withdrawalrequest($conn, $email, $betthisjson, $amount);
+}
+if ($operation == "withdrawalcompleted") {
+  $resparr = withdrawalcompleted($conn, $email, $betthisjson, $amount);
 }
 // var_dump($resparr);
 
@@ -117,6 +132,58 @@ function makebet($conn, $email, $betthisjson, $amount)
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");
+  } else {
+    array_push($resparr, 'error', $sql);
+  }
+
+  return $resparr;
+}
+
+function deposit($conn, $email, $amount)
+{
+
+  $resparr = array();
+
+  $sql = "INSERT INTO deposit (email, amount, datecreated)
+			VALUES
+			('$email','$amount', now())";
+
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "success");
+  } else {
+    array_push($resparr, 'error', $sql);
+  }
+
+  return $resparr;
+}
+function withdrawalrequest($conn, $email, $amount)
+{
+
+  $resparr = array();
+
+  $sql = "INSERT INTO withdrawalrequest (email, amount, datecreated)
+			VALUES
+			('$email','$amount', now())";
+
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "success");
+  } else {
+    array_push($resparr, 'error', $sql);
+  }
+
+  return $resparr;
+}
+function withdrawalcompleted($conn, $email, $amount)
+{
+
+  $resparr = array();
+
+  $sql = "INSERT INTO withdrawalcompleted (email, amount, datecreated)
+			VALUES
+			('$email','$amount',  now())";
+
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "success");
   } else {
     array_push($resparr, 'error', $sql);
   }

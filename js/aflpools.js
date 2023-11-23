@@ -309,8 +309,8 @@ function showPayPal() {
   // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
   // document.getElementById("pt3").innerHTML = "";
 }
-function updateDeposit(refid) {
-  var parms = { operation: "updateDeposit", email: logemail, refid: refid };
+function deposit(refid) {
+  var parms = { operation: "deposit", email: loggedInUser.email, refid: refid };
 
   $.ajax({
     type: "POST",
@@ -336,13 +336,6 @@ function updateDeposit(refid) {
       $(".msgcontainer").show();
     },
   });
-}
-
-function depositing() {
-  itemPrice = $("#amt").val();
-  document.getElementById(
-    "pt"
-  ).innerHTML = `Depositing  $${itemPrice} ${currency} to my account`;
 }
 
 function setWinner(gid, win) {
@@ -455,6 +448,61 @@ function makebet() {
       console.log("Bet made", parms);
       //reduce funds by $20
       // display bet with ticket number
+    },
+    error: function () {
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
+    },
+  });
+}
+function withdrawalrequest(refid) {
+  var parms = { operation: "withdrawalrequest", email: loggedInUser.email, amount: amount };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        $(".msg").html("Login is incorrect. Try again");
+        $(".msgcontainer").show();
+        logemail = "";
+        logpword = "";
+        loggedin = false;
+      } else {
+        $("#loginbox").hide();
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
+      }
+    },
+    error: function () {
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
+    },
+  });
+}function deposit(refid) {
+  var parms = { operation: "deposit", email: loggedInUser.email, amount: amount };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        $(".msg").html("Login is incorrect. Try again");
+        $(".msgcontainer").show();
+        logemail = "";
+        logpword = "";
+        loggedin = false;
+      } else {
+        $("#loginbox").hide();
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
+      }
     },
     error: function () {
       $(".msg").html("Error");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 21, 2023 at 09:06 PM
+-- Generation Time: Nov 22, 2023 at 04:18 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -45,6 +45,21 @@ INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUE
 (1, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"},{\"gameid\":\"4790\",\"homename\":\"GWS Giants\",\"homeimg\":\"GWSGiants.svg\",\"awayname\":\"Adelaide Crows\",\"awayimg\":\"AdelaideCrows.svg\",\"checked\":true,\"winname\":\"GWS Giants\"},{\"gameid\":\"4792\",\"homename\":\"Hawthorn\",\"homeimg\":\"Hawthorn.svg\",\"awayname\":\"Essendon\",\"awayimg\":\"Essendon.svg\",\"checked\":true,\"winname\":\"Essendon\"}]', '0', '2023-11-21 16:52:21'),
 (2, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4788\",\"homename\":\"Port Adelaide\",\"homeimg\":\"PortAdelaide.svg\",\"awayname\":\"Brisbane Lions\",\"awayimg\":\"BrisbaneLions.svg\",\"checked\":true,\"winname\":\"Port Adelaide\"},{\"gameid\":\"4791\",\"homename\":\"Melbourne\",\"homeimg\":\"Melbourne.svg\",\"awayname\":\"Western Bulldogs\",\"awayimg\":\"WesternBulldogs.svg\",\"checked\":true,\"winname\":\"Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]', '0', '2023-11-21 23:01:22'),
 (3, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4788\",\"homename\":\"Port Adelaide\",\"homeimg\":\"PortAdelaide.svg\",\"awayname\":\"Brisbane Lions\",\"awayimg\":\"BrisbaneLions.svg\",\"checked\":true,\"winname\":\"Port Adelaide\"},{\"gameid\":\"4791\",\"homename\":\"Melbourne\",\"homeimg\":\"Melbourne.svg\",\"awayname\":\"Western Bulldogs\",\"awayimg\":\"WesternBulldogs.svg\",\"checked\":true,\"winname\":\"Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]', '0', '2023-11-21 23:02:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `deposits`
+--
+
+DROP TABLE IF EXISTS `deposits`;
+CREATE TABLE IF NOT EXISTS `deposits` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -119,11 +134,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(128) NOT NULL,
   `phoneno` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `pswd` varbinary(128) NOT NULL,
-  `deposits` float NOT NULL DEFAULT '0',
-  `betsamounts` float NOT NULL DEFAULT '0',
-  `balance` float NOT NULL DEFAULT '0',
-  `withdrawalrequests` float NOT NULL DEFAULT '0',
-  `withdrawalscompleted` float NOT NULL DEFAULT '0',
   `datecreated` date DEFAULT NULL,
   `dateupdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -134,9 +144,40 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `deposits`, `betsamounts`, `balance`, `withdrawalrequests`, `withdrawalscompleted`, `datecreated`, `dateupdated`) VALUES
-(15, NULL, 'john.horton86@gmail.com', NULL, 0x6365363961613963366633326562656564366639383036316363623864303562, 200, 0, 200, 0, 0, '2023-11-17', '2023-11-18 23:42:22'),
-(16, NULL, 'tiffaman@gmail.com', NULL, 0x3062303764353236356539666234363761623538376135666432343965396464, 100, 0, 100, 0, 0, '2023-11-17', '2023-11-17 08:43:23');
+INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `dateupdated`) VALUES
+(15, NULL, 'john.horton86@gmail.com', NULL, 0x6365363961613963366633326562656564366639383036316363623864303562, '2023-11-17', '2023-11-18 23:42:22'),
+(16, NULL, 'tiffaman@gmail.com', NULL, 0x3062303764353236356539666234363761623538376135666432343965396464, '2023-11-17', '2023-11-17 08:43:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `withdrawalcompleted`
+--
+
+DROP TABLE IF EXISTS `withdrawalcompleted`;
+CREATE TABLE IF NOT EXISTS `withdrawalcompleted` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) NOT NULL,
+  `requestid` int NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `withdrawalrequests`
+--
+
+DROP TABLE IF EXISTS `withdrawalrequests`;
+CREATE TABLE IF NOT EXISTS `withdrawalrequests` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
