@@ -25,76 +25,39 @@ var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
 
-var games = [
-  {
-    gameid: "4787",
-    homename: "Richmond",
-    homeimg: "Richmond.svg",
-    awayname: "Carlton",
-    awayimg: "Carlton.svg",
-  },
-  {
-    gameid: "4786",
-    homename: "Geelong Cats",
-    homeimg: "GeelongCats.svg",
-    awayname: "Collingwood",
-    awayimg: "Collingwood.svg",
-  },
-  {
-    gameid: "4785",
-    homename: "North Melbourne",
-    homeimg: "NorthMelbourne.svg",
-    awayname: "West Coast Eagles",
-    awayimg: "WestCoastEagles.svg",
-  },
-  {
-    gameid: "4788",
-    homename: "Port Adelaide",
-    homeimg: "PortAdelaide.svg",
-    awayname: "Brisbane Lions",
-    awayimg: "BrisbaneLions.svg",
-  },
-  {
-    gameid: "4791",
-    homename: "Melbourne",
-    homeimg: "Melbourne.svg",
-    awayname: "Western Bulldogs",
-    awayimg: "WesternBulldogs.svg",
-  },
-  {
-    gameid: "4789",
-    homename: "Gold Coast Suns",
-    homeimg: "GoldCoastSuns.svg",
-    awayname: "Sydney Swans",
-    awayimg: "SydneySwans.svg",
-  },
-  {
-    gameid: "4790",
-    homename: "GWS Giants",
-    homeimg: "GWSGiants.svg",
-    awayname: "Adelaide Crows",
-    awayimg: "AdelaideCrows.svg",
-  },
-  {
-    gameid: "4792",
-    homename: "Hawthorn",
-    homeimg: "Hawthorn.svg",
-    awayname: "Essendon",
-    awayimg: "Essendon.svg",
-  },
-  {
-    gameid: "4793",
-    homename: "St Kilda",
-    homeimg: "StKilda.svg",
-    awayname: "Fremantle",
-    awayimg: "Fremantle.svg",
-  },
-];
+var games = [];
 
 $(document).ready(function () {
   // setLocalStorage();
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
+
+  let file = "round1.json";
+
+  fetch(file)
+    .then((x) => x.text())
+    .then((y) => {
+      console.log("y", y);
+      data = JSON.parse(y);
+      console.log("data", data);
+      console.log("matches", data.matches);
+      d = data.matches;
+
+      games = [];
+      for (i = 0; i < d.length; i++) {        
+        let g = {};
+        g.round = d[i].round.name;
+        g.gameid = d[i].id;
+        g.homename = d[i].home.team.name;
+        g.homeimg = d[i].home.team.name.replaceAll(" ", "") + ".svg";
+        g.awayname = d[i].away.team.name;
+        g.awayimg = d[i].away.team.name.replaceAll(" ", "") + ".svg";
+        g.checked = false;
+        g.winname = "";
+        games.push(g);
+      }
+    });
+  console.log("games", games);
 
   for (i = 0; i < games.length; i++) {
     let gameid = games[i].gameid;
@@ -105,35 +68,29 @@ $(document).ready(function () {
     let checked = false;
     let winname = "";
 
-    // let file = "fetch_info.txt";
-    // fetch(file)
-    //   .then((x) => x.text())
-    //   .then((y) => (document.getElementById("info").innerHTML = y));
-
-   
-      tableleft +=
-        `
+    tableleft +=
+      `
     <tr>
     <td>
       <div>        
           <input class="agame" id="` +
-        gameid +
-        `" 
+      gameid +
+      `" 
             onchange="gameSelected('${gameid}')" 
             type="checkbox" class="form-check-input" value="">
         </div>
     </td>
     <td><img src="./images/` +
-        homeimg +
-        `" alt="` +
-        homename +
-        `" width="60" height="60"></td>
+      homeimg +
+      `" alt="` +
+      homename +
+      `" width="60" height="60"></td>
     <td style="font-size: 1rem;font-weight: 700;">VS</td>
     <td><img src="./images/` +
-        awayimg +
-        `" alt="` +
-        awayname +
-        `" width="60" height="60"></td>
+      awayimg +
+      `" alt="` +
+      awayname +
+      `" width="60" height="60"></td>
     <td>
       <div class="form-check">
         <label class="form-check-label">
@@ -141,8 +98,8 @@ $(document).ready(function () {
           type="radio" class="form-check-input" name="optradio${radiogrp}"
           onclick="setWinner('${gameid}', '${homename}')"
           style="font-size: 20px;">` +
-        homename +
-        `
+      homename +
+      `
         </label>
         </div>
         <div class="form-check">
@@ -151,19 +108,16 @@ $(document).ready(function () {
         type="radio" class="form-check-input" name="optradio${radiogrp++}"         
         onclick="setWinner('${gameid}', '${awayname}')"
         style="font-size: 20px;">` +
-        awayname +
-        `
+      awayname +
+      `
         </label>
       </div>
     </td>
     </tr>
    `;
-    
   }
   console.log("games", games);
   document.getElementById("tableleft").innerHTML = tableleft;
-
-
 });
 
 function showHideLoginbox() {
@@ -467,14 +421,13 @@ function betcnt() {
   }
   if (betcnt == 6) {
     $("#betnow").show();
-    // document.getElementById("betnow").focus(); 
+    // document.getElementById("betnow").focus();
     window.scrollTo(0, document.body.scrollHeight);
   } else {
     $("#betnow").hide();
   }
 }
 function makebet() {
-
   // check funds =>$20
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked) {
@@ -486,7 +439,11 @@ function makebet() {
   let betthisjson = JSON.stringify(betthis);
   console.log("betthisjson", betthisjson);
 
-  var parms = { operation: "makebet", email: loggedInUser.email, betthisjson: betthisjson };
+  var parms = {
+    operation: "makebet",
+    email: loggedInUser.email,
+    betthisjson: betthisjson,
+  };
 
   $.ajax({
     type: "POST",
@@ -498,7 +455,6 @@ function makebet() {
       console.log("Bet made", parms);
       //reduce funds by $20
       // display bet with ticket number
-      
     },
     error: function () {
       $(".msg").html("Error");
