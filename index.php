@@ -72,6 +72,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
     </div>
 
+    
     <div id="loginbox" class="logincontainer modal modal-content"
         style="display: none; border-radius: 0%; margin-top: 5rem;">
         <form style="padding: 10px;" autocomplete="off">

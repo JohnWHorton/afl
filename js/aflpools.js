@@ -25,7 +25,71 @@ var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
 
-var games = [];
+var games = [
+  {
+    gameid: "4787",
+    homename: "Richmond",
+    homeimg: "Richmond.svg",
+    awayname: "Carlton",
+    awayimg: "Carlton.svg",
+  },
+  {
+    gameid: "4786",
+    homename: "Geelong Cats",
+    homeimg: "GeelongCats.svg",
+    awayname: "Collingwood",
+    awayimg: "Collingwood.svg",
+  },
+  {
+    gameid: "4785",
+    homename: "North Melbourne",
+    homeimg: "NorthMelbourne.svg",
+    awayname: "West Coast Eagles",
+    awayimg: "WestCoastEagles.svg",
+  },
+  {
+    gameid: "4788",
+    homename: "Port Adelaide",
+    homeimg: "PortAdelaide.svg",
+    awayname: "Brisbane Lions",
+    awayimg: "BrisbaneLions.svg",
+  },
+  {
+    gameid: "4791",
+    homename: "Melbourne",
+    homeimg: "Melbourne.svg",
+    awayname: "Western Bulldogs",
+    awayimg: "WesternBulldogs.svg",
+  },
+  {
+    gameid: "4789",
+    homename: "Gold Coast Suns",
+    homeimg: "GoldCoastSuns.svg",
+    awayname: "Sydney Swans",
+    awayimg: "SydneySwans.svg",
+  },
+  {
+    gameid: "4790",
+    homename: "GWS Giants",
+    homeimg: "GWSGiants.svg",
+    awayname: "Adelaide Crows",
+    awayimg: "AdelaideCrows.svg",
+  },
+  {
+    gameid: "4792",
+    homename: "Hawthorn",
+    homeimg: "Hawthorn.svg",
+    awayname: "Essendon",
+    awayimg: "Essendon.svg",
+  },
+  {
+    gameid: "4793",
+    homename: "St Kilda",
+    homeimg: "StKilda.svg",
+    awayname: "Fremantle",
+    awayimg: "Fremantle.svg",
+  },
+];
 
 $(document).ready(function () {
   // setLocalStorage();
