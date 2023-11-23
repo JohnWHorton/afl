@@ -50,13 +50,13 @@ if ($operation == "makebet") {
   $resparr = makebet($conn, $email, $betthisjson, $amount);
 }
 if ($operation == "deposit") {
-  $resparr = deposit($conn, $email, $betthisjson, $amount);
+  $resparr = deposit($conn, $email, $amount);
 }
 if ($operation == "withdrawalrequest") {
-  $resparr = withdrawalrequest($conn, $email, $betthisjson, $amount);
+  $resparr = withdrawalrequest($conn, $email, $amount);
 }
 if ($operation == "withdrawalcompleted") {
-  $resparr = withdrawalcompleted($conn, $email, $betthisjson, $amount);
+  $resparr = withdrawalcompleted($conn, $email, $amount);
 }
 // var_dump($resparr);
 
