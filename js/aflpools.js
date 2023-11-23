@@ -110,30 +110,29 @@ $(document).ready(function () {
     //   .then((x) => x.text())
     //   .then((y) => (document.getElementById("info").innerHTML = y));
 
-   
-      tableleft +=
-        `
+    tableleft +=
+      `
     <tr>
     <td>
       <div>        
           <input class="agame" id="` +
-        gameid +
-        `" 
+      gameid +
+      `" 
             onchange="gameSelected('${gameid}')" 
             type="checkbox" class="form-check-input" value="">
         </div>
     </td>
     <td><img src="./images/` +
-        homeimg +
-        `" alt="` +
-        homename +
-        `" width="60" height="60"></td>
+      homeimg +
+      `" alt="` +
+      homename +
+      `" width="60" height="60"></td>
     <td style="font-size: 1rem;font-weight: 700;">VS</td>
     <td><img src="./images/` +
-        awayimg +
-        `" alt="` +
-        awayname +
-        `" width="60" height="60"></td>
+      awayimg +
+      `" alt="` +
+      awayname +
+      `" width="60" height="60"></td>
     <td>
       <div class="form-check">
         <label class="form-check-label">
@@ -141,8 +140,8 @@ $(document).ready(function () {
           type="radio" class="form-check-input" name="optradio${radiogrp}"
           onclick="setWinner('${gameid}', '${homename}')"
           style="font-size: 20px;">` +
-        homename +
-        `
+      homename +
+      `
         </label>
         </div>
         <div class="form-check">
@@ -151,19 +150,16 @@ $(document).ready(function () {
         type="radio" class="form-check-input" name="optradio${radiogrp++}"         
         onclick="setWinner('${gameid}', '${awayname}')"
         style="font-size: 20px;">` +
-        awayname +
-        `
+      awayname +
+      `
         </label>
       </div>
     </td>
     </tr>
    `;
-    
   }
   console.log("games", games);
   document.getElementById("tableleft").innerHTML = tableleft;
-
-
 });
 
 function showHideLoginbox() {
@@ -345,6 +341,7 @@ function chkValCode() {
     $("#newpassword").show();
   }
 }
+
 function showPayPal() {
   if (loggedin) {
     $("#pp").show();
@@ -460,14 +457,13 @@ function betcnt() {
   }
   if (betcnt == 6) {
     $("#betnow").show();
-    // document.getElementById("betnow").focus(); 
+    // document.getElementById("betnow").focus();
     window.scrollTo(0, document.body.scrollHeight);
   } else {
     $("#betnow").hide();
   }
 }
 function makebet() {
-
   // check funds =>$20
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked) {
@@ -479,7 +475,11 @@ function makebet() {
   let betthisjson = JSON.stringify(betthis);
   console.log("betthisjson", betthisjson);
 
-  var parms = { operation: "makebet", email: loggedInUser.email, betthisjson: betthisjson };
+  var parms = {
+    operation: "makebet",
+    email: loggedInUser.email,
+    betthisjson: betthisjson,
+  };
 
   $.ajax({
     type: "POST",
@@ -491,7 +491,6 @@ function makebet() {
       console.log("Bet made", parms);
       //reduce funds by $20
       // display bet with ticket number
-      
     },
     error: function () {
       $(".msg").html("Error");
@@ -500,34 +499,11 @@ function makebet() {
   });
 }
 function withdrawalrequest(refid) {
-  var parms = { operation: "withdrawalrequest", email: loggedInUser.email, amount: amount };
-
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      if (response.length == 0) {
-        $(".msg").html("Login is incorrect. Try again");
-        $(".msgcontainer").show();
-        logemail = "";
-        logpword = "";
-        loggedin = false;
-      } else {
-        $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-        loggedin = true;
-      }
-    },
-    error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
-    },
-  });
-}function deposit(refid) {
-  var parms = { operation: "deposit", email: loggedInUser.email, amount: amount };
+  var parms = {
+    operation: "withdrawalrequest",
+    email: loggedInUser.email,
+    amount: amount,
+  };
 
   $.ajax({
     type: "POST",
@@ -554,3 +530,36 @@ function withdrawalrequest(refid) {
     },
   });
 }
+function deposit(refid) {
+  var parms = {
+    operation: "deposit",
+    email: loggedInUser.email,
+    amount: amount,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        $(".msg").html("Login is incorrect. Try again");
+        $(".msgcontainer").show();
+        logemail = "";
+        logpword = "";
+        loggedin = false;
+      } else {
+        $("#loginbox").hide();
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
+      }
+    },
+    error: function () {
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
+    },
+  });
+}
+
