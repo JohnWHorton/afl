@@ -3,12 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 24, 2023 at 07:40 AM
+-- Generation Time: Nov 24, 2023 at 08:23 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `bets`
 --
 
+DROP TABLE IF EXISTS `bets`;
 CREATE TABLE `bets` (
   `id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -50,6 +50,7 @@ INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUE
 -- Table structure for table `deposits`
 --
 
+DROP TABLE IF EXISTS `deposits`;
 CREATE TABLE `deposits` (
   `id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -63,6 +64,7 @@ CREATE TABLE `deposits` (
 -- Table structure for table `games`
 --
 
+DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
   `id` int(11) NOT NULL,
   `roundid` int(11) NOT NULL,
@@ -295,6 +297,7 @@ INSERT INTO `games` (`id`, `roundid`, `roundnumber`, `roundname`, `gameid`, `utc
 -- Table structure for table `teams`
 --
 
+DROP TABLE IF EXISTS `teams`;
 CREATE TABLE `teams` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -315,6 +318,7 @@ INSERT INTO `teams` (`id`, `name`, `logo`, `updated`) VALUES
 -- Table structure for table `transactions`
 --
 
+DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL,
   `item_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -351,6 +355,7 @@ INSERT INTO `transactions` (`id`, `item_number`, `item_name`, `item_price`, `ite
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
@@ -375,6 +380,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `d
 -- Table structure for table `withdrawalcompleted`
 --
 
+DROP TABLE IF EXISTS `withdrawalcompleted`;
 CREATE TABLE `withdrawalcompleted` (
   `id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -389,6 +395,7 @@ CREATE TABLE `withdrawalcompleted` (
 -- Table structure for table `withdrawalrequests`
 --
 
+DROP TABLE IF EXISTS `withdrawalrequests`;
 CREATE TABLE `withdrawalrequests` (
   `id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
@@ -500,7 +507,6 @@ ALTER TABLE `withdrawalcompleted`
 --
 ALTER TABLE `withdrawalrequests`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
