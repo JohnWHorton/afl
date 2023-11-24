@@ -243,7 +243,7 @@ body {
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 200px;
+    padding-top: 50px;
     /* Location of the box */
     float: left;
     left: 50%;
@@ -260,7 +260,7 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0%;
     border-color: darkgray;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: left;
     color: black;
     color: #ffffff;
