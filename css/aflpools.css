@@ -59,7 +59,9 @@ body {
     border-color: black !important;
 }
 .btn:hover {
-    background-color: #e5e5e5;    
+    background-color: #fffdfd!important;
+    color: #000;
+    font-weight:600;
 }
 
 .buttonlogin {
@@ -149,17 +151,14 @@ body {
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: #000;
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
+    background-color: transparent;
     cursor: pointer;
+    float: right;
+    margin-left: auto;
 }
 
 .colcenter {
@@ -299,8 +298,14 @@ body {
 }
 
 /* modal end */
-
-.msgcontainer {
+.msg {
+    margin: 1rem;
+    background-color: #ffffff;
+    color:#f00606;
+    font-size:medium;
+    font-weight:600;
+}
+/* .msgcontainer {
     position: absolute;
     display: none;
     margin-left: 78%;
@@ -312,7 +317,7 @@ body {
     z-index: 9;
     border-radius: 0%;
     border: opx;
-}
+} */
 
 /* change the background color */
 .navbar-custom {
@@ -403,22 +408,6 @@ body {
     margin: 0 5px 0 7px;
 }
 
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    background-color: transparent;
-}
-
-/* .close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-} */
-
 /* modal end */
 .center-block {
     display: block;
@@ -469,11 +458,6 @@ body {
     margin-bottom: 10px;
 }
 
-.msgcontainer {
-    position: absolute;
-    top: -9999px;
-}
-
 .overlay-content {
     width: 40px;
     display: none;
@@ -496,26 +480,6 @@ p {
 }
 
 .mybalancecontainer {
-    display: flex;
-    max-width: 550px;
-    max-height: auto;
-    background-color: #b6bdb9 !important;
-    color: black;
-    margin-top: 50px;
-    overflow: hidden;
-}
-
-.paypalcontainer {
-    display: flex;
-    max-width: 550px;
-    max-height: auto;
-    background-color: #b6bdb9 !important;
-    color: black;
-    margin-top: 50px;
-    overflow: hidden;
-}
-
-.paypalcontainer {
     display: flex;
     max-width: 550px;
     max-height: auto;
@@ -549,14 +513,6 @@ p {
 .picture {
     height: 75px;
     max-width: 75px;
-}
-
-.postmarker {
-    display: block;
-    border: none;
-    border-radius: 0%;
-    cursor: pointer;
-    padding: 0;
 }
 
 
