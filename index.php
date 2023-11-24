@@ -36,17 +36,17 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
                         <a class="dropdown-item" onclick="showPayPal()">Deposit funds</a>
-                        <a class="dropdown-item" href="#">What's my balance</a>
+                        <a class="dropdown-item" onclick="showMyBal()">What's my balance</a>
                         <!-- <div class="dropdown-divider"></div> -->
-                        <a class="dropdown-item" href="#">Withdraw funds</a>
-                        <a class="dropdown-item" href="#">Show my history</a>
+                        <a class="dropdown-item" onclick="showFunds()">Withdraw funds</a>
+                        <a class="dropdown-item" onclick="showHistory()">Show my history</a>
                     </div>
                 </li>
             </ul>
             <text>
                 <span id="welcome" style="margin-right: 1rem; font-size: 1rem;"></span>
             </text>
-            <button type="button" class="btn btn-primary loginbtn" onclick="showHideLoginbox()">Login</button>
+            <button type="button" class="btn btn-primary btnlogin" onclick="showHideLoginbox()">Login</button>
         </div>
     </nav>
     <div class="container msgcontainer modal modal-content">
@@ -72,10 +72,16 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
     </div>
 
+<<<<<<< HEAD
     <div id="loginbox" class="container logincontainer modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
         <div class="close">
             <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
         </div>
+=======
+    
+    <div id="loginbox" class="logincontainer modal modal-content"
+        style="display: none; border-radius: 0%; margin-top: 5rem;">
+>>>>>>> 095d1c54fe3d361bd629e626857b6bece08bca04
         <form style="padding: 10px;" autocomplete="off">
             <div class="form-group">
                 <label for="emailaddress">Email address</label>
@@ -102,10 +108,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         Login
                     </button>
                     <br>
-                    <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#" style="color: white;">
+                    <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#" style="color: black;">
                         Don't have an account? Register
                     </a>
-                    <a onclick="forgotPassword()" href="#" style="color: white;">
+                    <a onclick="forgotPassword()" href="#" style="color: black;">
                         Forgot password? Click here
                     </a>
                 </center>
@@ -113,7 +119,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </form>
     </div>
     <!-- <form action="action_page.php"> -->
-    <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 5rem;">
+    <div id="registerbox" class="container registercontainer modal modal-content"
+        style="display: none; border-radius: 0%; margin-top: 5rem;">
         <form style="padding: 10px;">
             <div class="form-group">
                 <label for="email">Email address</label>
@@ -129,7 +136,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <p>
                 By creating an account you agree to our
-                <a href="#">
+                <a href="#" style="color: black;">
                     Terms
                     & Privacy
                 </a>
@@ -138,13 +145,14 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <center>
                 <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
                 <br>
-                <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: white;">
+                <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: black;">
                     Already have an account? Sign in
                 </a>
             </center>
     </div>
 
-    <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 10%;margin-left: 40%;margin-top: 5rem;">
+    <div id="forgotbox" class="container registercontainer modal modal-content"
+        style="display: none; border-radius: 0%; margin-top: 5rem;">
         <form style="padding: 10px;">
             <div id="valEmail" class="form-group"></div>
             <div id="vc" class="form-group">
@@ -217,7 +225,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
     </div>
     </center>
     </div>
-
 
     <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 
@@ -354,6 +361,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 document.querySelector(".overlay").classList.add("hidden");
             }
         }
+
+    // <div id="mybalance" class="mybalancecontainer panel modal modal-content"
+    // style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+    //     <div class="overlay hidden">
+    //         <div class="overlay-content"></div>
+    //         <h1>$200</h1>
+    //     </div>
     </script>
-    <script type="text/javascript" src="js/smtp.js"></script>
 </body>

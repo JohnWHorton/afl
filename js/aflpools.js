@@ -25,8 +25,76 @@ var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
 
+<<<<<<< HEAD
 var roundnumber = 1;
 var games = [];
+=======
+var games = [
+  {
+    gameid: "4787",
+    homename: "Richmond",
+    homeimg: "Richmond.svg",
+    awayname: "Carlton",
+    awayimg: "Carlton.svg",
+  },
+  {
+    gameid: "4786",
+    homename: "Geelong Cats",
+    homeimg: "GeelongCats.svg",
+    awayname: "Collingwood",
+    awayimg: "Collingwood.svg",
+  },
+  {
+    gameid: "4785",
+    homename: "North Melbourne",
+    homeimg: "NorthMelbourne.svg",
+    awayname: "West Coast Eagles",
+    awayimg: "WestCoastEagles.svg",
+  },
+  {
+    gameid: "4788",
+    homename: "Port Adelaide",
+    homeimg: "PortAdelaide.svg",
+    awayname: "Brisbane Lions",
+    awayimg: "BrisbaneLions.svg",
+  },
+  {
+    gameid: "4791",
+    homename: "Melbourne",
+    homeimg: "Melbourne.svg",
+    awayname: "Western Bulldogs",
+    awayimg: "WesternBulldogs.svg",
+  },
+  {
+    gameid: "4789",
+    homename: "Gold Coast Suns",
+    homeimg: "GoldCoastSuns.svg",
+    awayname: "Sydney Swans",
+    awayimg: "SydneySwans.svg",
+  },
+  {
+    gameid: "4790",
+    homename: "GWS Giants",
+    homeimg: "GWSGiants.svg",
+    awayname: "Adelaide Crows",
+    awayimg: "AdelaideCrows.svg",
+  },
+  {
+    gameid: "4792",
+    homename: "Hawthorn",
+    homeimg: "Hawthorn.svg",
+    awayname: "Essendon",
+    awayimg: "Essendon.svg",
+  },
+  {
+    gameid: "4793",
+    homename: "St Kilda",
+    homeimg: "StKilda.svg",
+    awayname: "Fremantle",
+    awayimg: "Fremantle.svg",
+  },
+];
+>>>>>>> 095d1c54fe3d361bd629e626857b6bece08bca04
 
 $(document).ready(function () {
   // setLocalStorage();
@@ -295,6 +363,7 @@ function chkValCode() {
     $("#newpassword").show();
   }
 }
+
 function showPayPal() {
   if (loggedin) {
     $("#pp").show();
@@ -452,34 +521,11 @@ function makebet() {
   });
 }
 function withdrawalrequest(refid) {
-  var parms = { operation: "withdrawalrequest", email: loggedInUser.email, amount: amount };
-
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      if (response.length == 0) {
-        $(".msg").html("Login is incorrect. Try again");
-        $(".msgcontainer").show();
-        logemail = "";
-        logpword = "";
-        loggedin = false;
-      } else {
-        $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-        loggedin = true;
-      }
-    },
-    error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
-    },
-  });
-}function deposit(refid) {
-  var parms = { operation: "deposit", email: loggedInUser.email, amount: amount };
+  var parms = {
+    operation: "withdrawalrequest",
+    email: loggedInUser.email,
+    amount: amount,
+  };
 
   $.ajax({
     type: "POST",
@@ -506,3 +552,36 @@ function withdrawalrequest(refid) {
     },
   });
 }
+function deposit(refid) {
+  var parms = {
+    operation: "deposit",
+    email: loggedInUser.email,
+    amount: amount,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        $(".msg").html("Login is incorrect. Try again");
+        $(".msgcontainer").show();
+        logemail = "";
+        logpword = "";
+        loggedin = false;
+      } else {
+        $("#loginbox").hide();
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
+      }
+    },
+    error: function () {
+      $(".msg").html("Error");
+      $(".msgcontainer").show();
+    },
+  });
+}
+
