@@ -25,110 +25,42 @@ var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
 
-var games = [
-  {
-    gameid: "4787",
-    homename: "Richmond",
-    homeimg: "Richmond.svg",
-    awayname: "Carlton",
-    awayimg: "Carlton.svg",
-  },
-  {
-    gameid: "4786",
-    homename: "Geelong Cats",
-    homeimg: "GeelongCats.svg",
-    awayname: "Collingwood",
-    awayimg: "Collingwood.svg",
-  },
-  {
-    gameid: "4785",
-    homename: "North Melbourne",
-    homeimg: "NorthMelbourne.svg",
-    awayname: "West Coast Eagles",
-    awayimg: "WestCoastEagles.svg",
-  },
-  {
-    gameid: "4788",
-    homename: "Port Adelaide",
-    homeimg: "PortAdelaide.svg",
-    awayname: "Brisbane Lions",
-    awayimg: "BrisbaneLions.svg",
-  },
-  {
-    gameid: "4791",
-    homename: "Melbourne",
-    homeimg: "Melbourne.svg",
-    awayname: "Western Bulldogs",
-    awayimg: "WesternBulldogs.svg",
-  },
-  {
-    gameid: "4789",
-    homename: "Gold Coast Suns",
-    homeimg: "GoldCoastSuns.svg",
-    awayname: "Sydney Swans",
-    awayimg: "SydneySwans.svg",
-  },
-  {
-    gameid: "4790",
-    homename: "GWS Giants",
-    homeimg: "GWSGiants.svg",
-    awayname: "Adelaide Crows",
-    awayimg: "AdelaideCrows.svg",
-  },
-  {
-    gameid: "4792",
-    homename: "Hawthorn",
-    homeimg: "Hawthorn.svg",
-    awayname: "Essendon",
-    awayimg: "Essendon.svg",
-  },
-  {
-    gameid: "4793",
-    homename: "St Kilda",
-    homeimg: "StKilda.svg",
-    awayname: "Fremantle",
-    awayimg: "Fremantle.svg",
-  },
-];
+var roundnumber = 1;
+var games = [];
 
 $(document).ready(function () {
   // setLocalStorage();
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
-  let file = "round1.json";
+  // games = [];
+  var parms = { operation: "games", roundnumber: roundnumber };
 
-  fetch(file)
-    .then((x) => x.text())
-    .then((y) => {
-      console.log("y", y);
-      data = JSON.parse(y);
-      console.log("data", data);
-      console.log("matches", data.matches);
-      d = data.matches;
-
-      games = [];
-      for (i = 0; i < d.length; i++) {        
-        let g = {};
-        g.round = d[i].round.name;
-        g.gameid = d[i].id;
-        g.homename = d[i].home.team.name;
-        g.homeimg = d[i].home.team.name.replaceAll(" ", "") + ".svg";
-        g.awayname = d[i].away.team.name;
-        g.awayimg = d[i].away.team.name.replaceAll(" ", "") + ".svg";
-        g.checked = false;
-        g.winname = "";
-        games.push(g);
-      }
-    });
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+        games = response;
+      // }
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
   console.log("games", games);
 
   for (i = 0; i < games.length; i++) {
     let gameid = games[i].gameid;
-    let homename = games[i].homename;
-    let homeimg = games[i].homeimg;
-    let awayname = games[i].awayname;
-    let awayimg = games[i].awayimg;
+    let homename = games[i].hometeamname;
+    let homeimg = games[i].hometeamname.replaceAll(" ", "") + ".svg";
+    let awayname = games[i].awayteamname;
+    let awayimg = games[i].awayteamname.replaceAll(" ", "") + ".svg";
     let checked = false;
     let winname = "";
 
@@ -180,7 +112,7 @@ $(document).ready(function () {
     </tr>
    `;
   }
-  console.log("games", games);
+  // console.log("games", games);
   document.getElementById("tableleft").innerHTML = tableleft;
 });
 
@@ -420,7 +352,7 @@ function setWinner(gid, win) {
 }
 
 function gameSelected(gid) {
-  console.log("games", games);
+  // console.log("games", games);
   console.log("game", game);
   if (!loggedin) {
     $(`#${gid}`).prop("checked", false);

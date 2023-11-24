@@ -30,10 +30,10 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-$operation = "games";
+// $operation = "games";
 // $email = "john.horton86@gmail.com";
 // $pswd = "Ashleigh1!";
-$roundnumber = 1;
+// $roundnumber = 1;
 //
 
 $resparr = array();
