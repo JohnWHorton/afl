@@ -49,175 +49,187 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <button type="button" class="btn btn-primary btnlogin" onclick="showHideLoginbox()">Login</button>
         </div>
     </nav>
-    <div class="container msgcontainer modal modal-content">
+
+    <!-- <div class="container msgcontainer modal modal-content">
         <div>
             <span class="msg"></span>
             <button class="btn btn-secondary" style="margin: 0 0 0 150px; padding: 0; min-width: 20px" onclick="$('.msgcontainer').hide();">&times;</button>
 
         </div>
 
-    </div>
+    </div> -->
     <div class="container-fluid" style="margin-top: 0;">
         <div class="row">
             <div class="col-sm-4">
             </div>
-            <div class="col-sm-4" style="text-align:center; margin-top: 20px; font-style: italic; ">
+            <div class="col-sm-3" style="text-align:center; margin-top: 20px; font-style: italic; ">
                 <h2>
                     Community Footie Pools
                     </h1>
             </div>
-            <div class="col-sm-4">
-                <img src="./images/aflstadium.png" class="center-block img-fluid" style="height:5rem; margin: auto; border-radius: 50%; ">
+            <div class="col-sm-3">
+                <div>
+                    <img src="./images/aflstadium.png" class="center-block img-fluid" style="height:5rem; border-radius: 50%; ">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="msg"  style="display: none;">xxxxx
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="loginbox" class="container logincontainer modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
-        <div class="close">
-            <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
+        <!-- <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;"> -->
+        <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
+            </div>
+            <form style="padding: 10px;" autocomplete="off">
+                <div class="form-group">
+                    <label for="emailaddress">Email address</label>
+                    <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">
+                        We'll never share your
+                        email with anyone
+                        else.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="current-password">Password</label>
+                    <input type="password" class="form-control" id="lpassword" value="" placeholder="Enter Password">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Remember me
+                    </label>
+                </div>
+                <div style="justify-content: center">
+                    <center>
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="loginEvent()">
+                            Login
+                        </button>
+                        <br>
+                        <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#" style="color: black;">
+                            Don't have an account? Register
+                        </a>
+                        <a onclick="forgotPassword()" href="#" style="color: black;">
+                            Forgot password? Click here
+                        </a>
+                    </center>
+                </div>
+            </form>
         </div>
-        <form style="padding: 10px;" autocomplete="off">
-            <div class="form-group">
-                <label for="emailaddress">Email address</label>
-                <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">
-                    We'll never share your
-                    email with anyone
-                    else.
-                </small>
+        <!-- <form action="action_page.php"> -->
+        <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#registerbox').hide();">&times;</span>
             </div>
-            <div class="form-group">
-                <label for="current-password">Password</label>
-                <input type="password" class="form-control" id="lpassword" value="" placeholder="Enter Password">
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                    Remember me
-                </label>
-            </div>
-            <div style="justify-content: center">
+            <form style="padding: 10px;">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="remail" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="rpassword">Password</label>
+                    <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
+                </div>
+                <div class="form-group">
+                    <label for="rrpassword">Repeat Password</label>
+                    <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value="" required>
+                </div>
+                <p>
+                    By creating an account you agree to our
+                    <a href="#" style="color: black;">
+                        Terms
+                        & Privacy
+                    </a>
+                    .
+                </p>
                 <center>
-                    <button type="button" class="btn btn-primary buttonlogin" onclick="loginEvent()">
-                        Login
-                    </button>
+                    <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
                     <br>
-                    <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#" style="color: black;">
-                        Don't have an account? Register
-                    </a>
-                    <a onclick="forgotPassword()" href="#" style="color: black;">
-                        Forgot password? Click here
+                    <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: black;">
+                        Already have an account? Sign in
                     </a>
                 </center>
-            </div>
-        </form>
-    </div>
-    <!-- <form action="action_page.php"> -->
-    <div id="registerbox" class="container registercontainer modal modal-content"
-        style="display: none; border-radius: 0%; margin-top: 5rem;">
-        <form style="padding: 10px;">
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="remail" placeholder="Enter Email" required>
-            </div>
-            <div class="form-group">
-                <label for="rpassword">Password</label>
-                <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
-            </div>
-            <div class="form-group">
-                <label for="rrpassword">Repeat Password</label>
-                <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value="" required>
-            </div>
-            <p>
-                By creating an account you agree to our
-                <a href="#" style="color: black;">
-                    Terms
-                    & Privacy
-                </a>
-                .
-            </p>
-            <center>
-                <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
-                <br>
-                <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: black;">
-                    Already have an account? Sign in
-                </a>
-            </center>
-    </div>
-
-    <div id="forgotbox" class="container registercontainer modal modal-content"
-        style="display: none; border-radius: 0%; margin-top: 5rem;">
-        <form style="padding: 10px;">
-            <div id="valEmail" class="form-group"></div>
-            <div id="vc" class="form-group">
-                <label for="valcode">Enter validation code</label>
-                <input type="text" class="form-control" id="valcode" required onchange="chkValCode()">
-            </div>
-            <div id="newpassword" style="display: none;">
-                <div class="form-group">
-                    <label for="newpword">Password</label>
-                    <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value="" required>
-                </div>
-                <div class="form-group">
-                    <label for="rnewpword">Repeat Password</label>
-                    <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value="" required>
-                </div>
-                <center>
-                    <button type="button" class="btn btn-primary buttonlogin" onclick="resetPassword()">Reset</button>
-                </center>
-            </div>
-            <div id="chkemailmsg">
-                <center>
-                    <button type="button" class="btn btn-primary buttonlogin" onclick="chkValCode()">Send</button>
-                    <div>
-                        <p>Check your email for the validation code</p>
-                        <p>Check your spam folder if no email recieved</p>
-                    </div>
-                </center>
-            </div>
-        </form>
-    </div>
-    <div id="afldata">
-
-        <div class="colcontainer">
-            <div class="row" style="width: 100%!important;">
-                <div class="col-sm-0 col-md-3"></div>
-                <div class="col-sm-12 col-md-6" style="margin-left: 1rem;">
-                    <h4 style="text-align: center;">How to play</h4>
-                    <span style="font-size: 18px;">
-                        Deposit funds (min $20)</br></br>
-                        Select any 6 games and make a prediction for the Winner of each game.</br></br>
-                        Place a bet of $20.</br></br>
-                        The pool which accumulated from the number of bets will form the <span style="color:Yellow">PRIZE POOL</span>
-                        and be shared by the Winners.</br></br>
-                        If there are no Winners, the pool will be carried forward to the next round.</br></br>
-                    </span>
-                    <h4 style="text-align: center; color: gold;">Good luck</h4>
-                </div>
-            </div>
         </div>
-        <center>
-            <div class="row" style="width: 100%!important;">
-                <div class="col-sm-0 col-md-3"></div>
-                <div class="col-sm-12 col-md-6">
 
-                    <table class="table">
-                        <thead>
-                        </thead>
-                        <tbody id="tableleft"></tbody>
-                    </table>
-
-                </div>
-                <div class="col-sm-0 col-md-3"></div>
+        <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#forgotbox').hide();">&times;</span>
             </div>
-    </div>
+            <form style="padding: 10px;">
+                <div id="valEmail" class="form-group"></div>
+                <div id="vc" class="form-group">
+                    <label for="valcode">Enter validation code</label>
+                    <input type="text" class="form-control" id="valcode" required onchange="chkValCode()">
+                </div>
+                <div id="newpassword" style="display: none;">
+                    <div class="form-group">
+                        <label for="newpword">Password</label>
+                        <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rnewpword">Repeat Password</label>
+                        <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value="" required>
+                    </div>
+                    <center>
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="resetPassword()">Reset</button>
+                    </center>
+                </div>
+                <div id="chkemailmsg">
+                    <center>
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="chkValCode()">Send</button>
+                        <div>
+                            <p>Check your email for the validation code</p>
+                            <p>Check your spam folder if no email recieved</p>
+                        </div>
+                    </center>
+                </div>
+            </form>
+        </div>
+        <div id="afldata">
 
-    <div id="betnow" style="display: none;">
-        <center>
-            <button class="btn betnowbtn" onclick="makebet()">Bet Now</button>
+            <div class="colcontainer">
+                <div class="row" style="width: 100%!important;">
+                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-12 col-md-6" style="margin-left: 1rem;">
+                        <h4 style="text-align: center;">How to play</h4>
+                        <span style="font-size: 18px;">
+                            Deposit funds (min $20)</br></br>
+                            Select any 6 games and make a prediction for the Winner of each game.</br></br>
+                            Place a bet of $20.</br></br>
+                            The pool which accumulated from the number of bets will form the <span style="color:Yellow">PRIZE POOL</span>
+                            and be shared by the Winners.</br></br>
+                            If there are no Winners, the pool will be carried forward to the next round.</br></br>
+                        </span>
+                        <h4 style="text-align: center; color: gold;">Good luck</h4>
+                    </div>
+                </div>
+            </div>
+            <center>
+                <div class="row" style="width: 100%!important;">
+                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-12 col-md-6">
+
+                        <table class="table">
+                            <thead>
+                            </thead>
+                            <tbody id="tableleft"></tbody>
+                        </table>
+
+                    </div>
+                    <div class="col-sm-0 col-md-3"></div>
+                </div>
+        </div>
+
+        <div id="betnow" style="display: none;">
+            <center>
+                <button class="btn betnowbtn" onclick="makebet()">Bet Now</button>
+            </center>
+        </div>
         </center>
-    </div>
-    </center>
     </div>
 
     <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
@@ -356,12 +368,12 @@ require_once './paypal_standard_checkout_in_php/config.php';
             }
         }
 
-    // <div id="mybalance" class="mybalancecontainer panel modal modal-content"
-    // style="display: none; border-radius: 0%; margin-top: 5rem;">
+        // <div id="mybalance" class="mybalancecontainer panel modal modal-content"
+        // style="display: none; border-radius: 0%; margin-top: 5rem;">
 
-    //     <div class="overlay hidden">
-    //         <div class="overlay-content"></div>
-    //         <h1>$200</h1>
-    //     </div>
+        //     <div class="overlay hidden">
+        //         <div class="overlay-content"></div>
+        //         <h1>$200</h1>
+        //     </div>
     </script>
 </body>

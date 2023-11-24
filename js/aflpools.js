@@ -29,10 +29,8 @@ var roundnumber = 1;
 var games = [];
 
 $(document).ready(function () {
-  // setLocalStorage();
 
   document.getElementById("welcome").innerHTML = "Welcome to the game";
-
   // games = [];
   var parms = { operation: "games", roundnumber: roundnumber };
 
@@ -124,10 +122,7 @@ function showHideLoginbox() {
     $("#registerbox").hide();
   }
 }
-function setLocalStorage(userdata) {
-  localStorage.setItem("aflemail", "Obaseki Nosa");
-  localStorage.setItem("aflpassword", "abcdefgh");
-}
+
 
 function loginEvent() {
   // e.preventDefault();
@@ -154,9 +149,8 @@ function loginEvent() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      if (response.length == 0) {
-        $(".msg").html("Login is incorrect. Try again");
-        $(".msgcontainer").show();
+      if (response.length == 0) {        
+        showMsg("Login is incorrect. Try again");
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -170,11 +164,21 @@ function loginEvent() {
       }
     },
     error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
+      showMsg("Error");
+      
     },
   });
 }
+function showMsg(m) {
+  $(".msg").html(m);
+  $(".msg").show();
+  setTimeout(hideMsg, 3000);
+}
+
+function hideMsg() {
+  $(".msg").hide();
+}
+
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
   regemail = $("#remail").val();
@@ -197,8 +201,7 @@ function registerEvent() {
       success: function (response) {
         if (response[1] == "exists") {
           console.log("response", response);
-          $(".msg").html("User already exists, please login");
-          $(".msgcontainer").show();
+          showMsg("User already exists, please login");
           $("#loginbox").show();
           $("#registerbox").hide();
         }
@@ -217,8 +220,7 @@ function registerEvent() {
       },
     });
   } else {
-    $(".msg").html("Invalid password or passwords do not match");
-    $(".msgcontainer").show();
+    showMsg("Invalid password or passwords do not match");
   }
 }
 function resetPassword() {
@@ -247,19 +249,19 @@ function resetPassword() {
         } else {
           console.log("reset error", response[1]);
 
-          $(".msgcontainer").show();
-          $(".msg").html("reset failed. see log");
-          $(".msgcontainer").show();
+          
+          showMsg("reset failed. see log");
+          showMsg("Invalid password or passwords do not match");
         }
       },
       error: function () {
-        $(".msg").html("Error");
-        $(".msgcontainer").show();
+        showMsg("Error");
+        
       },
     });
   } else {
-    $(".msg").html("Invalid password or passwords do not match");
-    $(".msgcontainer").show();
+    showMsg("Invalid password or passwords do not match");
+    
   }
 }
 function forgotPassword() {
@@ -276,8 +278,8 @@ function forgotPassword() {
   console.log("dummyobj", dummyobj);
 
   Email.send(dummyobj).then(function (message) {
-    $(".msg").html("Email successfully sent");
-    $(".msgcontainer").show();
+    showMsg("Email successfully sent");
+    
   });
 
   document.getElementById("valEmail").innerHTML =
@@ -317,8 +319,8 @@ function deposit(refid) {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        $(".msg").html("Login is incorrect. Try again");
-        $(".msgcontainer").show();
+        showMsg("Login is incorrect. Try again");
+        
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -329,8 +331,8 @@ function deposit(refid) {
       }
     },
     error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
+      showMsg("Error");
+      
     },
   });
 }
@@ -447,8 +449,8 @@ function makebet() {
       // display bet with ticket number
     },
     error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
+      showMsg("Error");
+      
     },
   });
 }
@@ -467,8 +469,8 @@ function withdrawalrequest(refid) {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        $(".msg").html("Login is incorrect. Try again");
-        $(".msgcontainer").show();
+        showMsg("Login is incorrect. Try again");
+        
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -479,8 +481,7 @@ function withdrawalrequest(refid) {
       }
     },
     error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
+      showMsg("Error");      
     },
   });
 }
@@ -499,8 +500,8 @@ function deposit(refid) {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        $(".msg").html("Login is incorrect. Try again");
-        $(".msgcontainer").show();
+        showMsg("Login is incorrect. Try again");
+        
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -511,8 +512,8 @@ function deposit(refid) {
       }
     },
     error: function () {
-      $(".msg").html("Error");
-      $(".msgcontainer").show();
+      showMsg("Error");
+      
     },
   });
 }
