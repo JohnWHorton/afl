@@ -50,14 +50,14 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
     </nav>
 
-    <div class="container msgcontainer modal modal-content">
+    <!-- <div class="container msgcontainer modal modal-content">
         <div>
             <span class="msg"></span>
             <button class="btn btn-secondary" style="margin: 0 0 0 150px; padding: 0; min-width: 20px" onclick="$('.msgcontainer').hide();">&times;</button>
 
         </div>
 
-    </div>
+    </div> -->
     <div class="container-fluid" style="margin-top: 0;">
         <div class="row">
             <div class="col-sm-4">
