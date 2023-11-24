@@ -73,6 +73,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
     </div>
 
     <div id="loginbox" class="container logincontainer modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
+        <div class="close">
+            <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
+        </div>
         <form style="padding: 10px;" autocomplete="off">
             <div class="form-group">
                 <label for="emailaddress">Email address</label>
