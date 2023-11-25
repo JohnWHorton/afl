@@ -55,9 +55,9 @@ $(document).ready(function () {
 
   for (i = 0; i < games.length; i++) {
     let gameid = games[i].gameid;
-    let homename = games[i].hometeamname;
+    let hometeamname = games[i].hometeamname;
     let homeimg = games[i].hometeamname.replaceAll(" ", "") + ".svg";
-    let awayname = games[i].awayteamname;
+    let awayteamname = games[i].awayteamname;
     let awayimg = games[i].awayteamname.replaceAll(" ", "") + ".svg";
     let checked = false;
     let winname = "";
@@ -77,32 +77,32 @@ $(document).ready(function () {
     <td><img src="./images/` +
       homeimg +
       `" alt="` +
-      homename +
+      hometeamname +
       `" width="60" height="60"></td>
     <td style="font-size: 1rem;font-weight: 700;">VS</td>
     <td><img src="./images/` +
       awayimg +
       `" alt="` +
-      awayname +
+      awayteamname +
       `" width="60" height="60"></td>
     <td>
       <div class="form-check">
         <label class="form-check-label">
-          <input id=${homename.replaceAll(" ", "")}
+          <input id=${hometeamname.replaceAll(" ", "")}
           type="radio" class="form-check-input" name="optradio${radiogrp}"
-          onclick="setWinner('${gameid}', '${homename}')"
+          onclick="setWinner('${gameid}', '${hometeamname}')"
           style="font-size: 20px;">` +
-      homename +
+      hometeamname +
       `
         </label>
         </div>
         <div class="form-check">
         <label class="form-check-label">
-        <input id=${awayname.replaceAll(" ", "")} 
+        <input id=${awayteamname.replaceAll(" ", "")} 
         type="radio" class="form-check-input" name="optradio${radiogrp++}"         
-        onclick="setWinner('${gameid}', '${awayname}')"
+        onclick="setWinner('${gameid}', '${awayteamname}')"
         style="font-size: 20px;">` +
-      awayname +
+      awayteamname +
       `
         </label>
       </div>
@@ -367,8 +367,9 @@ function gameSelected(gid) {
       games[i].checked = !games[i].checked;
     }
     if (!games[i].checked) {
-      $(`#${games[i].homename.replaceAll(" ", "")}`).attr("checked", false);
-      $(`#${games[i].awayname.replaceAll(" ", "")}`).attr("checked", false);
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("checked", false);
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("checked", false);
+      games[i].winname = "";
     }
   }
 
@@ -376,28 +377,28 @@ function gameSelected(gid) {
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked) {
       checkedcnt++;
-      console.log("gamesSelected", games[i].gameid);
+      // console.log("gamesSelected", games[i].gameid);
     }
   }
 
-  console.log("checkedcnt", checkedcnt);
+  // console.log("checkedcnt", checkedcnt);
 
   if (checkedcnt == 6) {
     for (let i = 0; i < games.length; i++) {
       if (!games[i].checked) {
         $(`#${games[i].gameid}`).attr("disabled", true);
-        $(`#${games[i].homename.replaceAll(" ", "")}`).attr("disabled", true);
-        $(`#${games[i].awayname.replaceAll(" ", "")}`).attr("disabled", true);
-        $(`#${games[i].homename.replaceAll(" ", "")}`).attr("checked", false);
-        $(`#${games[i].awayname.replaceAll(" ", "")}`).attr("checked", false);
+        $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("disabled", true);
+        $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("disabled", true);
+        $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("checked", false);
+        $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("checked", false);
         games[i].winname = "";
       }
     }
   } else {
     for (let i = 0; i < games.length; i++) {
       $(`#${games[i].gameid}`).attr("disabled", false);
-      $(`#${games[i].homename.replaceAll(" ", "")}`).attr("disabled", false);
-      $(`#${games[i].awayname.replaceAll(" ", "")}`).attr("disabled", false);
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("disabled", false);
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("disabled", false);
     }
   }
   betcnt();
@@ -489,7 +490,7 @@ function deposit(refid) {
   var parms = {
     operation: "deposit",
     email: loggedInUser.email,
-    amount: amount,
+    amount: 2011,
   };
 
   $.ajax({
