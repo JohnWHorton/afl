@@ -25,7 +25,7 @@ var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
 
-var roundnumber = 1;
+var roundnumber = 2;
 var games = [];
 
 $(document).ready(function () {

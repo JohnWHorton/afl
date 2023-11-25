@@ -1,4 +1,25 @@
+body {
+    width: 100%;
+    /*	background: transparent;*/
+    /* background-color: rgba(16, 16, 16, 0.9); */
+    height: 100%;
+    width: 100%;
+    font-family: 'open-sans-light', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(250, 248, 248);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: #c3e1fb !important;
+    background-image: url("../images/Field.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+    background-position:center;
+    
+    
 
+}
 a {
     color: #c3e1fb;
     text-decoration: none;
@@ -19,21 +40,7 @@ a {
 }
 
 
-body {
-    width: 100%;
-    /*	background: transparent;*/
-    background-color: rgba(16, 16, 16, 0.9);
-    height: 100%;
-    font-family: 'open-sans-light', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    color: rgb(250, 248, 248);
-    min-height: 800px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    color: #c3e1fb !important;
 
-}
 
 .betnowbtn {
     background-color: yellow!important;
@@ -192,7 +199,7 @@ body {
 
 .form-control {
     height: calc(1.5em + .75rem + 2px);
-    padding: .375remorm-control .75rem;
+    /* padding: .375remorm-control .75rem; */
     font-size: 0.7rem;
     font-weight: 400;
     line-height: 1.2;
@@ -386,7 +393,7 @@ body {
     /* background-color: #f30808; */
     /* margin: 10px; */
     padding: 20px;
-    border: 1px solid #f00606;
+    border: 1px solid #b6bdb9;
     width: 80%;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
@@ -497,7 +504,7 @@ p {
 }
 
 .page-item.active .page-link {
-    background-color: red !important;
+    /* background-color: red !important; */
     border: 1px solid black;
 }
 
