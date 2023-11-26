@@ -10,7 +10,7 @@ var logemail = "";
 var logpword = "";
 var chkbox = false;
 var loggedin = false;
-var loggedInUser;
+var loggedInUser="";
 var regemail = "";
 var regpwrd = "";
 var repregpword = "";
@@ -123,6 +123,14 @@ function showHideLoginbox() {
     $("#registerbox").hide();
   }
 }
+function showHideDepositbox() {
+  if(!loggedin) {
+    $("#loginbox").show();
+  } else {
+    $("#loginbox").hide();
+    $("#depositbox").show();
+  }
+}
 
 
 function loginEvent() {
@@ -173,7 +181,8 @@ function loginEvent() {
 function showMsg(m) {
   $(".msg").html(m);
   $(".msg").show();
-  setTimeout(hideMsg, 3000);
+
+  setTimeout(hideMsg, 5000);
 }
 
 function hideMsg() {
@@ -288,6 +297,31 @@ function forgotPassword() {
   console.log("generated code", rndvalcode);
   $("#loginbox").hide();
   $("#forgotbox").show();
+}
+function depositEvent() {
+  
+  amt = $("#depositamount").val();
+// validation here
+  var parms = { operation: "deposit", email: loggedInUser.email, amount: amt  };
+
+    $.ajax({
+      type: "POST",
+      url: "./php/afldb.php",
+      contentType: "application/json; charset=UTF-8",
+      dataType: "json",
+      data: JSON.stringify(parms),
+      success: function (response) {
+          console.log("response", response);
+          showMsg("Deposit successful");
+          $("#depositbox").hide();
+        
+      },
+      error: function (xhr, textStatus, error) {
+        console.log(xhr.statusText);
+        console.log(textStatus);
+        console.log(error);
+      },
+    });
 }
 function chkValCode() {
   let vc = $("#valcode").val();
@@ -487,36 +521,36 @@ function withdrawalrequest(refid) {
     },
   });
 }
-function deposit(refid) {
-  var parms = {
-    operation: "deposit",
-    email: loggedInUser.email,
-    amount: 2011,
-  };
+// function deposit(refid) {
+//   var parms = {
+//     operation: "deposit",
+//     email: loggedInUser.email,
+//     amount: 2011,
+//   };
 
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      if (response.length == 0) {
-        showMsg("Login is incorrect. Try again");
+//   $.ajax({
+//     type: "POST",
+//     url: "./php/afldb.php",
+//     contentType: "application/json; charset=UTF-8",
+//     dataType: "json",
+//     data: JSON.stringify(parms),
+//     success: function (response) {
+//       if (response.length == 0) {
+//         showMsg("Login is incorrect. Try again");
         
-        logemail = "";
-        logpword = "";
-        loggedin = false;
-      } else {
-        $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-        loggedin = true;
-      }
-    },
-    error: function () {
-      showMsg("Error");
+//         logemail = "";
+//         logpword = "";
+//         loggedin = false;
+//       } else {
+//         $("#loginbox").hide();
+//         document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+//         loggedin = true;
+//       }
+//     },
+//     error: function () {
+//       showMsg("Error");
       
-    },
-  });
-}
+//     },
+//   });
+// }
 

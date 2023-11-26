@@ -307,13 +307,14 @@ a {
 /* modal end */
 .msg {
     margin: 1rem;
-    background-color: #9d9d9d45;
-    color: #ff6969;
-    font-size:medium;
+    background-color: transparent;
+    color: #ffffff;
+    font-size:18px;
     font-weight:600;
     padding: 1rem;
-    border: 1px solid #969696;
+    border: 0px solid #969696;
     border-radius: 10px;
+    z-index: 2;
 }
 /* .msgcontainer {
     position: absolute;

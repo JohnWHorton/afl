@@ -12,6 +12,11 @@ $charset = 'utf8mb4';
 // $pass = 'V4513john';
 // $charset = 'utf8mb4';
 
+/*
+calc balance
+SELECT email, sum(dep) , sum(withd) , (sum(dep) - sum(withd)) bal  FROM `balance`
+group by email
+*/
 $conn = new mysqli($host, $user, $pass, $db);
 
 // Check connection
@@ -98,7 +103,7 @@ function addUser($conn, $email, $pswd)
   if ($result->num_rows > 0) {
     array_push($resparr, 'error', 'exists');
     return $resparr;
-  } 
+  }
 
   $sql = "INSERT INTO users (email, pswd, datecreated, dateupdated)
 			VALUES
@@ -127,8 +132,23 @@ function loginUser($conn, $email, $pswd)
     }
   }
 
+  $sql = "SELECT email, sum(withd) bal  FROM `balance`
+    WHERE email = '$email'
+    group by email'";
+
+  $result2 = $conn->query($sql);
+
+  if ($result2 !== false && $result2->num_rows > 0) {
+    while ($row = $result2->fetch_assoc()) {
+      array_push($resparr, $row["bal"]);
+    }
+  } else {
+    array_push($resparr, '0');
+  }
+
   return $resparr;
 }
+
 function resetPassword($conn, $email, $pswd)
 {
   $resparr = array();
@@ -142,7 +162,7 @@ function resetPassword($conn, $email, $pswd)
   } else {
     array_push($resparr, 'error', $conn->error);
   }
-  
+
   return $resparr;
 }
 
@@ -167,7 +187,7 @@ function deposit($conn, $email, $amount)
 
   $resparr = array();
 
-  $sql = "INSERT INTO deposit (email, amount, datecreated)
+  $sql = "INSERT INTO deposits (email, amount, datecreated)
 			VALUES
 			('$email','$amount', now())";
 

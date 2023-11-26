@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 24, 2023 at 08:23 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 26, 2023 at 11:56 AM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,17 +24,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `balance`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `balance`;
+CREATE TABLE IF NOT EXISTS `balance` (
+`dep` decimal(10,0)
+,`email` varchar(128)
+,`withd` decimal(10,0)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bets`
 --
 
 DROP TABLE IF EXISTS `bets`;
-CREATE TABLE `bets` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `bets` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(128) NOT NULL,
   `betthisjson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `amount` decimal(16,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bets`
@@ -42,7 +57,8 @@ CREATE TABLE `bets` (
 INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUES
 (1, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"},{\"gameid\":\"4790\",\"homename\":\"GWS Giants\",\"homeimg\":\"GWSGiants.svg\",\"awayname\":\"Adelaide Crows\",\"awayimg\":\"AdelaideCrows.svg\",\"checked\":true,\"winname\":\"GWS Giants\"},{\"gameid\":\"4792\",\"homename\":\"Hawthorn\",\"homeimg\":\"Hawthorn.svg\",\"awayname\":\"Essendon\",\"awayimg\":\"Essendon.svg\",\"checked\":true,\"winname\":\"Essendon\"}]', '0', '2023-11-21 16:52:21'),
 (2, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4788\",\"homename\":\"Port Adelaide\",\"homeimg\":\"PortAdelaide.svg\",\"awayname\":\"Brisbane Lions\",\"awayimg\":\"BrisbaneLions.svg\",\"checked\":true,\"winname\":\"Port Adelaide\"},{\"gameid\":\"4791\",\"homename\":\"Melbourne\",\"homeimg\":\"Melbourne.svg\",\"awayname\":\"Western Bulldogs\",\"awayimg\":\"WesternBulldogs.svg\",\"checked\":true,\"winname\":\"Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]', '0', '2023-11-21 23:01:22'),
-(3, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4788\",\"homename\":\"Port Adelaide\",\"homeimg\":\"PortAdelaide.svg\",\"awayname\":\"Brisbane Lions\",\"awayimg\":\"BrisbaneLions.svg\",\"checked\":true,\"winname\":\"Port Adelaide\"},{\"gameid\":\"4791\",\"homename\":\"Melbourne\",\"homeimg\":\"Melbourne.svg\",\"awayname\":\"Western Bulldogs\",\"awayimg\":\"WesternBulldogs.svg\",\"checked\":true,\"winname\":\"Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]', '0', '2023-11-21 23:02:50');
+(3, 'john.horton86@gmail.com', '[{\"gameid\":\"4787\",\"homename\":\"Richmond\",\"homeimg\":\"Richmond.svg\",\"awayname\":\"Carlton\",\"awayimg\":\"Carlton.svg\",\"checked\":true,\"winname\":\"Richmond\"},{\"gameid\":\"4786\",\"homename\":\"Geelong Cats\",\"homeimg\":\"GeelongCats.svg\",\"awayname\":\"Collingwood\",\"awayimg\":\"Collingwood.svg\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"gameid\":\"4785\",\"homename\":\"North Melbourne\",\"homeimg\":\"NorthMelbourne.svg\",\"awayname\":\"West Coast Eagles\",\"awayimg\":\"WestCoastEagles.svg\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"gameid\":\"4788\",\"homename\":\"Port Adelaide\",\"homeimg\":\"PortAdelaide.svg\",\"awayname\":\"Brisbane Lions\",\"awayimg\":\"BrisbaneLions.svg\",\"checked\":true,\"winname\":\"Port Adelaide\"},{\"gameid\":\"4791\",\"homename\":\"Melbourne\",\"homeimg\":\"Melbourne.svg\",\"awayname\":\"Western Bulldogs\",\"awayimg\":\"WesternBulldogs.svg\",\"checked\":true,\"winname\":\"Melbourne\"},{\"gameid\":\"4789\",\"homename\":\"Gold Coast Suns\",\"homeimg\":\"GoldCoastSuns.svg\",\"awayname\":\"Sydney Swans\",\"awayimg\":\"SydneySwans.svg\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]', '0', '2023-11-21 23:02:50'),
+(4, 'john.horton86@gmail.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Carlton\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]', '0', '2023-11-25 22:58:37');
 
 -- --------------------------------------------------------
 
@@ -51,12 +67,21 @@ INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUE
 --
 
 DROP TABLE IF EXISTS `deposits`;
-CREATE TABLE `deposits` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `deposits` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(128) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `deposits`
+--
+
+INSERT INTO `deposits` (`id`, `email`, `amount`, `datecreated`) VALUES
+(3, 'john.horton86@gmail.com', '150', '2023-11-26 12:52:00'),
+(4, 'john.horton86@gmail.com', '201', '2023-11-26 12:55:24');
 
 -- --------------------------------------------------------
 
@@ -65,22 +90,22 @@ CREATE TABLE `deposits` (
 --
 
 DROP TABLE IF EXISTS `games`;
-CREATE TABLE `games` (
-  `id` int(11) NOT NULL,
-  `roundid` int(11) NOT NULL,
-  `roundnumber` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `games` (
+  `id` int NOT NULL,
+  `roundid` int NOT NULL,
+  `roundnumber` int NOT NULL,
   `roundname` varchar(64) NOT NULL,
-  `gameid` int(11) NOT NULL,
+  `gameid` int NOT NULL,
   `utcStartTime` varchar(64) NOT NULL,
-  `hometeamid` int(11) NOT NULL,
+  `hometeamid` int NOT NULL,
   `hometeamname` varchar(64) NOT NULL,
   `hometeamnickname` varchar(64) NOT NULL,
-  `awayteamid` int(11) NOT NULL,
+  `awayteamid` int NOT NULL,
   `awayteamname` varchar(64) NOT NULL,
   `awayteamnickname` varchar(64) NOT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT 0,
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
   `result` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `games`
@@ -298,12 +323,13 @@ INSERT INTO `games` (`id`, `roundid`, `roundnumber`, `roundname`, `gameid`, `utc
 --
 
 DROP TABLE IF EXISTS `teams`;
-CREATE TABLE `teams` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `teams` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `logo` varchar(256) NOT NULL,
-  `updated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `teams`
@@ -319,27 +345,28 @@ INSERT INTO `teams` (`id`, `name`, `logo`, `updated`) VALUES
 --
 
 DROP TABLE IF EXISTS `transactions`;
-CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL,
-  `item_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `transactions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `item_number` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `item_price` float(10,2) DEFAULT NULL,
-  `item_price_currency` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_country` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `merchant_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `merchant_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `transaction_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `item_price_currency` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `payer_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `payer_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `payer_email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `payer_country` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `merchant_id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `merchant_email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `order_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `transaction_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `paid_amount` float(10,2) NOT NULL,
-  `paid_amount_currency` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `payment_source` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payment_status` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `paid_amount_currency` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `payment_source` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `payment_status` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `transactions`
@@ -356,22 +383,24 @@ INSERT INTO `transactions` (`id`, `item_number`, `item_name`, `item_price`, `ite
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `email` varchar(128) NOT NULL,
-  `phoneno` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `phoneno` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `pswd` varbinary(128) NOT NULL,
   `datecreated` date DEFAULT NULL,
-  `dateupdated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `dateupdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `dateupdated`) VALUES
-(15, NULL, 'john.horton86@gmail.com', NULL, 0x6365363961613963366633326562656564366639383036316363623864303562, '2023-11-17', '2023-11-18 23:42:22'),
+(15, NULL, 'john.horton86@gmail.com', NULL, 0x6365363961613963366633326562656564366639383036316363623864303562, '2023-11-17', '2023-11-26 10:16:32'),
 (16, NULL, 'tiffaman@gmail.com', NULL, 0x3062303764353236356539666234363761623538376135666432343965396464, '2023-11-17', '2023-11-17 08:43:23');
 
 -- --------------------------------------------------------
@@ -381,13 +410,21 @@ INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `d
 --
 
 DROP TABLE IF EXISTS `withdrawalcompleted`;
-CREATE TABLE `withdrawalcompleted` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `withdrawalcompleted` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(128) NOT NULL,
-  `requestid` int(11) NOT NULL,
+  `requestid` int NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `withdrawalcompleted`
+--
+
+INSERT INTO `withdrawalcompleted` (`id`, `email`, `requestid`, `amount`, `datecreated`) VALUES
+(1, 'john.horton86@gmail.com', 1, '50', '2023-11-26 13:06:23');
 
 -- --------------------------------------------------------
 
@@ -396,117 +433,25 @@ CREATE TABLE `withdrawalcompleted` (
 --
 
 DROP TABLE IF EXISTS `withdrawalrequests`;
-CREATE TABLE `withdrawalrequests` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `withdrawalrequests` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(128) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Structure for view `balance`
 --
+DROP TABLE IF EXISTS `balance`;
 
---
--- Indexes for table `bets`
---
-ALTER TABLE `bets`
-  ADD PRIMARY KEY (`id`);
+DROP VIEW IF EXISTS `balance`;
 
---
--- Indexes for table `deposits`
---
-ALTER TABLE `deposits`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `games`
---
-ALTER TABLE `games`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `teams`
---
-ALTER TABLE `teams`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `withdrawalcompleted`
---
-ALTER TABLE `withdrawalcompleted`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `withdrawalrequests`
---
-ALTER TABLE `withdrawalrequests`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bets`
---
-ALTER TABLE `bets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `deposits`
---
-ALTER TABLE `deposits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `games`
---
-ALTER TABLE `games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
-
---
--- AUTO_INCREMENT for table `teams`
---
-ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `transactions`
---
-ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `withdrawalcompleted`
---
-ALTER TABLE `withdrawalcompleted`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `withdrawalrequests`
---
-ALTER TABLE `withdrawalrequests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `balance`  AS SELECT `d`.`email` AS `email`, `d`.`amount` AS `dep`, 0 AS `withd` FROM `deposits` AS `d` union select `w`.`email` AS `email`,0 AS `dep`,`w`.`amount` AS `withd` from `withdrawalcompleted` `w`  ;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

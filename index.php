@@ -36,7 +36,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                        <a class="dropdown-item" onclick="showPayPal()">Deposit funds</a>
+                        <a class="dropdown-item" onclick="showHideDepositbox()">Deposit funds</a>
                         <a class="dropdown-item" onclick="showMyBal()">What's my balance</a>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" onclick="showFunds()">Withdraw funds</a>
@@ -62,49 +62,42 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
     <div class="container-fluid" style="margin-top: 0; background-color: rgba(0,0,0,0.7); overflow: auto;">
 
-    
+
         <div class="row">
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-3" style="text-align: right; margin-top: 20px; font-style: italic;">
-                <h3>Community Footie Pools</h3>
-            </div>
-            <div class="col-sm-3">
-                <div>
-                    <img src="./images/aflstadium.png" class="center-block img-fluid"
-                        style="height:5rem; border-radius: 50%;">
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="msg" style="display: none;">
+            <div class="col-sm-12">
+
+                <div style="text-align: center; margin-top: 20px; font-style: italic;">
+                    <h3>Community Footie Pools</h3>
                 </div>
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-sm-12">
+                    <div class="msg" style="text-align: center; display: none;">
+                    </div>
+            </div>
+        </div>
 
         <div id="afldata">
             <div class="colcontainer">
                 <div class="row" style="width: 100%!important;">
                     <div class="col-sm-0 col-md-3"></div>
-                    <div class="col-sm-12 col-md-6" style="margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
+                    <div class="col-sm-12 col-md-6"
+                        style="margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
-                        <h4 style="text-align: center;"><b>What this site is and How to play</b></h4>
+                        <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
                         <span style="font-size: 16px;">
-                            A website that is not considered gambling but rather a platform for members to compete
-                            typically involves skill-based contests or competitions rather than games of chance. The key
-                            distinction between gambling and skill-based competitions lies in the element of skill and
-                            knowledge.
+                            This site is not a gambling site.<br/>
+                            Rather it is a platform for members to compete against each other. This involves members contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end of each round.
                             <br /><br />
-                            In skill-based competitions, the outcome is primarily determined by the skill, knowledge, or
-                            expertise of the participants rather than luck or chance.
-                            Users may compete in activities that require strategy, intelligence, creativity, or other
-                            skills.<br /><br />
+                            Members compete in activities that require strategy, intelligence, creativity, or other skills.<br /><br />
                             <!-- Deposit funds (min $20)</br></br> -->
                             Select any 6 games and make a prediction for the Winner of each game.</br>
                             Each prediction will contribute $20 AUD into the pool.</br></br>
                             The pool accumulates from the number of predictions and will form the <span
                                 style="color:Yellow">PRIZE POOL</span> and
-                            this will be shared equally by the Winners.</br>
+                            this will be shared equally by the Best Predictions.</br>
                             If there are no Winners, the pool will be carried forward to the next round.</br></br>
 
                         </span>
@@ -373,6 +366,30 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <p>Check your email for the validation code</p>
                             <p>Check your spam folder if no email recieved</p>
                         </div>
+                    </center>
+                </div>
+            </form>
+        </div>
+
+        <div id="depositbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
+            </div>
+            <form style="padding: 10px;" autocomplete="off">
+                <div class="form-group">
+                    <label for="depositamount">Deposit amount(min $20 AUD)</label>
+                    <input type="depositamount" class="form-control" id="depositamount"
+                        placeholder="amount">
+                </div>
+                
+                <div style="justify-content: center">
+                    <center>
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="depositEvent()">
+                            Deposit
+                        </button>
+                        <br>
                     </center>
                 </div>
             </form>
