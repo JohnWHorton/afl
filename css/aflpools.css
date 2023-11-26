@@ -552,6 +552,15 @@ pre {
     overflow: hidden;
 }
 
+.historycontainer {
+    display: flex;
+    max-height: 500px;
+    background-color: #b6bdb9 !important;
+    color: black;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
 .row {
     display: -ms-flexbox;
     display: flex;
@@ -576,10 +585,9 @@ select, input, textarea {
     border-top: 1px solid #ddd;
     color: #c3e1fb !important;
     text-align: left !important;
+    background-color: #000;
 }
-thead {
-    background: #b6bdb9 !important;
-}
+
 
 .tagbtns {
     border-radius: 0%;

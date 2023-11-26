@@ -40,7 +40,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a class="dropdown-item" onclick="showMyBal()">What's my balance</a>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" onclick="showFunds()">Withdraw funds</a>
-                        <a class="dropdown-item" onclick="showHistory()">Show my history</a>
+                        <a class="dropdown-item" onclick="getTransactionhistory()">Show my history</a>
                     </div>
                 </li>
             </ul>
@@ -74,8 +74,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         <div class="row">
             <div class="col-sm-12">
-                    <div class="msg" style="text-align: center; display: none;">
-                    </div>
+                <div class="msg" style="text-align: center; display: none;">
+                </div>
             </div>
         </div>
 
@@ -88,10 +88,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <br />
                         <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
                         <span style="font-size: 16px;">
-                            This site is not a gambling site.<br/>
-                            Rather it is a platform for members to compete against each other. This involves members contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end of each round.
+                            This site is not a gambling site.<br />
+                            Rather it is a platform for members to compete against each other. This involves members
+                            contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end
+                            of each round.
                             <br /><br />
-                            Members compete in activities that require strategy, intelligence, creativity, or other skills.<br /><br />
+                            Members compete in activities that require strategy, intelligence, creativity, or other
+                            skills.<br /><br />
                             <!-- Deposit funds (min $20)</br></br> -->
                             Select any 6 games and make a prediction for the Winner of each game.</br>
                             Each prediction will contribute $20 AUD into the pool.</br></br>
@@ -380,10 +383,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <form style="padding: 10px;" autocomplete="off">
                 <div class="form-group">
                     <label for="depositamount">Deposit amount(min $20 AUD)</label>
-                    <input type="depositamount" class="form-control" id="depositamount"
-                        placeholder="amount">
+                    <input type="depositamount" class="form-control" id="depositamount" placeholder="amount">
                 </div>
-                
+
                 <div style="justify-content: center">
                     <center>
                         <button type="button" class="btn btn-primary buttonlogin" onclick="depositEvent()">
@@ -395,6 +397,32 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </form>
         </div>
 
+        <div id="historybox" class="container historycontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#historybox').hide();">&times;</span>
+            </div>
+
+            <div class="container">
+                <h2>Basic Table</h2>
+                <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Deposits</th>
+                            <th>Requests</th>
+                            <th>Completed</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historybody">
+                        
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
         <div id="pp" class="paypalcontainer panel modal modal-content"
             style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 

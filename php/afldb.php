@@ -16,6 +16,28 @@ $charset = 'utf8mb4';
 calc balance
 SELECT email, sum(dep) , sum(withd) , (sum(dep) - sum(withd)) bal  FROM `balance`
 group by email
+
+SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`),
+(sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance 
+FROM `transaction_history` 
+group by email;
+
+select * 
+FROM transaction_history
+WHERE email= "john.horton86@gmail.com";
+
+drop view transaction_history;
+
+create view transaction_history as
+SELECT `email` AS `email`, `amount` AS `deposit_amt`, 0 AS `request_amt`, 0 AS `completed_amt`,`datecreated` 
+FROM `deposits` 
+union 
+SELECT `email` AS `email`, 0 AS `deposit_amt`, `amount` AS `request_amt`, 0 AS `completed_amt`,`datecreated` 
+FROM `withdrawalrequests` 
+union 
+SELECT `email` AS `email`, 0 AS `deposit_amt`, 0 AS `request_amt`, `amount` AS `completed_amt`,`datecreated` 
+FROM `withdrawalcompleted`
+
 */
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -67,6 +89,10 @@ if ($operation == "withdrawalcompleted") {
 }
 if ($operation == "games") {
   $resparr = games($conn, $roundnumber);
+}
+
+if ($operation == "transactionhistory") {
+  $resparr = transactionhistory($conn, $email);
 }
 // var_dump($resparr);
 
@@ -148,6 +174,23 @@ function loginUser($conn, $email, $pswd)
 
   return $resparr;
 }
+
+function transactionhistory($conn, $email)
+{
+  $resparr = array();
+  $sql = "select * FROM transaction_history WHERE email= '$email'";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  }
+
+    return $resparr;
+}
+
 
 function resetPassword($conn, $email, $pswd)
 {
