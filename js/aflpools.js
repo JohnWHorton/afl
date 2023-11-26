@@ -1,5 +1,6 @@
 // var winlocpath;
 // var hostname = "";
+
 var tableleft = "";
 var tableright = "";
 var game = 1;
@@ -74,7 +75,7 @@ $(document).ready(function () {
             type="checkbox" class="form-check-input" value="">
         </div>
     </td>
-    <td><img src="./images/` +
+    <td style="max-widt: 60px;"><img src="./images/` +
       homeimg +
       `" alt="` +
       hometeamname +
