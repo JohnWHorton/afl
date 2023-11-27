@@ -8,9 +8,10 @@ $charset = 'utf8mb4';
 
 // $host = '13.49.223.11';
 // $db = 'afl';
-// $user = 'aflpools';
+// $user = 'tiffaman@gmail.com';
 // $pass = 'V4513john';
 // $charset = 'utf8mb4';
+
 
 /*
 calc balance
@@ -57,11 +58,12 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-// $operation = "loginUser";
+// $operation = "resetPassword";
 // $email = "john.horton86@gmail.com";
-// $pswd = "Ashleigh1!";
+// $pswd = "999";
 // $roundnumber = 1;
 //
+
 
 $resparr = array();
 
@@ -146,22 +148,20 @@ function addUser($conn, $email, $pswd)
 
 function loginUser($conn, $email, $pswd){
   $resparr = array();
-  $sql = "SELECT * FROM users
-          WHERE email = '$email' AND pswd = MD5('$pswd')";
-
+  $sql = "SELECT * FROM users WHERE email = '$email' AND pswd = MD5('$pswd')";
+  
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
       array_push($resparr, $row);
     }
+  } else {
+    array_push($resparr, 'error', $sql);
+    return $resparr;
   }
   
-  $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`),
-          (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance 
-          FROM `transaction_history` 
-          WHERE `email` = '$email'
-          GROUP BY `email`";
+  $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`), (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance FROM `transaction_history` WHERE `email` = '$email' GROUP BY `email`";
 
   $result2 = $conn->query($sql);
 
@@ -169,9 +169,7 @@ function loginUser($conn, $email, $pswd){
     while ($row = $result2->fetch_assoc()) {
       array_push($resparr, $row);
     }
-  } else {
-      array_push($resparr, '0');
-  }
+  } 
   
   return $resparr;
   }
@@ -196,10 +194,7 @@ function transactionhistory($conn, $email){
 function resetPassword($conn, $email, $pswd)
 {
   $resparr = array();
-  $sql = "UPDATE users
-            SET pswd = MD5('$pswd'),
-            dateupdated = now()
-            WHERE email = '$email'";
+  $sql = "UPDATE users SET pswd = MD5('$pswd'), dateupdated = now() WHERE email = '$email'";
 
   if ($conn->query($sql) === TRUE) {
     array_push($resparr, 'success', "reset");
@@ -213,9 +208,7 @@ function resetPassword($conn, $email, $pswd)
 function makebet($conn, $email, $betthisjson, $amount)
 {
   $resparr = array();
-  $sql = "INSERT INTO bets (email, betthisjson, amount, datecreated)
-			VALUES
-			('$email','$betthisjson', $amount, now())";
+  $sql = "INSERT INTO bets (email, betthisjson, amount, datecreated) VALUES ('$email','$betthisjson', $amount, now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");
@@ -231,9 +224,7 @@ function deposit($conn, $email, $amount)
 
   $resparr = array();
 
-  $sql = "INSERT INTO deposits (email, amount, datecreated)
-			VALUES
-			('$email','$amount', now())";
+  $sql = "INSERT INTO deposits (email, amount, datecreated) VALUES ('$email','$amount', now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");
@@ -248,9 +239,7 @@ function withdrawalrequest($conn, $email, $amount)
 
   $resparr = array();
 
-  $sql = "INSERT INTO withdrawalrequest (email, amount, datecreated)
-			VALUES
-			('$email','$amount', now())";
+  $sql = "INSERT INTO withdrawalrequest (email, amount, datecreated) VALUES ('$email','$amount', now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");
@@ -265,9 +254,7 @@ function withdrawalcompleted($conn, $email, $amount)
 
   $resparr = array();
 
-  $sql = "INSERT INTO withdrawalcompleted (email, amount, datecreated)
-			VALUES
-			('$email','$amount',  now())";
+  $sql = "INSERT INTO withdrawalcompleted (email, amount, datecreated) VALUES ('$email','$amount',  now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");
