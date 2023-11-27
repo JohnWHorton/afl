@@ -187,7 +187,7 @@ function loginEvent() {
         response[0].pswd = "";
         loggedInUser = response[0];
         $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
+        document.getElementById("welcome").innerHTML = `${logemail}`;
         loggedin = true;
         console.log("User", loggedInUser);
       }
