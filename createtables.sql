@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 26, 2023 at 11:56 AM
+-- Generation Time: Nov 27, 2023 at 05:07 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -20,19 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `afl`
 --
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `balance`
--- (See below for the actual view)
---
-DROP VIEW IF EXISTS `balance`;
-CREATE TABLE IF NOT EXISTS `balance` (
-`dep` decimal(10,0)
-,`email` varchar(128)
-,`withd` decimal(10,0)
-);
 
 -- --------------------------------------------------------
 
@@ -80,8 +67,7 @@ CREATE TABLE IF NOT EXISTS `deposits` (
 --
 
 INSERT INTO `deposits` (`id`, `email`, `amount`, `datecreated`) VALUES
-(3, 'john.horton86@gmail.com', '150', '2023-11-26 12:52:00'),
-(4, 'john.horton86@gmail.com', '201', '2023-11-26 12:55:24');
+(3, 'john.horton86@gmail.com', '450', '2023-11-26 12:52:00');
 
 -- --------------------------------------------------------
 
@@ -379,6 +365,21 @@ INSERT INTO `transactions` (`id`, `item_number`, `item_name`, `item_price`, `ite
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `transaction_history`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `transaction_history`;
+CREATE TABLE IF NOT EXISTS `transaction_history` (
+`completed_amt` decimal(10,0)
+,`datecreated` datetime
+,`deposit_amt` decimal(10,0)
+,`email` varchar(128)
+,`request_amt` decimal(10,0)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -439,18 +440,24 @@ CREATE TABLE IF NOT EXISTS `withdrawalrequests` (
   `amount` decimal(10,0) NOT NULL,
   `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `withdrawalrequests`
+--
+
+INSERT INTO `withdrawalrequests` (`id`, `email`, `amount`, `datecreated`) VALUES
+(1, 'john.horton86@gmail.com', '100', '2023-11-26 19:36:43');
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `balance`
+-- Structure for view `transaction_history`
 --
-DROP TABLE IF EXISTS `balance`;
+DROP TABLE IF EXISTS `transaction_history`;
 
-DROP VIEW IF EXISTS `balance`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `balance`  AS SELECT `d`.`email` AS `email`, `d`.`amount` AS `dep`, 0 AS `withd` FROM `deposits` AS `d` union select `w`.`email` AS `email`,0 AS `dep`,`w`.`amount` AS `withd` from `withdrawalcompleted` `w`  ;
+DROP VIEW IF EXISTS `transaction_history`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `transaction_history`  AS SELECT `deposits`.`email` AS `email`, `deposits`.`amount` AS `deposit_amt`, 0 AS `request_amt`, 0 AS `completed_amt`, `deposits`.`datecreated` AS `datecreated` FROM `deposits` union select `withdrawalrequests`.`email` AS `email`,0 AS `deposit_amt`,`withdrawalrequests`.`amount` AS `request_amt`,0 AS `completed_amt`,`withdrawalrequests`.`datecreated` AS `datecreated` from `withdrawalrequests` union select `withdrawalcompleted`.`email` AS `email`,0 AS `deposit_amt`,0 AS `request_amt`,`withdrawalcompleted`.`amount` AS `completed_amt`,`withdrawalcompleted`.`datecreated` AS `datecreated` from `withdrawalcompleted`  ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
