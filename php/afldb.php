@@ -111,7 +111,7 @@ function games($conn, $roundnumber)
       array_push($resparr, $row);
     }
   } else {
-    array_push($resparr, []);
+    array_push($resparr, [$sql]);
   }
 
   return $resparr;
@@ -144,8 +144,7 @@ function addUser($conn, $email, $pswd)
   return $resparr;
 }
 
-function loginUser($conn, $email, $pswd)
-{
+function loginUser($conn, $email, $pswd){
   $resparr = array();
   $sql = "SELECT * FROM users
           WHERE email = '$email' AND pswd = MD5('$pswd')";
@@ -158,27 +157,29 @@ function loginUser($conn, $email, $pswd)
     }
   }
 
-  $sql = "SELECT email, sum(withd) bal  FROM `balance`
-    WHERE email = '$email'
-    group by email'";
+  $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`),
+          (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance 
+          FROM `transaction_history` 
+          WHERE `email` = '$email'
+          GROUP BY `email`";
 
   $result2 = $conn->query($sql);
 
   if ($result2 !== false && $result2->num_rows > 0) {
     while ($row = $result2->fetch_assoc()) {
-      array_push($resparr, $row["bal"]);
+      array_push($resparr, $row);
     }
   } else {
-    array_push($resparr, '0');
+      array_push($resparr, '0');
   }
 
   return $resparr;
-}
+  }
 
-function transactionhistory($conn, $email)
-{
+function transactionhistory($conn, $email){
   $resparr = array();
-  $sql = "select * FROM transaction_history WHERE email= '$email'";
+  
+  $sql = "SELECT * FROM `transaction_history` WHERE `email` = '$email'";
 
   $result = $conn->query($sql);
 
