@@ -16,9 +16,6 @@ body {
     background-attachment: fixed;
     background-size:cover;
     background-position:center;
-    
-    
-
 }
 a {
     color: #c3e1fb;
@@ -585,8 +582,7 @@ select, input, textarea {
     border-top: 1px solid #ddd;
     color: #c3e1fb !important;
     text-align: left !important;
-    background-color: #000;
-}
+    }
 
 
 .tagbtns {

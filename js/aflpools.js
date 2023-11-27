@@ -438,7 +438,7 @@ function gameSelected(gid) {
       games[i].winname = "";
     }
   }
-
+  console.log("games", games);
   checkedcnt = 0;
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked) {
