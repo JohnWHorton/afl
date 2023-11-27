@@ -26,10 +26,11 @@ var games = [];
 var hist = [];
 
 $(document).ready(function () {
+
   document.getElementById("welcome").innerHTML = "Welcome to the game";
   const myemail = localStorage.getItem("myEmail");
-  // document.getElementById("lemail").value = myemail;
   $("#lemail").val(myemail);
+  loggedInUser.email = myemail;
   // games = [];
   var parms = { operation: "games", roundnumber: roundnumber };
 

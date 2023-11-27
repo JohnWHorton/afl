@@ -1,16 +1,16 @@
 <?php
 
-// $host = 'localhost';
-// $db = 'afl';
-// $user = 'john';
-// $pass = 'john';
-// $charset = 'utf8mb4';
-
-$host = '13.49.223.11';
+$host = 'localhost';
 $db = 'afl';
-$user = 'aflpools';
-$pass = 'V4513john';
+$user = 'john';
+$pass = 'john';
 $charset = 'utf8mb4';
+
+// $host = '13.49.223.11';
+// $db = 'afl';
+// $user = 'aflpools';
+// $pass = 'V4513john';
+// $charset = 'utf8mb4';
 
 /*
 calc balance
@@ -57,7 +57,7 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-// $operation = "games";
+// $operation = "loginUser";
 // $email = "john.horton86@gmail.com";
 // $pswd = "Ashleigh1!";
 // $roundnumber = 1;
@@ -156,7 +156,7 @@ function loginUser($conn, $email, $pswd){
       array_push($resparr, $row);
     }
   }
-
+  
   $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`),
           (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance 
           FROM `transaction_history` 
@@ -172,7 +172,7 @@ function loginUser($conn, $email, $pswd){
   } else {
       array_push($resparr, '0');
   }
-
+  
   return $resparr;
   }
 
