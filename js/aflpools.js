@@ -10,7 +10,7 @@ var logemail = "";
 var logpword = "";
 var chkbox = false;
 var loggedin = false;
-var loggedInUser="";
+var loggedInUser = "";
 var regemail = "";
 var regpwrd = "";
 var repregpword = "";
@@ -28,9 +28,9 @@ var checkedcnt = 0;
 
 var roundnumber = 2;
 var games = [];
+var hist = [];
 
 $(document).ready(function () {
-
   document.getElementById("welcome").innerHTML = "Welcome to the game";
   // games = [];
   var parms = { operation: "games", roundnumber: roundnumber };
@@ -43,7 +43,7 @@ $(document).ready(function () {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-        games = response;
+      games = response;
       // }
     },
     error: function (xhr, textStatus, error) {
@@ -115,6 +115,27 @@ $(document).ready(function () {
   document.getElementById("tableleft").innerHTML = tableleft;
 });
 
+function showHistory(){
+  let historytable="";
+  for(let i=0; i<hist.length; i++){
+    historytable+=`<tr>`;
+    historytable+=`
+    <td>${hist[i].deposit_amt}</td>
+    `;
+    historytable+=`
+    <td>${hist[i].request_amt}</td>
+    `;
+    historytable+=`
+    <td>${hist[i].completed_amt}</td>
+    `;
+    historytable+=`
+    <td>${hist[i].datecreated}</td>
+    `;
+    historytable+=`</tr>`;
+    console.log(historytable);
+  }
+  document.getElementById("historybody").innerHTML = historytable;
+}
 function showHideLoginbox() {
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
@@ -124,14 +145,13 @@ function showHideLoginbox() {
   }
 }
 function showHideDepositbox() {
-  if(!loggedin) {
+  if (!loggedin) {
     $("#loginbox").show();
   } else {
     $("#loginbox").hide();
     $("#depositbox").show();
   }
 }
-
 
 function loginEvent() {
   // e.preventDefault();
@@ -158,7 +178,7 @@ function loginEvent() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      if (response.length == 0) {        
+      if (response.length == 0) {
         showMsg("Login is incorrect. Try again");
         logemail = "";
         logpword = "";
@@ -174,7 +194,6 @@ function loginEvent() {
     },
     error: function () {
       showMsg("Error");
-      
     },
   });
 }
@@ -259,19 +278,16 @@ function resetPassword() {
         } else {
           console.log("reset error", response[1]);
 
-          
           showMsg("reset failed. see log");
           showMsg("Invalid password or passwords do not match");
         }
       },
       error: function () {
         showMsg("Error");
-        
       },
     });
   } else {
     showMsg("Invalid password or passwords do not match");
-    
   }
 }
 function forgotPassword() {
@@ -289,7 +305,6 @@ function forgotPassword() {
 
   Email.send(dummyobj).then(function (message) {
     showMsg("Email successfully sent");
-    
   });
 
   document.getElementById("valEmail").innerHTML =
@@ -299,29 +314,27 @@ function forgotPassword() {
   $("#forgotbox").show();
 }
 function depositEvent() {
-  
   amt = $("#depositamount").val();
-// validation here
-  var parms = { operation: "deposit", email: loggedInUser.email, amount: amt  };
+  // validation here
+  var parms = { operation: "deposit", email: loggedInUser.email, amount: amt };
 
-    $.ajax({
-      type: "POST",
-      url: "./php/afldb.php",
-      contentType: "application/json; charset=UTF-8",
-      dataType: "json",
-      data: JSON.stringify(parms),
-      success: function (response) {
-          console.log("response", response);
-          showMsg("Deposit successful");
-          $("#depositbox").hide();
-        
-      },
-      error: function (xhr, textStatus, error) {
-        console.log(xhr.statusText);
-        console.log(textStatus);
-        console.log(error);
-      },
-    });
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      console.log("response", response);
+      showMsg("Deposit successful");
+      $("#depositbox").hide();
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
 }
 function chkValCode() {
   let vc = $("#valcode").val();
@@ -331,6 +344,28 @@ function chkValCode() {
     $("#chkemailmsg").hide();
     $("#newpassword").show();
   }
+}
+
+function getTransactionhistory() {
+  var parms = { operation: "transactionhistory", email: loggedInUser.email };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      hist = response;
+      console.log("hist", hist);
+      showHistory();
+      $("#historybox").show();
+      
+    },
+    error: function () {
+      showMsg("Error");
+    },
+  });
 }
 
 function showPayPal() {
@@ -355,7 +390,7 @@ function deposit(refid) {
     success: function (response) {
       if (response.length == 0) {
         showMsg("Login is incorrect. Try again");
-        
+
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -367,7 +402,6 @@ function deposit(refid) {
     },
     error: function () {
       showMsg("Error");
-      
     },
   });
 }
@@ -422,18 +456,36 @@ function gameSelected(gid) {
     for (let i = 0; i < games.length; i++) {
       if (!games[i].checked) {
         $(`#${games[i].gameid}`).attr("disabled", true);
-        $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("disabled", true);
-        $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("disabled", true);
-        $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("checked", false);
-        $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("checked", false);
+        $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
+          "disabled",
+          true
+        );
+        $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
+          "disabled",
+          true
+        );
+        $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
+          "checked",
+          false
+        );
+        $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
+          "checked",
+          false
+        );
         games[i].winname = "";
       }
     }
   } else {
     for (let i = 0; i < games.length; i++) {
       $(`#${games[i].gameid}`).attr("disabled", false);
-      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("disabled", false);
-      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("disabled", false);
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
+        "disabled",
+        false
+      );
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
+        "disabled",
+        false
+      );
     }
   }
   betcnt();
@@ -486,7 +538,6 @@ function makebet() {
     },
     error: function () {
       showMsg("Error");
-      
     },
   });
 }
@@ -506,7 +557,7 @@ function withdrawalrequest(refid) {
     success: function (response) {
       if (response.length == 0) {
         showMsg("Login is incorrect. Try again");
-        
+
         logemail = "";
         logpword = "";
         loggedin = false;
@@ -517,7 +568,7 @@ function withdrawalrequest(refid) {
       }
     },
     error: function () {
-      showMsg("Error");      
+      showMsg("Error");
     },
   });
 }
@@ -537,7 +588,7 @@ function withdrawalrequest(refid) {
 //     success: function (response) {
 //       if (response.length == 0) {
 //         showMsg("Login is incorrect. Try again");
-        
+
 //         logemail = "";
 //         logpword = "";
 //         loggedin = false;
@@ -549,8 +600,7 @@ function withdrawalrequest(refid) {
 //     },
 //     error: function () {
 //       showMsg("Error");
-      
+
 //     },
 //   });
 // }
-
