@@ -1,6 +1,3 @@
-// var winlocpath;
-// var hostname = "";
-
 var tableleft = "";
 var tableright = "";
 var game = 1;
@@ -15,8 +12,6 @@ var regemail = "";
 var regpwrd = "";
 var repregpword = "";
 var modal = document.getElementById("loginbox");
-var modal2 = document.getElementById("loginbox");
-
 var itemNumber = "BET20";
 var itemName = "Pool ticket";
 var itemPrice = "30";
@@ -26,12 +21,15 @@ var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
 
-var roundnumber = 2;
+var roundnumber = 1;
 var games = [];
 var hist = [];
 
 $(document).ready(function () {
   document.getElementById("welcome").innerHTML = "Welcome to the game";
+  const myemail = localStorage.getItem("myEmail");
+  // document.getElementById("lemail").value = myemail;
+  $("#lemail").val(myemail);
   // games = [];
   var parms = { operation: "games", roundnumber: roundnumber };
 
@@ -115,23 +113,23 @@ $(document).ready(function () {
   document.getElementById("tableleft").innerHTML = tableleft;
 });
 
-function showHistory(){
-  let historytable="";
-  for(let i=0; i<hist.length; i++){
-    historytable+=`<tr>`;
-    historytable+=`
+function showHistory() {
+  let historytable = "";
+  for (let i = 0; i < hist.length; i++) {
+    historytable += `<tr>`;
+    historytable += `
     <td>${hist[i].deposit_amt}</td>
     `;
-    historytable+=`
+    historytable += `
     <td>${hist[i].request_amt}</td>
     `;
-    historytable+=`
+    historytable += `
     <td>${hist[i].completed_amt}</td>
     `;
-    historytable+=`
+    historytable += `
     <td>${hist[i].datecreated}</td>
     `;
-    historytable+=`</tr>`;
+    historytable += `</tr>`;
     console.log(historytable);
   }
   document.getElementById("historybody").innerHTML = historytable;
@@ -152,7 +150,15 @@ function showHideDepositbox() {
     $("#depositbox").show();
   }
 }
+function showMsg(m) {
+  $(".msg").html(m);
+  $(".msg").show();
 
+  setTimeout(hideMsg, 5000);
+}
+function hideMsg() {
+  $(".msg").hide();
+}
 function loginEvent() {
   // e.preventDefault();
 
@@ -186,8 +192,15 @@ function loginEvent() {
       } else {
         response[0].pswd = "";
         loggedInUser = response[0];
+        if (response[1]) {
+          loggedInUser.funds = response[1].balance;
+        } else {          
+          loggedInUser.funds = 0;
+        }
+        localStorage.setItem("myEmail", loggedInUser.email);
         $("#loginbox").hide();
         document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
+        document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
         loggedin = true;
         console.log("User", loggedInUser);
       }
@@ -197,17 +210,6 @@ function loginEvent() {
     },
   });
 }
-function showMsg(m) {
-  $(".msg").html(m);
-  $(".msg").show();
-
-  setTimeout(hideMsg, 5000);
-}
-
-function hideMsg() {
-  $(".msg").hide();
-}
-
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
   regemail = $("#remail").val();
@@ -345,7 +347,6 @@ function chkValCode() {
     $("#newpassword").show();
   }
 }
-
 function getTransactionhistory() {
   var parms = { operation: "transactionhistory", email: loggedInUser.email };
 
@@ -360,14 +361,12 @@ function getTransactionhistory() {
       console.log("hist", hist);
       showHistory();
       $("#historybox").show();
-      
     },
     error: function () {
       showMsg("Error");
     },
   });
 }
-
 function showPayPal() {
   if (loggedin) {
     $("#pp").show();
@@ -405,7 +404,6 @@ function deposit(refid) {
     },
   });
 }
-
 function setWinner(gid, win) {
   if (!loggedin) {
     $("#loginbox").show();
@@ -421,7 +419,6 @@ function setWinner(gid, win) {
 
   betcnt();
 }
-
 function gameSelected(gid) {
   // console.log("games", games);
   console.log("game", game);
@@ -490,7 +487,6 @@ function gameSelected(gid) {
   }
   betcnt();
 }
-
 function betcnt() {
   let betcnt = 0;
   for (let i = 0; i < games.length; i++) {
@@ -572,35 +568,3 @@ function withdrawalrequest(refid) {
     },
   });
 }
-// function deposit(refid) {
-//   var parms = {
-//     operation: "deposit",
-//     email: loggedInUser.email,
-//     amount: 2011,
-//   };
-
-//   $.ajax({
-//     type: "POST",
-//     url: "./php/afldb.php",
-//     contentType: "application/json; charset=UTF-8",
-//     dataType: "json",
-//     data: JSON.stringify(parms),
-//     success: function (response) {
-//       if (response.length == 0) {
-//         showMsg("Login is incorrect. Try again");
-
-//         logemail = "";
-//         logpword = "";
-//         loggedin = false;
-//       } else {
-//         $("#loginbox").hide();
-//         document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-//         loggedin = true;
-//       }
-//     },
-//     error: function () {
-//       showMsg("Error");
-
-//     },
-//   });
-// }
