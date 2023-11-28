@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Nov 27, 2023 at 05:07 AM
--- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- Host: localhost:3306
+-- Generation Time: Nov 28, 2023 at 12:51 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,15 +27,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `bets`
 --
 
-DROP TABLE IF EXISTS `bets`;
-CREATE TABLE IF NOT EXISTS `bets` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bets` (
+  `id` int(11) NOT NULL,
   `email` varchar(128) NOT NULL,
   `betthisjson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `amount` decimal(16,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bets`
@@ -53,14 +51,12 @@ INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUE
 -- Table structure for table `deposits`
 --
 
-DROP TABLE IF EXISTS `deposits`;
-CREATE TABLE IF NOT EXISTS `deposits` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(128) NOT NULL,
+CREATE TABLE `deposits` (
+  `id` int(11) NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `deposits`
@@ -75,23 +71,22 @@ INSERT INTO `deposits` (`id`, `email`, `amount`, `datecreated`) VALUES
 -- Table structure for table `games`
 --
 
-DROP TABLE IF EXISTS `games`;
-CREATE TABLE IF NOT EXISTS `games` (
-  `id` int NOT NULL,
-  `roundid` int NOT NULL,
-  `roundnumber` int NOT NULL,
+CREATE TABLE `games` (
+  `id` int(11) NOT NULL,
+  `roundid` int(11) NOT NULL,
+  `roundnumber` int(11) NOT NULL,
   `roundname` varchar(64) NOT NULL,
-  `gameid` int NOT NULL,
+  `gameid` int(11) NOT NULL,
   `utcStartTime` varchar(64) NOT NULL,
-  `hometeamid` int NOT NULL,
+  `hometeamid` int(11) NOT NULL,
   `hometeamname` varchar(64) NOT NULL,
   `hometeamnickname` varchar(64) NOT NULL,
-  `awayteamid` int NOT NULL,
+  `awayteamid` int(11) NOT NULL,
   `awayteamname` varchar(64) NOT NULL,
   `awayteamnickname` varchar(64) NOT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT '0',
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
   `result` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `games`
@@ -305,17 +300,59 @@ INSERT INTO `games` (`id`, `roundid`, `roundnumber`, `roundname`, `gameid`, `utc
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rounds`
+--
+
+CREATE TABLE `rounds` (
+  `id` int(11) NOT NULL,
+  `roundnumber` int(11) NOT NULL,
+  `noundname` varchar(32) NOT NULL,
+  `completed` tinyint(1) NOT NULL DEFAULT 0,
+  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rounds`
+--
+
+INSERT INTO `rounds` (`id`, `roundnumber`, `noundname`, `completed`, `datecreated`) VALUES
+(1, 1, 'Round 1', 0, '2023-11-28 10:35:43'),
+(2, 2, 'Round 2', 0, '2023-11-28 10:35:43'),
+(3, 3, 'Round 3', 0, '2023-11-28 10:35:43'),
+(4, 4, 'Round 4', 0, '2023-11-28 10:35:43'),
+(5, 5, 'Round 5', 0, '2023-11-28 10:35:43'),
+(6, 6, 'Round 6', 0, '2023-11-28 10:35:43'),
+(7, 7, 'Round 7', 0, '2023-11-28 10:35:43'),
+(8, 8, 'Round 8', 0, '2023-11-28 10:35:43'),
+(9, 9, 'Round 9', 0, '2023-11-28 10:35:43'),
+(10, 10, 'Round 10', 0, '2023-11-28 10:35:43'),
+(11, 11, 'Round 11', 0, '2023-11-28 10:35:43'),
+(12, 12, 'Round 12', 0, '2023-11-28 10:35:43'),
+(13, 13, 'Round 13', 0, '2023-11-28 10:35:43'),
+(14, 14, 'Round 14', 0, '2023-11-28 10:35:43'),
+(15, 15, 'Round 15', 0, '2023-11-28 10:35:43'),
+(16, 16, 'Round 16', 0, '2023-11-28 10:35:43'),
+(17, 17, 'Round 17', 0, '2023-11-28 10:35:43'),
+(18, 18, 'Round 18', 0, '2023-11-28 10:35:43'),
+(19, 19, 'Round 19', 0, '2023-11-28 10:35:43'),
+(20, 20, 'Round 20', 0, '2023-11-28 10:35:43'),
+(21, 21, 'Round 21', 0, '2023-11-28 10:35:43'),
+(22, 22, 'Round 22', 0, '2023-11-28 10:35:43'),
+(23, 23, 'Round 23', 0, '2023-11-28 10:35:43'),
+(24, 24, 'Round 24', 0, '2023-11-28 10:35:43');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teams`
 --
 
-DROP TABLE IF EXISTS `teams`;
-CREATE TABLE IF NOT EXISTS `teams` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `logo` varchar(256) NOT NULL,
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `teams` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logo` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `updated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `teams`
@@ -330,29 +367,27 @@ INSERT INTO `teams` (`id`, `name`, `logo`, `updated`) VALUES
 -- Table structure for table `transactions`
 --
 
-DROP TABLE IF EXISTS `transactions`;
-CREATE TABLE IF NOT EXISTS `transactions` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `item_number` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `item_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
+  `item_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `item_price` float(10,2) DEFAULT NULL,
-  `item_price_currency` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `payer_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `payer_name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `payer_email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `payer_country` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `merchant_id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `merchant_email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `order_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `transaction_id` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `item_price_currency` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payer_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payer_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payer_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payer_country` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `merchant_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `merchant_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `order_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `transaction_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `paid_amount` float(10,2) NOT NULL,
-  `paid_amount_currency` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `payment_source` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `payment_status` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `paid_amount_currency` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `payment_source` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `payment_status` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `transactions`
@@ -368,13 +403,12 @@ INSERT INTO `transactions` (`id`, `item_number`, `item_name`, `item_price`, `ite
 -- Stand-in structure for view `transaction_history`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `transaction_history`;
-CREATE TABLE IF NOT EXISTS `transaction_history` (
-`completed_amt` decimal(10,0)
-,`datecreated` datetime
+CREATE TABLE `transaction_history` (
+`email` varchar(128)
 ,`deposit_amt` decimal(10,0)
-,`email` varchar(128)
 ,`request_amt` decimal(10,0)
+,`completed_amt` decimal(10,0)
+,`datecreated` datetime
 );
 
 -- --------------------------------------------------------
@@ -383,18 +417,15 @@ CREATE TABLE IF NOT EXISTS `transaction_history` (
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `email` varchar(128) NOT NULL,
-  `phoneno` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phoneno` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
   `pswd` varbinary(128) NOT NULL,
   `datecreated` date DEFAULT NULL,
-  `dateupdated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `dateupdated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -410,15 +441,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `d
 -- Table structure for table `withdrawalcompleted`
 --
 
-DROP TABLE IF EXISTS `withdrawalcompleted`;
-CREATE TABLE IF NOT EXISTS `withdrawalcompleted` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(128) NOT NULL,
-  `requestid` int NOT NULL,
+CREATE TABLE `withdrawalcompleted` (
+  `id` int(11) NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requestid` int(11) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `withdrawalcompleted`
@@ -433,14 +462,12 @@ INSERT INTO `withdrawalcompleted` (`id`, `email`, `requestid`, `amount`, `datecr
 -- Table structure for table `withdrawalrequests`
 --
 
-DROP TABLE IF EXISTS `withdrawalrequests`;
-CREATE TABLE IF NOT EXISTS `withdrawalrequests` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(128) NOT NULL,
+CREATE TABLE `withdrawalrequests` (
+  `id` int(11) NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `withdrawalrequests`
@@ -456,8 +483,123 @@ INSERT INTO `withdrawalrequests` (`id`, `email`, `amount`, `datecreated`) VALUES
 --
 DROP TABLE IF EXISTS `transaction_history`;
 
-DROP VIEW IF EXISTS `transaction_history`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `transaction_history`  AS SELECT `deposits`.`email` AS `email`, `deposits`.`amount` AS `deposit_amt`, 0 AS `request_amt`, 0 AS `completed_amt`, `deposits`.`datecreated` AS `datecreated` FROM `deposits` union select `withdrawalrequests`.`email` AS `email`,0 AS `deposit_amt`,`withdrawalrequests`.`amount` AS `request_amt`,0 AS `completed_amt`,`withdrawalrequests`.`datecreated` AS `datecreated` from `withdrawalrequests` union select `withdrawalcompleted`.`email` AS `email`,0 AS `deposit_amt`,0 AS `request_amt`,`withdrawalcompleted`.`amount` AS `completed_amt`,`withdrawalcompleted`.`datecreated` AS `datecreated` from `withdrawalcompleted`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `transaction_history`  AS SELECT `deposits`.`email` AS `email`, `deposits`.`amount` AS `deposit_amt`, 0 AS `request_amt`, 0 AS `completed_amt`, `deposits`.`datecreated` AS `datecreated` FROM `deposits` ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bets`
+--
+ALTER TABLE `bets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `EMAIL` (`email`);
+
+--
+-- Indexes for table `deposits`
+--
+ALTER TABLE `deposits`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `EMAIL` (`email`);
+
+--
+-- Indexes for table `games`
+--
+ALTER TABLE `games`
+  ADD UNIQUE KEY `GAMESPRIMARY` (`id`);
+
+--
+-- Indexes for table `rounds`
+--
+ALTER TABLE `rounds`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `teams`
+--
+ALTER TABLE `teams`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `EMAIL` (`payer_email`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `withdrawalcompleted`
+--
+ALTER TABLE `withdrawalcompleted`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `EMAIL` (`email`);
+
+--
+-- Indexes for table `withdrawalrequests`
+--
+ALTER TABLE `withdrawalrequests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `EMAIL` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bets`
+--
+ALTER TABLE `bets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `deposits`
+--
+ALTER TABLE `deposits`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `rounds`
+--
+ALTER TABLE `rounds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `teams`
+--
+ALTER TABLE `teams`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `withdrawalcompleted`
+--
+ALTER TABLE `withdrawalcompleted`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `withdrawalrequests`
+--
+ALTER TABLE `withdrawalrequests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

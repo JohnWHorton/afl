@@ -27,11 +27,24 @@ var hist = [];
 
 $(document).ready(function () {
 
+  document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
+
   const myemail = localStorage.getItem("myEmail");
   $("#lemail").val(myemail);
   loggedInUser.email = myemail;
-  // games = [];
+  getGames();
+});
+
+function getRound(e) {
+  // e.preventDefault();
+  document.getElementById("tableleft").innerHTML = "";
+  roundnumber = parseInt($("#selectround").val());
+  getGames();
+}
+function getGames() {
+  $("#spinner").show();
+  games = [];
   var parms = { operation: "games", roundnumber: roundnumber };
 
   $.ajax({
@@ -52,6 +65,7 @@ $(document).ready(function () {
     },
   });
   console.log("games", games);
+  tableleft = "";
 
   for (i = 0; i < games.length; i++) {
     let gameid = games[i].gameid;
@@ -61,6 +75,7 @@ $(document).ready(function () {
     let awayimg = games[i].awayteamname.replaceAll(" ", "") + ".svg";
     let checked = false;
     let winname = "";
+    document.getElementById("roundname").innerHTML = `Round ${roundnumber}`;
 
     tableleft +=
       `
@@ -111,8 +126,9 @@ $(document).ready(function () {
    `;
   }
   // console.log("games", games);
+  $("#spinner").hide();
   document.getElementById("tableleft").innerHTML = tableleft;
-});
+}
 
 function showHistory() {
   let historytable = "";

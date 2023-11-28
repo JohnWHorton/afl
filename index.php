@@ -31,7 +31,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #c3e1fb;">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
@@ -42,7 +42,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a class="dropdown-item" onclick="getTransactionhistory()">Show my history</a>
                     </div>
                 </li>
+                <div class="form-inline">
+                    <label style="color: #c3e1fb;">Round</label> &nbsp;
+                    <input class="form-control " type="text" id="selectround" onchange="getRound()">
+                </div>
             </ul>
+
+
             <text>
                 <span id="funds" style="margin-right: 1rem; font-size: 1rem;"></span>
             </text>
@@ -62,7 +68,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
     </div> -->
 
-    <div class="container-fluid" style="margin-top: 0; background-color: rgba(0,0,0,0.7); overflow: auto;">
+    <div class="container-fluid" style="margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
 
 
         <div class="row">
@@ -112,11 +118,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <div class="row" style="width: 100%!important; ">
                     <div class="col-sm-0 col-md-3"></div>
                     <div class="col-sm-12 col-md-6" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
-
+                        <div id="spinner" class="spinner-border text-danger" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div id="roundname"></div>
                         <table class="table">
-                            <thead>
-                            </thead>
-                            <tbody id="tableleft"></tbody>
+                            <tbody id="tableleft">
+                            </tbody>
                         </table>
                         <div id="betnow" style="display: none;">
                             <center>
