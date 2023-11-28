@@ -90,8 +90,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div id="afldata">
             <div class="colcontainer">
                 <div class="row" style="width: 100%!important;">
-                    <div class="col-sm-0 col-md-3"></div>
-                    <div class="col-sm-12 col-md-6" style="margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
+                    <div class="col-sm-1 col-md-4"></div>
+                    <div class="col-sm-8 col-md-5" style="margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
                         <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
                         <span style="font-size: 16px;">
@@ -112,6 +112,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </span>
                         <h4 style="text-align: center; color: gold;">Think hard!</h4>
                     </div>
+                    <div class="col-sm-1 col-md-4"></div>
                 </div>
             </div>
             <center>
@@ -132,9 +133,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             </center>
                         </div>
                     </div>
-                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-1 col-md-3"></div>
                 </div>
-                <!-- </div> -->
+               
                 <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
                     <div class="close">
@@ -253,7 +254,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="close">
                 <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
             </div>
-            <form style="padding: 10px;"> <!--</form> autocomplete="off">-->
+            <form style="padding: 10px;" autocomplete="off">
                 <div class="form-group">
                     <label for="emailaddress">Email address</label>
                     <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" placeholder="Enter email">

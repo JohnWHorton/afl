@@ -20,7 +20,7 @@ var depamt = "0";
 var depcurr = "AUD";
 var rndvalcode = 0;
 var checkedcnt = 0;
-
+const myemail = "";
 var roundnumber = 1;
 var games = [];
 var hist = [];
@@ -80,7 +80,7 @@ function getGames() {
     tableleft +=
       `
     <tr>
-    <td>
+    <td class="col-sm-1" style="background-color: red;">
       <div>        
           <input class="agame" id="` +
       gameid +
@@ -89,18 +89,20 @@ function getGames() {
             type="checkbox" class="form-check-input" value="">
         </div>
     </td>
-    <td style="max-widt: 60px;"><img src="./images/` +
+    <td class="col-sm-1"  style="background-color: yellow;">
+    <img src="./images/` +
       homeimg +
       `" alt="` +
       hometeamname +
-      `" width="60" height="60"></td>
-    <td style="font-size: 1rem;font-weight: 700;">VS</td>
-    <td><img src="./images/` +
+      `" width="50" height="50"></td>
+    <td class="col-sm-1" style="font-size: 0.5rem;font-weight: 600; background-color: black;">VS</td>
+    <td class="col-sm-1" style="background-color: green;">
+    <img src="./images/` +
       awayimg +
       `" alt="` +
       awayteamname +
-      `" width="60" height="60"></td>
-    <td>
+      `" width="50" height="50"></td>
+    <td class="col-sm-1" style="background-color: blue;">
       <div class="form-check">
         <label class="form-check-label">
           <input id=${hometeamname.replaceAll(" ", "")}
@@ -201,7 +203,7 @@ function loginEvent() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      if (response.length == 0) {
+      if (response.length == 0 || response[0]=="error") {
         showMsg("Login is incorrect. Try again");
         logemail = "";
         logpword = "";
@@ -229,7 +231,7 @@ function loginEvent() {
 }
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
-  regemail = $("#remail").val();
+  regemail = $("#lemail").val();
   regpwrd = $("#rpassword").val();
   repregpword = $("#rrpassword").val();
 
@@ -272,7 +274,7 @@ function registerEvent() {
   }
 }
 function resetPassword() {
-  regemail = $("#remail").val();
+  regemail = $("#lemail").val();
   regpwrd = $("#newpword").val();
   repregpword = $("#rnewpword").val();
 
