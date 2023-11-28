@@ -239,7 +239,7 @@ function withdrawalrequest($conn, $email, $amount)
 
   $resparr = array();
 
-  $sql = "INSERT INTO withdrawalrequest (email, amount, datecreated) VALUES ('$email','$amount', now())";
+  $sql = "INSERT INTO withdrawalrequests (email, amount, datecreated) VALUES ('$email','$amount', now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");

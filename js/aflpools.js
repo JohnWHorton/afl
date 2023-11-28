@@ -30,9 +30,9 @@ $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
-  const myemail = localStorage.getItem("myEmail");
-  $("#lemail").val(myemail);
-  loggedInUser.email = myemail;
+  // const myemail = localStorage.getItem("myEmail");
+  // $("#loginEmail").val(myemail);
+  // loggedInUser.email = myemail;
   getGames();
 });
 
@@ -181,8 +181,8 @@ function hideMsg() {
 function loginEvent() {
   // e.preventDefault();
 
-  logemail = $("#lemail").val();
-  logpword = $("#lpassword").val();
+  logemail = $("#loginEmail").val();
+  logpword = $("#loginPassword").val();
 
   if ($("#defaultCheck1").is(":checked")) {
     chkbox = true;
@@ -216,7 +216,7 @@ function loginEvent() {
         } else {          
           loggedInUser.funds = 0;
         }
-        localStorage.setItem("myEmail", loggedInUser.email);
+        // localStorage.setItem("myEmail", loggedInUser.email);
         $("#loginbox").hide();
         document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
         document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
@@ -231,7 +231,7 @@ function loginEvent() {
 }
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
-  regemail = $("#lemail").val();
+  regemail = $("#loginEmail").val();
   regpwrd = $("#rpassword").val();
   repregpword = $("#rrpassword").val();
 
@@ -274,7 +274,7 @@ function registerEvent() {
   }
 }
 function resetPassword() {
-  regemail = $("#lemail").val();
+  regemail = $("#loginEmail").val();
   regpwrd = $("#newpword").val();
   repregpword = $("#rnewpword").val();
 
@@ -313,7 +313,7 @@ function resetPassword() {
 }
 function forgotPassword() {
   rndvalcode = Math.trunc(Math.random() * (999999 - 111111) + 111111);
-  let toemail = $("#lemail").val();
+  let toemail = $("#loginEmail").val();
   console.log("toemail", toemail);
   let dummyobj = {
     SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
@@ -329,7 +329,7 @@ function forgotPassword() {
   });
 
   document.getElementById("valEmail").innerHTML =
-    document.getElementById("lemail").value;
+    document.getElementById("loginEmail").value;
   console.log("generated code", rndvalcode);
   $("#loginbox").hide();
   $("#forgotbox").show();
