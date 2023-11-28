@@ -113,13 +113,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </span>
                         <h4 style="text-align: center; color: gold;">Think hard!</h4>
                     </div>
-                    <div class="col-sm-1 col-md-4"></div>
+                    <div class="col-sm-3 col-md-3"></div>
                 </div>
             </div>
             <center>
                 <div class="row" style="width: 100%!important; ">
-                    <div class="col-sm-0 col-md-3"></div>
-                    <div class="col-sm-12 col-md-6" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
+                    <div class="col-sm-1 col-md-4"></div>
+                    <div class="col-sm-10 col-md-5" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <div id="spinner" class="spinner-border text-danger" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
@@ -137,7 +137,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <div class="col-sm-1 col-md-3"></div>
                 </div>
                
-                <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
                     <div class="close">
                         <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
