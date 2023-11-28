@@ -38,7 +38,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a class="dropdown-item" onclick="showHideDepositbox()">Deposit funds</a>
                         <a class="dropdown-item" onclick="showMyBal()">What's my balance</a>
                         <!-- <div class="dropdown-divider"></div> -->
-                        <a class="dropdown-item" onclick="showFunds()">Withdraw funds</a>
+                        <a class="dropdown-item" onclick="showHideWithdrawbox()">Withdraw funds</a>
                         <a class="dropdown-item" onclick="getTransactionhistory()">Show my history</a>
                     </div>
                 </li>
@@ -91,7 +91,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="colcontainer">
                 <div class="row" style="width: 100%!important;">
                     <div class="col-sm-0 col-md-3"></div>
-                    <div class="col-sm-12 col-md-6" style="margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
+                    <div class="col-sm-12 col-md-6"
+                        style="margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
                         <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
                         <span style="font-size: 16px;">
@@ -105,13 +106,15 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <!-- Deposit funds (min $20)</br></br> -->
                             Select any 6 games and make a prediction for the Winner of each game.</br>
                             Each prediction will contribute $20 AUD into the pool.</br></br>
-                            The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
+                            The pool accumulates from the number of predictions and will form the <span
+                                style="color:Yellow">PRIZE POOL</span> and
                             this will be shared equally by the Best Predictions.</br>
                             If there are no Winners, the pool will be carried forward to the next round.</br></br>
 
                         </span>
                         <h4 style="text-align: center; color: gold;">Think hard!</h4>
                     </div>
+                    <div class="col-sm-1 col-md-4"></div>
                 </div>
             </div>
             <center>
@@ -132,10 +135,11 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             </center>
                         </div>
                     </div>
-                    <div class="col-sm-0 col-md-3"></div>
+                    <div class="col-sm-1 col-md-3"></div>
                 </div>
                 <!-- </div> -->
-                <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+                <div id="loginbox" class="container registercontainer modal modal-content"
+                    style="display: none; border-radius: 0%; margin-top: 5rem;">
 
                     <div class="close">
                         <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
@@ -143,7 +147,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <form style="padding: 10px;" autocomplete="off">
                         <div class="form-group">
                             <label for="emailaddress">Email address</label>
-                            <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" value="" placeholder="Enter email">
+                            <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" value=""
+                                placeholder="Enter email">
                             <small id="emailHelp" class="form-text text-muted">
                                 We'll never share your
                                 email with anyone
@@ -152,7 +157,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </div>
                         <div class="form-group">
                             <label for="current-password">Password</label>
-                            <input type="password" class="form-control" id="lpassword" value="" placeholder="Enter Password">
+                            <input type="password" class="form-control" id="lpassword" value=""
+                                placeholder="Enter Password">
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value id="defaultCheck1">
@@ -166,7 +172,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                                     Login
                                 </button>
                                 <br>
-                                <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#" style="color: black;">
+                                <a onclick="$('#loginbox').hide(); $('#registerbox').show();" href="#"
+                                    style="color: black;">
                                     Don't have an account? Register
                                 </a>
                                 <a onclick="forgotPassword()" href="#" style="color: black;">
@@ -177,7 +184,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </form>
                 </div>
                 <!-- <form action="action_page.php"> -->
-                <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+                <div id="registerbox" class="container registercontainer modal modal-content"
+                    style="display: none; border-radius: 0%; margin-top: 5rem;">
                     <div class="close">
                         <span aria-hidden="true" onclick="$('#registerbox').hide();">&times;</span>
                     </div>
@@ -188,11 +196,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </div>
                         <div class="form-group">
                             <label for="rpassword">Password</label>
-                            <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
+                            <input type="password" class="form-control" id="rpassword" placeholder="Enter Password"
+                                value="" required>
                         </div>
                         <div class="form-group">
                             <label for="rrpassword">Repeat Password</label>
-                            <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value="" required>
+                            <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password"
+                                value="" required>
                         </div>
                         <p>
                             By creating an account you agree to our
@@ -203,7 +213,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             .
                         </p>
                         <center>
-                            <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
+                            <button type="button" class="btn btn-primary buttonlogin"
+                                onclick="registerEvent()">Register</button>
                             <br>
                             <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: black;">
                                 Already have an account? Sign in
@@ -211,7 +222,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </center>
                 </div>
 
-                <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+                <div id="forgotbox" class="container registercontainer modal modal-content"
+                    style="display: none; border-radius: 0%; margin-top: 5rem;">
                     <div class="close">
                         <span aria-hidden="true" onclick="$('#forgotbox').hide();">&times;</span>
                     </div>
@@ -224,19 +236,23 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <div id="newpassword" style="display: none;">
                             <div class="form-group">
                                 <label for="newpword">Password</label>
-                                <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value="" required>
+                                <input type="password" class="form-control" id="newpword" placeholder="Enter Password"
+                                    value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="rnewpword">Repeat Password</label>
-                                <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value="" required>
+                                <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password"
+                                    value="" required>
                             </div>
                             <center>
-                                <button type="button" class="btn btn-primary buttonlogin" onclick="resetPassword()">Reset</button>
+                                <button type="button" class="btn btn-primary buttonlogin"
+                                    onclick="resetPassword()">Reset</button>
                             </center>
                         </div>
                         <div id="chkemailmsg">
                             <center>
-                                <button type="button" class="btn btn-primary buttonlogin" onclick="chkValCode()">Send</button>
+                                <button type="button" class="btn btn-primary buttonlogin"
+                                    onclick="chkValCode()">Send</button>
                                 <div>
                                     <p>Check your email for the validation code</p>
                                     <p>Check your spam folder if no email recieved</p>
@@ -248,15 +264,18 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </center>
         </div>
         <!-- <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;"> -->
-        <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="loginbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#loginbox').hide();">&times;</span>
             </div>
-            <form style="padding: 10px;"> <!--</form> autocomplete="off">-->
+            <form style="padding: 10px;">
+                <!--</form> autocomplete="off">-->
                 <div class="form-group">
                     <label for="emailaddress">Email address</label>
-                    <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" id="lemail" aria-describedby="emailHelp"
+                        placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">
                         We'll never share your
                         email with anyone
@@ -290,7 +309,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </form>
         </div>
         <!-- <form action="action_page.php"> -->
-        <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="registerbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
             <div class="close">
                 <span aria-hidden="true" onclick="$('#registerbox').hide();">&times;</span>
             </div>
@@ -301,11 +321,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
                 <div class="form-group">
                     <label for="rpassword">Password</label>
-                    <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
+                    <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value=""
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="rrpassword">Repeat Password</label>
-                    <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value="" required>
+                    <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value=""
+                        required>
                 </div>
                 <p>
                     By creating an account you agree to our
@@ -316,7 +338,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     .
                 </p>
                 <center>
-                    <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Register</button>
+                    <button type="button" class="btn btn-primary buttonlogin"
+                        onclick="registerEvent()">Register</button>
                     <br>
                     <a onclick="$('#registerbox').hide(); showHideLoginbox()" href="#" style="color: black;">
                         Already have an account? Sign in
@@ -324,7 +347,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </center>
         </div>
 
-        <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="forgotbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
             <div class="close">
                 <span aria-hidden="true" onclick="$('#forgotbox').hide();">&times;</span>
             </div>
@@ -337,14 +361,17 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <div id="newpassword" style="display: none;">
                     <div class="form-group">
                         <label for="newpword">Password</label>
-                        <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value="" required>
+                        <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value=""
+                            required>
                     </div>
                     <div class="form-group">
                         <label for="rnewpword">Repeat Password</label>
-                        <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value="" required>
+                        <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password"
+                            value="" required>
                     </div>
                     <center>
-                        <button type="button" class="btn btn-primary buttonlogin" onclick="resetPassword()">Reset</button>
+                        <button type="button" class="btn btn-primary buttonlogin"
+                            onclick="resetPassword()">Reset</button>
                     </center>
                 </div>
                 <div id="chkemailmsg">
@@ -359,7 +386,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </form>
         </div>
 
-        <div id="depositbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="depositbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#depositbox').hide();">&times;</span>
@@ -380,8 +408,32 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </form>
         </div>
+        <div id="withdrawbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
-        <div id="historybox" class="container historycontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#withdrawbox').hide();">&times;</span>
+            </div>
+            <form style="padding: 10px;" autocomplete="off">
+                <div class="form-group">
+                    <label for="withdrawamount">Withdraw amount</label>
+                    <input type="withdrawamount" class="form-control" id="withdrawamount" placeholder="amount">
+                </div>
+
+                <div style="justify-content: center">
+                    <center>
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="withdrawEvent()">
+                            Withdraw
+                        </button>
+                        <br>
+                    </center>
+                </div>
+            </form>
+        </div>
+
+
+        <div id="historybox" class="container historycontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#historybox').hide();">&times;</span>
@@ -406,14 +458,16 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
         </div>
-        <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
+        <div id="pp" class="paypalcontainer panel modal modal-content"
+            style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 
             <div class="overlay hidden">
                 <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
             </div>
             <div class="form-group">
                 <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700;">Deposit amount (min $20)
-                    <span style="font-weight: 700; margin-left: 230px; font-size: 22px;" onclick="$('.paypalcontainer').hide();">
+                    <span style="font-weight: 700; margin-left: 230px; font-size: 22px;"
+                        onclick="$('.paypalcontainer').hide();">
                         X
                     </span>
                 </label>
@@ -448,107 +502,109 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
 
 
-        <script src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>">
+        <script
+            src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>">
         </script>
         <script>
-            paypal.Buttons({
-                // Sets up the transaction when a payment button is clicked
-                createOrder: (data, actions) => {
-                    return actions.order.create({
-                        "purchase_units": [{
-                            "custom_id": `${itemNumber}`,
-                            "description": `${itemName}`,
-                            "amount": {
-                                "currency_code": `${currency}`,
-                                "value": `${itemPrice}`,
-                                "breakdown": {
-                                    "item_total": {
-                                        "currency_code": `${currency}`,
-                                        "value": `${itemPrice}`
-                                    }
-                                }
-                            },
-                            "items": [{
-                                "name": `${itemName}`,
-                                "description": `${itemName}`,
-                                "unit_amount": {
+        paypal.Buttons({
+            // Sets up the transaction when a payment button is clicked
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    "purchase_units": [{
+                        "custom_id": `${itemNumber}`,
+                        "description": `${itemName}`,
+                        "amount": {
+                            "currency_code": `${currency}`,
+                            "value": `${itemPrice}`,
+                            "breakdown": {
+                                "item_total": {
                                     "currency_code": `${currency}`,
                                     "value": `${itemPrice}`
-                                },
-                                "quantity": "1",
-                                "category": "DIGITAL_GOODS"
-                            }, ]
-                        }],
-                        application_context: {
-                            shipping_preference: 'NO_SHIPPING'
-                        }
-                    });
-                },
-                // Finalize the transaction after payer approval
-                onApprove: (data, actions) => {
-                    return actions.order.capture().then(function(orderData) {
-                        setProcessing(true);
-
-                        var postData = {
-                            paypal_order_check: 1,
-                            order_id: orderData.id
-                        };
-                        fetch('paypal_standard_checkout_in_php/paypal_checkout_validate.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Accept': 'application/json'
-                                },
-                                body: encodeFormData(postData)
-                            })
-                            .then((response) => response.json())
-                            .then((result) => {
-                                console.log("paypal_checkout_validate result", result);
-                                if (result.status == 1) {
-                                    alert("Payment SUCCESS!");
-                                    console.log("ref_id", result.ref_id);
-                                    updateDeposit(result.ref_id);
-                                    // window.location.href = "paypal_standard_checkout_in_php/payment-status.php?checkout_ref_id=" + result.ref_id;
-                                } else {
-                                    const messageContainer = document.querySelector("#paymentResponse");
-                                    messageContainer.classList.remove("hidden");
-                                    messageContainer.textContent = result.msg;
-
-                                    setTimeout(function() {
-                                        messageContainer.classList.add("hidden");
-                                        messageText.textContent = "";
-                                    }, 5000);
                                 }
-                                setProcessing(false);
-                            })
-                            .catch(error => console.log(error));
-                    });
-                }
-            }).render('#paypal-button-container');
+                            }
+                        },
+                        "items": [{
+                            "name": `${itemName}`,
+                            "description": `${itemName}`,
+                            "unit_amount": {
+                                "currency_code": `${currency}`,
+                                "value": `${itemPrice}`
+                            },
+                            "quantity": "1",
+                            "category": "DIGITAL_GOODS"
+                        }, ]
+                    }],
+                    application_context: {
+                        shipping_preference: 'NO_SHIPPING'
+                    }
+                });
+            },
+            // Finalize the transaction after payer approval
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(function(orderData) {
+                    setProcessing(true);
 
-            const encodeFormData = (data) => {
-                var form_data = new FormData();
+                    var postData = {
+                        paypal_order_check: 1,
+                        order_id: orderData.id
+                    };
+                    fetch('paypal_standard_checkout_in_php/paypal_checkout_validate.php', {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json'
+                            },
+                            body: encodeFormData(postData)
+                        })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            console.log("paypal_checkout_validate result", result);
+                            if (result.status == 1) {
+                                alert("Payment SUCCESS!");
+                                console.log("ref_id", result.ref_id);
+                                updateDeposit(result.ref_id);
+                                // window.location.href = "paypal_standard_checkout_in_php/payment-status.php?checkout_ref_id=" + result.ref_id;
+                            } else {
+                                const messageContainer = document.querySelector(
+                                    "#paymentResponse");
+                                messageContainer.classList.remove("hidden");
+                                messageContainer.textContent = result.msg;
 
-                for (var key in data) {
-                    form_data.append(key, data[key]);
-                }
-                return form_data;
+                                setTimeout(function() {
+                                    messageContainer.classList.add("hidden");
+                                    messageText.textContent = "";
+                                }, 5000);
+                            }
+                            setProcessing(false);
+                        })
+                        .catch(error => console.log(error));
+                });
             }
+        }).render('#paypal-button-container');
 
-            // Show a loader on payment form processing
-            const setProcessing = (isProcessing) => {
-                if (isProcessing) {
-                    document.querySelector(".overlay").classList.remove("hidden");
-                } else {
-                    document.querySelector(".overlay").classList.add("hidden");
-                }
+        const encodeFormData = (data) => {
+            var form_data = new FormData();
+
+            for (var key in data) {
+                form_data.append(key, data[key]);
             }
+            return form_data;
+        }
 
-            // <div id="mybalance" class="mybalancecontainer panel modal modal-content"
-            // style="display: none; border-radius: 0%; margin-top: 5rem;">
+        // Show a loader on payment form processing
+        const setProcessing = (isProcessing) => {
+            if (isProcessing) {
+                document.querySelector(".overlay").classList.remove("hidden");
+            } else {
+                document.querySelector(".overlay").classList.add("hidden");
+            }
+        }
 
-            //     <div class="overlay hidden">
-            //         <div class="overlay-content"></div>
-            //         <h1>$200</h1>
-            //     </div>
+        // <div id="mybalance" class="mybalancecontainer panel modal modal-content"
+        // style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+        //     <div class="overlay hidden">
+        //         <div class="overlay-content"></div>
+        //         <h1>$200</h1>
+        //     </div>
         </script>
 </body>
