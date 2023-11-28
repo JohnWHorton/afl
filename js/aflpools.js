@@ -366,6 +366,7 @@ function showHideWithdrawbox() {
     $("#withdrawbox").show();
   }
 }
+//comment
 function showMsg(m) {
   $(".msg").html(m);
   $(".msg").show();
