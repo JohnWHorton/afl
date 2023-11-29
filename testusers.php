@@ -58,11 +58,16 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-// $operation = "resetPassword";
+$operation = "addUser";
 // $email = "john.horton86@gmail.com";
 // $pswd = "999";
 // $roundnumber = 1;
 //
+for ($i = 0; $i < 100; $i++) {
+  $email = "testuser".$i."@afltest.com";
+  $pswd = "999";
+  $resparr = addUser($conn, $email, $pswd);
+}
 
 
 $resparr = array();
@@ -145,10 +150,11 @@ function addUser($conn, $email, $pswd)
   return $resparr;
 }
 
-function loginUser($conn, $email, $pswd){
+function loginUser($conn, $email, $pswd)
+{
   $resparr = array();
   $sql = "SELECT * FROM users WHERE email = '$email' AND pswd = MD5('$pswd')";
-  
+
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
@@ -159,7 +165,7 @@ function loginUser($conn, $email, $pswd){
     array_push($resparr, 'error', $sql);
     return $resparr;
   }
-  
+
   $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`), (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance FROM `transaction_history` WHERE `email` = '$email' GROUP BY `email`";
 
   $result2 = $conn->query($sql);
@@ -168,14 +174,15 @@ function loginUser($conn, $email, $pswd){
     while ($row = $result2->fetch_assoc()) {
       array_push($resparr, $row);
     }
-  } 
-  
-  return $resparr;
   }
 
-function transactionhistory($conn, $email){
+  return $resparr;
+}
+
+function transactionhistory($conn, $email)
+{
   $resparr = array();
-  
+
   $sql = "SELECT * FROM `transaction_history` WHERE `email` = '$email'";
 
   $result = $conn->query($sql);
@@ -186,7 +193,7 @@ function transactionhistory($conn, $email){
     }
   }
 
-    return $resparr;
+  return $resparr;
 }
 
 
