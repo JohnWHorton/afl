@@ -335,7 +335,7 @@ a {
 
 /* change the background color */
 .navbar-custom {
-    color: #c3e1fb !important;
+    /* color: #c3e1fb !important; */
     background-color: rgba(16, 16, 16, 1);
 }
 
@@ -381,13 +381,14 @@ a {
     -ms-flex-align: center;
     align-items: center;
 }
-
+    
 .navbar-light .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;..");
 }
 
 .navbar-dark .navbar-nav .nav-link {
     width: fit-content;
+    color: #c3e1fb;
 }
 
 /* navbar end  */
@@ -639,6 +640,3 @@ td:hover {
     /*    border-radius: 10px;*/
     border: 3px solid transparent;
 }
-
-
-
