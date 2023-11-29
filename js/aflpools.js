@@ -601,34 +601,34 @@ function makebet() {
     },
   });
 }
-function withdrawalrequest(refid) {
-  var parms = {
-    operation: "withdrawalrequest",
-    email: loggedInUser.email,
-    amount: amount,
-  };
+// function withdrawalrequest(refid) {
+//   var parms = {
+//     operation: "withdrawalrequest",
+//     email: loggedInUser.email,
+//     amount: amount,
+//   };
 
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      if (response.length == 0) {
-        showMsg("Login is incorrect. Try again");
+//   $.ajax({
+//     type: "POST",
+//     url: "./php/afldb.php",
+//     contentType: "application/json; charset=UTF-8",
+//     dataType: "json",
+//     data: JSON.stringify(parms),
+//     success: function (response) {
+//       if (response.length == 0) {
+//         showMsg("Login is incorrect. Try again");
 
-        logemail = "";
-        logpword = "";
-        loggedin = false;
-      } else {
-        $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-        loggedin = true;
-      }
-    },
-    error: function () {
-      showMsg("Error");
-    },
-  });
-}
+//         logemail = "";
+//         logpword = "";
+//         loggedin = false;
+//       } else {
+//         $("#loginbox").hide();
+//         document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+//         loggedin = true;
+//       }
+//     },
+//     error: function () {
+//       showMsg("Error");
+//     },
+//   });
+// }
