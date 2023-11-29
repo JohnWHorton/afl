@@ -58,11 +58,18 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-// $operation = "resetPassword";
+$operation = "makebet";
 // $email = "john.horton86@gmail.com";
 // $pswd = "999";
 // $roundnumber = 1;
+$betthisjson = '[{"id":"2","roundid":"955","roundnumber":"1","roundname":"Round 1","gameid":"5899","utcStartTime":"2024-03-14T08:30:00.000+0000","hometeamid":"5","hometeamname":"Carlton","hometeamnickname":"Blues","awayteamid":"16","awayteamname":"Richmond","awayteamnickname":"Tigers","completed":"0","result":"","checked":true,"winname":"Richmond"},{"id":"3","roundid":"955","roundnumber":"1","roundname":"Round 1","gameid":"5900","utcStartTime":"2024-03-14T08:30:00.000+0000","hometeamid":"3","hometeamname":"Collingwood","hometeamnickname":"Magpies","awayteamid":"13","awayteamname":"Sydney Swans","awayteamnickname":"Swans","completed":"0","result":"","checked":true,"winname":"Sydney Swans"},{"id":"4","roundid":"955","roundnumber":"1","roundname":"Round 1","gameid":"5901","utcStartTime":"2024-03-14T08:30:00.000+0000","hometeamid":"12","hometeamname":"Essendon","hometeamnickname":"Bombers","awayteamid":"9","awayteamname":"Hawthorn","awayteamnickname":"Hawks","completed":"0","result":"","checked":true,"winname":"Hawthorn"},{"id":"5","roundid":"955","roundnumber":"1","roundname":"Round 1","gameid":"5902","utcStartTime":"2024-03-14T08:30:00.000+0000","hometeamid":"15","hometeamname":"GWS Giants","hometeamnickname":"Giants","awayteamid":"6","awayteamname":"North Melbourne","awayteamnickname":"Kangaroos","completed":"0","result":"","checked":true,"winname":"North Melbourne"},{"id":"6","roundid":"955","roundnumber":"1","roundname":"Round 1","gameid":"5904","utcStartTime":"2024-03-14T08:30:00.000+0000","hometeamid":"10","hometeamname":"Geelong Cats","hometeamnickname":"Cats","awayteamid":"11","awayteamname":"St Kilda","awayteamnickname":"Saints","completed":"0","result":"","checked":true,"winname":"Geelong Cats"},{"id":"7","roundid":"955","roundnumber":"1","roundname":"Round 1","gameid":"5903","utcStartTime":"2024-03-14T08:30:00.000+0000","hometeamid":"4","hometeamname":"Gold Coast Suns","hometeamnickname":"Suns","awayteamid":"1","awayteamname":"Adelaide Crows","awayteamnickname":"Crows","completed":"0","result":"","checked":true,"winname":"Gold Coast Suns"}]"';
 //
+for ($i = 10; $i < 25; $i++) {
+  $email = "testuser".$i."@afltest.com";
+    $amount = $i * 20;
+//   $pswd = "999";
+  $resparr = makebet($conn, $email, $betthisjson, $amount);
+}
 
 
 $resparr = array();
@@ -145,10 +152,11 @@ function addUser($conn, $email, $pswd)
   return $resparr;
 }
 
-function loginUser($conn, $email, $pswd){
+function loginUser($conn, $email, $pswd)
+{
   $resparr = array();
   $sql = "SELECT * FROM users WHERE email = '$email' AND pswd = MD5('$pswd')";
-  
+
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
@@ -159,7 +167,7 @@ function loginUser($conn, $email, $pswd){
     array_push($resparr, 'error', $sql);
     return $resparr;
   }
-  
+
   $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`), (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance FROM `transaction_history` WHERE `email` = '$email' GROUP BY `email`";
 
   $result2 = $conn->query($sql);
@@ -168,14 +176,15 @@ function loginUser($conn, $email, $pswd){
     while ($row = $result2->fetch_assoc()) {
       array_push($resparr, $row);
     }
-  } 
-  
-  return $resparr;
   }
 
-function transactionhistory($conn, $email){
+  return $resparr;
+}
+
+function transactionhistory($conn, $email)
+{
   $resparr = array();
-  
+
   $sql = "SELECT * FROM `transaction_history` WHERE `email` = '$email'";
 
   $result = $conn->query($sql);
@@ -186,7 +195,7 @@ function transactionhistory($conn, $email){
     }
   }
 
-    return $resparr;
+  return $resparr;
 }
 
 

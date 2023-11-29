@@ -78,7 +78,7 @@ function getGames() {
     tableleft +=
       `
     <tr>
-    <td class="col-sm-1" >
+    <td class="col-sm-1" style="max-width: 18%!important;">
       <div>        
           <input class="agame" id="` +
       gameid +
@@ -87,20 +87,20 @@ function getGames() {
             type="checkbox" class="form-check-input" value="">
         </div>
     </td>
-    <td class="col-sm-1">
+    <td class="col-sm-1" style="max-width: 18%!important;">
     <img src="./images/` +
       homeimg +
       `" alt="` +
       hometeamname +
       `" width="50" height="50"></td>
-    <td class="col-sm-1" style="text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black;">VS</td>
-    <td class="col-sm-1" >
+    <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black;">VS</td>
+    <td class="col-sm-1"  style="max-width: 18%!important;">
     <img src="./images/` +
       awayimg +
       `" alt="` +
       awayteamname +
       `" width="50" height="50"></td>
-    <td class="col-sm-12 col-md-1">
+    <td class="col-sm-12 col-md-1" style="max-width: 18%!important;">
       <div class="form-check">
         <label class="form-check-label">
           <input id=${hometeamname.replaceAll(" ", "")}
