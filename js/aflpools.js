@@ -29,10 +29,8 @@ $(document).ready(function () {
 
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
-
-  // const myemail = localStorage.getItem("myEmail");
-  // $("#loginEmail").val(myemail);
-  // loggedInUser.email = myemail;
+  
+  $('#funds').hide();  
   getGames();
 });
 
@@ -102,7 +100,7 @@ function getGames() {
       `" alt="` +
       awayteamname +
       `" width="50" height="50"></td>
-    <td class="col-sm-1">
+    <td class="col-sm-12 col-md-1">
       <div class="form-check">
         <label class="form-check-label">
           <input id=${hometeamname.replaceAll(" ", "")}
@@ -218,8 +216,10 @@ function loginEvent() {
         }
         // localStorage.setItem("myEmail", loggedInUser.email);
         $("#loginbox").hide();
+
         document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
         document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
+        $('#funds').show();
         loggedin = true;
         console.log("User", loggedInUser);
       }

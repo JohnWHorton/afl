@@ -29,7 +29,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         <div class="collapse navbar-collapse" id="collapse_target">
 
-            <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 50px;">
+            <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #c3e1fb;">
                         My account
@@ -53,7 +53,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <a id="welcome" class="nav-link" href="#">Welcome to the game</a>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary btnlogin" onclick="showHideLoginbox()">Login</button>
+                    <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');showHideLoginbox()">Login</button>
                 </li>
             </ul>
         </div>
@@ -106,8 +106,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <center>
                 <div class="row" style="width: 100%!important; ">
-                    <div class="col-sm-1 col-md-4"></div>
-                    <div class="col-sm-10 col-md-5" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
+                    <div class="col-md-4"></div>
+                    <div class="col-sm-12 col-md-5" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <div id="spinner" class="spinner-border text-danger" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
@@ -122,7 +122,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             </center>
                         </div>
                     </div>
-                    <div class="col-sm-1 col-md-3"></div>
+                    <div class="col-md-3"></div>
                 </div>
             </center>
 
