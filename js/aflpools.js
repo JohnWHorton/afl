@@ -129,7 +129,6 @@ function getGames() {
   $("#spinner").hide();
   document.getElementById("tableleft").innerHTML = tableleft;
 }
-
 function showHistory() {
   let historytable = "";
   for (let i = 0; i < hist.length; i++) {
@@ -378,7 +377,6 @@ function depositEvent() {
     },
   });
 }
-
 function showHideWithdrawbox() {
   if (!loggedin) {
     $("#loginbox").show();
@@ -397,7 +395,6 @@ function showMsg(m) {
 function hideMsg() {
   $(".msg").hide();
 }
-
 function chkValCode() {
   let vc = $("#valcode").val();
   console.log("vc", vc);
@@ -492,7 +489,6 @@ function withdrawEvent() {
     },
   });
 }
-
 function setWinner(gid, win) {
   if (!loggedin) {
     $("#loginbox").show();
