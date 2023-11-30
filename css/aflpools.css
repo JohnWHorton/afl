@@ -592,6 +592,13 @@ select, input, textarea {
     }
 
 
+.table {
+    background-color: #000;
+    font-family: 'open-sans-light', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(250, 248, 248);
+}
 .tagbtns {
     border-radius: 0%;
     background-color: rgb(232, 240, 254, 0.9);

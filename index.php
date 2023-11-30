@@ -91,7 +91,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <br /><br />
                             Members compete in activities that require strategy, intelligence, creativity, or other
                             skills.<br /><br />
-                            <!-- Deposit funds (min $20)</br></br> -->
+                            
                             Select any 6 games and make a prediction for the Winner of each game.</br>
                             Each prediction will contribute $20 AUD into the pool.</br></br>
                             The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
@@ -290,14 +290,14 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
             <div class="container">
-                <h2>Basic Table</h2>
-                <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+                <h2>Transactions</h2>
+                <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Deposits</th>
-                            <th>Requests</th>
-                            <th>Completed</th>
+                            <th>Withdraw Requests</th>
+                            <th>Withdraw Completed</th>
                             <th>Date</th>
                         </tr>
                     </thead>
