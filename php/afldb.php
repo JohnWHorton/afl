@@ -96,7 +96,11 @@ if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
 // var_dump($resparr);
-
+if($operation == "loginUser" || $operation == "makebet" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalcompleted") {
+  $r = array();
+  $r = transhistory($conn, $email);
+  $resparr["trans-history"] = $r;
+}
 echo json_encode($resparr);
 
 function games($conn, $roundnumber)
@@ -187,6 +191,22 @@ function transactionhistory($conn, $email){
   }
 
     return $resparr;
+}
+function transhistory($conn, $email)
+{
+  $resparr = array();
+
+  $sql = "SELECT * FROM `trans_history` WHERE `email` = '$email'";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  }
+
+  return $resparr;
 }
 
 

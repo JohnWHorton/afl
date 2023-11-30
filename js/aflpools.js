@@ -176,6 +176,19 @@ function showMsg(m) {
 function hideMsg() {
   $(".msg").hide();
 }
+function calBal(x) {
+  let bal = 0;
+  for (i = 0; i < x.length; i++) {
+    if (x[i].transtype == "Deposit") {
+      bal = bal + x[i].amount;
+    } else {
+      bal = bal - x[i].amount;
+    }
+  }
+  document.getElementById("funds").innerHTML = `Available Funds $ ${bal} AUD`;
+  return bal;
+
+}
 function loginEvent() {
   // e.preventDefault();
 
@@ -209,8 +222,11 @@ function loginEvent() {
       } else {
         response[0].pswd = "";
         loggedInUser = response[0];
-        if (response[1]) {
-          loggedInUser.funds = response[1].balance;
+        if (response["trans-history"]) {
+          let x = response["trans-history"];
+          console.log("trans-history", x);
+          loggedInUser.funds = calBal(x);          
+          // loggedInUser.funds = response[1].balance;
         } else {          
           loggedInUser.funds = 0;
         }
@@ -218,7 +234,7 @@ function loginEvent() {
         $("#loginbox").hide();
 
         document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
-        document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
+        // document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
         $('#funds').show();
         loggedin = true;
         console.log("User", loggedInUser);
@@ -347,6 +363,11 @@ function depositEvent() {
     data: JSON.stringify(parms),
     success: function (response) {
       console.log("response", response);
+      if (response["trans-history"]) {
+        loggedInUser.funds = calBal(response["trans-history"]);
+      } else {
+        loggedInUser.funds = 0;
+      }
       showMsg("Deposit successful");
       $("#depositbox").hide();
     },
@@ -443,7 +464,6 @@ function deposit(refid) {
     },
   });
 }
-
 function withdrawEvent() {
   amt = $("#withdrawamount").val();
   // validation here
@@ -457,6 +477,11 @@ function withdrawEvent() {
     data: JSON.stringify(parms),
     success: function (response) {
       console.log("response", response);
+      if (response["trans-history"]) {
+        loggedInUser.funds = calBal(response["trans-history"]);
+      } else {
+        loggedInUser.funds = 0;
+      }
       showMsg("Withdraw successful");
       $("#withdrawbox").hide();
     },
@@ -568,13 +593,6 @@ function betcnt() {
   }
 }
 function makebet() {
-  // check funds =>$20
-  for (let i = 0; i < games.length; i++) {
-    if (games[i].checked) {
-      console.log("make bet", games[i]);
-    }
-  }
-
   let betthis = games.filter((games) => games.checked === true);
   let betthisjson = JSON.stringify(betthis);
   console.log("betthisjson", betthisjson);
@@ -583,6 +601,7 @@ function makebet() {
     operation: "makebet",
     email: loggedInUser.email,
     betthisjson: betthisjson,
+    amount: 20
   };
 
   $.ajax({
@@ -593,7 +612,11 @@ function makebet() {
     data: JSON.stringify(parms),
     success: function (response) {
       console.log("Bet made", parms);
-      //reduce funds by $20
+      if (response["trans-history"]) {
+        loggedInUser.funds = calBal(response["trans-history"]);
+      } else {
+        loggedInUser.funds = 0;
+      }
       // display bet with ticket number
     },
     error: function () {
@@ -601,9 +624,9 @@ function makebet() {
     },
   });
 }
-function withdrawalrequest(refid) {
+function withdrawalcomplete(refid) {
   var parms = {
-    operation: "withdrawalrequest",
+    operation: "withdrawalcomplete",
     email: loggedInUser.email,
     amount: amount,
   };
@@ -616,15 +639,14 @@ function withdrawalrequest(refid) {
     data: JSON.stringify(parms),
     success: function (response) {
       if (response.length == 0) {
-        showMsg("Login is incorrect. Try again");
-
-        logemail = "";
-        logpword = "";
-        loggedin = false;
+        showMsg("Withdrawal failed");
       } else {
-        $("#loginbox").hide();
-        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-        loggedin = true;
+        if (response["trans-history"]) {
+          loggedInUser.funds = calBal(response["trans-history"]);
+        } else {
+          loggedInUser.funds = 0;
+        }
+        showMsg("Withdrawal completed");
       }
     },
     error: function () {
