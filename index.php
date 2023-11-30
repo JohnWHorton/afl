@@ -289,16 +289,15 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <span aria-hidden="true" onclick="$('#historybox').hide();">&times;</span>
             </div>
 
-            <div class="container">
+            <div class="container transtable">
                 <h2>Transactions</h2>
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table">
+                <table class="table ">
                     <thead>
                         <tr>
-                            <th>Deposits</th>
-                            <th>Withdraw Requests</th>
-                            <th>Withdraw Completed</th>
                             <th>Date</th>
+                            <th>Transaction type</th>
+                            <th>Amount</th>
                         </tr>
                     </thead>
                     <tbody id="historybody">

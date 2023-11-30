@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 30, 2023 at 11:25 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 30, 2023 at 02:42 PM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,28 +18,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `afl`
+-- Database: afl
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bets`
+-- Table structure for table bets
 --
 
-CREATE TABLE `bets` (
-  `id` int(11) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `betthisjson` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `amount` decimal(16,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS bets;
+CREATE TABLE IF NOT EXISTS bets (
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(128) NOT NULL,
+  betthisjson longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  amount decimal(16,0) NOT NULL,
+  datecreated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY EMAIL (email)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bets`
+-- Dumping data for table bets
 --
 
-INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUES
+INSERT INTO bets (id, email, betthisjson, amount, datecreated) VALUES
 (6, 'testuser1@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Carlton\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:42:51'),
 (7, 'testuser2@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Carlton\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:42:51'),
 (8, 'testuser3@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Carlton\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:42:51'),
@@ -59,7 +62,7 @@ INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUE
 (22, 'testuser16@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Richmond\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:44:56'),
 (23, 'testuser17@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Richmond\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:44:56'),
 (24, 'testuser18@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Richmond\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:44:56');
-INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUES
+INSERT INTO bets (id, email, betthisjson, amount, datecreated) VALUES
 (25, 'testuser19@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Richmond\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:44:56'),
 (26, 'testuser20@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Richmond\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:44:56'),
 (27, 'testuser21@afltest.com', '[{\"id\":\"2\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5899\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"5\",\"hometeamname\":\"Carlton\",\"hometeamnickname\":\"Blues\",\"awayteamid\":\"16\",\"awayteamname\":\"Richmond\",\"awayteamnickname\":\"Tigers\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Richmond\"},{\"id\":\"3\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5900\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"3\",\"hometeamname\":\"Collingwood\",\"hometeamnickname\":\"Magpies\",\"awayteamid\":\"13\",\"awayteamname\":\"Sydney Swans\",\"awayteamnickname\":\"Swans\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Sydney Swans\"},{\"id\":\"4\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5901\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"12\",\"hometeamname\":\"Essendon\",\"hometeamnickname\":\"Bombers\",\"awayteamid\":\"9\",\"awayteamname\":\"Hawthorn\",\"awayteamnickname\":\"Hawks\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Hawthorn\"},{\"id\":\"5\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5902\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"15\",\"hometeamname\":\"GWS Giants\",\"hometeamnickname\":\"Giants\",\"awayteamid\":\"6\",\"awayteamname\":\"North Melbourne\",\"awayteamnickname\":\"Kangaroos\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"North Melbourne\"},{\"id\":\"6\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5904\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"10\",\"hometeamname\":\"Geelong Cats\",\"hometeamnickname\":\"Cats\",\"awayteamid\":\"11\",\"awayteamname\":\"St Kilda\",\"awayteamnickname\":\"Saints\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Geelong Cats\"},{\"id\":\"7\",\"roundid\":\"955\",\"roundnumber\":\"1\",\"roundname\":\"Round 1\",\"gameid\":\"5903\",\"utcStartTime\":\"2024-03-14T08:30:00.000+0000\",\"hometeamid\":\"4\",\"hometeamname\":\"Gold Coast Suns\",\"hometeamnickname\":\"Suns\",\"awayteamid\":\"1\",\"awayteamname\":\"Adelaide Crows\",\"awayteamnickname\":\"Crows\",\"completed\":\"0\",\"result\":\"\",\"checked\":true,\"winname\":\"Gold Coast Suns\"}]\"', '20', '2023-11-29 14:44:56'),
@@ -74,51 +77,57 @@ INSERT INTO `bets` (`id`, `email`, `betthisjson`, `amount`, `datecreated`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `deposits`
+-- Table structure for table deposits
 --
 
-CREATE TABLE `deposits` (
-  `id` int(11) NOT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS deposits;
+CREATE TABLE IF NOT EXISTS deposits (
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  amount decimal(10,0) NOT NULL,
+  datecreated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY EMAIL (email)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `deposits`
+-- Dumping data for table deposits
 --
 
-INSERT INTO `deposits` (`id`, `email`, `amount`, `datecreated`) VALUES
-(3, 'john.horton86@gmail.com', '450', '2023-11-26 12:52:00');
+INSERT INTO deposits (id, email, amount, datecreated) VALUES
+(3, 'john.horton86@gmail.com', '450', '2023-11-26 12:52:00'),
+(6, 'tiffaman@gmail.com', '300', '2023-11-30 16:18:59');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `games`
+-- Table structure for table games
 --
 
-CREATE TABLE `games` (
-  `id` int(11) NOT NULL,
-  `roundid` int(11) NOT NULL,
-  `roundnumber` int(11) NOT NULL,
-  `roundname` varchar(64) NOT NULL,
-  `gameid` int(11) NOT NULL,
-  `utcStartTime` varchar(64) NOT NULL,
-  `hometeamid` int(11) NOT NULL,
-  `hometeamname` varchar(64) NOT NULL,
-  `hometeamnickname` varchar(64) NOT NULL,
-  `awayteamid` int(11) NOT NULL,
-  `awayteamname` varchar(64) NOT NULL,
-  `awayteamnickname` varchar(64) NOT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT 0,
-  `result` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS games;
+CREATE TABLE IF NOT EXISTS games (
+  id int NOT NULL,
+  roundid int NOT NULL,
+  roundnumber int NOT NULL,
+  roundname varchar(64) NOT NULL,
+  gameid int NOT NULL,
+  utcStartTime varchar(64) NOT NULL,
+  hometeamid int NOT NULL,
+  hometeamname varchar(64) NOT NULL,
+  hometeamnickname varchar(64) NOT NULL,
+  awayteamid int NOT NULL,
+  awayteamname varchar(64) NOT NULL,
+  awayteamnickname varchar(64) NOT NULL,
+  completed tinyint(1) NOT NULL DEFAULT '0',
+  result varchar(64) NOT NULL,
+  UNIQUE KEY GAMESPRIMARY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `games`
+-- Dumping data for table games
 --
 
-INSERT INTO `games` (`id`, `roundid`, `roundnumber`, `roundname`, `gameid`, `utcStartTime`, `hometeamid`, `hometeamname`, `hometeamnickname`, `awayteamid`, `awayteamname`, `awayteamnickname`, `completed`, `result`) VALUES
+INSERT INTO games (id, roundid, roundnumber, roundname, gameid, utcStartTime, hometeamid, hometeamname, hometeamnickname, awayteamid, awayteamname, awayteamnickname, completed, result) VALUES
 (2, 955, 1, 'Round 1', 5899, '2024-03-14T08:30:00.000+0000', 5, 'Carlton', 'Blues', 16, 'Richmond', 'Tigers', 1, 'Carlton'),
 (3, 955, 1, 'Round 1', 5900, '2024-03-14T08:30:00.000+0000', 3, 'Collingwood', 'Magpies', 13, 'Sydney Swans', 'Swans', 1, 'Collingwood'),
 (4, 955, 1, 'Round 1', 5901, '2024-03-14T08:30:00.000+0000', 12, 'Essendon', 'Bombers', 9, 'Hawthorn', 'Hawks', 1, 'Essendon'),
@@ -326,22 +335,24 @@ INSERT INTO `games` (`id`, `roundid`, `roundnumber`, `roundname`, `gameid`, `utc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rounds`
+-- Table structure for table rounds
 --
 
-CREATE TABLE `rounds` (
-  `id` int(11) NOT NULL,
-  `roundnumber` int(11) NOT NULL,
-  `noundname` varchar(32) NOT NULL,
-  `completed` tinyint(1) NOT NULL DEFAULT 0,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS rounds;
+CREATE TABLE IF NOT EXISTS rounds (
+  id int NOT NULL AUTO_INCREMENT,
+  roundnumber int NOT NULL,
+  noundname varchar(32) NOT NULL,
+  completed tinyint(1) NOT NULL DEFAULT '0',
+  datecreated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `rounds`
+-- Dumping data for table rounds
 --
 
-INSERT INTO `rounds` (`id`, `roundnumber`, `noundname`, `completed`, `datecreated`) VALUES
+INSERT INTO rounds (id, roundnumber, noundname, completed, datecreated) VALUES
 (1, 1, 'Round 1', 0, '2023-11-28 10:35:43'),
 (2, 2, 'Round 2', 0, '2023-11-28 10:35:43'),
 (3, 3, 'Round 3', 0, '2023-11-28 10:35:43'),
@@ -370,82 +381,75 @@ INSERT INTO `rounds` (`id`, `roundnumber`, `noundname`, `completed`, `datecreate
 -- --------------------------------------------------------
 
 --
--- Table structure for table `teams`
+-- Table structure for table teams
 --
 
-CREATE TABLE `teams` (
-  `id` int(11) NOT NULL,
-  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS teams;
+CREATE TABLE IF NOT EXISTS teams (
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  logo varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  updated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `teams`
+-- Dumping data for table teams
 --
 
-INSERT INTO `teams` (`id`, `name`, `logo`, `updated`) VALUES
+INSERT INTO teams (id, name, logo, updated) VALUES
 (1, 'Melbourne', 'Melbourne', '2023-10-23 17:58:19');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transactions`
+-- Table structure for table transactions
 --
 
-CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL,
-  `item_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item_price` float(10,2) DEFAULT NULL,
-  `item_price_currency` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payer_country` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `merchant_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `merchant_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `transaction_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `paid_amount` float(10,2) NOT NULL,
-  `paid_amount_currency` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `payment_source` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `payment_status` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `created` datetime NOT NULL,
-  `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS transactions;
+CREATE TABLE IF NOT EXISTS transactions (
+  id int NOT NULL AUTO_INCREMENT,
+  item_number varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  item_name varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  item_price float(10,2) DEFAULT NULL,
+  item_price_currency varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  payer_id varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  payer_name varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  payer_email varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  payer_country varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  merchant_id varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  merchant_email varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  order_id varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  transaction_id varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  paid_amount float(10,2) NOT NULL,
+  paid_amount_currency varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  payment_source varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  payment_status varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  created datetime NOT NULL,
+  modified datetime NOT NULL,
+  PRIMARY KEY (id),
+  KEY EMAIL (payer_email)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `transactions`
+-- Dumping data for table transactions
 --
 
-INSERT INTO `transactions` (`id`, `item_number`, `item_name`, `item_price`, `item_price_currency`, `payer_id`, `payer_name`, `payer_email`, `payer_country`, `merchant_id`, `merchant_email`, `order_id`, `transaction_id`, `paid_amount`, `paid_amount_currency`, `payment_source`, `payment_status`, `created`, `modified`) VALUES
+INSERT INTO transactions (id, item_number, item_name, item_price, item_price_currency, payer_id, payer_name, payer_email, payer_country, merchant_id, merchant_email, order_id, transaction_id, paid_amount, paid_amount_currency, payment_source, payment_status, created, modified) VALUES
 (1, 'BET20', 'Pool ticket', 0.00, 'AUD', '2Q7UJUP9C93MN', 'chris vs', 'john.horton86@gmail.com', 'AU', 'N8LQYXWSLFUVY', 'john.horton86-facilitator@gmail.com', '1FE82537D55977259', '32U15850TN3205538', 200.00, 'AUD', 'paypal', 'PENDING', '2023-11-15 14:25:00', '2023-11-15 16:27:30'),
 (2, 'BET20', 'Pool ticket', 0.00, 'AUD', 'M339TR7MFUTKU', 'prep ician', 'prepitician@gmail.com', 'AU', 'N8LQYXWSLFUVY', 'john.horton86-facilitator@gmail.com', '8PU21850A4264571F', '42G73688T1691022N', 200.00, 'AUD', 'paypal', 'PENDING', '2023-11-15 14:38:22', '2023-11-15 16:40:34');
 
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `transaction_history`
--- (See below for the actual view)
---
-CREATE TABLE `transaction_history` (
-`email` varchar(128)
-,`deposit_amt` decimal(10,0)
-,`request_amt` decimal(10,0)
-,`completed_amt` decimal(10,0)
-,`datecreated` datetime
-);
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `trans_history`
+-- Stand-in structure for view trans_history
 -- (See below for the actual view)
 --
-CREATE TABLE `trans_history` (
+DROP VIEW IF EXISTS `trans_history`;
+CREATE TABLE IF NOT EXISTS `trans_history` (
 `email` varchar(128)
-,`transtype` varchar(19)
+,`transtype` varchar(20)
 ,`amount` decimal(16,0)
 ,`Date` datetime
 );
@@ -453,26 +457,29 @@ CREATE TABLE `trans_history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table users
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phoneno` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
-  `pswd` varbinary(128) NOT NULL,
-  `datecreated` date DEFAULT NULL,
-  `dateupdated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(128) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  email varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  phoneno varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  pswd varbinary(128) NOT NULL,
+  datecreated date DEFAULT NULL,
+  dateupdated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY email (email)
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table users
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `dateupdated`) VALUES
+INSERT INTO users (id, name, email, phoneno, pswd, datecreated, dateupdated) VALUES
 (15, NULL, 'john.horton86@gmail.com', NULL, 0x6365363961613963366633326562656564366639383036316363623864303562, '2023-11-17', '2023-11-26 10:16:32'),
-(16, NULL, 'tiffaman@gmail.com', NULL, 0x3062303764353236356539666234363761623538376135666432343965396464, '2023-11-17', '2023-11-17 08:43:23'),
+(16, NULL, 'tiffaman@gmail.com', NULL, 0x3732363763343565333336623233666263653631323237303362363737333036, '2023-11-17', '2023-11-17 08:43:23'),
 (22, NULL, 'testuser0@afltest.com', NULL, 0x6237303638333564653739613262346538303530366635383261663336373661, '2023-11-29', '2023-11-29 14:32:19'),
 (23, NULL, 'testuser1@afltest.com', NULL, 0x6237303638333564653739613262346538303530366635383261663336373661, '2023-11-29', '2023-11-29 14:32:19'),
 (24, NULL, 'testuser2@afltest.com', NULL, 0x6237303638333564653739613262346538303530366635383261663336373661, '2023-11-29', '2023-11-29 14:32:19'),
@@ -577,179 +584,62 @@ INSERT INTO `users` (`id`, `name`, `email`, `phoneno`, `pswd`, `datecreated`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `withdrawalcompleted`
+-- Table structure for table withdrawalcompleted
 --
 
-CREATE TABLE `withdrawalcompleted` (
-  `id` int(11) NOT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `requestid` int(11) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS withdrawalcompleted;
+CREATE TABLE IF NOT EXISTS withdrawalcompleted (
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  requestid int NOT NULL,
+  amount decimal(10,0) NOT NULL,
+  datecreated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY EMAIL (email)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `withdrawalcompleted`
+-- Dumping data for table withdrawalcompleted
 --
 
-INSERT INTO `withdrawalcompleted` (`id`, `email`, `requestid`, `amount`, `datecreated`) VALUES
+INSERT INTO withdrawalcompleted (id, email, requestid, amount, datecreated) VALUES
 (1, 'john.horton86@gmail.com', 1, '50', '2023-11-26 13:06:23');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `withdrawalrequests`
+-- Table structure for table withdrawalrequests
 --
 
-CREATE TABLE `withdrawalrequests` (
-  `id` int(11) NOT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `datecreated` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS withdrawalrequests;
+CREATE TABLE IF NOT EXISTS withdrawalrequests (
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  amount decimal(10,0) NOT NULL,
+  datecreated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY EMAIL (email)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `withdrawalrequests`
+-- Dumping data for table withdrawalrequests
 --
 
-INSERT INTO `withdrawalrequests` (`id`, `email`, `amount`, `datecreated`) VALUES
+INSERT INTO withdrawalrequests (id, email, amount, datecreated) VALUES
 (1, 'john.horton86@gmail.com', '100', '2023-11-26 19:36:43'),
 (2, 'john.horton86@gmail.com', '100', '2023-11-30 12:11:05'),
-(3, 'john.horton86@gmail.com', '60', '2023-11-30 12:17:41');
+(3, 'john.horton86@gmail.com', '60', '2023-11-30 12:17:41'),
+(4, 'tiffaman@gmail.com', '50', '2023-11-30 16:20:30');
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `transaction_history`
---
-DROP TABLE IF EXISTS `transaction_history`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `transaction_history`  AS SELECT `deposits`.`email` AS `email`, `deposits`.`amount` AS `deposit_amt`, 0 AS `request_amt`, 0 AS `completed_amt`, `deposits`.`datecreated` AS `datecreated` FROM `deposits` ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `trans_history`
+-- Structure for view trans_history
 --
 DROP TABLE IF EXISTS `trans_history`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`john`@`%` SQL SECURITY DEFINER VIEW `trans_history`  AS SELECT `deposits`.`email` AS `email`, 'Deposit' AS `transtype`, `deposits`.`amount` AS `amount`, `deposits`.`datecreated` AS `Date` FROM `deposits` ;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `bets`
---
-ALTER TABLE `bets`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `EMAIL` (`email`);
-
---
--- Indexes for table `deposits`
---
-ALTER TABLE `deposits`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `EMAIL` (`email`);
-
---
--- Indexes for table `games`
---
-ALTER TABLE `games`
-  ADD UNIQUE KEY `GAMESPRIMARY` (`id`);
-
---
--- Indexes for table `rounds`
---
-ALTER TABLE `rounds`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `teams`
---
-ALTER TABLE `teams`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `EMAIL` (`payer_email`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indexes for table `withdrawalcompleted`
---
-ALTER TABLE `withdrawalcompleted`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `EMAIL` (`email`);
-
---
--- Indexes for table `withdrawalrequests`
---
-ALTER TABLE `withdrawalrequests`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `EMAIL` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bets`
---
-ALTER TABLE `bets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `deposits`
---
-ALTER TABLE `deposits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `rounds`
---
-ALTER TABLE `rounds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `teams`
---
-ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `transactions`
---
-ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
-
---
--- AUTO_INCREMENT for table `withdrawalcompleted`
---
-ALTER TABLE `withdrawalcompleted`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `withdrawalrequests`
---
-ALTER TABLE `withdrawalrequests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+DROP VIEW IF EXISTS trans_history;
+CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=john@`%` SQL SECURITY DEFINER VIEW trans_history  AS SELECT deposits.email AS `email`, 'Deposit' AS `transtype`, deposits.amount AS `amount`, deposits.datecreated AS `Date` FROM deposits union select withdrawalrequests.email AS email,'Withdrawal Request' AS transtype,withdrawalrequests.amount AS amount,withdrawalrequests.datecreated AS `Date` from withdrawalrequests union select withdrawalcompleted.email AS email,'Withdrawal Completed' AS transtype,withdrawalcompleted.amount AS amount,withdrawalcompleted.datecreated AS `Date` from withdrawalcompleted union select bets.email AS email,'Prediction' AS transtype,bets.amount AS amount,bets.datecreated AS `Date` from bets  ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

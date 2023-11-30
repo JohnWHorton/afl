@@ -164,39 +164,14 @@ function loginUser($conn, $email, $pswd){
     return $resparr;
   }
   
-  $sql = "SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`), (sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance FROM `transaction_history` WHERE `email` = '$email' GROUP BY `email`";
-
-  $result2 = $conn->query($sql);
-
-  if ($result2 !== false && $result2->num_rows > 0) {
-    while ($row = $result2->fetch_assoc()) {
-      array_push($resparr, $row);
-    }
-  } 
-  
   return $resparr;
   }
 
-function transactionhistory($conn, $email){
-  $resparr = array();
-  
-  $sql = "SELECT * FROM `transaction_history` WHERE `email` = '$email'";
-
-  $result = $conn->query($sql);
-
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      array_push($resparr, $row);
-    }
-  }
-
-    return $resparr;
-}
 function transhistory($conn, $email)
 {
   $resparr = array();
 
-  $sql = "SELECT * FROM `trans_history` WHERE `email` = '$email'";
+  $sql = "SELECT date(date) as date, transtype, amount FROM `trans_history` WHERE `email` = '$email' ORDER BY date asc";
 
   $result = $conn->query($sql);
 

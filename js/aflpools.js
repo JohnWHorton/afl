@@ -23,14 +23,13 @@ var checkedcnt = 0;
 const myemail = "";
 var roundnumber = 1;
 var games = [];
-var hist = [];
+var trans_history = [];
 
 $(document).ready(function () {
-
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
-  
-  $('#funds').hide();  
+
+  $("#funds").hide();
   getGames();
 });
 
@@ -131,20 +130,18 @@ function getGames() {
 }
 function showHistory() {
   let historytable = "";
-  for (let i = 0; i < hist.length; i++) {
+  for (let i = 0; i < trans_history.length; i++) {
     historytable += `<tr>`;
     historytable += `
-    <td>${hist[i].deposit_amt}</td>
+    <td>${trans_history[i].date}</td>
     `;
     historytable += `
-    <td>${hist[i].request_amt}</td>
+    <td>${trans_history[i].transtype}</td>
     `;
     historytable += `
-    <td>${hist[i].completed_amt}</td>
+    <td>$ ${trans_history[i].amount} AUD</td>
     `;
-    historytable += `
-    <td>${hist[i].datecreated}</td>
-    `;
+
     historytable += `</tr>`;
     console.log(historytable);
   }
@@ -176,6 +173,7 @@ function hideMsg() {
   $(".msg").hide();
 }
 function calBal(x) {
+  trans_history = x;
   let bal = 0;
   for (i = 0; i < x.length; i++) {
     if (x[i].transtype == "Deposit") {
@@ -186,7 +184,6 @@ function calBal(x) {
   }
   document.getElementById("funds").innerHTML = `Available Funds $ ${bal} AUD`;
   return bal;
-
 }
 function loginEvent() {
   // e.preventDefault();
@@ -213,7 +210,7 @@ function loginEvent() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      if (response.length == 0 || response[0]=="error") {
+      if (response.length == 0 || response[0] == "error") {
         showMsg("Login is incorrect. Try again");
         logemail = "";
         logpword = "";
@@ -224,9 +221,9 @@ function loginEvent() {
         if (response["trans-history"]) {
           let x = response["trans-history"];
           console.log("trans-history", x);
-          loggedInUser.funds = calBal(x);          
+          loggedInUser.funds = calBal(x);
           // loggedInUser.funds = response[1].balance;
-        } else {          
+        } else {
           loggedInUser.funds = 0;
         }
         // localStorage.setItem("myEmail", loggedInUser.email);
@@ -234,7 +231,7 @@ function loginEvent() {
 
         document.getElementById("welcome").innerHTML = `${loggedInUser.email}`;
         // document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
-        $('#funds').show();
+        $("#funds").show();
         loggedin = true;
         console.log("User", loggedInUser);
       }
@@ -405,24 +402,8 @@ function chkValCode() {
   }
 }
 function getTransactionhistory() {
-  var parms = { operation: "transactionhistory", email: loggedInUser.email };
-
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      hist = response;
-      console.log("hist", hist);
-      showHistory();
-      $("#historybox").show();
-    },
-    error: function () {
-      showMsg("Error");
-    },
-  });
+  showHistory();
+  $("#historybox").show();
 }
 function showPayPal() {
   if (loggedin) {
@@ -464,7 +445,11 @@ function deposit(refid) {
 function withdrawEvent() {
   amt = $("#withdrawamount").val();
   // validation here
-  var parms = { operation: "withdrawalrequest", email: loggedInUser.email, amount: amt };
+  var parms = {
+    operation: "withdrawalrequest",
+    email: loggedInUser.email,
+    amount: amt,
+  };
 
   $.ajax({
     type: "POST",
@@ -597,7 +582,7 @@ function makebet() {
     operation: "makebet",
     email: loggedInUser.email,
     betthisjson: betthisjson,
-    amount: 20
+    amount: 20,
   };
 
   $.ajax({
