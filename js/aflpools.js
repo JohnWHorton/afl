@@ -141,7 +141,6 @@ function showHistory() {
     historytable += `
     <td>$ ${trans_history[i].amount} AUD</td>
     `;
-
     historytable += `</tr>`;
     console.log(historytable);
   }

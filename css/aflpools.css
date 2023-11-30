@@ -235,6 +235,36 @@ a {
     margin: 0 auto; 
 }
 
+/* Modal Content */
+.modal-content {
+    /* background-color: #f30808; */
+    /* margin: 10px; */
+    padding: 20px;
+    border: 1px solid #b6bdb9;
+    width: 80%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 0.9rem;
+}
+
+.modal-header {
+    border-bottom: 0;
+    padding: 5px;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+.myModal {
+    color: white;
+}
+
+.modal-dialog {
+    max-width: 100%;
+    margin: 0 5px 0 7px;
+}
+
 #menu {
     position: absolute;
     background-color: transparent;
@@ -393,35 +423,7 @@ a {
 
 /* navbar end  */
 
-/* Modal Content */
-.modal-content {
-    /* background-color: #f30808; */
-    /* margin: 10px; */
-    padding: 20px;
-    border: 1px solid #b6bdb9;
-    width: 80%;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-size: 0.9rem;
-}
 
-.modal-header {
-    border-bottom: 0;
-    padding: 5px;
-}
-
-.modal-footer {
-    border-top: 0;
-}
-
-.myModal {
-    color: white;
-}
-
-.modal-dialog {
-    max-width: 100%;
-    margin: 0 5px 0 7px;
-}
 
 /* modal end */
 .center-block {
@@ -559,7 +561,8 @@ pre {
 .historycontainer {
     display: flex;
     max-height: 500px;
-    background-color: #b6bdb9 !important;
+    max-width: 500px;
+    background-color: black !important;
     color: black;
     margin-top: 50px;
     overflow: hidden;
@@ -605,9 +608,12 @@ select, input, textarea {
     font-size: 14px;
     font-weight: normal;
     color: rgb(250, 248, 248);
-    max-height: 350px;
+    max-height: 4900px;
     overflow: hidden!important;
     overflow-y: scroll!important;
+}
+.transtablehead{
+    background-color: #000;
 }
 .tagbtns {
     border-radius: 0%;

@@ -290,11 +290,11 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
             <div class="container transtable">
-                <h2>Transactions</h2>
+                <!-- <h2 class="sticky-top">Transactions</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table ">
+                <table class="table sticky-top">
                     <thead>
-                        <tr>
+                        <tr class="transtablehead sticky-top">
                             <th>Date</th>
                             <th>Transaction type</th>
                             <th>Amount</th>
