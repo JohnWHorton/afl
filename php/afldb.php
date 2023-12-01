@@ -88,10 +88,12 @@ if ($operation == "withdrawalrequest") {
 if ($operation == "withdrawalcompleted") {
   $resparr = withdrawalcompleted($conn, $email, $amount);
 }
+if ($operation == "rounds") {
+  $resparr = rounds($conn);
+}
 if ($operation == "games") {
   $resparr = games($conn, $roundnumber);
 }
-
 if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
@@ -103,6 +105,23 @@ if($operation == "loginUser" || $operation == "makebet" || $operation == "deposi
 }
 echo json_encode($resparr);
 
+function rounds($conn)
+{
+  $resparr = array();
+  $sql = "SELECT * FROM rounds";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  } else {
+    array_push($resparr, [$sql]);
+  }
+
+  return $resparr;
+}
 function games($conn, $roundnumber)
 {
   $resparr = array();

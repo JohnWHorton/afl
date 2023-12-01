@@ -9,7 +9,7 @@ $charset = 'utf8mb4';
 $conn = new mysqli($host, $user, $pass, $db);
 
 $curl = curl_init();
-// $rndno = 2;
+// $rndno = 2;      To get the matches from the afl website api
 for ($rndno = 1; $rndno < 25; $rndno++) {
     curl_setopt_array(
         $curl,

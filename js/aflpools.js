@@ -22,6 +22,7 @@ var rndvalcode = 0;
 var checkedcnt = 0;
 const myemail = "";
 var roundnumber = 1;
+var rounds = [];
 var games = [];
 var trans_history = [];
 
@@ -30,9 +31,34 @@ $(document).ready(function () {
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
   $("#funds").hide();
+  getRounds();
   getGames();
 });
 
+function getRounds() {
+  $("#spinner").show();
+  rounds = [];
+  var parms = { operation: "rounds" };
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      rounds = response;
+      // }
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
+  console.log("rounds", rounds);
+}
 function getRound(e) {
   // e.preventDefault();
   document.getElementById("tableleft").innerHTML = "";
@@ -72,20 +98,42 @@ function getGames() {
     let awayimg = games[i].awayteamname.replaceAll(" ", "") + ".svg";
     let checked = false;
     let winname = "";
-    document.getElementById("roundname").innerHTML = `Round ${roundnumber}`;
+    let completed = games[i].completed;
+    let result = games[i].result;
+
+    if (completed == true) {
+      document.getElementById("roundname").innerHTML = `Round ${roundnumber} Closed`;
+    } else {
+      document.getElementById("roundname").innerHTML = `Round ${roundnumber}`;
+    }
 
     tableleft +=
       `
-    <tr>
+    <tr>`;
+
+    if (completed == true) {
+      tableleft +=
+        `
+    <td class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">
+      <div>        
+          Closed
+        </div>
+    </td>`;
+    } else {
+      tableleft +=
+        `
     <td class="col-sm-1" style="max-width: 18%!important;">
       <div>        
           <input class="agame" id="` +
-      gameid +
-      `" 
-            onchange="gameSelected('${gameid}')" 
+        gameid +
+        `"onchange="gameSelected('${gameid}')" 
             type="checkbox" class="form-check-input" value="">
         </div>
-    </td>
+    </td>`;
+    }
+
+    tableleft +=
+      `
     <td class="col-sm-1" style="max-width: 18%!important;">
     <img src="./images/` +
       homeimg +
@@ -98,7 +146,16 @@ function getGames() {
       awayimg +
       `" alt="` +
       awayteamname +
-      `" width="50" height="50"></td>
+      `" width="50" height="50"></td>`;
+
+    if (completed == true) {
+      tableleft += `
+    <td class="col-sm-12 col-md-1" style="max-width: 18%!important;">
+      Winner </br><h5>${result}</h5>
+      </div>
+    </td>`;
+    } else {
+      tableleft += `
     <td class="col-sm-12 col-md-1" style="max-width: 18%!important;">
       <div class="form-check">
         <label class="form-check-label">
@@ -106,8 +163,8 @@ function getGames() {
           type="radio" class="form-check-input" name="optradio${radiogrp}"
           onclick="setWinner('${gameid}', '${hometeamname}')"
           style="font-size: 20px;">` +
-      hometeamname +
-      `
+        hometeamname +
+        `
         </label>
         </div>
         <div class="form-check">
@@ -116,13 +173,16 @@ function getGames() {
         type="radio" class="form-check-input" name="optradio${radiogrp++}"         
         onclick="setWinner('${gameid}', '${awayteamname}')"
         style="font-size: 20px;">` +
-      awayteamname +
-      `
+        awayteamname +
+        `
         </label>
       </div>
-    </td>
+    </td>`;
+
+      tableleft += `
     </tr>
    `;
+    }
   }
   // console.log("games", games);
   $("#spinner").hide();
