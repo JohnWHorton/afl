@@ -36,7 +36,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
                         <a class="dropdown-item" onclick="showHideDepositbox()">Deposit funds</a>
-                        <a class="dropdown-item" onclick="getBets()">My predictions</a>
+                        <a class="dropdown-item" onclick="getPrediction()">My predictions</a>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" onclick="showHideWithdrawbox()">Withdraw funds</a>
                         <a class="dropdown-item" onclick="getTransactionhistory()">Show my transactions</a>
@@ -116,9 +116,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <tbody id="tableleft">
                             </tbody>
                         </table>
-                        <div id="betnow" style="display: none;">
+                        <div id="predicnow" style="display: none;">
                             <center>
-                                <button class="btn betnowbtn" onclick="makebet()">Contribute</button>
+                                <button class="btn predictionnowbtn" onclick="makeprediction()">Contribute</button>
                             </center>
                         </div>
                     </div>

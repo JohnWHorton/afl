@@ -1,2 +1,2 @@
-ALTER TABLE `bets` ADD `roundnumber` FLOAT NOT NULL AFTER `email`;
+ALTER TABLE `prediction` ADD `roundnumber` FLOAT NOT NULL AFTER `email`;
 

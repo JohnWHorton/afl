@@ -25,7 +25,7 @@ $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "";
 $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
-$betthisjson = isset($request->betthisjson) ? $request->betthisjson : "";
+$predictionthisjson = isset($request->predictionthisjson) ? $request->predictionthisjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
@@ -48,11 +48,11 @@ if ($operation == "loginUser") {
 if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
-if ($operation == "getbets") {
-  $resparr = getbets($conn, $email, $roundnumber);
+if ($operation == "getPrediction") {
+  $resparr = getPrediction($conn, $email, $roundnumber);
 }
-if ($operation == "makebet") {
-  $resparr = makebet($conn, $email, $roundnumber, $betthisjson, $amount);
+if ($operation == "makeprediction") {
+  $resparr = makeprediction($conn, $email, $roundnumber, $predictionthisjson, $amount);
 }
 if ($operation == "deposit") {
   $resparr = deposit($conn, $email, $amount);
@@ -76,7 +76,7 @@ if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
 // var_dump($resparr);
-if($operation == "loginUser" || $operation == "makebet" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalcompleted" || $operation == "winnings") {
+if($operation == "loginUser" || $operation == "makeprediction" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalcompleted" || $operation == "winnings") {
   $r = array();
   $r = transhistory($conn, $email);
   $resparr["trans-history"] = $r;
@@ -196,10 +196,10 @@ function resetPassword($conn, $email, $pswd)
   return $resparr;
 }
 
-function makebet($conn, $email, $roundnumber, $betthisjson, $amount)
+function makeprediction($conn, $email, $roundnumber, $predictionthisjson, $amount)
 {
   $resparr = array();
-  $sql = "INSERT INTO bets (email, roundnumber, betthisjson, amount, datecreated) VALUES ('$email','$roundnumber','$betthisjson', $amount, now())";
+  $sql = "INSERT INTO prediction (email, roundnumber, predictionthisjson, amount, datecreated) VALUES ('$email','$roundnumber','$predictionthisjson', $amount, now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");
@@ -209,10 +209,10 @@ function makebet($conn, $email, $roundnumber, $betthisjson, $amount)
 
   return $resparr;
 }
-function getbets($conn, $email, $roundnumber)
+function getprediction($conn, $email, $roundnumber)
 {
   $resparr = array();
-  $sql = "SELECT * FROM bets WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id desc";
+  $sql = "SELECT * FROM prediction WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id desc";
 
   $result = $conn->query($sql);
 

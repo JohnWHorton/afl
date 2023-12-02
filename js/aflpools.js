@@ -12,7 +12,7 @@ var regemail = "";
 var regpwrd = "";
 var repregpword = "";
 var modal = document.getElementById("loginbox");
-var itemNumber = "BET20";
+var itemNumber = "Prediction20";
 var itemName = "Pool ticket";
 var itemPrice = "30";
 var currency = "AUD";
@@ -548,7 +548,7 @@ function setWinner(gid, win) {
     }
   }
 
-  betcnt();
+  predictioncnt();
 }
 function gameSelected(gid) {
   // console.log("games", games);
@@ -616,34 +616,34 @@ function gameSelected(gid) {
       );
     }
   }
-  betcnt();
+  predictioncnt();
 }
-function betcnt() {
-  let betcnt = 0;
+function predictioncnt() {
+  let predictioncnt = 0;
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked && games[i].winname > "") {
-      betcnt++;
-      console.log("betcnt", betcnt);
+      predictioncnt++;
+      console.log("predictioncnt", predictioncnt);
     }
   }
-  if (betcnt == 6) {
-    $("#betnow").show();
-    // document.getElementById("betnow").focus();
+  if (predictioncnt == 6) {
+    $("#predictionnowbtn").show();
+    // document.getElementById("predictnow").focus();
     window.scrollTo(0, document.body.scrollHeight);
   } else {
-    $("#betnow").hide();
+    $("#predictionnowbtn").hide();
   }
 }
-function makebet() {
-  let betthis = games.filter((games) => games.checked === true);
-  let betthisjson = JSON.stringify(betthis);
-  console.log("betthisjson", betthisjson);
+function makeprediction() {
+  let prediction = games.filter((games) => games.checked === true);
+  let predictionjson = JSON.stringify(prediction);
+  console.log("predictionjson", predictionjson);
 
   var parms = {
-    operation: "makebet",
+    operation: "makeprediction",
     email: loggedInUser.email,
     roundnumber: roundnumber,
-    betthisjson: betthisjson,
+    predictionjson: predictionjson,
     amount: 20,
   };
 
@@ -654,23 +654,23 @@ function makebet() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      console.log("Bet made", parms);
+      console.log("Prediction made", parms);
       if (response["trans-history"]) {
         loggedInUser.funds = calBal(response["trans-history"]);
       } else {
         loggedInUser.funds = 0;
       }
-      // display bet with ticket number
+      // display Prediction with ticket number
     },
     error: function () {
       showMsg("Error");
     },
   });
 }
-function getBets() {
+function getPrediction() {
   $("#spinner").show();
   var parms = {
-    operation: "getbets",
+    operation: "getPrediction",
     email: loggedInUser.email,
     roundnumber: roundnumber,
   };
@@ -701,7 +701,7 @@ function getBets() {
   //   for (j = 0; j < games.length; j++) {
   //     let g = games[j];
   //     let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}`;
-  //     let p = JSON.parse(predictions[i].betthisjson);
+  //     let p = JSON.parse(predictions[i].predictionthisjson);
   //     for (k = 0; k < p.length; k++) {
   //       if (games[i].gameid == p[k].gameid) {
   //         h1 += ` predicted ${p[k].winname}`;
@@ -716,7 +716,7 @@ function getBets() {
   // console.log("predictions", predictions);
   for (j = 0; j < predictions.length; j++) {
     console.log(`Prediction ${j + 1}`);
-    p = JSON.parse(predictions[j].betthisjson);
+    p = JSON.parse(predictions[j].predictionthisjson);
     for (k = 0; k < p.length; k++) {
       for (i = 0; i < games.length; i++) {
         if (games[i].gameid == p[k].gameid) {

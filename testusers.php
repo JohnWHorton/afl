@@ -53,7 +53,7 @@ $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "";
 $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
-$betthisjson = isset($request->betthisjson) ? $request->betthisjson : "";
+$predictionjson = isset($request->predictionjson) ? $request->predictionjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
@@ -82,7 +82,7 @@ if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
 if ($operation == "makebet") {
-  $resparr = makebet($conn, $email, $betthisjson, $amount);
+  $resparr = makebet($conn, $email, $predictionjson, $amount);
 }
 if ($operation == "deposit") {
   $resparr = deposit($conn, $email, $amount);
@@ -211,10 +211,10 @@ function resetPassword($conn, $email, $pswd)
   return $resparr;
 }
 
-function makebet($conn, $email, $betthisjson, $amount)
+function makebet($conn, $email, $predictionjson, $amount)
 {
   $resparr = array();
-  $sql = "INSERT INTO bets (email, betthisjson, amount, datecreated) VALUES ('$email','$betthisjson', $amount, now())";
+  $sql = "INSERT INTO bets (email, predictionjson, amount, datecreated) VALUES ('$email','$predictionjson', $amount, now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");

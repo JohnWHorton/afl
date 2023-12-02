@@ -20,7 +20,7 @@ $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "";
 $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
-$betthisjson = isset($request->betthisjson) ? $request->betthisjson : "";
+$predictionjson = isset($request->predictionjson) ? $request->predictionjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 1;
 
@@ -55,7 +55,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        array_push($betsarray, json_decode($row["betthisjson"]));
+        array_push($betsarray, json_decode($row["predictionjson"]));
     }
 } else {
     array_push($betsarray, [$sql]);
