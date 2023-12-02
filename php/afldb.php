@@ -76,8 +76,11 @@ if ($operation == "loginUser") {
 if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
+if ($operation == "getbets") {
+  $resparr = getbets($conn, $email, $roundnumber);
+}
 if ($operation == "makebet") {
-  $resparr = makebet($conn, $email, $betthisjson, $amount);
+  $resparr = makebet($conn, $email, $roundnumber, $betthisjson, $amount);
 }
 if ($operation == "deposit") {
   $resparr = deposit($conn, $email, $amount);
@@ -190,7 +193,7 @@ function transhistory($conn, $email)
 {
   $resparr = array();
 
-  $sql = "SELECT date(date) as date, transtype, amount FROM `trans_history` WHERE `email` = '$email' ORDER BY date asc";
+  $sql = "SELECT date(date) as date, transtype, amount FROM `trans_history` WHERE `email` = '$email' ORDER BY date desc";
 
   $result = $conn->query($sql);
 
@@ -218,15 +221,32 @@ function resetPassword($conn, $email, $pswd)
   return $resparr;
 }
 
-function makebet($conn, $email, $betthisjson, $amount)
+function makebet($conn, $email, $roundnumber, $betthisjson, $amount)
 {
   $resparr = array();
-  $sql = "INSERT INTO bets (email, betthisjson, amount, datecreated) VALUES ('$email','$betthisjson', $amount, now())";
+  $sql = "INSERT INTO bets (email, roundnumber, betthisjson, amount, datecreated) VALUES ('$email','$roundnumber','$betthisjson', $amount, now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");
   } else {
     array_push($resparr, 'error', $sql);
+  }
+
+  return $resparr;
+}
+function getbets($conn, $email, $roundnumber)
+{
+  $resparr = array();
+  $sql = "SELECT * FROM bets WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id desc";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  } else {
+    array_push($resparr, $sql);
   }
 
   return $resparr;

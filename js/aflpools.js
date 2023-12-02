@@ -25,6 +25,7 @@ var roundnumber = 1;
 var rounds = [];
 var games = [];
 var trans_history = [];
+var predictions = [];
 
 $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
@@ -102,18 +103,18 @@ function getGames() {
     let result = games[i].result;
 
     if (completed == true) {
-      document.getElementById("roundname").innerHTML = `Round ${roundnumber} Closed`;
+      document.getElementById(
+        "roundname"
+      ).innerHTML = `Round ${roundnumber} Closed`;
     } else {
       document.getElementById("roundname").innerHTML = `Round ${roundnumber}`;
     }
 
-    tableleft +=
-      `
+    tableleft += `
     <tr>`;
 
     if (completed == true) {
-      tableleft +=
-        `
+      tableleft += `
     <td class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">
       <div>        
           Closed
@@ -155,7 +156,8 @@ function getGames() {
       </div>
     </td>`;
     } else {
-      tableleft += `
+      tableleft +=
+        `
     <td class="col-sm-12 col-md-1" style="max-width: 18%!important;">
       <div class="form-check">
         <label class="form-check-label">
@@ -236,9 +238,9 @@ function calBal(x) {
   let bal = 0;
   for (i = 0; i < x.length; i++) {
     if (x[i].transtype == "Deposit") {
-      bal = bal + x[i].amount;
+      bal = bal + parseFloat(x[i].amount);
     } else {
-      bal = bal - x[i].amount;
+      bal = bal - parseFloat(x[i].amount);
     }
   }
   document.getElementById("funds").innerHTML = `Available Funds $ ${bal} AUD`;
@@ -640,6 +642,7 @@ function makebet() {
   var parms = {
     operation: "makebet",
     email: loggedInUser.email,
+    roundnumber: roundnumber,
     betthisjson: betthisjson,
     amount: 20,
   };
@@ -664,6 +667,70 @@ function makebet() {
     },
   });
 }
+function getBets() {
+  $("#spinner").show();
+  var parms = {
+    operation: "getbets",
+    email: loggedInUser.email,
+    roundnumber: roundnumber,
+  };
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      predictions = response;
+      // }
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
+  $("#spinner").hide();
+
+  // for logic testing
+  // console.log("predictions", predictions);
+  // for (i = 0; i < predictions.length; i++) {
+  //   console.log(`Prediction ${i + 1}`);
+  //   for (j = 0; j < games.length; j++) {
+  //     let g = games[j];
+  //     let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}`;
+  //     let p = JSON.parse(predictions[i].betthisjson);
+  //     for (k = 0; k < p.length; k++) {
+  //       if (games[i].gameid == p[k].gameid) {
+  //         h1 += ` predicted ${p[k].winname}`;
+  //         break;
+  //       }
+  //     }
+
+  //     console.log(h1);
+  //   }
+  // }
+  // test 2
+  // console.log("predictions", predictions);
+  for (j = 0; j < predictions.length; j++) {
+    console.log(`Prediction ${j + 1}`);
+    p = JSON.parse(predictions[j].betthisjson);
+    for (k = 0; k < p.length; k++) {
+      for (i = 0; i < games.length; i++) {
+        if (games[i].gameid == p[k].gameid) {
+          g = games[i];
+          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}`;
+          console.log(h1);
+        }
+      }
+    }
+  }
+
+  // end
+}
+
 function withdrawalcomplete(refid) {
   var parms = {
     operation: "withdrawalcomplete",

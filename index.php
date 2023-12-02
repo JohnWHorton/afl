@@ -36,10 +36,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
                         <a class="dropdown-item" onclick="showHideDepositbox()">Deposit funds</a>
-                        <a class="dropdown-item" onclick="showMyBal()">What's my balance</a>
+                        <a class="dropdown-item" onclick="getBets()">My predictions</a>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" onclick="showHideWithdrawbox()">Withdraw funds</a>
-                        <a class="dropdown-item" onclick="getTransactionhistory()">Show my history</a>
+                        <a class="dropdown-item" onclick="getTransactionhistory()">Show my transactions</a>
                     </div>
                 </li>
                 <li class="form-inline">
