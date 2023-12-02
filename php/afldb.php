@@ -91,6 +91,9 @@ if ($operation == "withdrawalrequest") {
 if ($operation == "withdrawalcompleted") {
   $resparr = withdrawalcompleted($conn, $email, $amount);
 }
+if ($operation == "winnings") {
+  $resparr = winnings($conn, $email, $amount);
+}
 if ($operation == "rounds") {
   $resparr = rounds($conn);
 }
@@ -101,7 +104,7 @@ if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
 // var_dump($resparr);
-if($operation == "loginUser" || $operation == "makebet" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalcompleted") {
+if($operation == "loginUser" || $operation == "makebet" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalcompleted" || $operation == "winnings") {
   $r = array();
   $r = transhistory($conn, $email);
   $resparr["trans-history"] = $r;
@@ -288,6 +291,21 @@ function withdrawalcompleted($conn, $email, $amount)
   $resparr = array();
 
   $sql = "INSERT INTO withdrawalcompleted (email, amount, datecreated) VALUES ('$email','$amount',  now())";
+
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "success");
+  } else {
+    array_push($resparr, 'error', $sql);
+  }
+
+  return $resparr;
+}
+function winnings($conn, $email, $amount)
+{
+
+  $resparr = array();
+
+  $sql = "INSERT INTO winnings (email, amount, datecreated) VALUES ('$email','$amount',  now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");

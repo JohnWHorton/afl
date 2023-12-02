@@ -608,6 +608,29 @@ INSERT INTO withdrawalcompleted (id, email, requestid, amount, datecreated) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table withdrawalcompleted
+--
+
+DROP TABLE IF EXISTS winnings;
+CREATE TABLE IF NOT EXISTS winnings (
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  requestid int NOT NULL,
+  amount decimal(10,0) NOT NULL,
+  datecreated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY EMAIL (email)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table withdrawalcompleted
+--
+
+INSERT INTO winnings (id, email, requestid, amount, datecreated) VALUES
+(1, 'tiffaman@gmail.com', 1, '333', '2023-12-01 13:06:23');
+
+-- --------------------------------------------------------
+--
 -- Table structure for table withdrawalrequests
 --
 
@@ -639,7 +662,16 @@ INSERT INTO withdrawalrequests (id, email, amount, datecreated) VALUES
 DROP TABLE IF EXISTS `trans_history`;
 
 DROP VIEW IF EXISTS trans_history;
-CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=john@`%` SQL SECURITY DEFINER VIEW trans_history  AS SELECT deposits.email AS `email`, 'Deposit' AS `transtype`, deposits.amount AS `amount`, deposits.datecreated AS `Date` FROM deposits union select withdrawalrequests.email AS email,'Withdrawal Request' AS transtype,withdrawalrequests.amount AS amount,withdrawalrequests.datecreated AS `Date` from withdrawalrequests union select withdrawalcompleted.email AS email,'Withdrawal Completed' AS transtype,withdrawalcompleted.amount AS amount,withdrawalcompleted.datecreated AS `Date` from withdrawalcompleted union select bets.email AS email,'Prediction' AS transtype,bets.amount AS amount,bets.datecreated AS `Date` from bets  ;
+CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=john@`%` SQL SECURITY DEFINER VIEW trans_history  
+AS SELECT deposits.email AS `email`, 'Deposit' AS `transtype`, deposits.amount AS `amount`, deposits.datecreated AS `Date` FROM deposits 
+union 
+select withdrawalrequests.email AS email,'Withdrawal Request' AS transtype,withdrawalrequests.amount AS amount,withdrawalrequests.datecreated AS `Date` from withdrawalrequests 
+union 
+select withdrawalcompleted.email AS email,'Withdrawal Completed' AS transtype,withdrawalcompleted.amount AS amount,withdrawalcompleted.datecreated AS `Date` from withdrawalcompleted 
+union 
+select bets.email AS email,'Prediction' AS transtype,bets.amount AS amount,bets.datecreated AS `Date` from bets
+union
+select  winnings.email AS email,'Winnings' AS transtype, winnings.amount AS amount, winnings.datecreated AS `Date` from  winnings ;  
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

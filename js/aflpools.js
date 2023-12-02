@@ -733,7 +733,7 @@ function getBets() {
 
 function withdrawalcomplete(refid) {
   var parms = {
-    operation: "withdrawalcomplete",
+    operation: "withdrawalcompleted",
     email: loggedInUser.email,
     amount: amount,
   };
@@ -747,6 +747,36 @@ function withdrawalcomplete(refid) {
     success: function (response) {
       if (response.length == 0) {
         showMsg("Withdrawal failed");
+      } else {
+        if (response["trans-history"]) {
+          loggedInUser.funds = calBal(response["trans-history"]);
+        } else {
+          loggedInUser.funds = 0;
+        }
+        showMsg("Withdrawal completed");
+      }
+    },
+    error: function () {
+      showMsg("Error");
+    },
+  });
+}
+function winnings() {
+  var parms = {
+    operation: "winnings",
+    email: loggedInUser.email,
+    amount: amount,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        showMsg("Winnings failed");
       } else {
         if (response["trans-history"]) {
           loggedInUser.funds = calBal(response["trans-history"]);
