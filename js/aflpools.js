@@ -237,7 +237,7 @@ function calBal(x) {
   trans_history = x;
   let bal = 0;
   for (i = 0; i < x.length; i++) {
-    if (x[i].transtype == "Deposit") {
+    if (x[i].transtype == "Deposit" || x[i].transtype == "Winnings") {
       bal = bal + parseFloat(x[i].amount);
     } else {
       bal = bal - parseFloat(x[i].amount);
