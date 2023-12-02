@@ -176,6 +176,8 @@ function transhistory($conn, $email)
     while ($row = $result->fetch_assoc()) {
       array_push($resparr, $row);
     }
+  } else {
+    array_push($resparr, $sql);
   }
 
   return $resparr;
@@ -219,6 +221,7 @@ function getprediction($conn, $email, $roundnumber)
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
       array_push($resparr, $row);
+      // array_push($resparr, $sql);
     }
   } else {
     array_push($resparr, $sql);
