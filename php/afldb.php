@@ -1,45 +1,17 @@
 <?php
 
-$host = 'localhost';
-$db = 'afl';
-$user = 'john';
-$pass = 'john';
-$charset = 'utf8mb4';
-
-// $host = '13.49.223.11';
+// $host = 'localhost';
 // $db = 'afl';
-// $user = 'tiffaman@gmail.com';
-// $pass = 'V4513john';
+// $user = 'john';
+// $pass = 'john';
 // $charset = 'utf8mb4';
 
+$host = '13.49.223.11';
+$db = 'afl';
+$user = 'aflpools';
+$pass = 'V4513john';
+$charset = 'utf8mb4';
 
-/*
-calc balance
-SELECT email, sum(dep) , sum(withd) , (sum(dep) - sum(withd)) bal  FROM `balance`
-group by email
-
-SELECT sum(`deposit_amt`), sum(`request_amt`), sum(`completed_amt`),
-(sum(`deposit_amt`)-sum(`request_amt`)-sum(`completed_amt`)) as balance 
-FROM `transaction_history` 
-group by email;
-
-select * 
-FROM transaction_history
-WHERE email= "john.horton86@gmail.com";
-
-drop view transaction_history;
-
-create view transaction_history as
-SELECT `email` AS `email`, `amount` AS `deposit_amt`, 0 AS `request_amt`, 0 AS `completed_amt`,`datecreated` 
-FROM `deposits` 
-union 
-SELECT `email` AS `email`, 0 AS `deposit_amt`, `amount` AS `request_amt`, 0 AS `completed_amt`,`datecreated` 
-FROM `withdrawalrequests` 
-union 
-SELECT `email` AS `email`, 0 AS `deposit_amt`, 0 AS `request_amt`, `amount` AS `completed_amt`,`datecreated` 
-FROM `withdrawalcompleted`
-
-*/
 $conn = new mysqli($host, $user, $pass, $db);
 
 // Check connection
@@ -58,7 +30,7 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-// $operation = "resetPassword";
+// $operation = "games";
 // $email = "john.horton86@gmail.com";
 // $pswd = "999";
 // $roundnumber = 1;
