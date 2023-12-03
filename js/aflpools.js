@@ -628,11 +628,10 @@ function predictioncnt() {
     }
   }
   if (predictioncnt == 6) {
-    $("#betnow").show();
-    // document.getElementById("betnow").focus();
+    $("#predictnow").show();
     window.scrollTo(0, document.body.scrollHeight);
   } else {
-    $("#betnow").hide();
+    $("#predictnow").hide();
   }
 }
 function makeprediction() {
@@ -699,17 +698,27 @@ function getPredictions() {
   // test 
   // console.log("predictions", predictions);
   for (j = 0; j < predictions.length; j++) {
+    let tot = 0;
     console.log(`Prediction ${j + 1}`);
     p = JSON.parse(predictions[j].predictthisjson);
     for (k = 0; k < p.length; k++) {
       for (i = 0; i < games.length; i++) {
         if (games[i].gameid == p[k].gameid) {
           g = games[i];
-          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}`;
+
+          if (g.result == p[k].winname) {
+            tot++;
+            desc = "GREEN TICK";
+          } else {
+            desc = "RED CROSS";
+          }
+
+          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
           console.log(h1);
         }
       }
     }
+    console.log(`You got ${tot} wins out of 6`);
   }
 
   // end

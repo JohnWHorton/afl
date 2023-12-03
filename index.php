@@ -116,7 +116,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <tbody id="tableleft">
                             </tbody>
                         </table>
-                        <div id="predicnow" style="display: none;">
+                        <div id="predictnow" style="display: none;">
                             <center>
                                 <button class="btn predictionnowbtn" onclick="makeprediction()">Contribute</button>
                             </center>
