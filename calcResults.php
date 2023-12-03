@@ -25,7 +25,7 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 1;
 
 // testing stand alone
-// $operation = "makebet";
+// $operation = "makeprediction";
 // $email = "john.horton86@gmail.com";
 // $pswd = "999";
 // $roundnumber = 1;

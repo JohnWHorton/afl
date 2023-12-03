@@ -11,6 +11,7 @@ var loggedInUser = "";
 var regemail = "";
 var regpwrd = "";
 var repregpword = "";
+var predictionamount = 20;
 var modal = document.getElementById("loginbox");
 var itemNumber = "BET20";
 var itemName = "Pool ticket";
@@ -548,7 +549,7 @@ function setWinner(gid, win) {
     }
   }
 
-  betcnt();
+  predictioncnt();
 }
 function gameSelected(gid) {
   // console.log("games", games);
@@ -616,17 +617,17 @@ function gameSelected(gid) {
       );
     }
   }
-  betcnt();
+  predictioncnt();
 }
-function betcnt() {
-  let betcnt = 0;
+function predictioncnt() {
+  let predictioncnt = 0;
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked && games[i].winname > "") {
-      betcnt++;
-      console.log("betcnt", betcnt);
+      predictioncnt++;
+      console.log("predictioncnt", predictioncnt);
     }
   }
-  if (betcnt == 6) {
+  if (predictioncnt == 6) {
     $("#betnow").show();
     // document.getElementById("betnow").focus();
     window.scrollTo(0, document.body.scrollHeight);
@@ -634,17 +635,17 @@ function betcnt() {
     $("#betnow").hide();
   }
 }
-function makebet() {
-  let betthis = games.filter((games) => games.checked === true);
-  let betthisjson = JSON.stringify(betthis);
-  console.log("betthisjson", betthisjson);
+function makeprediction() {
+  let predictthis = games.filter((games) => games.checked === true);
+  let predictthisjson = JSON.stringify(predictthis);
+  console.log("predictthisjson", predictthisjson);
 
   var parms = {
-    operation: "makebet",
+    operation: "makeprediction",
     email: loggedInUser.email,
     roundnumber: roundnumber,
-    betthisjson: betthisjson,
-    amount: 20,
+    predictthisjson: predictthisjson,
+    amount: predictionamount
   };
 
   $.ajax({
@@ -667,10 +668,10 @@ function makebet() {
     },
   });
 }
-function getPrediction() {
+function getPredictions() {
   $("#spinner").show();
   var parms = {
-    operation: "getPrediction",
+    operation: "getPredictions",
     email: loggedInUser.email,
     roundnumber: roundnumber,
   };
@@ -699,7 +700,7 @@ function getPrediction() {
   // console.log("predictions", predictions);
   for (j = 0; j < predictions.length; j++) {
     console.log(`Prediction ${j + 1}`);
-    p = JSON.parse(predictions[j].betthisjson);
+    p = JSON.parse(predictions[j].predictthisjson);
     for (k = 0; k < p.length; k++) {
       for (i = 0; i < games.length; i++) {
         if (games[i].gameid == p[k].gameid) {
@@ -716,7 +717,7 @@ function getPrediction() {
 
 function withdrawalcomplete(refid) {
   var parms = {
-    operation: "withdrawalcompleted",
+    operation: "withdrawalscompleted",
     email: loggedInUser.email,
     amount: amount,
   };

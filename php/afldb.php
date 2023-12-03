@@ -25,7 +25,7 @@ $request = json_decode($postdata);
 $operation = isset($request->operation) ? $request->operation : "";
 $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
-$predictionthisjson = isset($request->predictionthisjson) ? $request->predictionthisjson : "";
+$predictthisjson = isset($request->predictthisjson) ? $request->predictthisjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
@@ -48,11 +48,11 @@ if ($operation == "loginUser") {
 if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
-if ($operation == "getPrediction") {
-  $resparr = getPrediction($conn, $email, $roundnumber);
+if ($operation == "getPredictions") {
+  $resparr = getPredictions($conn, $email, $roundnumber);
 }
 if ($operation == "makeprediction") {
-  $resparr = makeprediction($conn, $email, $roundnumber, $predictionthisjson, $amount);
+  $resparr = makeprediction($conn, $email, $roundnumber, $predictthisjson, $amount);
 }
 if ($operation == "deposit") {
   $resparr = deposit($conn, $email, $amount);
@@ -60,8 +60,8 @@ if ($operation == "deposit") {
 if ($operation == "withdrawalrequest") {
   $resparr = withdrawalrequest($conn, $email, $amount);
 }
-if ($operation == "withdrawalcompleted") {
-  $resparr = withdrawalcompleted($conn, $email, $amount);
+if ($operation == "withdrawalscompleted") {
+  $resparr = withdrawalscompleted($conn, $email, $amount);
 }
 if ($operation == "winnings") {
   $resparr = winnings($conn, $email, $amount);
@@ -76,7 +76,7 @@ if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
 // var_dump($resparr);
-if($operation == "loginUser" || $operation == "makeprediction" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalcompleted" || $operation == "winnings") {
+if($operation == "loginUser" || $operation == "makeprediction" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalscompleted" || $operation == "winnings") {
   $r = array();
   $r = transhistory($conn, $email);
   $resparr["trans-history"] = $r;
@@ -198,10 +198,10 @@ function resetPassword($conn, $email, $pswd)
   return $resparr;
 }
 
-function makeprediction($conn, $email, $roundnumber, $predictionthisjson, $amount)
+function makeprediction($conn, $email, $roundnumber, $predictthisjson, $amount)
 {
   $resparr = array();
-  $sql = "INSERT INTO prediction (email, roundnumber, predictionthisjson, amount, datecreated) VALUES ('$email','$roundnumber','$predictionthisjson', $amount, now())";
+  $sql = "INSERT INTO predictions (email, roundnumber, predictthisjson, amount, datecreated) VALUES ('$email','$roundnumber','$predictthisjson', $amount, now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "added");
@@ -211,10 +211,10 @@ function makeprediction($conn, $email, $roundnumber, $predictionthisjson, $amoun
 
   return $resparr;
 }
-function getprediction($conn, $email, $roundnumber)
+function getPredictions($conn, $email, $roundnumber)
 {
   $resparr = array();
-  $sql = "SELECT * FROM prediction WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id desc";
+  $sql = "SELECT * FROM predictions WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id desc";
 
   $result = $conn->query($sql);
 
@@ -260,12 +260,12 @@ function withdrawalrequest($conn, $email, $amount)
 
   return $resparr;
 }
-function withdrawalcompleted($conn, $email, $amount)
+function withdrawalscompleted($conn, $email, $amount)
 {
 
   $resparr = array();
 
-  $sql = "INSERT INTO withdrawalcompleted (email, amount, datecreated) VALUES ('$email','$amount',  now())";
+  $sql = "INSERT INTO withdrawalscompleted (email, amount, datecreated) VALUES ('$email','$amount',  now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");

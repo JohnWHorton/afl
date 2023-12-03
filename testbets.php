@@ -37,7 +37,7 @@ SELECT `email` AS `email`, 0 AS `deposit_amt`, `amount` AS `request_amt`, 0 AS `
 FROM `withdrawalrequests` 
 union 
 SELECT `email` AS `email`, 0 AS `deposit_amt`, 0 AS `request_amt`, `amount` AS `completed_amt`,`datecreated` 
-FROM `withdrawalcompleted`
+FROM `withdrawalscompleted`
 
 */
 $conn = new mysqli($host, $user, $pass, $db);
@@ -58,7 +58,7 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // testing stand alone
-$operation = "makebet";
+$operation = "makeprediction";
 // $email = "john.horton86@gmail.com";
 // $pswd = "999";
 // $roundnumber = 1;
@@ -68,7 +68,7 @@ for ($i = 10; $i < 25; $i++) {
   $email = "testuser".$i."@afltest.com";
     $amount = $i * 20;
 //   $pswd = "999";
-  $resparr = makebet($conn, $email, $predictionjson, $amount);
+  $resparr = makeprediction($conn, $email, $predictionjson, $amount);
 }
 
 
@@ -83,8 +83,8 @@ if ($operation == "loginUser") {
 if ($operation == "resetPassword") {
   $resparr = resetPassword($conn, $email, $pswd);
 }
-if ($operation == "makebet") {
-  $resparr = makebet($conn, $email, $predictionjson, $amount);
+if ($operation == "makeprediction") {
+  $resparr = makeprediction($conn, $email, $predictionjson, $amount);
 }
 if ($operation == "deposit") {
   $resparr = deposit($conn, $email, $amount);
@@ -92,8 +92,8 @@ if ($operation == "deposit") {
 if ($operation == "withdrawalrequest") {
   $resparr = withdrawalrequest($conn, $email, $amount);
 }
-if ($operation == "withdrawalcompleted") {
-  $resparr = withdrawalcompleted($conn, $email, $amount);
+if ($operation == "withdrawalscompleted") {
+  $resparr = withdrawalscompleted($conn, $email, $amount);
 }
 if ($operation == "games") {
   $resparr = games($conn, $roundnumber);
@@ -213,7 +213,7 @@ function resetPassword($conn, $email, $pswd)
   return $resparr;
 }
 
-function makebet($conn, $email, $predictionjson, $amount)
+function makeprediction($conn, $email, $predictionjson, $amount)
 {
   $resparr = array();
   $sql = "INSERT INTO bets (email, predictionjson, amount, datecreated) VALUES ('$email','$predictionjson', $amount, now())";
@@ -257,12 +257,12 @@ function withdrawalrequest($conn, $email, $amount)
 
   return $resparr;
 }
-function withdrawalcompleted($conn, $email, $amount)
+function withdrawalscompleted($conn, $email, $amount)
 {
 
   $resparr = array();
 
-  $sql = "INSERT INTO withdrawalcompleted (email, amount, datecreated) VALUES ('$email','$amount',  now())";
+  $sql = "INSERT INTO withdrawalscompleted (email, amount, datecreated) VALUES ('$email','$amount',  now())";
 
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");
