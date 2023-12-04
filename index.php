@@ -79,7 +79,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div id="afldata">
             <div class="colcontainer">
                 <div class="row" style="width: 100%!important;">
-                    <!-- <div class="col-sm-1 col-md-4"></div> -->
+                    <div class="col-sm-1 col-md-4"></div>
                     <div class="col-sm-12" style="text-align: center; margin-left: 1rem; margin-right: -0.9rem; margin-top: 2rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
                         <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
@@ -106,7 +106,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <center>
                 <div class="row" style="width: 100%!important; ">
-                    <!-- <div class="col-md-4"></div> -->
+                    <div class="col-md-4"></div>
                     <div class="col-sm-12" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <div id="spinner" class="spinner-border text-danger" role="status">
                             <span class="sr-only">Loading...</span>

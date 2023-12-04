@@ -209,6 +209,8 @@ function showHistory() {
   }
   document.getElementById("historybody").innerHTML = historytable;
 }
+
+
 function showHideLoginbox() {
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
