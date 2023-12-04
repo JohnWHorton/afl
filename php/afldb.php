@@ -168,7 +168,7 @@ function transhistory($conn, $email)
 {
   $resparr = array();
 
-  $sql = "SELECT date(date) as date, transtype, amount FROM `trans_history` WHERE `email` = '$email' ORDER BY date desc";
+  $sql = "SELECT date_format(`date`, '%Y-%m-%d %H:%i:%S') as date, transtype, amount FROM `trans_history` WHERE `email` = '$email' ORDER BY date desc";
 
   $result = $conn->query($sql);
 
