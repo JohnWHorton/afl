@@ -656,7 +656,7 @@ function makeprediction() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      console.log("Bet made", parms);
+      console.log("Prediction made", parms);
       if (response["trans-history"]) {
         loggedInUser.funds = calBal(response["trans-history"]);
       } else {

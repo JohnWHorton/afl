@@ -1,5 +1,11 @@
 <?php
 
+// $host = 'localhost';
+// $db = 'afl';
+// $user = 'john';
+// $pass = 'john';
+// $charset = 'utf8mb4';
+
 $host = '13.49.223.11';
 $db = 'afl';
 $user = 'aflpools';
@@ -49,7 +55,6 @@ if ($result->num_rows > 0) {
 
 
 $predictionsarray = array();
-$predictjsonarray = array();
 $sql = "SELECT * FROM predictions
           WHERE roundnumber = '$roundnumber'";
 
@@ -66,63 +71,72 @@ if ($result->num_rows > 0) {
 // var_dump($predictionsarray);
 
 // for ($j = 0; $j < count($predictionsarray); $j++) {
-// $tot = 0;
+$wincnt = 0;
 foreach ($predictionsarray as $obj) {
-    echo $obj['id'] . "\n";
-    echo $obj['email'] . "\n";
+    $predictions_id = $obj['id'];
+    $predictions_email = $obj['email'];
+    $desc = "";
+    $correct_cnt = 0;
     $predictjsonarray = json_decode($obj['predictthisjson'], true);
     if (!json_last_error()) {
-        foreach ($predictjsonarray as $objjson) {
-            echo $objjson['hometeamname'] . " vs " . $objjson['awayteamname'] . "\n";
+        $tot = 0;
+        foreach ($predictjsonarray as $objjson) {           
+            $p = $objjson;
+            for ($i = 0; $i < count($gamesarray); $i++) {
+                $g = $gamesarray[$i];
+                
+                if ($g["gameid"] == $p["gameid"]) {
+                    if ($g["result"] == $p["winname"]) {
+                        $tot++;
+                        $desc = "GREEN TICK";
+                    } else {
+                        $desc = "RED CROSS";
+                    }
+                    // echo $predictions_id . " " . $objjson['gameid'] . " " . $objjson['hometeamname'] . " vs " . $objjson['awayteamname'] . "winner " . $g["result"] . " predicted " . $p["winname"] . " " . $desc . " " . $tot . "\n";
+                }
+            }
+        }
+        echo $predictions_id . "\n";
+        echo $predictions_email . "\n";
+        echo $tot . "\n";
+        if($tot == 6) {
+            $win = "1";
+            $wincnt++;
+        } else{
+            $win = "0";
+        }
+
+        $sql = "UPDATE predictions SET correct_count = $tot, winner = $win WHERE id = $predictions_id";
+        echo $sql . "\n";
+
+        if ($conn->query($sql) === TRUE) {
+            echo 'success' . "\n";
+        } else {
+            echo 'error' . "\n";
         }
     }
 }
 
-// echo "Prediction {$j} {$x}->{id}";
-// p = JSON.parse(predictions[j].predictthisjson);
-// for (k = 0; k < p.length; k++) {
-//   for (i = 0; i < games.length; i++) {
-//     if (games[i].gameid == p[k].gameid) {
-//       g = games[i];
+$sql = "SELECT `roundnumber`, sum(amount) as amt, sum(winner) as wins 
+FROM `predictions` WHERE `roundnumber`= '$roundnumber'
+group by `roundnumber`";
 
-//       if (g.result == p[k].winname) {
-//         tot++;
-//         desc = "GREEN TICK";
-//       } else {
-//         desc = "RED CROSS";
-//       }
+$result = $conn->query($sql);
 
-//       let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
-//       console.log(h1);
-//     }
-//   }
-// }
-// console.log(`You got ${tot} wins out of 6`);
-//   }
-/*
-for (j = 0; j < predictions.length; j++) {
-    let tot = 0;
-    console.log(`Prediction ${j + 1}`);
-    p = JSON.parse(predictions[j].predictthisjson);
-    for (k = 0; k < p.length; k++) {
-      for (i = 0; i < games.length; i++) {
-        if (games[i].gameid == p[k].gameid) {
-          g = games[i];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $sql = "UPDATE rounds SET prize_pool = $row[amt], no_of_winners = $row[wins] WHERE roundnumber = $roundnumber";
+        echo $sql . "\n";
 
-          if (g.result == p[k].winname) {
-            tot++;
-            desc = "GREEN TICK";
-          } else {
-            desc = "RED CROSS";
-          }
-
-          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
-          console.log(h1);
+        if ($conn->query($sql) === TRUE) {
+            echo 'success' . "\n";
+        } else {
+            echo 'error' . "\n";
         }
-      }
     }
-    console.log(`You got ${tot} wins out of 6`);
-  }
-*/
+} else {
+    array_push($predictionsarray, [$sql]);
+}
 
-// var_dump($predictionsarray);
+
+
