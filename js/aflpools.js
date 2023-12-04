@@ -124,7 +124,7 @@ function getGames() {
     } else {
       tableleft +=
         `
-    <td class="col-sm-1" style="max-width: 18%!important;">
+    <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important;">
       <div>        
           <input class="agame" id="` +
         gameid +
@@ -136,14 +136,14 @@ function getGames() {
 
     tableleft +=
       `
-    <td class="col-sm-1" style="max-width: 18%!important;">
+    <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important;">
     <img src="./images/` +
       homeimg +
       `" alt="` +
       hometeamname +
       `" width="50" height="50"></td>
     <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black;">VS</td>
-    <td class="col-sm-1"  style="max-width: 18%!important;">
+    <td class="col-sm-1"  style="max-width: 18%!important;text-align: center!important;">
     <img src="./images/` +
       awayimg +
       `" alt="` +
@@ -152,7 +152,7 @@ function getGames() {
 
     if (completed == true) {
       tableleft += `
-    <td class="col-sm-12 col-md-1" style="max-width: 18%!important;">
+    <td class="col-sm-12 col-md-1" style="max-width: 18%!important; text-align: center!important;">
       Winner </br><h5>${result}</h5>
       </div>
     </td>`;
