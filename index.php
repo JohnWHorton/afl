@@ -36,6 +36,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
                         <a class="dropdown-item" onclick="showHideDepositbox()">Deposit funds</a>
+                        <a class="dropdown-item" onclick="getResults()">My results</a>
                         <a class="dropdown-item" onclick="getPredictions()">My predictions</a>
                         <!-- <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" onclick="showHideWithdrawbox()">Withdraw funds</a>

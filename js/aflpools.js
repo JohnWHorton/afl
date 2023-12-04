@@ -27,6 +27,7 @@ var rounds = [];
 var games = [];
 var trans_history = [];
 var predictions = [];
+var results = [];
 
 $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
@@ -725,7 +726,63 @@ function getPredictions() {
 
   // end
 }
+function getResults() {
+  $("#spinner").show();
+  var parms = {
+    operation: "getresults",
+    email: loggedInUser.email,
+    roundnumber: roundnumber,
+  };
 
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      results = response;
+      console.log(results);
+      // }
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
+  $("#spinner").hide();
+
+  
+  // test 
+  // console.log("predictions", predictions);
+  for (j = 0; j < predictions.length; j++) {
+    let tot = 0;
+    console.log(`Prediction ${j + 1}`);
+    p = JSON.parse(predictions[j].predictthisjson);
+    for (k = 0; k < p.length; k++) {
+      for (i = 0; i < games.length; i++) {
+        if (games[i].gameid == p[k].gameid) {
+          g = games[i];
+
+          if (g.result == p[k].winname) {
+            tot++;
+            desc = "GREEN TICK";
+          } else {
+            desc = "RED CROSS";
+          }
+
+          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
+          console.log(h1);
+        }
+      }
+    }
+    console.log(`You got ${tot} wins out of 6`);
+  }
+
+  // end
+}
 function withdrawalcomplete(refid) {
   var parms = {
     operation: "withdrawalscompleted",
