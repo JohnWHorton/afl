@@ -227,7 +227,7 @@ function getPredictions($conn, $email, $roundnumber)
       // array_push($resparr, $sql);
     }
   } else {
-    array_push($resparr, $sql);
+    array_push($resparr, []);
   }
 
   return $resparr;
