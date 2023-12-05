@@ -94,6 +94,17 @@ function getGames() {
   tableleft = "";
 
   for (i = 0; i < games.length; i++) {
+    let utcStartTime = games[i].utcStartTime;
+    // console.log("utcStartTime", utcStartTime);
+    const utcDateWithoutMillis = utcStartTime.slice(0, -5) + "Z";
+    // console.log("utcDateWithoutMillis", utcDateWithoutMillis);
+    const utcDate = new Date(utcDateWithoutMillis);
+    console.log("UTC Date:", utcDate.toISOString());
+    const offsetMinutes = utcDate.getTimezoneOffset();
+    console.log("Time Zone Offset(minutes) ", offsetMinutes);
+    const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000);
+    console.log("Local Time: ", localTime.toISOString());
+
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
     let homeimg = games[i].hometeamname.replaceAll(" ", "") + ".svg";

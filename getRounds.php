@@ -38,8 +38,13 @@ for ($rndno = 1; $rndno < 25; $rndno++) {
         $roundid = $matches[$i]["round"]["id"];
         $roundname = $matches[$i]["round"]["name"];
         $roundnumber = $matches[$i]["round"]["roundNumber"];
-        if (isset($matches[$i]["round"]["utcStartTime"])) {
-            $utcStartTime = $matches[$i]["round"]["utcStartTime"];
+        $venue = $matches[$i]["venue"]["name"];
+        $location = $matches[$i]["venue"]["location"];
+        $state = $matches[$i]["venue"]["state"];
+        $timezone = $matches[$i]["venue"]["timezone"];
+        
+        if (isset($matches[$i]["utcStartTime"])) {
+            $utcStartTime = $matches[$i]["utcStartTime"];     
         } else {
             $utcStartTime = "";
         }
@@ -53,10 +58,10 @@ for ($rndno = 1; $rndno < 25; $rndno++) {
         $awayteamnickname = $matches[$i]["away"]["team"]["nickname"];
 
 
-        $sql = "INSERT INTO `games`( `roundid`, `roundnumber`, `roundname`, `gameid`, `utcStartTime`, 
+        $sql = "INSERT INTO `games2`( `roundid`, `roundnumber`, `roundname`, `gameid`, `venue`, `location`, `state`, `timezone`, `utcStartTime`, 
                     `hometeamid`, `hometeamname`, `hometeamnickname`, `awayteamid`, `awayteamname`, `awayteamnickname`,
                     `completed`, `result`) 
-            VALUES ('$roundid','$roundnumber','$roundname','$gameid','$utcStartTime',
+            VALUES ('$roundid','$roundnumber','$roundname','$gameid','$venue', '$location', '$state', '$timezone','$utcStartTime',
                     '$hometeamid','$hometeamname','$hometeamnickname','$awayteamid','$awayteamname','$awayteamnickname',
                     false, '' )";
 
