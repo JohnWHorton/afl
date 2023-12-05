@@ -760,6 +760,7 @@ function getPredictions() {
 }
 function getResults() {
   $("#spinner").show();
+  
   var parms = {
     operation: "getresults",
     email: loggedInUser.email,
