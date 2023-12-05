@@ -25,7 +25,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
             <span class="navbar-toggler-icon"></span>
-        </button>
+</button>
 
         <div class="collapse navbar-collapse" id="collapse_target">
 
@@ -307,6 +307,32 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
         </div>
+
+        <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#predictionsbox').hide();">&times;</span>
+            </div>
+
+            <div class="container">
+                <!-- <h2 class="sticky-top">Predictions</h2> -->
+                <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
+                <table class="table sticky-top">
+                    <thead>
+                        <tr class="sticky-top">
+                            <th>Date</th>
+                            <th>Round</th>
+                            <th>Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody id="predictionsbody">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
         <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 
             <div class="overlay hidden">

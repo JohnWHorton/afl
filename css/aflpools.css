@@ -212,6 +212,16 @@ a {
     margin-bottom: 5px;
 }
 
+.historycontainer {
+    display: flex;
+    max-height: 500px;
+    max-width: 500px;
+    background-color: black !important;
+    color: black;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
 #info {
     font-size: 18px;
     color: #c3e1fb !important;
@@ -547,6 +557,17 @@ pre {
     width: 100%;
     overflow-x: auto;
 }
+.predictionscontainer {
+    display: flex;
+    max-height: 500px;
+    max-width: 500px;
+    background-color: black !important;
+    color: black;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+
 
 .registercontainer {
     display: flex;
@@ -557,17 +578,6 @@ pre {
     margin-top: 50px;
     overflow: hidden;
 }
-
-.historycontainer {
-    display: flex;
-    max-height: 500px;
-    max-width: 500px;
-    background-color: black !important;
-    color: black;
-    margin-top: 50px;
-    overflow: hidden;
-}
-
 .row {
     display: -ms-flexbox;
     display: flex;

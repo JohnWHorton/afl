@@ -209,6 +209,7 @@ function showHistory() {
   }
   document.getElementById("historybody").innerHTML = historytable;
 }
+
 function showHideLoginbox() {
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
@@ -644,7 +645,7 @@ function makeprediction() {
     email: loggedInUser.email,
     roundnumber: roundnumber,
     predictthisjson: predictthisjson,
-    amount: predictionamount
+    amount: predictionamount,
   };
 
   $.ajax({
@@ -694,8 +695,7 @@ function getPredictions() {
   });
   $("#spinner").hide();
 
-  
-  // test 
+  // test
   // console.log("predictions", predictions);
   for (j = 0; j < predictions.length; j++) {
     let tot = 0;
@@ -715,10 +715,31 @@ function getPredictions() {
 
           let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
           console.log(h1);
+          showPredictions();
+          $("#predictionsbox").show();
         }
       }
     }
+
     console.log(`You got ${tot} wins out of 6`);
+  }
+  function showPredictions() {
+    let predictionstable = "";
+    for (let i = 0; i < predictions.length; i++) {
+      predictionstable += `<tr>`;
+      predictionstable += `
+      <td>${predictions[i].date}</td>
+      `;
+      predictionstable += `
+      <td>${predictions[i].transtype}</td>
+      `;
+      predictionstable += `
+      <td>$ ${predictions[i].amount} AUD</td>
+      `;
+      predictionstable += `</tr>`;
+      console.log(predictionstable);
+    }
+    document.getElementById("predictionsbody").innerHTML = predictionstable;
   }
 
   // end
