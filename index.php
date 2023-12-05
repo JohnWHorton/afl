@@ -293,7 +293,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="container transtable">
                 <!-- <h2 class="sticky-top">Transactions</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table sticky-top">
+                <table class="table">
                     <thead>
                         <tr class="transtablehead sticky-top">
                             <th>Date</th>
@@ -318,12 +318,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="container">
                 <!-- <h2 class="sticky-top">Predictions</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table sticky-top">
+                <table class="table transtable">
                     <thead>
-                        <tr class="sticky-top">
-                            <th>Date</th>
-                            <th>Round</th>
-                            <th>Prediction</th>
+                        <tr class="sticky-top" style="z-index: 2;">
+                            <th>Game</th>
+                            <th>Home team</th>
+                            <th>Away team</th>
+                            <th>Predicted winner</th>
                         </tr>
                     </thead>
                     <tbody id="predictionsbody">

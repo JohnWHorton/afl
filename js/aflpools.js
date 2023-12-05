@@ -222,8 +222,6 @@ function showHistory() {
   document.getElementById("historybody").innerHTML = historytable;
 }
 
-
-
 function showHideLoginbox() {
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
@@ -709,58 +707,40 @@ function getPredictions() {
   });
   $("#spinner").hide();
 
-  // test
-  // console.log("predictions", predictions);
-  for (j = 0; j < predictions.length; j++) {
-    let tot = 0;
-    console.log(`Prediction ${j + 1}`);
-    p = JSON.parse(predictions[j].predictthisjson);
-    for (k = 0; k < p.length; k++) {
-      for (i = 0; i < games.length; i++) {
-        if (games[i].gameid == p[k].gameid) {
-          g = games[i];
+  showPredictions();
+  $("#predictionsbox").show();
+}
+function showPredictions() {
+  let predictionstable = "";
+  for (let i = 0; i < predictions.length; i++) {
+    let prediction = JSON.parse(predictions[i].predictthisjson);
 
-          if (g.result == p[k].winname) {
-            tot++;
-            desc = "GREEN TICK";
-          } else {
-            desc = "RED CROSS";
-          }
+    predictionstable += `<tr>`;
+    predictionstable += `
+      <td>Prediction: ${i + 1}</td>
+      </tr>
+      `;
 
-          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
-          console.log(h1);
-          showPredictions();
-          $("#predictionsbox").show();
-        }
-      }
-    }
-
-    console.log(`You got ${tot} wins out of 6`);
-  }
-  function showPredictions() {
-    let predictionstable = "";
-    for (let i = 0; i < predictions.length; i++) {
+    for (let j = 0; j < prediction.length; j++) {
       predictionstable += `<tr>`;
       predictionstable += `
-      <td>${predictions[i].date}</td>
-      `;
+      <td>${j + 1}</td>`;
       predictionstable += `
-      <td>${predictions[i].transtype}</td>
-      `;
+      <td>${prediction[j].hometeamname}</td>`;
       predictionstable += `
-      <td>$ ${predictions[i].amount} AUD</td>
-      `;
+      <td>${prediction[j].awayteamname}</td>`;
+      predictionstable += `
+      <td>${prediction[j].winname}</td>`;
       predictionstable += `</tr>`;
       console.log(predictionstable);
     }
-    document.getElementById("predictionsbody").innerHTML = predictionstable;
   }
-
-  // end
+  document.getElementById("predictionsbody").innerHTML = predictionstable;
 }
+
 function getResults() {
   $("#spinner").show();
-  
+
   var parms = {
     operation: "getresults",
     email: loggedInUser.email,
@@ -787,8 +767,7 @@ function getResults() {
   });
   $("#spinner").hide();
 
-  
-  // test 
+  // test
   // console.log("predictions", predictions);
   for (j = 0; j < predictions.length; j++) {
     let tot = 0;

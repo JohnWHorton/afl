@@ -430,7 +430,9 @@ a {
     width: fit-content;
     color: #c3e1fb;
 }
-
+.dropdown-item {
+    cursor: pointer;
+}
 /* navbar end  */
 
 
@@ -564,11 +566,13 @@ pre {
     background-color: black !important;
     color: black;
     margin-top: 50px;
-    overflow: hidden;
+    overflow: hiden;
 }
-
-
-
+#predictionsbody {
+    z-index: 1;
+    overflow:hidden;
+    overflow-y: scroll;
+}
 .registercontainer {
     display: flex;
     max-width: 300px;
@@ -618,7 +622,6 @@ select, input, textarea {
     font-size: 14px;
     font-weight: normal;
     color: rgb(250, 248, 248);
-    max-height: 4900px;
     overflow: hidden!important;
     overflow-y: scroll!important;
 }
