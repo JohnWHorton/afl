@@ -51,6 +51,9 @@ if ($operation == "resetPassword") {
 if ($operation == "getPredictions") {
   $resparr = getPredictions($conn, $email, $roundnumber);
 }
+if ($operation == "getresults") {
+  $resparr = getresults($conn, $email, $roundnumber);
+}
 if ($operation == "makeprediction") {
   $resparr = makeprediction($conn, $email, $roundnumber, $predictthisjson, $amount);
 }
@@ -229,7 +232,24 @@ function getPredictions($conn, $email, $roundnumber)
 
   return $resparr;
 }
+function getresults($conn, $email, $roundnumber)
+{
+  $resparr = array();
+  $sql = "SELECT * FROM results WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id, predictionid";
 
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+      // array_push($resparr, $sql);
+    }
+  } else {
+    array_push($resparr, $sql);
+  }
+
+  return $resparr;
+}
 function deposit($conn, $email, $amount)
 {
 
