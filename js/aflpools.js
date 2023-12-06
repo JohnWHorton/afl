@@ -65,6 +65,7 @@ function getRounds() {
 }
 function getRound(e) {
   // e.preventDefault();
+  $('.navbar-collapse').collapse('toggle');
   document.getElementById("tableleft").innerHTML = "";
   roundnumber = parseInt($("#selectround").val());
   getGames();
