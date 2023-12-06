@@ -566,13 +566,25 @@ pre {
     background-color: black !important;
     color: black;
     margin-top: 50px;
-    overflow: hidden;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
 }
 #predictionsbody {
-    z-index: 1;
-    overflow:hidden;
-    overflow-y: scroll;
-    display: block;
+    z-index: 1;    
+}
+.resultsscontainer {
+    display: flex;
+    max-height: 500px;
+    max-width: 620px;
+    background-color: black !important;
+    color: black;
+    margin-top: 50px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
 }
 .registercontainer {
     display: flex;

@@ -309,7 +309,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         </div>
 
-        <div id="predictionsbox" class="container modal modal-content predictionscontainer" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#predictionsbox').hide();">&times;</span>
@@ -327,7 +327,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <th>Predicted winner</th>
                         </tr>
                     </thead>
-                    <tbody id="predictionsbody"  style="overflow: hidden;">
+                    <tbody id="predictionsbody">
 
                     </tbody>
                 </table>
