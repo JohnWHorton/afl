@@ -553,28 +553,25 @@ pre {
 .predictionscontainer {
 
     display: flex;
-    max-height: 500px;
-    max-width: 620px;
+    max-height: 500px;    
     background-color: black !important;
     color: black;
     margin-top: 50px;
     height: 100%;
-    overflow-x: hidden;
+    overflow:hidden;
+    overflow-x: auto;
     overflow-y: auto;
     padding-top: 0%!important;
 }
-#predictionsbody {
-    z-index: 1;    
-}
 .resultscontainer {
     display: flex;
-    max-height: 500px;
-    max-width: 620px;
+    max-height: 500px;    
     background-color: black !important;
     color: black;
     margin-top: 50px;
     height: 100%;
-    overflow-x: hidden;
+    overflow:hidden;
+    overflow-x: auto;
     overflow-y: auto;
     padding-top: 0%!important;
 
@@ -583,7 +580,6 @@ pre {
   z-index: 1;
   overflow: hidden;
   overflow-y: scroll;
-  display: block;
 }
 #resultsbody {
     z-index: 1;    

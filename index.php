@@ -111,26 +111,26 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </div>
             <center>
-            <div class="colcontainer">
-                <div class="row" style="width: 100%;">
-                    <!-- <div class="col-md-4"></div> -->
-                    <div class="col-sm-12" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
-                        <div id="spinner" class="spinner-border text-danger" role="status">
-                            <span class="sr-only">Loading...</span>
+                <div class="colcontainer">
+                    <div class="row" style="width: 100%;">
+                        <!-- <div class="col-md-4"></div> -->
+                        <div class="col-sm-12" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
+                            <div id="spinner" class="spinner-border text-danger" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <div id="roundname"></div>
+                            <table class="table">
+                                <tbody id="tableleft">
+                                </tbody>
+                            </table>
+                            <div id="predictnow" style="display: none;">
+                                <center>
+                                    <button class="btn predictionnowbtn" onclick="makeprediction()">Contribute</button>
+                                </center>
+                            </div>
                         </div>
-                        <div id="roundname"></div>
-                        <table class="table">
-                            <tbody id="tableleft">
-                            </tbody>
-                        </table>
-                        <div id="predictnow" style="display: none;">
-                            <center>
-                                <button class="btn predictionnowbtn" onclick="makeprediction()">Contribute</button>
-                            </center>
-                        </div>
+                        <!-- <div class="col-sm-12"></div> -->
                     </div>
-                    <!-- <div class="col-sm-12"></div> -->
-                </div>
             </center>
 
         </div>
@@ -339,9 +339,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="container">
                 <!-- <h2 class="sticky-top">Predictions</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table transtable">
+                <table class="table ">
                     <thead>
                         <tr class="sticky-top" style="background-color: black !important;">
+
                             <th>Game</th>
                             <th>Home team</th>
                             <th>Away team</th>
@@ -355,27 +356,30 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
         </div>
-        <div id="resultsbox" class="container resultscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="resultsbox" class="container resultscontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#resultsbox').hide();">&times;</span>
             </div>
 
             <div class="container">
-                 <!-- <h2 class="sticky-top">Results</h2> -->
-                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
+                <!-- <h2 class="sticky-top">Results</h2> -->
+                <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
                 <table class="table transtable">
-                   <thead>
-                       <tr class="sticky-top" style="background-color: black !important;">
-                           <th>Game ID</th>
-                           <th>Teams</th>
-                           <th>Predicted winner</th>
-                           <th>Outcome</th>
-                       </tr>
-                   </thead>
-                   <tbody id="resultsbody">
+                    <thead>
+                        <tr class="sticky-top" style="background-color: black !important;">
+                            <th></th>
+                            <th>Game ID</th>
+                            <th>Teams</th>
+                            <th>Winner</th>
+                            <th>Predicted</th>
+                            <th>Outcome</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsbody">
 
-                   </tbody>
+                    </tbody>
                 </table>
             </div>
 

@@ -34,7 +34,7 @@ $(document).ready(function () {
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
   $("#funds").hide();
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
 });
@@ -65,7 +65,7 @@ function getRounds() {
 }
 function getRound(e) {
   // e.preventDefault();
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   document.getElementById("tableleft").innerHTML = "";
   roundnumber = parseInt($("#selectround").val());
   getGames();
@@ -226,7 +226,7 @@ function showHistory() {
 }
 
 function showHideLoginbox() {
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
   } else {
@@ -235,7 +235,7 @@ function showHideLoginbox() {
   }
 }
 function showHideDepositbox() {
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   if (!loggedin) {
     $("#loginbox").show();
     return;
@@ -456,7 +456,7 @@ function depositEvent() {
   });
 }
 function showHideWithdrawbox() {
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   if (!loggedin) {
     $("#loginbox").show();
     return;
@@ -485,7 +485,7 @@ function chkValCode() {
   }
 }
 function getTransactionhistory() {
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   if (!loggedin) {
     $("#loginbox").show();
     return;
@@ -694,7 +694,7 @@ function makeprediction() {
   });
 }
 function getPredictions() {
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   if (!loggedin) {
     $("#loginbox").show();
     return;
@@ -730,12 +730,12 @@ function getPredictions() {
 }
 function showPredictions() {
   let predictionstable = "";
-  for (let i = 0; i < predictions.length; i++) {
-    let prediction = JSON.parse(predictions[i].predictthisjson);
+  for (let j = 0; j < predictions.length; j++) {
+    let prediction = JSON.parse(predictions[j].predictthisjson);
 
     predictionstable += `<tr>`;
     predictionstable += `
-      <td>Prediction: ${i + 1}</td>
+      <td>Prediction: ${predictions[j].id}</td>
       </tr>
       `;
 
@@ -756,7 +756,7 @@ function showPredictions() {
   document.getElementById("predictionsbody").innerHTML = predictionstable;
 }
 function getResults() {
-  $('.navbar-collapse').collapse('toggle');
+  $(".navbar-collapse").collapse("toggle");
   if (!loggedin) {
     $("#loginbox").show();
     return;
@@ -792,30 +792,36 @@ function getResults() {
 }
 function showResults() {
   let resultstable = "";
+  let pid = 0;
   for (let k = 0; k < results.length; k++) {
-    let result = JSON.parse(results[k].resultthisjson);
-
-    resultstable += `<tr>`;
-    resultstable += `
-      <td>Result: ${k + 1}</td>
-      </tr>
-      `;
-
-    for (let k = 0; k < result.length; k++) {
+    // let result = JSON.parse(results[k].resultthisjson);
+    if (pid != results[k].predictionid) {
+      pid = results[k].predictionid;
       resultstable += `<tr>`;
       resultstable += `
-      <td>${k + 1}</td>`;
-      resultstable += `
-      <td>${result[k].gameid}</td>`;
-      resultstable += `
-      <td>${result[k].gamedesc}</td>`;
-      resultstable += `
-      <td>${result[k].predicted}</td>`;
-      resultstable += `
-      <td>${result[k].outcome}</td>`;
-      resultstable += `</tr>`;
-      console.log(resultstable);
+      <td>Prediction: ${pid}</td>
+      </tr>
+      `;
     }
+    resultstable += `<tr>`;
+    resultstable += `
+      <td>${k + 1}</td>`;
+    resultstable += `
+      <td>${results[k].gameid}</td>`;
+    resultstable += `
+      <td>${results[k].gamedesc}</td>`;
+    resultstable += `
+      <td>${results[k].winner}</td>`;
+    resultstable += `
+        <td>${results[k].predicted}</td>`;
+    if (parseInt(results[k].outcome)) {
+      resultstable += `<td><img src="./images/GreenTick.svg" width=20 height=20/></td>`;
+    } else {
+      resultstable += `<td><img src="./images/RedX.svg" width=20 height=20/></td>`;
+    }
+
+    resultstable += `</tr>`;
+    console.log(resultstable);
   }
   document.getElementById("resultsbody").innerHTML = resultstable;
 }
@@ -875,7 +881,7 @@ function showResults() {
 //     console.log(`You got ${tot} wins out of 6`);
 //   }
 
-  // end
+// end
 // }
 function withdrawalcomplete(refid) {
   var parms = {
