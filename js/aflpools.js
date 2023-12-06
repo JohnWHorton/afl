@@ -34,6 +34,7 @@ $(document).ready(function () {
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
   $("#funds").hide();
+  $('.navbar-collapse').collapse('toggle');
   getRounds();
   getGames();
 });
@@ -64,6 +65,7 @@ function getRounds() {
 }
 function getRound(e) {
   // e.preventDefault();
+  $('.navbar-collapse').collapse('toggle');
   document.getElementById("tableleft").innerHTML = "";
   roundnumber = parseInt($("#selectround").val());
   getGames();
@@ -124,7 +126,8 @@ function getGames() {
     }
 
     tableleft += `
-    <tr>`;
+    <tr>
+    <td class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">${localTime}</td>`;
 
     if (completed == true) {
       tableleft += `
@@ -223,6 +226,7 @@ function showHistory() {
 }
 
 function showHideLoginbox() {
+  $('.navbar-collapse').collapse('toggle');
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
   } else {
@@ -231,13 +235,15 @@ function showHideLoginbox() {
   }
 }
 function showHideDepositbox() {
+  $('.navbar-collapse').collapse('toggle');
   if (!loggedin) {
     $("#loginbox").show();
-  } else {
-    $("#loginbox").hide();
-    $("#depositbox").show();
+    return;
   }
+  $("#loginbox").hide();
+  $("#depositbox").show();
 }
+
 function showMsg(m) {
   $(".msg").html(m);
   $(".msg").show();
@@ -450,13 +456,15 @@ function depositEvent() {
   });
 }
 function showHideWithdrawbox() {
+  $('.navbar-collapse').collapse('toggle');
   if (!loggedin) {
     $("#loginbox").show();
-  } else {
-    $("#loginbox").hide();
-    $("#withdrawbox").show();
+    return;
   }
+  $("#loginbox").hide();
+  $("#withdrawbox").show();
 }
+
 //comment
 function showMsg(m) {
   $(".msg").html(m);
@@ -477,6 +485,11 @@ function chkValCode() {
   }
 }
 function getTransactionhistory() {
+  $('.navbar-collapse').collapse('toggle');
+  if (!loggedin) {
+    $("#loginbox").show();
+    return;
+  }
   showHistory();
   $("#historybox").show();
 }
@@ -681,6 +694,11 @@ function makeprediction() {
   });
 }
 function getPredictions() {
+  $('.navbar-collapse').collapse('toggle');
+  if (!loggedin) {
+    $("#loginbox").show();
+    return;
+  }
   $("#spinner").show();
   var parms = {
     operation: "getPredictions",
@@ -738,6 +756,11 @@ function showPredictions() {
   document.getElementById("predictionsbody").innerHTML = predictionstable;
 }
 function getResults() {
+  $('.navbar-collapse').collapse('toggle');
+  if (!loggedin) {
+    $("#loginbox").show();
+    return;
+  }
   $("#spinner").show();
   var parms = {
     operation: "getResults",
