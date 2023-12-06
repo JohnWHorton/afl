@@ -4,7 +4,7 @@ body {
     /* background-color: rgba(16, 16, 16, 0.9); */
     height: 100%;
     width: 100%;
-    font-family: 'open-sans-light', sans-serif;
+    font-family: "open-sans-light", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color: rgb(250, 248, 248);
@@ -14,8 +14,8 @@ body {
     background-image: url("../images/Field.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size:cover;
-    background-position:center;
+    background-size: cover;
+    background-position: center;
 }
 a {
     color: #c3e1fb;
@@ -42,11 +42,8 @@ a {
     font-weight: 600;
 }
 
-
-
-
 .predictionnowbtn {
-    background-color: yellow!important;
+    background-color: yellow !important;
     margin-bottom: 70px;
 }
 
@@ -62,16 +59,15 @@ a {
     outline-color: transparent;
 }
 
-
 .btnlogin {
     margin-right: 50px;
     background-color: #b6bdb9;
     border-color: black !important;
 }
 .btn:hover {
-    background-color: #fffdfd!important;
+    background-color: #fffdfd !important;
     color: #000;
-    font-weight:600;
+    font-weight: 600;
 }
 
 .buttonlogin {
@@ -79,23 +75,22 @@ a {
     margin-bottom: 10px;
 }
 
-.btn{
+.btn {
     border: 1px solid #ddd;
     background-color: #f0f0f0;
     color: #000;
     padding: 4px 12px;
  
-     -o-transition: background-color .2s ease-in; 
-     -moz-transition: background-color .2s ease-in;
-     -webkit-transition: background-color .2s ease-in; 
-     transition: background-color .2s ease-in; 
+     -o-transition: background-color 0.2s ease-in; 
+     -moz-transition: background-color 0.2s ease-in;
+     -webkit-transition: background-color 0.2s ease-in; 
+     transition: background-color 0.2s ease-in; 
  }
  
  .btn:hover {
      background-color: #e5e5e5;    
  }
  
-
 .btn:focus,
 .btn:active {
     outline: none !important;
@@ -105,7 +100,6 @@ a {
 .btn-primary {
     border-color: black;
 }
-
 
 .btn-secondary {
     margin: 0 20px 0 0;
@@ -191,7 +185,7 @@ a {
     flex-wrap: nowrap;
 }
 
-.flex-container>div {
+.flex-container > div {
     background-color: transparent;
     /* width: 100px; */
     margin: 10px;
@@ -201,7 +195,7 @@ a {
 }
 
 .form-control {
-    height: calc(1.5em + .75rem + 2px);
+    height: calc(1.5em + 0.75rem + 2px);
     /* padding: .375remorm-control .75rem; */
     font-size: 0.7rem;
     font-weight: 400;
@@ -231,7 +225,6 @@ a {
 .list-group-item {
     background-color: rgb(2, 38, 50) !important;
 }
-
 
 .logincontainer {
     display: flex;
@@ -279,7 +272,7 @@ a {
     position: absolute;
     background-color: transparent;
     padding: 10px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     width: 300px;
 }
 
@@ -352,8 +345,8 @@ a {
     margin: 1rem;
     background-color: transparent;
     color: #ffffff;
-    font-size:18px;
-    font-weight:600;
+    font-size: 18px;
+    font-weight: 600;
     padding: 1rem;
     border: 0px solid #969696;
     border-radius: 10px;
@@ -393,7 +386,7 @@ a {
 
 /* for dropdowns only */
 .navbar-custom .navbar-nav .dropdown-menu {
-    background-color: rgba(16, 16, 16, 0.9)
+    background-color: rgba(16, 16, 16, 0.9);
 }
 
 /* dropdown item text color */
@@ -435,8 +428,6 @@ a {
 }
 /* navbar end  */
 
-
-
 /* modal end */
 .center-block {
     display: block;
@@ -449,7 +440,7 @@ a {
     flex-wrap: nowrap;
 }
 
-.flex-container>div {
+.flex-container > div {
     background-color: transparent;
     /* width: 100px; */
     margin: 10px;
@@ -466,8 +457,6 @@ a {
     margin-right: -15px;
     margin-left: -15px;
     height: 100%;
-
-
 }
 
 .Predictionnowbtn {
@@ -493,7 +482,7 @@ a {
 }
 
 p {
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     margin: 0;
     font-size: 13px;
 }
@@ -544,22 +533,22 @@ p {
     max-width: 75px;
 }
 
-
 pre {
-    padding: 30px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    /* webkit-box-sizing: border-box; */
-    display: block;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
-    width: 100%;
-    overflow-x: auto;
+  padding: 30px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  /* webkit-box-sizing: border-box; */
+  display: block;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  width: 100%;
+  overflow-x: auto;
 }
 .predictionscontainer {
+
     display: flex;
     max-height: 500px;
     max-width: 620px;
@@ -585,6 +574,13 @@ pre {
     overflow-x: hidden;
     overflow-y: auto;
     padding-top: 0%!important;
+
+}
+#predictionsbody {
+  z-index: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+  display: block;
 }
 .registercontainer {
     display: flex;
@@ -605,7 +601,9 @@ pre {
     height: 100%;
 }
 
-select, input, textarea {
+select,
+input,
+textarea {
     outline: none;
     background-color: white;
     color: #000000;
@@ -621,31 +619,29 @@ select, input, textarea {
     text-align: left !important;
     }
 
-
 .table {
     background-color: #000;
-    font-family: 'open-sans-light', sans-serif;
+    font-family: "open-sans-light", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color: rgb(250, 248, 248);
 }
 .transtable {
     background-color: #000;
-    font-family: 'open-sans-light', sans-serif;
+    font-family: "open-sans-light", sans-serif;
     font-size: 14px;
     font-weight: normal;
     color: rgb(250, 248, 248);
-    overflow: hidden!important;
-    overflow-y: scroll!important;
+    overflow: hidden !important;
+    overflow-y: scroll !important;
 }
-.transtablehead{
+.transtablehead {
     background-color: #000;
 }
 .tagbtns {
     border-radius: 0%;
     background-color: rgb(232, 240, 254, 0.9);
 }
-
 
 tr:hover {
     background-color: #272727;
@@ -688,4 +684,16 @@ td:hover {
     background-color: gray;
     /*    border-radius: 10px;*/
     border: 3px solid transparent;
+}
+
+.main-content {
+  margin-left: 25% !important;
+  margin-right: 25% !important;
+}
+
+@media (max-width: 1030px) {
+  .main-content {
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+  }
 }

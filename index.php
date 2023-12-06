@@ -25,7 +25,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
             <span class="navbar-toggler-icon"></span>
-</button>
+        </button>
 
         <div class="collapse navbar-collapse" id="collapse_target">
 
@@ -60,7 +60,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
     </nav>
 
-    <div class="container-fluid" style="width: 50%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
+    <div class="container-fluid" style="width: 100%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
         <div class="row">
             <div class="col-sm-12">
 
@@ -77,7 +77,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
         </div>
 
-        <div id="afldata">
+        <div id="afldata" class="main-content">
             <div class="colcontainer">
                 <div class="row" style="width: 100%!important;">
                     <div class="col-sm-1 col-md-4"></div>
@@ -92,7 +92,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <br /><br />
                             Members compete in activities that require strategy, intelligence, creativity, or other
                             skills.<br /><br />
-                            
+
                             Select any 6 games and make a prediction for the Winner of each game.</br>
                             Each prediction will contribute $20 AUD into the pool.</br></br>
                             The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
@@ -106,8 +106,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </div>
             <center>
-                <div class="row" style="width: 100%!important; ">
-                    <div class="col-md-4"></div>
+                <div class="row main-content">
+                    <!-- <div class="col-md-4"></div> -->
                     <div class="col-sm-12" style="background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <div id="spinner" class="spinner-border text-danger" role="status">
                             <span class="sr-only">Loading...</span>
@@ -123,7 +123,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             </center>
                         </div>
                     </div>
-                    <div class="col-sm-12"></div>
+                    <!-- <div class="col-sm-12"></div> -->
                 </div>
             </center>
 
@@ -293,7 +293,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="container transtable">
                 <!-- <h2 class="sticky-top">Transactions</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table">
+                <table class="table sticky-top">
                     <thead>
                         <tr class="transtablehead sticky-top">
                             <th>Date</th>
@@ -308,6 +308,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
         </div>
+<<<<<<< Updated upstream
 
         <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
@@ -335,6 +336,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         </div>
 
+=======
+>>>>>>> Stashed changes
         <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 
             <div class="overlay hidden">
