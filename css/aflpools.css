@@ -562,16 +562,17 @@ pre {
 .predictionscontainer {
     display: flex;
     max-height: 500px;
-    max-width: 500px;
+    max-width: 620px;
     background-color: black !important;
     color: black;
     margin-top: 50px;
-    overflow: hiden;
+    overflow: hidden;
 }
 #predictionsbody {
     z-index: 1;
     overflow:hidden;
     overflow-y: scroll;
+    display: block;
 }
 .registercontainer {
     display: flex;

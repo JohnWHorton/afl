@@ -309,7 +309,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         </div>
 
-        <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="predictionsbox" class="container modal modal-content predictionscontainer" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#predictionsbox').hide();">&times;</span>
@@ -320,14 +320,14 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
                 <table class="table transtable">
                     <thead>
-                        <tr class="sticky-top" style="z-index: 2;">
+                        <tr class="sticky-top" style="background-color: black !important;">
                             <th>Game</th>
                             <th>Home team</th>
                             <th>Away team</th>
                             <th>Predicted winner</th>
                         </tr>
                     </thead>
-                    <tbody id="predictionsbody">
+                    <tbody id="predictionsbody"  style="overflow: hidden;">
 
                     </tbody>
                 </table>
