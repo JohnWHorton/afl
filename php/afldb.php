@@ -28,7 +28,7 @@ $pswd = isset($request->pswd) ? $request->pswd : "";
 $predictthisjson = isset($request->predictthisjson) ? $request->predictthisjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
-
+$resultthisjson = isset($request->resultthisjson) ? $request->resultthisjson : "";
 // testing stand alone
 // $operation = "games";
 // $email = "john.horton86@gmail.com";
@@ -232,7 +232,25 @@ function getPredictions($conn, $email, $roundnumber)
 
   return $resparr;
 }
-function getresults($conn, $email, $roundnumber)
+// function getresults($conn, $email, $roundnumber)
+// {
+//   $resparr = array();
+//   $sql = "SELECT * FROM results WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id, predictionid";
+
+//   $result = $conn->query($sql);
+
+//   if ($result->num_rows > 0) {
+//     while ($row = $result->fetch_assoc()) {
+//       array_push($resparr, $row);
+//       // array_push($resparr, $sql);
+//     }
+//   } else {
+//     array_push($resparr, $sql);
+//   }
+
+//   return $resparr;
+// }
+function getResults($conn, $email, $roundnumber)
 {
   $resparr = array();
   $sql = "SELECT * FROM results WHERE email = '$email' AND roundnumber = $roundnumber ORDER BY id, predictionid";
@@ -245,11 +263,12 @@ function getresults($conn, $email, $roundnumber)
       // array_push($resparr, $sql);
     }
   } else {
-    array_push($resparr, $sql);
+    array_push($resparr, []);
   }
 
   return $resparr;
 }
+
 function deposit($conn, $email, $amount)
 {
 

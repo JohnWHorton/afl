@@ -284,7 +284,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         </div>
 
 
-        <div id="historybox" class="container historycontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="historybox" class="container historycontainer modal modal-content sticky-top" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="$('#historybox').hide();">&times;</span>
@@ -330,6 +330,31 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <tbody id="predictionsbody">
 
                     </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div id="resultsbox" class="container resultscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+
+            <div class="close">
+                <span aria-hidden="true" onclick="$('#resultsbox').hide();">&times;</span>
+            </div>
+
+            <div class="container">
+                 <!-- <h2 class="sticky-top">Results</h2> -->
+                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
+                <table class="table transtable">
+                   <thead>
+                       <tr class="sticky-top" style="background-color: black !important;">
+                           <th>Game ID</th>
+                           <th>Teams</th>
+                           <th>Predicted winner</th>
+                           <th>Outcome</th>
+                       </tr>
+                   </thead>
+                   <tbody id="resultsbody">
+
+                   </tbody>
                 </table>
             </div>
 

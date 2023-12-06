@@ -215,11 +215,14 @@ a {
 .historycontainer {
     display: flex;
     max-height: 500px;
-    max-width: 500px;
+    max-width: 620px;
     background-color: black !important;
     color: black;
     margin-top: 50px;
-    overflow: hidden;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
 }
 
 #info {
@@ -574,7 +577,7 @@ pre {
 #predictionsbody {
     z-index: 1;    
 }
-.resultsscontainer {
+.resultscontainer {
     display: flex;
     max-height: 500px;
     max-width: 620px;
@@ -585,6 +588,9 @@ pre {
     overflow-x: hidden;
     overflow-y: auto;
     padding-top: 0%!important;
+}
+#resultsbody {
+    z-index: 1;    
 }
 .registercontainer {
     display: flex;

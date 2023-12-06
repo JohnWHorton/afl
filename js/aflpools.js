@@ -737,12 +737,10 @@ function showPredictions() {
   }
   document.getElementById("predictionsbody").innerHTML = predictionstable;
 }
-
 function getResults() {
   $("#spinner").show();
-
   var parms = {
-    operation: "getresults",
+    operation: "getResults",
     email: loggedInUser.email,
     roundnumber: roundnumber,
   };
@@ -756,7 +754,6 @@ function getResults() {
     data: JSON.stringify(parms),
     success: function (response) {
       results = response;
-      console.log(results);
       // }
     },
     error: function (xhr, textStatus, error) {
@@ -767,34 +764,96 @@ function getResults() {
   });
   $("#spinner").hide();
 
-  // test
-  // console.log("predictions", predictions);
-  for (j = 0; j < predictions.length; j++) {
-    let tot = 0;
-    console.log(`Prediction ${j + 1}`);
-    p = JSON.parse(predictions[j].predictthisjson);
-    for (k = 0; k < p.length; k++) {
-      for (i = 0; i < games.length; i++) {
-        if (games[i].gameid == p[k].gameid) {
-          g = games[i];
+  showResults();
+  $("#resultsbox").show();
+}
+function showResults() {
+  let resultstable = "";
+  for (let k = 0; k < results.length; k++) {
+    let result = JSON.parse(results[k].resultthisjson);
 
-          if (g.result == p[k].winname) {
-            tot++;
-            desc = "GREEN TICK";
-          } else {
-            desc = "RED CROSS";
-          }
+    resultstable += `<tr>`;
+    resultstable += `
+      <td>Result: ${k + 1}</td>
+      </tr>
+      `;
 
-          let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
-          console.log(h1);
-        }
-      }
+    for (let k = 0; k < result.length; k++) {
+      resultstable += `<tr>`;
+      resultstable += `
+      <td>${k + 1}</td>`;
+      resultstable += `
+      <td>${result[k].gameid}</td>`;
+      resultstable += `
+      <td>${result[k].gamedesc}</td>`;
+      resultstable += `
+      <td>${result[k].predicted}</td>`;
+      resultstable += `
+      <td>${result[k].outcome}</td>`;
+      resultstable += `</tr>`;
+      console.log(resultstable);
     }
-    console.log(`You got ${tot} wins out of 6`);
   }
+  document.getElementById("resultsbody").innerHTML = resultstable;
+}
+
+// function getResults() {
+//   $("#spinner").show();
+
+//   var parms = {
+//     operation: "getresults",
+//     email: loggedInUser.email,
+//     roundnumber: roundnumber,
+//   };
+
+//   $.ajax({
+//     type: "POST",
+//     async: false,
+//     url: "./php/afldb.php",
+//     contentType: "application/json; charset=UTF-8",
+//     dataType: "json",
+//     data: JSON.stringify(parms),
+//     success: function (response) {
+//       results = response;
+//       console.log(results);
+//       // }
+//     },
+//     error: function (xhr, textStatus, error) {
+//       console.log(xhr.statusText);
+//       console.log(textStatus);
+//       console.log(error);
+//     },
+//   });
+//   $("#spinner").hide();
+
+//   // test
+//   // console.log("predictions", predictions);
+//   for (j = 0; j < predictions.length; j++) {
+//     let tot = 0;
+//     console.log(`Prediction ${j + 1}`);
+//     p = JSON.parse(predictions[j].predictthisjson);
+//     for (k = 0; k < p.length; k++) {
+//       for (i = 0; i < games.length; i++) {
+//         if (games[i].gameid == p[k].gameid) {
+//           g = games[i];
+
+//           if (g.result == p[k].winname) {
+//             tot++;
+//             desc = "GREEN TICK";
+//           } else {
+//             desc = "RED CROSS";
+//           }
+
+//           let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
+//           console.log(h1);
+//         }
+//       }
+//     }
+//     console.log(`You got ${tot} wins out of 6`);
+//   }
 
   // end
-}
+// }
 function withdrawalcomplete(refid) {
   var parms = {
     operation: "withdrawalscompleted",
