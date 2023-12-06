@@ -308,7 +308,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
 
         </div>
-<<<<<<< Updated upstream
 
         <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
@@ -336,8 +335,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
         </div>
 
-=======
->>>>>>> Stashed changes
         <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 
             <div class="overlay hidden">
