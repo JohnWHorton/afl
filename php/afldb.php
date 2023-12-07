@@ -71,6 +71,9 @@ if ($operation == "winnings") {
 if ($operation == "rounds") {
   $resparr = rounds($conn);
 }
+if ($operation == "prizepool") {
+  $resparr = prizepool($conn, $roundnumber);
+}
 if ($operation == "games") {
   $resparr = games($conn, $roundnumber);
 }
@@ -100,6 +103,23 @@ function rounds($conn)
     array_push($resparr, [$sql]);
   }
 
+  return $resparr;
+}
+
+function prizepool($conn, $roundnumber) {
+  $resparr = array();
+  $sql = "SELECT * FROM prizepool
+          WHERE roundnumber = '$roundnumber'";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  } else {
+    array_push($resparr, [$sql]);
+  }
   return $resparr;
 }
 function games($conn, $roundnumber)

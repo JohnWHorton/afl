@@ -104,8 +104,9 @@ function getGames() {
     console.log("UTC Date:", utcDate.toISOString());
     const offsetMinutes = utcDate.getTimezoneOffset();
     console.log("Time Zone Offset(minutes) ", offsetMinutes);
-    const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000);
-    console.log("Local Time: ", localTime.toISOString());
+    const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000).toString().substring(0, 24);
+    // let dd = localTime.toString().substring(0, 24);
+    console.log("Local Time: ", localTime);
 
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
@@ -929,6 +930,36 @@ function winnings() {
     success: function (response) {
       if (response.length == 0) {
         showMsg("Winnings failed");
+      } else {
+        if (response["trans-history"]) {
+          loggedInUser.funds = calBal(response["trans-history"]);
+        } else {
+          loggedInUser.funds = 0;
+        }
+        showMsg("Withdrawal completed");
+      }
+    },
+    error: function () {
+      showMsg("Error");
+    },
+  });
+}
+function showCurrentPrizePool() {
+  var parms = {
+    operation: "prizepool",
+    email: loggedInUser.email,
+    amount: amount,
+  };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response.length == 0) {
+        showMsg("Prize Pool failed");
       } else {
         if (response["trans-history"]) {
           loggedInUser.funds = calBal(response["trans-history"]);
