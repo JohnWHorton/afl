@@ -85,7 +85,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <br />
                         <div class="close">
                             <span aria-hidden="true" onclick="$('#whytext').hide(); $('#prizepool').show();">
-                                <img src="./images/toggle.svg" width=20 height=20  />
+                                <img src="./images/toggle.svg" width=20 height=20 />
                             </span>
                         </div>
                         <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
@@ -111,7 +111,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </div>
             <div id="prizepool" class="colcontainer" style="display: none;">
-                <img src="./images/prizepool.svg" width=100 height=100 />
+                <img src="./images/prizepool.svg" width=100 height=100 style="margin-left: 200px;" />
+                <text style="color: yellow; font-size: 28px; font-style:italic;">Current Prize Pool $1620 AUD</text>
             </div>
             <center>
                 <div class="colcontainer">
