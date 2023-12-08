@@ -28,6 +28,7 @@ var games = [];
 var trans_history = [];
 var predictions = [];
 var results = [];
+var prizepool = 0;
 
 $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
@@ -37,6 +38,7 @@ $(document).ready(function () {
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
+  getCurrentPrizePool();
 });
 
 function getRounds() {
@@ -944,11 +946,10 @@ function winnings() {
     },
   });
 }
-function showCurrentPrizePool() {
+function getCurrentPrizePool() {
   var parms = {
     operation: "prizepool",
-    email: loggedInUser.email,
-    amount: amount,
+    roundnumber: roundnumber
   };
 
   $.ajax({
@@ -961,12 +962,9 @@ function showCurrentPrizePool() {
       if (response.length == 0) {
         showMsg("Prize Pool failed");
       } else {
-        if (response["trans-history"]) {
-          loggedInUser.funds = calBal(response["trans-history"]);
-        } else {
-          loggedInUser.funds = 0;
-        }
-        showMsg("Withdrawal completed");
+        console.log("prizepool", response[0]);
+        prizepool = response[0].amount;
+        document.getElementById("prizepoolamt").innerHTML = `Current Prize Pool $${prizepool} AUD`;
       }
     },
     error: function () {

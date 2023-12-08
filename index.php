@@ -112,7 +112,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
             <div id="prizepool" class="colcontainer" style="display: none;">
                 <img src="./images/prizepool.svg" width=100 height=100 style="margin-left: 200px;" />
-                <text style="color: yellow; font-size: 28px; font-style:italic;">Current Prize Pool $1620 AUD</text>
+                <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic;"></text>
             </div>
             <center>
                 <div class="colcontainer">
