@@ -31,7 +31,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #c3e1fb;">
+                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: ##ffffff;">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
@@ -44,7 +44,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </div>
                 </li>
                 <li class="form-inline">
-                    <label style="color: #c3e1fb;">Round</label> &nbsp;
+                    <label style="color: ##ffffff;">Round</label> &nbsp;
                     <input class="form-control " type="text" id="selectround" oninput="getRound()">
                 </li>
                 <li class="nav-item">
