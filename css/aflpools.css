@@ -10,7 +10,7 @@ body {
     color: rgb(250, 248, 248);
     overflow-y: scroll;
     overflow-x: hidden;
-    color: #c3e1fb !important;
+    color: #fcfdfd !important;
     background-image: url("../images/Field.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -18,7 +18,7 @@ body {
     background-position: center;
 }
 a {
-    color: #c3e1fb;
+    color: #fdfdfd;
     text-decoration: none;
     background-color: transparent;
 }
@@ -221,7 +221,7 @@ a {
 
 #info {
     font-size: 18px;
-    color: #c3e1fb !important;
+    color: #f9fafc !important;
     overflow: hidden;
 }
 
@@ -384,7 +384,7 @@ a {
 .navbar-custom .nav-item.active .nav-link,
 .navbar-custom .nav-item:focus .nav-link,
 .navbar-custom .nav-item:hover .nav-link {
-    color: rgb(192, 214, 255);
+    color: rgb(249, 249, 250);
 }
 
 /* for dropdowns only */
@@ -394,7 +394,7 @@ a {
 
 /* dropdown item text color */
 .navbar-custom .navbar-nav .dropdown-item {
-    color: #c3e1fb !important;
+    color: #f9fafc !important;
 }
 
 /* dropdown item hover or focus */
@@ -424,7 +424,7 @@ a {
 
 .navbar-dark .navbar-nav .nav-link {
     width: fit-content;
-    color: #c3e1fb;
+    color: #f9fbfd;
 }
 .dropdown-item {
     cursor: pointer;
@@ -617,7 +617,7 @@ textarea {
 .table thead {
     vertical-align: middle;
     border-top: 1px solid #ddd;
-    color: #c3e1fb !important;
+    color: #f6f8f9 !important;
     text-align: left !important;
     }
 
@@ -642,7 +642,7 @@ textarea {
 }
 .tagbtns {
     border-radius: 0%;
-    background-color: rgb(232, 240, 254, 0.9);
+    background-color: rgba(250, 251, 253, 0.9);
 }
 
 tr:hover {
