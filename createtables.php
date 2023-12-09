@@ -28,7 +28,7 @@ $email = isset($request->email) ? $request->email : "";
 $pswd = isset($request->pswd) ? $request->pswd : "";
 $predictionjson = isset($request->predictionjson) ? $request->predictionjson : "";
 $amount = isset($request->amount) ? $request->amount : 0;
-$roundnumber = isset($request->roundnumber) ? $request->roundnumber : 1;
+$roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 
 // $sql = "CREATE TABLE `afl`.`prizepool` 
 // ( `id` INT NOT NULL AUTO_INCREMENT , 
@@ -44,15 +44,17 @@ $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 1;
 //     echo "Error creating table: " . mysqli_error($conn);
 // }
 
-$sql = "UPDATE `prizepool`
-        SET `amount` = (SELECT sum(amount) from predictions 
-            WHERE roundnumber = $roundnumber )";
+for($i=2; $i<25; $i++) {
+    $sql = "INSERT INTO `prizepool`(`roundnumber`, `amount`, `dateupdated`)
+			VALUES
+			($i,'0', now())";
 
-if ($conn->query($sql) === true) {
-    echo 'success';
-} else {
-    echo'error';
-}
+    if ($conn->query($sql) === true) {
+        echo 'success';
+    } else {
+        echo'error';
+    }
+};
 
 mysqli_close($conn);
 

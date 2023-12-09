@@ -106,7 +106,9 @@ function getGames() {
     console.log("UTC Date:", utcDate.toISOString());
     const offsetMinutes = utcDate.getTimezoneOffset();
     console.log("Time Zone Offset(minutes) ", offsetMinutes);
-    const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000).toString().substring(0, 24);
+    const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000)
+      .toString()
+      .substring(0, 24);
     // let dd = localTime.toString().substring(0, 24);
     console.log("Local Time: ", localTime);
 
@@ -327,15 +329,15 @@ function loginEvent() {
 }
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
-  regemail = $("#loginEmail").val();
+  regemail = $("#remail").val();
   regpwrd = $("#rpassword").val();
   repregpword = $("#rrpassword").val();
 
-  console.log(regemail);
-  console.log(regpwrd);
-  console.log(repregpword);
+  console.log("regemail", regemail);
+  console.log("regpwrd", regpwrd);
+  console.log("repregpword", repregpword);
 
-  if ((regpwrd > "") & (regpwrd == repregpword)) {
+  if (regpwrd > "" && regpwrd == repregpword) {
     var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
 
     $.ajax({
@@ -365,6 +367,7 @@ function registerEvent() {
         console.log(error);
       },
     });
+    hideAllBoxes();
   } else {
     showMsg("Invalid password or passwords do not match");
   }
@@ -430,6 +433,52 @@ function forgotPassword() {
   $("#loginbox").hide();
   $("#forgotbox").show();
 }
+function verifyRegisterEmail() {
+  
+  regemail = $("#remail").val();
+  regpwrd = $("#rpassword").val();
+  repregpword = $("#rrpassword").val();
+
+  if (regemail > "" && regpwrd > "" && regpwrd == repregpword) {
+    rndvalcode = Math.trunc(Math.random() * (999999 - 111111) + 111111);
+    let toemail = $("#remail").val();
+    console.log("toemail", toemail);
+    let dummyobj = {
+      SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
+      To: "" + toemail,
+      From: "aflpools@gmail.com",
+      Subject: "AFL Pools email verification code",
+      Body:
+        "Enter the verification code below" + "\r\n" + rndvalcode.toString(),
+    };
+    console.log("dummyobj", dummyobj);
+
+    Email.send(dummyobj).then(function (message) {
+      showMsg("Email successfully sent");
+    });
+
+    document.getElementById("valEmail").innerHTML =
+      document.getElementById("remail").value;
+    console.log("generated code", rndvalcode);
+    hideAllBoxes();
+    $("#validatebox").show();
+  } else {
+    showMsg("Invalid password or passwords do not match");
+  }
+}
+function hideAllBoxes() {
+  $("#loginbox").hide();
+  $("#registerbox").hide();
+  $("#forgotbox").hide();
+  $("#resultsbox").hide();
+  $("#validatebox").hide();
+  $("#depositbox").hide();
+  $("#withdrawbox").hide();
+  $("#historybox").hide();
+  $("#predictionsbox").hide();
+  $("#resultsbox").hide();
+  
+}
 function depositEvent() {
   amt = $("#depositamount").val();
   // validation here
@@ -478,6 +527,15 @@ function showMsg(m) {
 function hideMsg() {
   $(".msg").hide();
 }
+
+function chkRegValCode() {
+  let vc = $("#valcode").val();
+  console.log("vc", vc);
+  if (vc == rndvalcode.toString()) {
+    registerEvent();
+  }
+}
+
 function chkValCode() {
   let vc = $("#valcode").val();
   console.log("vc", vc);
@@ -949,7 +1007,7 @@ function winnings() {
 function getCurrentPrizePool() {
   var parms = {
     operation: "prizepool",
-    roundnumber: roundnumber
+    roundnumber: roundnumber,
   };
 
   $.ajax({
@@ -964,7 +1022,9 @@ function getCurrentPrizePool() {
       } else {
         console.log("prizepool", response[0]);
         prizepool = response[0].amount;
-        document.getElementById("prizepoolamt").innerHTML = `Current Prize Pool $${prizepool} AUD`;
+        document.getElementById(
+          "prizepoolamt"
+        ).innerHTML = `Current Prize Pool $${prizepool} AUD`;
       }
     },
     error: function () {
