@@ -2,7 +2,7 @@
 "name": "AFL Pools",
 "short_name": "AFL Pools",
 "id": "afl-pools.com",
-"start_url": "/index.php",
+"start_url": "/index.php?v=1",
 "display": "standalone",
 "description": "A community platform for AFL enthusiasts",
 "lang": "EN",

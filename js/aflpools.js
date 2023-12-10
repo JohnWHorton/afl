@@ -783,7 +783,7 @@ function getPredictions() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      predictions = response[0];
+      predictions = response;
       // }
     },
     error: function (xhr, textStatus, error) {
@@ -845,7 +845,7 @@ function getResults() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      results = response[0];
+      results = response;
       // }
     },
     error: function (xhr, textStatus, error) {
