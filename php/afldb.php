@@ -198,9 +198,7 @@ function transhistory($conn, $email)
     while ($row = $result->fetch_assoc()) {
       array_push($resparr, $row);
     }
-  } else {
-    array_push($resparr, $sql);
-  }
+  } 
 
   return $resparr;
 }

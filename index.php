@@ -14,6 +14,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
     <!-- should always be last-->
     <link rel="stylesheet" href="./css/aflpools.css" type="text/css">
+    <link rel="manifest" href="./manifest.webmanifest">
     <!------ Include the above in your HEAD tag ---------->
 </head>
 

@@ -25,12 +25,18 @@ const myemail = "";
 var roundnumber = 1;
 var rounds = [];
 var games = [];
+var bal = 0;
 var trans_history = [];
 var predictions = [];
 var results = [];
 var prizepool = 0;
 
 $(document).ready(function () {
+  if('service-worker' in navigator) {
+    navigator.serviceWorker.register("/service-worker.js")
+    .then(function() { console.log("Service worker registered"); });
+  };
+
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
@@ -103,14 +109,14 @@ function getGames() {
     const utcDateWithoutMillis = utcStartTime.slice(0, -5) + "Z";
     // console.log("utcDateWithoutMillis", utcDateWithoutMillis);
     const utcDate = new Date(utcDateWithoutMillis);
-    console.log("UTC Date:", utcDate.toISOString());
+    // console.log("UTC Date:", utcDate.toISOString());
     const offsetMinutes = utcDate.getTimezoneOffset();
-    console.log("Time Zone Offset(minutes) ", offsetMinutes);
+    // console.log("Time Zone Offset(minutes) ", offsetMinutes);
     const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000)
       .toString()
       .substring(0, 24);
     // let dd = localTime.toString().substring(0, 24);
-    console.log("Local Time: ", localTime);
+    // console.log("Local Time: ", localTime);
 
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
@@ -260,7 +266,7 @@ function hideMsg() {
 }
 function calBal(x) {
   trans_history = x;
-  let bal = 0;
+  bal = 0;
   for (i = 0; i < x.length; i++) {
     if (x[i].transtype == "Deposit" || x[i].transtype == "Winnings") {
       bal = bal + parseFloat(x[i].amount);
@@ -434,7 +440,6 @@ function forgotPassword() {
   $("#forgotbox").show();
 }
 function verifyRegisterEmail() {
-  
   regemail = $("#remail").val();
   regpwrd = $("#rpassword").val();
   repregpword = $("#rrpassword").val();
@@ -477,7 +482,6 @@ function hideAllBoxes() {
   $("#historybox").hide();
   $("#predictionsbox").hide();
   $("#resultsbox").hide();
-  
 }
 function depositEvent() {
   amt = $("#depositamount").val();
@@ -593,6 +597,10 @@ function deposit(refid) {
 }
 function withdrawEvent() {
   amt = $("#withdrawamount").val();
+  if (amt < 0 || amt > bal) {
+    showMsg("Insufficient funds.");
+    return;
+  }
   // validation here
   var parms = {
     operation: "withdrawalrequest",
@@ -775,7 +783,7 @@ function getPredictions() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      predictions = response;
+      predictions = response[0];
       // }
     },
     error: function (xhr, textStatus, error) {
@@ -837,7 +845,7 @@ function getResults() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      results = response;
+      results = response[0];
       // }
     },
     error: function (xhr, textStatus, error) {
