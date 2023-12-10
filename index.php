@@ -32,16 +32,18 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: ##ffffff;">
+                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: ##ffffff;">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                        <a class="dropdown-item" onclick="showHideDepositbox()">Deposit funds</a>
-                        <a class="dropdown-item" onclick="getResults()">My results</a>
-                        <a class="dropdown-item" onclick="getPredictions()">My predictions</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();getPredictions()">My predictions</a>
                         <!-- <div class="dropdown-divider"></div> -->
-                        <a class="dropdown-item" onclick="showHideWithdrawbox()">Withdraw funds</a>
-                        <a class="dropdown-item" onclick="getTransactionhistory()">Show my transactions</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();getTransactionhistory()">Show my
+                            transactions</a>
                     </div>
                 </li>
                 <li class="form-inline">
@@ -384,24 +386,22 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div id="resultsbox" class="container resultscontainer modal modal-content"
             style="display: none; border-radius: 0%; margin-top: 5rem;">
 
-            <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
-            </div>
-
             <div class="container">
                 <!-- <h2 class="sticky-top">Results</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table transtable">
-                    <thead>
-                        <tr class="sticky-top" style="background-color: black !important;">
+                <table class="table table-striped transtable ">
+                    <thead class="sticky-top" >
+                        <tr style="background-color: black !important;">                            
                             <th></th>
                             <th>Game ID</th>
                             <th>Teams</th>
                             <th>Winner</th>
                             <th>Predicted</th>
                             <th>Outcome</th>
+                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();">&times;</span></th>
                         </tr>
                     </thead>
+                    
                     <tbody id="resultsbody">
 
                     </tbody>
