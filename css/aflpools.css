@@ -169,6 +169,17 @@ a {
 }
 
 .historycontainer {
+<<<<<<< HEAD
+    display: flex;
+    max-height: 500px;
+    background-color: black !important;
+    color: black;
+    margin-top: 50px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
+=======
   display: flex;
   max-height: 500px;
   max-width: 620px;
@@ -179,6 +190,7 @@ a {
   overflow-x: hidden;
   overflow-y: auto;
   padding-top: 0% !important;
+>>>>>>> a7b38241415728001e37a206dd1c7f0e31eb89cb
 }
 
 #info {
