@@ -32,9 +32,9 @@ var results = [];
 var prizepool = 0;
 
 $(document).ready(function () {
-  if('service-worker' in navigator) {
+  if ('service-worker' in navigator) {
     navigator.serviceWorker.register("/service-worker.js")
-    .then(function() { console.log("Service worker registered"); });
+      .then(function () { console.log("Service worker registered"); });
   };
 
   document.getElementById("selectround").value = roundnumber.toString();
@@ -74,9 +74,12 @@ function getRounds() {
 function getRound(e) {
   // e.preventDefault();
   $(".navbar-collapse").collapse("toggle");
-  document.getElementById("tableleft").innerHTML = "";
+  
   roundnumber = parseInt($("#selectround").val());
-  getGames();
+  if (roundnumber > 0 && roundnumber < 25) {
+    document.getElementById("tableleft").innerHTML = "";
+    getGames();
+  }
 }
 function getGames() {
   $("#spinner").show();
@@ -518,6 +521,11 @@ function showHideWithdrawbox() {
     return;
   }
   $("#loginbox").hide();
+  if (bal == 0) {
+    showMsg("You have no funds to withdraw");
+    return;
+  }
+  document.getElementById("showBalance").innerHTML = `Available Funds $ ${bal} AUD`;
   $("#withdrawbox").show();
 }
 
@@ -724,12 +732,18 @@ function predictioncnt() {
   }
   if (predictioncnt == 6) {
     $("#predictnow").show();
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, 0);
+    $("#predictnowbtn").focus();
   } else {
     $("#predictnow").hide();
+
   }
 }
 function makeprediction() {
+  if (bal < 20) {
+    showHideDepositbox();
+    return;
+  }
   let predictthis = games.filter((games) => games.checked === true);
   let predictthisjson = JSON.stringify(predictthis);
   console.log("predictthisjson", predictthisjson);
@@ -752,6 +766,8 @@ function makeprediction() {
       console.log("Prediction made", parms);
       if (response["trans-history"]) {
         loggedInUser.funds = calBal(response["trans-history"]);
+        $("#predictnow").hide();
+        showMsg("Prediction has been made");
       } else {
         loggedInUser.funds = 0;
       }
