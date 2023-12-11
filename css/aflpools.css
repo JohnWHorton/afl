@@ -209,7 +209,6 @@ a {
 .historycontainer {
     display: flex;
     max-height: 500px;
-    max-width: 620px;
     background-color: black !important;
     color: black;
     margin-top: 50px;

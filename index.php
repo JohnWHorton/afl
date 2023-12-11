@@ -333,19 +333,15 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div id="historybox" class="container historycontainer modal modal-content"
             style="display: none; border-radius: 0%; margin-top: 5rem;">
 
-            <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
-            </div>
+            <div class="container">
 
-            <div class="container transtable">
-                <!-- <h2 class="sticky-top">Transactions</h2> -->
-                <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table sticky-top">
-                    <thead>
-                        <tr class="transtablehead sticky-top">
+                <table class="table table-striped transtable">
+                    <thead class="sticky-top">
+                        <tr style="background-color: black !important;">
                             <th>Date</th>
                             <th>Transaction type</th>
                             <th>Amount</th>
+                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();">&times;</span></th>
                         </tr>
                     </thead>
                     <tbody id="historybody">
@@ -359,21 +355,18 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div id="predictionsbox" class="container predictionscontainer modal modal-content"
             style="display: none; border-radius: 0%; margin-top: 5rem;">
 
-            <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
-            </div>
-
             <div class="container">
                 <!-- <h2 class="sticky-top">Predictions</h2> -->
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
-                <table class="table ">
-                    <thead>
-                        <tr class="sticky-top" style="background-color: black !important;">
+                <table class="table table-striped transtable">
+                    <thead class="sticky-top">
+                        <tr style="background-color: black !important;"> 
 
                             <th>Game</th>
                             <th>Home team</th>
                             <th>Away team</th>
                             <th>Predicted winner</th>
+                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();">&times;</span></th>
                         </tr>
                     </thead>
                     <tbody id="predictionsbody">
