@@ -113,8 +113,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </div>
                 </div>
             </div>
-            <div id="prizepool" class="colcontainer" style="display: none;">
-                <img src="./images/prizepool.svg" width=100 height=100 style="margin-left: 200px;" />
+            <div id="prizepool" class="colcontainer" style="display: none; min-height: 65px">
+                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 200px;" />
                 <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic;"></text>
             </div>
             <center>

@@ -60,7 +60,6 @@ a {
 
 .btnlogin {
   margin-right: 50px;
-  background-color: #b6bdb9;
   border-color: black !important;
 }
 .btn:hover {
@@ -69,17 +68,7 @@ a {
   font-weight: 600;
 }
 
-.buttonlogin {
-  background-color: #272727;
-  margin-bottom: 10px;
-}
-
 .btn {
-  border: 1px solid #ddd;
-  background-color: #f0f0f0;
-  color: #000;
-  padding: 4px 12px;
-
   -o-transition: background-color 0.2s ease-in;
   -moz-transition: background-color 0.2s ease-in;
   -webkit-transition: background-color 0.2s ease-in;
@@ -94,7 +83,6 @@ a {
 .btn:active {
   outline: none !important;
   box-shadow: none;
-  background-color: #ccc;
 }
 .btn-primary {
   border-color: black;
@@ -560,7 +548,8 @@ pre {
   display: flex;
   max-width: 300px;
   max-height: 400px;
-  background-color: #b6bdb9 !important;
+  /* background-color: #b6bdb9 !important;   */
+  background-color: #999999 !important;
   color: black;
   margin-top: 50px;
   overflow: hidden;
