@@ -71,9 +71,6 @@ if ($operation == "winnings") {
 if ($operation == "rounds") {
   $resparr = rounds($conn);
 }
-if ($operation == "prizepool") {
-  $resparr = prizepool($conn, $roundnumber);
-}
 if ($operation == "games") {
   $resparr = games($conn, $roundnumber);
 }
@@ -81,7 +78,7 @@ if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
 // var_dump($resparr);
-if($operation == "loginUser" || $operation == "makeprediction" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalscompleted" || $operation == "winnings") {
+if ($operation == "loginUser" || $operation == "makeprediction" || $operation == "deposit" || $operation == "withdrawalrequest" || $operation == "withdrawalscompleted" || $operation == "winnings") {
   $r = array();
   $r = transhistory($conn, $email);
   $resparr["trans-history"] = $r;
@@ -103,25 +100,12 @@ function rounds($conn)
     array_push($resparr, [$sql]);
   }
 
-  return $resparr;
-}
-
-function prizepool($conn, $roundnumber) {
-  $resparr = array();
-  $sql = "SELECT * FROM prizepool
-          WHERE roundnumber = '$roundnumber'";
-
+  $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = rounds.roundnumber), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = rounds.roundnumber)";
   $result = $conn->query($sql);
 
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      array_push($resparr, $row);
-    }
-  } else {
-    array_push($resparr, [$sql]);
-  }
   return $resparr;
 }
+
 function games($conn, $roundnumber)
 {
   $resparr = array();
@@ -137,6 +121,7 @@ function games($conn, $roundnumber)
   } else {
     array_push($resparr, [$sql]);
   }
+
 
   return $resparr;
 }
@@ -168,10 +153,11 @@ function addUser($conn, $email, $pswd)
   return $resparr;
 }
 
-function loginUser($conn, $email, $pswd){
+function loginUser($conn, $email, $pswd)
+{
   $resparr = array();
   $sql = "SELECT * FROM users WHERE email = '$email' AND pswd = MD5('$pswd')";
-  
+
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
@@ -182,9 +168,9 @@ function loginUser($conn, $email, $pswd){
     array_push($resparr, 'error', $sql);
     return $resparr;
   }
-  
+
   return $resparr;
-  }
+}
 
 function transhistory($conn, $email)
 {
@@ -198,7 +184,7 @@ function transhistory($conn, $email)
     while ($row = $result->fetch_assoc()) {
       array_push($resparr, $row);
     }
-  } 
+  }
 
   return $resparr;
 }
@@ -265,7 +251,7 @@ function getResults($conn, $email, $roundnumber)
   } else {
     array_push($resparr, []);
   }
-  
+
   return $resparr;
 }
 

@@ -44,7 +44,6 @@ $(document).ready(function () {
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
-  getCurrentPrizePool();
 });
 
 function getRounds() {
@@ -78,6 +77,12 @@ function getRound(e) {
   roundnumber = parseInt($("#selectround").val());
   if (roundnumber > 0 && roundnumber < 25) {
     document.getElementById("tableleft").innerHTML = "";
+    for (let i = 0; i < rounds.length; i++) {
+      if (rounds[i].roundnumber == roundnumber.toString()) {
+        prizepool = rounds[i].prize_pool;
+      }
+    }
+    document.getElementById("prizepoolamt").innerHTML = `Current prize pool - $${prizepool} AUD`; 
     getGames();
   }
 }
@@ -1028,31 +1033,4 @@ function winnings() {
     },
   });
 }
-function getCurrentPrizePool() {
-  var parms = {
-    operation: "prizepool",
-    roundnumber: roundnumber,
-  };
 
-  $.ajax({
-    type: "POST",
-    url: "./php/afldb.php",
-    contentType: "application/json; charset=UTF-8",
-    dataType: "json",
-    data: JSON.stringify(parms),
-    success: function (response) {
-      if (response.length == 0) {
-        showMsg("Prize Pool failed");
-      } else {
-        console.log("prizepool", response[0]);
-        prizepool = response[0].amount;
-        document.getElementById(
-          "prizepoolamt"
-        ).innerHTML = `Current Prize Pool $${prizepool} AUD`;
-      }
-    },
-    error: function () {
-      showMsg("Error");
-    },
-  });
-}
