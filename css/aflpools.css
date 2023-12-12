@@ -169,16 +169,15 @@ a {
 }
 
 .historycontainer {
-  display: flex;
-  max-height: 500px;
-  max-width: 620px;
-  background-color: black !important;
-  color: black;
-  margin-top: 50px;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding-top: 0% !important;
+    display: flex;
+    max-height: 500px;
+    background-color: black !important;
+    color: black;
+    margin-top: 50px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
 }
 
 #info {
