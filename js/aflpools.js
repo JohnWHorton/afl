@@ -123,8 +123,15 @@ function getGames() {
     const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000)
       .toString()
       .substring(0, 24);
-    // let dd = localTime.toString().substring(0, 24);
-    // console.log("Local Time: ", localTime);
+    if (moment(utcStartTime).diff() < 0) {
+      console.log("utcStartTime", utcStartTime);
+      console.log("utcnow is ", moment.utc().toString());
+      console.log("NOW is greater");
+    } else {
+      console.log("utcStartTime", utcStartTime);
+      console.log("utcnow is ", moment.utc().toString());
+      console.log("utcStartTime is greater");
+    }
 
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
@@ -225,6 +232,30 @@ function getGames() {
   $("#spinner").hide();
   document.getElementById("tableleft").innerHTML = tableleft;
 }
+function disableGame(gameid) {
+  for (let i = 0; i < games.length; i++) {
+    if (!games[i].checked) {
+      $(`#${games[i].gameid}`).attr("disabled", true);
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
+        "disabled",
+        true
+      );
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
+        "disabled",
+        true
+      );
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
+        "checked",
+        false
+      );
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
+        "checked",
+        false
+      );
+      games[i].winname = "";
+    }
+  }
+}
 function showHistory() {
   let historytable = "";
   for (let i = 0; i < trans_history.length; i++) {
@@ -243,7 +274,6 @@ function showHistory() {
   }
   document.getElementById("historybody").innerHTML = historytable;
 }
-
 function showHideLoginbox() {
   $(".navbar-collapse").collapse("toggle");
   if ($("#loginbox").is(":visible")) {
@@ -262,7 +292,6 @@ function showHideDepositbox() {
   $("#loginbox").hide();
   $("#depositbox").show();
 }
-
 function showMsg(m) {
   $(".msg").html(m);
   $(".msg").show();
@@ -533,8 +562,6 @@ function showHideWithdrawbox() {
   document.getElementById("showBalance").innerHTML = `Available Funds $ ${bal} AUD`;
   $("#withdrawbox").show();
 }
-
-//comment
 function showMsg(m) {
   $(".msg").html(m);
   $(".msg").show();
@@ -544,15 +571,13 @@ function showMsg(m) {
 function hideMsg() {
   $(".msg").hide();
 }
-
 function chkRegValCode() {
-  let vc = $("#valcode").val();
+  let vc = $("#regvalcode").val();
   console.log("vc", vc);
   if (vc == rndvalcode.toString()) {
     registerEvent();
   }
 }
-
 function chkValCode() {
   let vc = $("#valcode").val();
   console.log("vc", vc);
@@ -915,64 +940,6 @@ function showResults() {
   }
   document.getElementById("resultsbody").innerHTML = resultstable;
 }
-
-// function getResults() {
-//   $("#spinner").show();
-
-//   var parms = {
-//     operation: "getresults",
-//     email: loggedInUser.email,
-//     roundnumber: roundnumber,
-//   };
-
-//   $.ajax({
-//     type: "POST",
-//     async: false,
-//     url: "./php/afldb.php",
-//     contentType: "application/json; charset=UTF-8",
-//     dataType: "json",
-//     data: JSON.stringify(parms),
-//     success: function (response) {
-//       results = response;
-//       console.log(results);
-//       // }
-//     },
-//     error: function (xhr, textStatus, error) {
-//       console.log(xhr.statusText);
-//       console.log(textStatus);
-//       console.log(error);
-//     },
-//   });
-//   $("#spinner").hide();
-
-//   // test
-//   // console.log("predictions", predictions);
-//   for (j = 0; j < predictions.length; j++) {
-//     let tot = 0;
-//     console.log(`Prediction ${j + 1}`);
-//     p = JSON.parse(predictions[j].predictthisjson);
-//     for (k = 0; k < p.length; k++) {
-//       for (i = 0; i < games.length; i++) {
-//         if (games[i].gameid == p[k].gameid) {
-//           g = games[i];
-
-//           if (g.result == p[k].winname) {
-//             tot++;
-//             desc = "GREEN TICK";
-//           } else {
-//             desc = "RED CROSS";
-//           }
-
-//           let h1 = `Game ${g.gameid}  ${g.hometeamname} vs ${g.awayteamname} winner ${g.result}  predicted ${p[k].winname}  ${desc} ${tot}}`;
-//           console.log(h1);
-//         }
-//       }
-//     }
-//     console.log(`You got ${tot} wins out of 6`);
-//   }
-
-// end
-// }
 function withdrawalcomplete(refid) {
   var parms = {
     operation: "withdrawalscompleted",

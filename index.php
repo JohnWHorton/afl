@@ -219,8 +219,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <form style="padding: 10px;">
                 <div id="valEmail" class="form-group"></div>
                 <div id="vc" class="form-group">
-                    <label for="valcode">Enter validation code</label>
-                    <input type="text" class="form-control" id="valcode" required onchange="chkRegValCode()">
+                    <label for="regvalcode">Enter validation code</label>
+                    <input type="text" class="form-control" id="regvalcode" required onchange="chkRegValCode()">
                 </div>
                 <center>
                     <button type="button" class="btn btn-primary buttonlogin" onclick="registerEvent()">Send</button>
@@ -337,7 +337,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <!-- <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p> -->
                 <table class="table table-striped transtable">
                     <thead class="sticky-top">
-                        <tr style="background-color: black !important;"> 
+                        <tr style="background-color: black !important;">
 
                             <th>Game</th>
                             <th>Home team</th>
@@ -418,6 +418,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <script type="text/javascript" src="./js/jquery.min.js"></script>
         <script type="text/javascript" src="./js/popper.min.js"></script>
         <script type="text/javascript" src="./js/aflpools.js"></script>
+        <script type="text/javascript" src="./js/moment.js"></script>
         <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
 
 

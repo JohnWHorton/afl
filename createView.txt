@@ -1,0 +1,9 @@
+select `afl`.`deposits`.`email` AS `email`,'Deposit' AS `transtype`,`afl`.`deposits`.`amount` AS `amount`,`afl`.`deposits`.`datecreated` AS `Date` from `afl`.`deposits` 
+union 
+select `afl`.`withdrawalrequests`.`email` AS `email`,'Withdrawal Request' AS `transtype`,`afl`.`withdrawalrequests`.`amount` AS `amount`,`afl`.`withdrawalrequests`.`datecreated` AS `Date` from `afl`.`withdrawalrequests` 
+union 
+select `afl`.`withdrawalscompleted`.`email` AS `email`,'Withdrawal Completed' AS `transtype`,`afl`.`withdrawalscompleted`.`amount` AS `amount`,`afl`.`withdrawalscompleted`.`datecreated` AS `Date` from `afl`.`withdrawalscompleted` 
+union 
+select `afl`.`predictions`.`email` AS `email`,'Prediction' AS `transtype`,`afl`.`predictions`.`amount` AS `amount`,`afl`.`predictions`.`datecreated` AS `Date` from `afl`.`predictions` 
+union 
+select `afl`.`winnings`.`email` AS `email`,'Winnings' AS `transtype`,`afl`.`winnings`.`amount` AS `amount`,`afl`.`winnings`.`datecreated` AS `Date` from `afl`.`winnings`

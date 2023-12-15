@@ -84,7 +84,6 @@ if ($operation == "loginUser" || $operation == "makeprediction" || $operation ==
   $resparr["trans-history"] = $r;
 }
 echo json_encode($resparr);
-
 function rounds($conn)
 {
   $resparr = array();
@@ -105,7 +104,6 @@ function rounds($conn)
 
   return $resparr;
 }
-
 function games($conn, $roundnumber)
 {
   $resparr = array();
@@ -121,7 +119,6 @@ function games($conn, $roundnumber)
   } else {
     array_push($resparr, [$sql]);
   }
-
 
   return $resparr;
 }
@@ -152,7 +149,6 @@ function addUser($conn, $email, $pswd)
 
   return $resparr;
 }
-
 function loginUser($conn, $email, $pswd)
 {
   $resparr = array();
@@ -171,7 +167,6 @@ function loginUser($conn, $email, $pswd)
 
   return $resparr;
 }
-
 function transhistory($conn, $email)
 {
   $resparr = array();
@@ -188,8 +183,6 @@ function transhistory($conn, $email)
 
   return $resparr;
 }
-
-
 function resetPassword($conn, $email, $pswd)
 {
   $resparr = array();
@@ -203,7 +196,6 @@ function resetPassword($conn, $email, $pswd)
 
   return $resparr;
 }
-
 function makeprediction($conn, $email, $roundnumber, $predictthisjson, $amount)
 {
   $resparr = array();
@@ -235,7 +227,6 @@ function getPredictions($conn, $email, $roundnumber)
 
   return $resparr;
 }
-
 function getResults($conn, $email, $roundnumber)
 {
   $resparr = array();
@@ -254,7 +245,6 @@ function getResults($conn, $email, $roundnumber)
 
   return $resparr;
 }
-
 function deposit($conn, $email, $amount)
 {
 
