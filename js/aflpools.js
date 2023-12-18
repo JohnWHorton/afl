@@ -253,6 +253,7 @@ function checkDisableGames() {
         false
       );
       games[i].winname = "";
+      if (!document.getElementById(`${games[i].gameid}started`).innerHTML.includes("Closed")) 
       document.getElementById(`${games[i].gameid}started`).innerHTML += " Closed";
     } 
   }
