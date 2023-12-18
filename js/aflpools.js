@@ -44,6 +44,7 @@ $(document).ready(function () {
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
+  const intervalID = setInterval(checkDisableGames, 30000);
 });
 
 function getRounds() {
@@ -73,7 +74,7 @@ function getRounds() {
 function getRound(e) {
   // e.preventDefault();
   $(".navbar-collapse").collapse("toggle");
-  
+
   roundnumber = parseInt($("#selectround").val());
   if (roundnumber > 0 && roundnumber < 25) {
     document.getElementById("tableleft").innerHTML = "";
@@ -82,7 +83,7 @@ function getRound(e) {
         prizepool = rounds[i].prize_pool;
       }
     }
-    document.getElementById("prizepoolamt").innerHTML = `Current prize pool - $${prizepool} AUD`; 
+    document.getElementById("prizepoolamt").innerHTML = `Current prize pool - $${prizepool} AUD`;
     getGames();
   }
 }
@@ -108,7 +109,7 @@ function getGames() {
       console.log(error);
     },
   });
-  console.log("games", games);
+  // console.log("games", games);
   tableleft = "";
 
   for (i = 0; i < games.length; i++) {
@@ -123,15 +124,6 @@ function getGames() {
     const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000)
       .toString()
       .substring(0, 24);
-    if (moment(utcStartTime).diff() < 0) {
-      console.log("utcStartTime", utcStartTime);
-      console.log("utcnow is ", moment.utc().toString());
-      console.log("NOW is greater");
-    } else {
-      console.log("utcStartTime", utcStartTime);
-      console.log("utcnow is ", moment.utc().toString());
-      console.log("utcStartTime is greater");
-    }
 
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
@@ -153,7 +145,8 @@ function getGames() {
 
     tableleft += `
     <tr>
-    <td class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">${localTime}</td>`;
+    <td id="${gameid}started" 
+        class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">${localTime}</td>`;
 
     if (completed == true) {
       tableleft += `
@@ -169,7 +162,7 @@ function getGames() {
       <div>        
           <input class="agame" id="` +
         gameid +
-        `"onchange="gameSelected('${gameid}')" 
+        `" onchange="gameSelected('${gameid}')" 
             type="checkbox" class="form-check-input" value="">
         </div>
     </td>`;
@@ -231,10 +224,17 @@ function getGames() {
   // console.log("games", games);
   $("#spinner").hide();
   document.getElementById("tableleft").innerHTML = tableleft;
+  checkDisableGames();
 }
-function disableGame(gameid) {
+function checkDisableGames() {
+  console.log("checking...");
   for (let i = 0; i < games.length; i++) {
-    if (!games[i].checked) {
+    let utcStartTime = games[i].utcStartTime;
+    if (moment(utcStartTime).diff() < 0) {
+      console.log("utcStartTime", utcStartTime);
+      console.log("utcnow is ", moment.utc().toString());
+      console.log("NOW is greater");
+      $(`#${games[i].gameid}`).attr("checked", false);
       $(`#${games[i].gameid}`).attr("disabled", true);
       $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
         "disabled",
@@ -253,7 +253,8 @@ function disableGame(gameid) {
         false
       );
       games[i].winname = "";
-    }
+      document.getElementById(`${games[i].gameid}started`).innerHTML += " Closed";
+    } 
   }
 }
 function showHistory() {
@@ -362,7 +363,7 @@ function loginEvent() {
         // document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
         $("#funds").show();
         loggedin = true;
-        console.log("User", loggedInUser);
+        // console.log("User", loggedInUser);
       }
     },
     error: function () {
@@ -376,9 +377,9 @@ function registerEvent() {
   regpwrd = $("#rpassword").val();
   repregpword = $("#rrpassword").val();
 
-  console.log("regemail", regemail);
-  console.log("regpwrd", regpwrd);
-  console.log("repregpword", repregpword);
+  // console.log("regemail", regemail);
+  // console.log("regpwrd", regpwrd);
+  // console.log("repregpword", repregpword);
 
   if (regpwrd > "" && regpwrd == repregpword) {
     var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
@@ -420,9 +421,9 @@ function resetPassword() {
   regpwrd = $("#newpword").val();
   repregpword = $("#rnewpword").val();
 
-  console.log(regemail);
-  console.log(regpwrd);
-  console.log(repregpword);
+  // console.log(regemail);
+  // console.log(regpwrd);
+  // console.log(repregpword);
 
   if ((regpwrd > "") & (regpwrd == repregpword)) {
     var parms = { operation: "resetPassword", email: regemail, pswd: regpwrd };
@@ -456,7 +457,7 @@ function resetPassword() {
 function forgotPassword() {
   rndvalcode = Math.trunc(Math.random() * (999999 - 111111) + 111111);
   let toemail = $("#loginEmail").val();
-  console.log("toemail", toemail);
+  // console.log("toemail", toemail);
   let dummyobj = {
     SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
     To: "" + toemail,
@@ -464,7 +465,7 @@ function forgotPassword() {
     Subject: "AFL Pools password reset",
     Body: "Enter the verification code below" + "\r\n" + rndvalcode.toString(),
   };
-  console.log("dummyobj", dummyobj);
+  // console.log("dummyobj", dummyobj);
 
   Email.send(dummyobj).then(function (message) {
     showMsg("Email successfully sent");
@@ -484,7 +485,7 @@ function verifyRegisterEmail() {
   if (regemail > "" && regpwrd > "" && regpwrd == repregpword) {
     rndvalcode = Math.trunc(Math.random() * (999999 - 111111) + 111111);
     let toemail = $("#remail").val();
-    console.log("toemail", toemail);
+    // console.log("toemail", toemail);
     let dummyobj = {
       SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
       To: "" + toemail,
@@ -493,7 +494,7 @@ function verifyRegisterEmail() {
       Body:
         "Enter the verification code below" + "\r\n" + rndvalcode.toString(),
     };
-    console.log("dummyobj", dummyobj);
+    // console.log("dummyobj", dummyobj);
 
     Email.send(dummyobj).then(function (message) {
       showMsg("Email successfully sent");
@@ -573,14 +574,14 @@ function hideMsg() {
 }
 function chkRegValCode() {
   let vc = $("#regvalcode").val();
-  console.log("vc", vc);
+  // console.log("vc", vc);
   if (vc == rndvalcode.toString()) {
     registerEvent();
   }
 }
 function chkValCode() {
   let vc = $("#valcode").val();
-  console.log("vc", vc);
+  // console.log("vc", vc);
   if (vc == rndvalcode.toString()) {
     $("#vc").hide();
     $("#chkemailmsg").hide();
@@ -686,7 +687,7 @@ function setWinner(gid, win) {
 }
 function gameSelected(gid) {
   // console.log("games", games);
-  console.log("game", game);
+  // console.log("game", game);
   if (!loggedin) {
     $(`#${gid}`).prop("checked", false);
     $("#loginbox").show();
@@ -757,7 +758,7 @@ function predictioncnt() {
   for (let i = 0; i < games.length; i++) {
     if (games[i].checked && games[i].winname > "") {
       predictioncnt++;
-      console.log("predictioncnt", predictioncnt);
+      // console.log("predictioncnt", predictioncnt);
     }
   }
   if (predictioncnt == 6) {
@@ -776,7 +777,7 @@ function makeprediction() {
   }
   let predictthis = games.filter((games) => games.checked === true);
   let predictthisjson = JSON.stringify(predictthis);
-  console.log("predictthisjson", predictthisjson);
+  // console.log("predictthisjson", predictthisjson);
 
   var parms = {
     operation: "makeprediction",
@@ -793,7 +794,7 @@ function makeprediction() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      console.log("Prediction made", parms);
+      // console.log("Prediction made", parms);
       if (response["trans-history"]) {
         loggedInUser.funds = calBal(response["trans-history"]);
         $("#predictnow").hide();
@@ -865,7 +866,7 @@ function showPredictions() {
       predictionstable += `
       <td>${prediction[j].winname}</td>`;
       predictionstable += `</tr>`;
-      console.log(predictionstable);
+      // console.log(predictionstable);
     }
   }
   document.getElementById("predictionsbody").innerHTML = predictionstable;
