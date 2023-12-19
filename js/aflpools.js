@@ -114,17 +114,8 @@ function getGames() {
 
   for (i = 0; i < games.length; i++) {
     let utcStartTime = games[i].utcStartTime;
-    // console.log("utcStartTime", utcStartTime);
-    const utcDateWithoutMillis = utcStartTime.slice(0, -5) + "Z";
-    // console.log("utcDateWithoutMillis", utcDateWithoutMillis);
-    const utcDate = new Date(utcDateWithoutMillis);
-    // console.log("UTC Date:", utcDate.toISOString());
-    const offsetMinutes = utcDate.getTimezoneOffset();
-    // console.log("Time Zone Offset(minutes) ", offsetMinutes);
-    const localTime = new Date(utcDate.getTime() - offsetMinutes * 60 * 1000)
-      .toString()
-      .substring(0, 24);
-
+    const localTime = new Date(utcStartTime).toString().substring(0, 21);    
+    // console.log("LOCAL DATE", localTime);
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
     let homeimg = games[i].hometeamname.replaceAll(" ", "") + ".svg";
@@ -277,6 +268,7 @@ function showHistory() {
   document.getElementById("historybody").innerHTML = historytable;
 }
 function showHideLoginbox() {
+  window.scrollTo(0, 0);
   $(".navbar-collapse").collapse("toggle");
   if ($("#loginbox").is(":visible")) {
     $("#loginbox").hide();
@@ -521,6 +513,7 @@ function hideAllBoxes() {
   $("#historybox").hide();
   $("#predictionsbox").hide();
   $("#resultsbox").hide();
+  window.scrollTo(0, 0);
 }
 function depositEvent() {
   amt = $("#depositamount").val();
@@ -691,7 +684,8 @@ function gameSelected(gid) {
   // console.log("game", game);
   if (!loggedin) {
     $(`#${gid}`).prop("checked", false);
-    $("#loginbox").show();
+    showHideLoginbox();
+    // $("#loginbox").show();
     return;
   }
 

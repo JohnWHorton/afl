@@ -37,10 +37,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
                         <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
                         <a class="dropdown-item" onclick="hideAllBoxes();getPredictions()">My predictions</a>
-                        <!-- <div class="dropdown-divider"></div> -->
-                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
                         <a class="dropdown-item" onclick="hideAllBoxes();getTransactionhistory()">Show my
                             transactions</a>
                     </div>
@@ -56,7 +56,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <a id="welcome" class="nav-link" href="#">Welcome to the game</a>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');showHideLoginbox()">Login</button>
+                    <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Register</button>
                 </li>
             </ul>
         </div>

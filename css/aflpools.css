@@ -59,13 +59,12 @@ a {
 }
 
 .btnlogin {
-  margin-right: 50px;
+  margin-right: 5px;
   border-color: black !important;
 }
 .btn:hover {
   background-color: #fffdfd !important;
   color: #000;
-  font-weight: 600;
 }
 
 .btn {
@@ -347,6 +346,7 @@ a {
 .navbar-custom .nav-item:focus .nav-link,
 .navbar-custom .nav-item:hover .nav-link {
   color: rgb(249, 249, 250);
+  cursor: pointer;
 }
 
 /* for dropdowns only */
@@ -672,6 +672,14 @@ td:hover {
     margin-left: 0% !important;
     margin-right: 0% !important;
   }
+}
+@media (max-width: 1030px) {
+    ul.navbar-nav {
+        transform: rotate(180deg);
+    }
+    ul.navbar-nav > li {
+        transform: rotate(-180deg);
+    }
 }
 th:after,
 th:before {
