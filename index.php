@@ -106,9 +106,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             skills.<br /><br />
 
                             Select any 6 games and make a prediction for the Winner of each game.</br>
-                            Each prediction will contribute $20 AUD into the pool.</br></br>
+                            Each set of 6 predictions will contribute $20 AUD into the pool.</br></br>
                             The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
-                            this will be shared equally by the Best Predictions.</br>
+                            this will be shared equally by the Best Predictions for each round.</br>
                             If there are no Winners, the pool will be carried forward to the next round.</br></br>
 
                         </div>
@@ -529,4 +529,43 @@ require_once './paypal_standard_checkout_in_php/config.php';
             //         <h1>$200</h1>
             //     </div>
         </script>
+        <!-- Footer -->
+        <footer class="page-footer font-small blue pt-4">
+
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+
+                <!-- Grid row -->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 mt-md-0 mt-3">
+                        <!-- Links -->
+
+                    </div>
+                </div>
+                <!-- Grid row -->
+
+            </div>
+            <!-- Footer Links -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!">Privacy and Security</a>
+                    </li>
+                    <li>
+                        <a href="#!">Terms and Conditions</a>
+                    </li>
+                    <li>
+                        <a href="#!">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+                <div class="footer-copyright text-center py-3">© 2024 Copyright:
+                    <a href="/"> AFL-pools.com</a>
+                </div>
+        </footer>
+        <!-- Footer -->
 </body>

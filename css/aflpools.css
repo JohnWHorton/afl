@@ -698,3 +698,6 @@ th:after {
   bottom: -1px;
   border-bottom: 2px solid red;
 }
+.page-footer {
+  background-color: rgb(87, 87, 87);
+}

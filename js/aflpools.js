@@ -136,12 +136,12 @@ function getGames() {
 
     tableleft += `
     <tr>
-    <td id="${gameid}started" 
-        class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">${localTime}</td>`;
+    <td class="flex" id="${gameid}started" 
+         style="font-size: 16px;">${localTime}</td>`;
 
     if (completed == true) {
       tableleft += `
-    <td class="col-sm-1" style="max-width: 18%!important; font-size: 16px;">
+    <td  style="font-size: 16px;">
       <div>        
           Closed
         </div>
@@ -149,7 +149,7 @@ function getGames() {
     } else {
       tableleft +=
         `
-    <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important;">
+    <td  style="text-align: center!important;">
       <div>        
           <input class="agame" id="` +
         gameid +
@@ -161,14 +161,14 @@ function getGames() {
 
     tableleft +=
       `
-    <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important;">
+    <td  style="text-align: center!important;">
     <img src="./images/` +
       homeimg +
       `" alt="` +
       hometeamname +
       `" width="50" height="50"></td>
-    <td class="col-sm-1" style="max-width: 18%!important; text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black;">VS</td>
-    <td class="col-sm-1"  style="max-width: 18%!important;text-align: center!important;">
+    <td  style="text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black;">VS</td>
+    <td   style="text-align: center!important;">
     <img src="./images/` +
       awayimg +
       `" alt="` +
@@ -177,14 +177,14 @@ function getGames() {
 
     if (completed == true) {
       tableleft += `
-    <td class="col-sm-12 col-md-1" style="max-width: 18%!important; text-align: center!important;">
+    <td class="" style="text-align: center!important;">
       Winner </br><h5>${result}</h5>
       </div>
     </td>`;
     } else {
       tableleft +=
         `
-    <td class="col-sm-12 col-md-1" style="max-width: 18%!important;">
+    <td class="" style="">
       <div class="form-check">
         <label class="form-check-label">
           <input id=${hometeamname.replaceAll(" ", "")}
