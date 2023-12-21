@@ -311,7 +311,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </form>
         </div>
 
-
         <div id="historybox" class="container historycontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="container">
@@ -330,7 +329,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </tbody>
                 </table>
             </div>
-
         </div>
 
         <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
@@ -380,6 +378,46 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </table>
             </div>
 
+        </div>
+
+        <div id="contactbox" class="container contactcontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+            <div class="close">
+                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+            </div>
+            <div id="contact-form">
+                <div class="controls">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4>Contact us</h4>
+                            <p>Please be as specific as you can with your enquiry, so that we may be as helpful as possible.</p>
+                            <br /><br />
+                            <div class="form-group">
+                                <label for="form_name">Subject *</label>
+                                <input id="form_name" type="text" name="subject" class="form-control" required="required">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="form_message">Message *</label>
+                                <textarea id="form_message" name="message" class="form-control" required="required" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-primary btn-send" onclick="sendEmail();">Send message</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-muted" style="margin-top: 20px;"><strong>*</strong> These fields are required.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
@@ -520,14 +558,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     document.querySelector(".overlay").classList.add("hidden");
                 }
             }
-
-            // <div id="mybalance" class="mybalancecontainer panel modal modal-content"
-            // style="display: none; border-radius: 0%; margin-top: 5rem;">
-
-            //     <div class="overlay hidden">
-            //         <div class="overlay-content"></div>
-            //         <h1>$200</h1>
-            //     </div>
         </script>
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4">
@@ -547,7 +577,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <!-- Grid row -->
 
             </div>
-            <!-- Footer Links -->
 
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
@@ -559,13 +588,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a href="#!">Terms and Conditions</a>
                     </li>
                     <li>
-                        <a href="#!">Contact Us</a>
+                        <a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
                     </li>
                 </ul>
             </div>
-                <div class="footer-copyright text-center py-3">© 2024 Copyright:
-                    <a href="/"> AFL-pools.com</a>
-                </div>
+            <div class="footer-copyright text-center py-3">© 2024 Copyright:
+                <a href="/"> AFL-pools.com</a>
+            </div>
         </footer>
         <!-- Footer -->
 </body>

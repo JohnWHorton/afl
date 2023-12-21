@@ -502,6 +502,20 @@ function verifyRegisterEmail() {
     showMsg("Invalid password or passwords do not match");
   }
 }
+function sendEmail() {
+  let dummyobj = {
+    SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
+    To: "aflpools@gmail.com",
+    From: "" + loggedInUser.email,
+    Subject: "" + $("#subject").val(),
+    Body: "" + $("#message").val(),
+  };
+
+  Email.send(dummyobj).then(function (message) {
+    showMsg("Email successfully sent");
+  });
+  $("#contactbox").hide();
+}
 function hideAllBoxes() {
   $("#loginbox").hide();
   $("#registerbox").hide();
@@ -513,6 +527,7 @@ function hideAllBoxes() {
   $("#historybox").hide();
   $("#predictionsbox").hide();
   $("#resultsbox").hide();
+  $("#contactbox").hide();
   window.scrollTo(0, 0);
 }
 function depositEvent() {

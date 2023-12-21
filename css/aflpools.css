@@ -97,6 +97,10 @@ a {
   min-width: 180px;
   text-align: left;
 }
+.btn-send {
+  margin: auto;
+  display: block;
+}
 
 .calculation-box {
   height: 75px;
@@ -177,6 +181,23 @@ a {
     overflow-x: hidden;
     overflow-y: auto;
     padding-top: 0%!important;
+}
+.contactcontainer {
+    display: flex;
+    max-height: 500px;
+    background-color: black !important;
+    color: white!important;
+    margin-top: 50px;
+    /* height: 100%; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
+    font-size: 18px;
+    padding: 2rem;
+}
+#contact-form {  
+    font-size: 18px;
+    padding: 2rem;
 }
 
 #info {
