@@ -32,7 +32,21 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
+                    <a class="nav-link dropdown-toggle adminuser" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
+                        <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();getPredictions()">My predictions</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();getTransactionhistory()">Show my
+                            transactions</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    </a><a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
@@ -59,7 +73,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Register</button>
+                    <button type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
                 </li>
             </ul>
         </div>
@@ -172,7 +186,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         </button>
                         <br>
                         <a onclick="hideAllBoxes(); $('#registerbox').show();" href="#" style="color: black;">
-                            Don't have an account? Register
+                            Not a member yet ? Join now
                         </a>
                         <a onclick="forgotPassword()" href="#" style="color: black;">
                             Forgot password? Click here
@@ -207,10 +221,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     .
                 </p>
                 <center>
-                    <button type="button" class="btn btn-primary buttonlogin" onclick="verifyRegisterEmail()">Register</button>
+                    <button type="button" class="btn btn-primary buttonlogin" onclick="verifyRegisterEmail()">Join</button>
                     <br>
                     <a onclick="hideAllBoxes(); showHideLoginbox()" href="#" style="color: black;">
-                        Already have an account? Sign in
+                        Already a member? Sign in
                     </a>
                 </center>
         </div>
@@ -420,6 +434,17 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
         </div>
 
+        <div id="tcbox" class="container tccontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+            <div class="close">
+                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+            </div>
+            <div class="row">
+                <pre>
+                <div id="tc" class="col-md-12"></div>
+                </pre>
+            </div>
+        </div>
+
         <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
 
             <div class="overlay hidden">
@@ -585,7 +610,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a href="#!">Privacy and Security</a>
                     </li>
                     <li>
-                        <a href="#!">Terms and Conditions</a>
+                        <a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
                     </li>
                     <li>
                         <a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>

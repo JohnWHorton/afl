@@ -47,6 +47,13 @@ $(document).ready(function () {
   const intervalID = setInterval(checkDisableGames, 30000);
 });
 
+function getTCs() {
+  fetch('tc.txt')
+    .then(res => res.text())
+    .then(res => tc.innerHTML = res);
+  $('#tcbox').show();
+}
+
 function getRounds() {
   $("#spinner").show();
   rounds = [];
@@ -345,7 +352,11 @@ function loginEvent() {
           let x = response["trans-history"];
           console.log("trans-history", x);
           loggedInUser.funds = calBal(x);
-          // loggedInUser.funds = response[1].balance;
+          console.log("usertype", loggedInUser.type);
+          if (loggedInUser.type == "administrator") {
+            // $(".adminuser").show();
+            $(".adminuser").css("display", "block");
+          }
         } else {
           loggedInUser.funds = 0;
         }
@@ -528,6 +539,7 @@ function hideAllBoxes() {
   $("#predictionsbox").hide();
   $("#resultsbox").hide();
   $("#contactbox").hide();
+  $("#tcbox").hide();
   window.scrollTo(0, 0);
 }
 function depositEvent() {
