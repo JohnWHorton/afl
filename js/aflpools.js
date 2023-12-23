@@ -35,6 +35,7 @@ $(document).ready(function () {
   if ('service-worker' in navigator) {
     navigator.serviceWorker.register("/service-worker.js")
       .then(function () { console.log("Service worker registered"); });
+      window.location.reload();
   };
 
   document.getElementById("selectround").value = roundnumber.toString();
