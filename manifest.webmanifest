@@ -42,7 +42,7 @@
 "shortcuts": [
     {
         "name":"AFL Pools",
-        "url":"/afl-pools.com",
+        "url":"/afl-pools.com?v=3",
         "description":"A description of the functionality of this shortcut"
     }
 ]
