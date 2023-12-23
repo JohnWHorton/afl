@@ -46,7 +46,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </div>
                 </li> -->
                 <li class="nav-item dropdown">
-                    </a><a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
+                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">

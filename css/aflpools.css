@@ -706,14 +706,15 @@ td:hover {
     margin-left: 0% !important;
     margin-right: 0% !important;
   }
-}
-@media (max-width: 1030px) {
-    ul.navbar-nav {
-        transform: rotate(180deg);
-    }
-    ul.navbar-nav > li {
-        transform: rotate(-180deg);
-    }
+  .tccontainer {
+    width: 100%!important;
+  }
+  ul.navbar-nav {
+      transform: rotate(180deg);
+  }
+  ul.navbar-nav > li {
+      transform: rotate(-180deg);
+  }
 }
 th:after,
 th:before {

@@ -534,6 +534,7 @@ function sendEmail() {
   $("#contactbox").hide();
 }
 function hideAllBoxes() {
+  $('.navbar .collapse').collapse('hide');
   $("#loginbox").hide();
   $("#registerbox").hide();
   $("#forgotbox").hide();
