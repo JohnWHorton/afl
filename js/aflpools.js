@@ -359,10 +359,10 @@ function loginEvent() {
           console.log("trans-history", x);
           loggedInUser.funds = calBal(x);
           console.log("usertype", loggedInUser.type);
-          if (loggedInUser.type == "administrator") {
-            // $(".adminuser").show();
-            $(".adminuser").css("display", "block");
-          }
+          // if (loggedInUser.type == "administrator") {
+          //   // $(".adminuser").show();
+          //   $(".adminuser").css("display", "block");
+          // }
         } else {
           loggedInUser.funds = 0;
         }

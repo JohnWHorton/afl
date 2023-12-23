@@ -31,7 +31,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div class="collapse navbar-collapse" id="collapse_target">
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle adminuser" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         Admin
                     </a>
@@ -44,7 +44,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         <a class="dropdown-item" onclick="hideAllBoxes();getTransactionhistory()">Show my
                             transactions</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     </a><a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
