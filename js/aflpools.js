@@ -53,6 +53,12 @@ function getTCs() {
     .then(res => tc.innerHTML = res);
   $('#tcbox').show();
 }
+function getPrivacy() {
+  fetch('privacy.txt')
+    .then(res => res.text())
+    .then(res => tc.innerHTML = res);
+  $('#tcbox').show();
+}
 
 function getRounds() {
   $("#spinner").show();

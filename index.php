@@ -607,7 +607,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="footer-copyright text-center py-3">
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!">Privacy and Security</a>
+                        <a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
                     </li>
                     <li>
                         <a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
