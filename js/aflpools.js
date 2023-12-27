@@ -35,7 +35,7 @@ $(document).ready(function () {
   if ('service-worker' in navigator) {
     navigator.serviceWorker.register("/service-worker.js")
       .then(function () { console.log("Service worker registered"); });
-      window.location.reload();
+    window.location.reload();
   };
 
   document.getElementById("selectround").value = roundnumber.toString();
@@ -45,7 +45,7 @@ $(document).ready(function () {
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
-  const intervalID = setInterval(checkDisableGames, 30000);
+  //const intervalID = setInterval(checkDisableGames, 30000);
 });
 
 function getTCs() {
@@ -83,7 +83,7 @@ function getRounds() {
       console.log(error);
     },
   });
-  console.log("rounds", rounds);
+  // console.log("rounds", rounds);
 }
 function getRound(e) {
   // e.preventDefault();
@@ -128,7 +128,7 @@ function getGames() {
 
   for (i = 0; i < games.length; i++) {
     let utcStartTime = games[i].utcStartTime;
-    const localTime = new Date(utcStartTime).toString().substring(0, 21);    
+    const localTime = new Date(utcStartTime).toString().substring(0, 21);
     // console.log("LOCAL DATE", localTime);
     let gameid = games[i].gameid;
     let hometeamname = games[i].hometeamname;
@@ -232,13 +232,13 @@ function getGames() {
   checkDisableGames();
 }
 function checkDisableGames() {
-  console.log("checking...");
+  // console.log("checking...");
   for (let i = 0; i < games.length; i++) {
     let utcStartTime = games[i].utcStartTime;
     if (moment(utcStartTime).diff() < 0) {
-      console.log("utcStartTime", utcStartTime);
-      console.log("utcnow is ", moment.utc().toString());
-      console.log("NOW is greater");
+      // console.log("utcStartTime", utcStartTime);
+      // console.log("utcnow is ", moment.utc().toString());
+      // console.log("NOW is greater");
       $(`#${games[i].gameid}`).attr("checked", false);
       $(`#${games[i].gameid}`).attr("disabled", true);
       $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
@@ -258,28 +258,33 @@ function checkDisableGames() {
         false
       );
       games[i].winname = "";
-      if (!document.getElementById(`${games[i].gameid}started`).innerHTML.includes("Closed")) 
-      document.getElementById(`${games[i].gameid}started`).innerHTML += " Closed";
-    } 
+      if (!document.getElementById(`${games[i].gameid}started`).innerHTML.includes("Closed"))
+        document.getElementById(`${games[i].gameid}started`).innerHTML += " Closed";
+    }
   }
 }
 function showHistory() {
-  let historytable = "";
-  for (let i = 0; i < trans_history.length; i++) {
-    historytable += `<tr>`;
-    historytable += `
+  if (trans_history.length > 0) {
+    let historytable = "";
+    for (let i = 0; i < trans_history.length; i++) {
+      historytable += `<tr>`;
+      historytable += `
     <td>${trans_history[i].date}</td>
     `;
-    historytable += `
+      historytable += `
     <td>${trans_history[i].transtype}</td>
     `;
-    historytable += `
+      historytable += `
     <td>$ ${trans_history[i].amount} AUD</td>
     `;
-    historytable += `</tr>`;
-    console.log(historytable);
+      historytable += `</tr>`;
+      // console.log(historytable);
+    }
+    document.getElementById("historybody").innerHTML = historytable;
+    $("#historybox").show();
+  } else {
+    showMsg("You have no transactions currently.");
   }
-  document.getElementById("historybody").innerHTML = historytable;
 }
 function showHideLoginbox() {
   window.scrollTo(0, 0);
@@ -334,9 +339,9 @@ function loginEvent() {
     chkbox = false;
   }
 
-  console.log(logemail);
-  console.log(logpword);
-  console.log(chkbox);
+  // console.log(logemail);
+  // console.log(logpword);
+  // console.log(chkbox);
 
   var parms = { operation: "loginUser", email: logemail, pswd: logpword };
 
@@ -357,13 +362,8 @@ function loginEvent() {
         loggedInUser = response[0];
         if (response["trans-history"]) {
           let x = response["trans-history"];
-          console.log("trans-history", x);
+          // console.log("trans-history", x);
           loggedInUser.funds = calBal(x);
-          console.log("usertype", loggedInUser.type);
-          // if (loggedInUser.type == "administrator") {
-          //   // $(".adminuser").show();
-          //   $(".adminuser").css("display", "block");
-          // }
         } else {
           loggedInUser.funds = 0;
         }
@@ -403,7 +403,7 @@ function registerEvent() {
       data: JSON.stringify(parms),
       success: function (response) {
         if (response[1] == "exists") {
-          console.log("response", response);
+          // console.log("response", response);
           showMsg("User already exists, please login");
           $("#loginbox").show();
           $("#registerbox").hide();
@@ -562,7 +562,7 @@ function depositEvent() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      console.log("response", response);
+      // console.log("response", response);
       if (response["trans-history"]) {
         loggedInUser.funds = calBal(response["trans-history"]);
       } else {
@@ -618,13 +618,12 @@ function chkValCode() {
   }
 }
 function getTransactionhistory() {
-  $(".navbar-collapse").collapse("toggle");
+  // $(".navbar-collapse").collapse("toggle");
   if (!loggedin) {
     $("#loginbox").show();
     return;
   }
   showHistory();
-  $("#historybox").show();
 }
 function showPayPal() {
   if (loggedin) {
@@ -683,7 +682,7 @@ function withdrawEvent() {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      console.log("response", response);
+      // console.log("response", response);
       if (response["trans-history"]) {
         loggedInUser.funds = calBal(response["trans-history"]);
       } else {
@@ -707,7 +706,7 @@ function setWinner(gid, win) {
   for (let i = 0; i < games.length; i++) {
     if (games[i].gameid == gid) {
       games[i].winname = win;
-      console.log("setWinner", games[i]);
+      // console.log("setWinner", games[i]);
       break;
     }
   }
@@ -861,6 +860,12 @@ function getPredictions() {
     data: JSON.stringify(parms),
     success: function (response) {
       predictions = response;
+      if (predictions.length > 0 && predictions[0].predictthisjson) {
+        showPredictions();
+        $("#predictionsbox").show();
+      } else {
+        showMsg("You have no predictions for this round");
+      }
       // }
     },
     error: function (xhr, textStatus, error) {
@@ -871,35 +876,36 @@ function getPredictions() {
   });
   $("#spinner").hide();
 
-  showPredictions();
-  $("#predictionsbox").show();
+
 }
 function showPredictions() {
   let predictionstable = "";
   for (let j = 0; j < predictions.length; j++) {
-    let prediction = JSON.parse(predictions[j].predictthisjson);
+    if (predictions[j].predictthisjson) {
+      let prediction = JSON.parse(predictions[j].predictthisjson);
 
-    predictionstable += `<tr>`;
-    predictionstable += `
+      predictionstable += `<tr>`;
+      predictionstable += `
       <td>Prediction: ${predictions[j].id}</td>
       </tr>
       `;
 
-    for (let j = 0; j < prediction.length; j++) {
-      predictionstable += `<tr>`;
-      predictionstable += `
+      for (let j = 0; j < prediction.length; j++) {
+        predictionstable += `<tr>`;
+        predictionstable += `
       <td>${j + 1}</td>`;
-      predictionstable += `
+        predictionstable += `
       <td>${prediction[j].hometeamname}</td>`;
-      predictionstable += `
+        predictionstable += `
       <td>${prediction[j].awayteamname}</td>`;
-      predictionstable += `
+        predictionstable += `
       <td>${prediction[j].winname}</td>`;
-      predictionstable += `</tr>`;
-      // console.log(predictionstable);
+        predictionstable += `</tr>`;
+        // console.log(predictionstable);
+      }
+      document.getElementById("predictionsbody").innerHTML = predictionstable;
     }
   }
-  document.getElementById("predictionsbody").innerHTML = predictionstable;
 }
 function getResults() {
   $(".navbar-collapse").collapse("toggle");
@@ -923,6 +929,12 @@ function getResults() {
     data: JSON.stringify(parms),
     success: function (response) {
       results = response;
+      if (results.length > 0 && results[0].id) {
+        showResults();
+        $("#resultsbox").show();
+      } else {
+        showMsg("You have no results yet for this round");
+      }
       // }
     },
     error: function (xhr, textStatus, error) {
@@ -932,10 +944,8 @@ function getResults() {
     },
   });
   $("#spinner").hide();
-
-  showResults();
-  $("#resultsbox").show();
 }
+
 function showResults() {
   let resultstable = "";
   let pid = 0;
@@ -967,7 +977,7 @@ function showResults() {
     }
 
     resultstable += `</tr>`;
-    console.log(resultstable);
+    // console.log(resultstable);
   }
   document.getElementById("resultsbody").innerHTML = resultstable;
 }

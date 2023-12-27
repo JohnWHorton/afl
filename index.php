@@ -31,20 +31,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <div class="collapse navbar-collapse" id="collapse_target">
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle adminuser" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
-                        Admin
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                        <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a>
-                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
-                        <a class="dropdown-item" onclick="hideAllBoxes();getPredictions()">My predictions</a>
-                        <a class="dropdown-item" onclick="hideAllBoxes();getTransactionhistory()">Show my
-                            transactions</a>
-                    </div>
-                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
