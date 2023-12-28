@@ -1,5 +1,4 @@
 var tableleft = "";
-var tableright = "";
 var game = 1;
 var radiogrp = 1;
 var selectedgames = [];
@@ -45,7 +44,7 @@ $(document).ready(function () {
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
-  //const intervalID = setInterval(checkDisableGames, 30000);
+  getRound();
 });
 
 function getTCs() {

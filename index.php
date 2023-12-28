@@ -47,7 +47,29 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </li>
                 <li class="form-inline">
                     <label style="color: #ffffff;">Round</label> &nbsp;
-                    <input class="form-control " type="text" id="selectround" oninput="getRound()">
+                    <!-- <input class="form-control " type="text" id="selectround" oninput="getRound()"> -->
+                    <select id="selectround" onchange="getRound()">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                        <option>9</option>
+                    </select>
                 </li>
                 <li class="nav-item">
                     <a id="funds" class="nav-link" href="#"></a>
@@ -101,6 +123,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             Rather it is a platform for members to compete against each other. This involves members
                             contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end
                             of each round.
+                            <br /><br />
+                            At no time does this site collect or 'rake' any part of the prize pool. Instead we charge a $5 AUD membership fee.
                             <br /><br />
                             Members compete in activities that require strategy, intelligence, creativity, or other
                             skills.<br /><br />
@@ -574,35 +598,24 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <footer class="page-footer font-small blue pt-4">
 
             <!-- Footer Links -->
-            <div class="container-fluid text-center text-md-left">
+            <div class="container-fluid text-center">
 
                 <!-- Grid row -->
                 <div class="row">
-
                     <!-- Grid column -->
-                    <div class="col-md-6 mt-md-0 mt-3">
-                        <!-- Links -->
-
+                    <div class="col-md-4 mt-3"><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
                     </div>
+                    <div class="col-md-4 mt-3"><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
+                    </div>
+                    <div class="col-md-4 mt-3"><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
+                    </div>
+                    <!-- Links -->
                 </div>
                 <!-- Grid row -->
-
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
-                    </li>
-                    <li>
-                        <a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
+
             <div class="footer-copyright text-center py-3">© 2024 Copyright:
                 <a href="/"> AFL-pools.com</a>
             </div>

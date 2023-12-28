@@ -599,13 +599,13 @@ pre {
 }
 
 select,
-input,
+/* input, */
 textarea {
   outline: none;
   background-color: white;
   color: #000000;
-  height: 15px;
-  width: 15px;
+  height: 27px;
+  width: 103px; 
 }
 
 .table td,
@@ -734,7 +734,7 @@ th:after {
   border-bottom: 2px solid red;
 }
 .page-footer {
-  background-color: rgb(87, 87, 87);
+  background-color: rgb(87 87 87 / 89%);
 }
 .adminuser {
   display: none;
