@@ -74,7 +74,11 @@ function getRounds() {
     data: JSON.stringify(parms),
     success: function (response) {
       rounds = response;
-      // }
+      var ro = "";
+      for (let i = 0; i < rounds.length; i++) {
+        ro += `<option>${rounds[i].roundnumber}</option>`;
+      }
+      document.getElementById("selectround").innerHTML = ro;
     },
     error: function (xhr, textStatus, error) {
       console.log(xhr.statusText);
@@ -148,40 +152,38 @@ function getGames() {
     }
 
     tableleft += `
-    <tr>
-    <td class="flex" id="${gameid}started" 
-         style="font-size: 16px;">${localTime}</td>`;
+    <tr><td colspan="5" style="padding-bottom: 0;">${localTime}</td></tr>
+    <tr>`;
 
     if (completed == true) {
-      tableleft += `
-    <td  style="font-size: 16px;">
-      <div>        
-          Closed
-        </div>
+      tableleft += `      
+    <td class="flex" id="${gameid}started" 
+         style="font-size: 16px; border-top: transparent;">
+         <span>Closed</span>
     </td>`;
     } else {
       tableleft +=
         `
-    <td  style="text-align: center!important;">
-      <div>        
+    <td  style="text-align: center!important; border-top: transparent;">
+      <span>Select &nbsp;&nbsp;
           <input class="agame" id="` +
         gameid +
         `" onchange="gameSelected('${gameid}')" 
             type="checkbox" class="form-check-input" value="">
-        </div>
+        </span>
     </td>`;
     }
 
     tableleft +=
       `
-    <td  style="text-align: center!important;">
+    <td  style="text-align: center!important; border-top: transparent;">
     <img src="./images/` +
       homeimg +
       `" alt="` +
       hometeamname +
       `" width="50" height="50"></td>
-    <td  style="text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black;">VS</td>
-    <td   style="text-align: center!important;">
+    <td  style="text-align: center!important; font-size: 1rem;font-weight: 600; background-color: black; border-top: transparent;">VS</td>
+    <td   style="text-align: center!important; border-top: transparent;">
     <img src="./images/` +
       awayimg +
       `" alt="` +
@@ -190,14 +192,14 @@ function getGames() {
 
     if (completed == true) {
       tableleft += `
-    <td class="" style="text-align: center!important;">
+    <td class="" style="text-align: center!important; border-top: transparent;">
       Winner </br><h5>${result}</h5>
       </div>
     </td>`;
     } else {
       tableleft +=
         `
-    <td class="" style="">
+    <td class="" style=" border-top: transparent;">
       <div class="form-check">
         <label class="form-check-label">
           <input id=${hometeamname.replaceAll(" ", "")}

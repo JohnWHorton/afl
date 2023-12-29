@@ -49,26 +49,6 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <label style="color: #ffffff;">Round</label> &nbsp;
                     <!-- <input class="form-control " type="text" id="selectround" oninput="getRound()"> -->
                     <select id="selectround" onchange="getRound()">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
-                        <option>9</option>
                     </select>
                 </li>
                 <li class="nav-item">
@@ -141,8 +121,10 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </div>
             <div id="prizepool" class="colcontainer" style="display: none; min-height: 65px">
-                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 200px;" />
-                <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic;"></text>
+                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%;" />
+                <div class="row">
+                    <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; text-align: center"></text>
+                </div>
             </div>
             <center>
                 <div class="colcontainer">
@@ -152,7 +134,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                             <div id="spinner" class="spinner-border text-danger" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
-                            <div id="roundname"></div>
+                            <div id="roundname" style="font-size: 24px; color: red;"></div>
                             <table class="table">
                                 <tbody id="tableleft">
                                 </tbody>

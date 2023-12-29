@@ -700,7 +700,9 @@ td:hover {
   margin-left: 25% !important;
   margin-right: 25% !important;
 }
-
+#prizepool {
+    margin-left: 200px;
+  }
 @media (max-width: 1030px) {
   .main-content {
     margin-left: 0% !important;
@@ -708,6 +710,9 @@ td:hover {
   }
   .tccontainer {
     width: 100%!important;
+  }
+  #prizepool {
+    margin-left: 10px;
   }
   ul.navbar-nav {
       transform: rotate(180deg);
