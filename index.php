@@ -46,7 +46,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     </div>
                 </li>
                 <li class="form-inline">
-                    <label style="color: #ffffff;">Round</label> &nbsp;
+                    <label style="color: #ffffff; margin: 0;">Round</label> &nbsp;
                     <!-- <input class="form-control " type="text" id="selectround" oninput="getRound()"> -->
                     <select id="selectround" onchange="getRound()">
                     </select>
