@@ -744,3 +744,6 @@ th:after {
 .adminuser {
   display: none;
 }
+/* tr:nth-child(even) {
+  background-color: #323333;
+} */
