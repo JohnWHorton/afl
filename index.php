@@ -36,7 +36,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                        <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a>
+                        <!-- <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a> -->
+                        <a class="dropdown-item" onclick="hideAllBoxes();showPayPal()">Deposit funds</a>
                         <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
@@ -97,6 +98,36 @@ require_once './paypal_standard_checkout_in_php/config.php';
                                 <img src="./images/toggle.svg" width=20 height=20 />
                             </span>
                         </div>
+                        <section class="section how-it-works">
+                            <div class="grid-container">
+                                <div class="grid-x grid-padding-x">
+                                    <div class="small-12 cell">
+                                        <h3>HOW IT WORKS</h3>
+                                        <div class="how-it-works__items">
+                                            <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-1.png" alt="" src="images/number-1.png">
+                                                <div class="how-it-works__item-inner">
+                                                    <h4>JOIN AFL Pools Club</h4>
+                                                    <p>Sign up! and verify your identity, it's easy and takes less than 2 minutes</p>
+                                                </div>
+                                            </div>
+                                            <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-2.png" alt="" src="images/number-2.png">
+                                                <div class="how-it-works__item-inner">
+                                                    <h4>BUY YOUR PLAYING TOKENS</h4>
+                                                    <p>Fund your account with $20 AUD+</p>
+                                                </div>
+                                            </div>
+                                            <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-3.png" alt="" src="images/number-3.png">
+                                                <div class="how-it-works__item-inner">
+                                                    <h4>Make a prediction for the next Round</h4>
+                                                    <p>Correct predictions will earn a share of the pool<br />
+                                                        Redeem your tokens at any time.</p><br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
                         <div style="font-size: 16px; padding: 15px 20px 5px 20px;">
                             This site is not a gambling site.<br />
@@ -285,7 +316,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
 
                 <div style="justify-content: center">
                     <center>
-                        <button type="button" class="btn btn-primary buttonlogin" onclick="depositEvent()">
+                        <!-- <button type="button" class="btn btn-primary buttonlogin" onclick="depositEvent()"> -->
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="showPayPal()">
                             Deposit
                         </button>
                         <br>
@@ -437,14 +469,16 @@ require_once './paypal_standard_checkout_in_php/config.php';
             </div>
         </div>
 
-        <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; margin-left: 40%;margin-top: 5rem;">
+        <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; ;margin-top: 5rem;">
 
             <div class="overlay hidden">
                 <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
             </div>
             <div class="form-group">
-                <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700;">Deposit amount (min $20)
-                    <span style="font-weight: 700; margin-left: 230px; font-size: 22px;" onclick="$('.paypalcontainer').hide();">
+                <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700; display: flex;
+                    justify-content: space-between;">
+                    <span>Deposit amount (min $20)</span>
+                    <span style="font-weight: 700; font-size: 22px;" onclick="$('.paypalcontainer').hide();">
                         X
                     </span>
                 </label>
@@ -583,13 +617,13 @@ require_once './paypal_standard_checkout_in_php/config.php';
             <div class="container-fluid text-center">
 
                 <!-- Grid row -->
-                <div class="row">
+                <div class="row" style="margin-left: 20%; margin-right: 20%;">
                     <!-- Grid column -->
-                    <div class="col-md-4 mt-3"><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
+                    <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
                     </div>
-                    <div class="col-md-4 mt-3"><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
+                    <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
                     </div>
-                    <div class="col-md-4 mt-3"><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
+                    <div class="col mt-3"><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
                     </div>
                     <!-- Links -->
                 </div>
