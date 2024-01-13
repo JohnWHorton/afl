@@ -209,6 +209,19 @@ a {
     overflow-y: auto;
     padding-top: 0%!important;
 }
+.videocontainer {
+  /* width="560px!important; 
+  height="500"!important; */
+    display: flex;
+    width: 35%!important;
+    height: 40%!important;
+    background-color: black !important;
+    color: rgb(204, 203, 203);
+    margin-top: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: 0%!important;
+}
 #tc {
   color: rgb(204, 203, 203);
 }
@@ -749,3 +762,56 @@ th:after {
 /* tr:nth-child(even) {
   background-color: #323333;
 } */
+#myVideo {
+  position: fixed; 
+  right: 0;
+  bottom: -80;
+  min-width: 100%;
+  min-height: 100%;
+}
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
+#myBtn2 {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9;
+}
+
+#myBtn2:hover {
+  background: #ddd;
+  color: black;
+}
+
+#myBtn3 {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  z-index: 9;
+}
+
+#myBtn3:hover {
+  background: #ddd;
+  color: black;
+}

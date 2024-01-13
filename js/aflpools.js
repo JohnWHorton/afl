@@ -29,6 +29,9 @@ var trans_history = [];
 var predictions = [];
 var results = [];
 var prizepool = 0;
+  var video = document.getElementById("myVideo");
+  var btn = document.getElementById("myBtn");
+  var btn2 = document.getElementById("myBtn2");
 
 $(document).ready(function () {
   if ('service-worker' in navigator) {
@@ -40,13 +43,37 @@ $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
+
+
+// Pause and play the video, and change the button text
+
   $("#funds").hide();
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
   getRound();
 });
-
+function myFunction() {
+  if (video.paused) {
+    $("#myVideo").show();
+    video.play();
+    btn.innerHTML = "Pause";
+    // video.muted = false;
+    // toggleMute();
+  } else {
+    video.pause();
+    btn.innerHTML = "Play";
+    // video.muted = false;
+    // toggleMute();
+  }
+}
+function myFunction2() {
+  video.muted = !video.muted;
+}
+function closeVideo() {
+  video.muted = !video.muted;
+  $("#myVideo").hide();
+}
 function getTCs() {
   fetch('tc.txt')
     .then(res => res.text())
@@ -549,6 +576,7 @@ function hideAllBoxes() {
   $("#resultsbox").hide();
   $("#contactbox").hide();
   $("#tcbox").hide();
+  $("#videobox").hide();
   window.scrollTo(0, 0);
 }
 function depositEvent() {
@@ -617,6 +645,9 @@ function chkValCode() {
     $("#chkemailmsg").hide();
     $("#newpassword").show();
   }
+}
+function showDemoVideo() {
+  $("#videobox").show();
 }
 function getTransactionhistory() {
   // $(".navbar-collapse").collapse("toggle");
