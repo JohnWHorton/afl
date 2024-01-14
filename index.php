@@ -13,6 +13,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <title>AFL Pools</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
     <!-- should always be last-->
+    <link rel="stylesheet" href="./css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="./css/aflpools.css" type="text/css">
     <link rel="manifest" href="./manifest.webmanifest">
     <!------ Include the above in your HEAD tag ---------->
@@ -86,9 +87,9 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     <h3>Community Footie Pools</h3>
                 </div>
             </div>
-            <button id="myBtn2" onclick="myFunction2()">Toggle Sound</button>
-            <button id="myBtn" onclick="myFunction()">Pause</button>
-            <button id="myBtn3" onclick="closeVideo()">Close</button>
+            <button id="btnSound" onclick="toggleSound()"><img src="images/soundbtn.png"></button>
+            <button id="btnPlay" onclick="togglePlay()"><img src="images/pausebtn.png"></button>
+            <button id="btnStop" onclick="closeVideo()"><img src="images/stopbtn.png"></button>
 
         </div>
 
@@ -570,7 +571,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <script type="text/javascript" src="./js/popper.min.js"></script>
         <script type="text/javascript" src="./js/aflpools.js"></script>
         <script type="text/javascript" src="./js/moment.js"></script>
-        <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js">
+        </script><script src="https://kit.fontawesome.com/278fed373f.js" crossorigin="anonymous"></script>
 
 
         <script

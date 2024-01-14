@@ -769,49 +769,34 @@ th:after {
   min-width: 100%;
   min-height: 100%;
 }
-#myBtn {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: #000;
+#btnSound {  
   color: #fff;
   cursor: pointer;
   z-index: 9;
 }
 
-#myBtn:hover {
+#btnSound:hover {
   background: #ddd;
-  color: black;
+  color: rgb(250, 4, 4);
 }
-#myBtn2 {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: #000;
+#btnPlay {
   color: #fff;
   cursor: pointer;
   z-index: 9;
 }
 
-#myBtn2:hover {
+#btnPlay:hover {
   background: #ddd;
-  color: black;
+  color: rgb(250, 4, 4);
 }
 
-#myBtn3 {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: #000;
+#btnStop {
   color: #fff;
   cursor: pointer;
   z-index: 9;
 }
 
-#myBtn3:hover {
+#btnStop:hover {
   background: #ddd;
-  color: black;
+  color: rgb(250, 4, 4);
 }
