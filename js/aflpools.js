@@ -29,6 +29,9 @@ var trans_history = [];
 var predictions = [];
 var results = [];
 var prizepool = 0;
+var video = document.getElementById("myVideo");
+// var btn = document.getElementById("myBtn");
+// var btn2 = document.getElementById("myBtn2");
 
 $(document).ready(function () {
   if ('service-worker' in navigator) {
@@ -40,13 +43,36 @@ $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
+
+
+// Pause and play the video, and change the button text
+
   $("#funds").hide();
   $(".navbar-collapse").collapse("toggle");
   getRounds();
   getGames();
   getRound();
 });
-
+function togglePlay() {
+  if (video.paused) {
+    $("#myVideo").show();
+    video.play();
+    btnPlay.innerHTML = "<img src='images/pausebtn.png'>";
+  } else {
+    video.pause();
+    btnPlay.innerHTML = "<img src='images/playbtn.png'>";
+    video.muted = true;
+  }
+}
+function toggleSound() {
+  video.muted = !video.muted;
+}
+function closeVideo() {
+  video.muted = true;
+  $("#myVideo").hide();
+  btnPlay.innerHTML = "<img src='images/playbtn.png'>";
+  video.paused;
+}
 function getTCs() {
   fetch('tc.txt')
     .then(res => res.text())
@@ -549,6 +575,7 @@ function hideAllBoxes() {
   $("#resultsbox").hide();
   $("#contactbox").hide();
   $("#tcbox").hide();
+  $("#videobox").hide();
   window.scrollTo(0, 0);
 }
 function depositEvent() {
@@ -617,6 +644,23 @@ function chkValCode() {
     $("#chkemailmsg").hide();
     $("#newpassword").show();
   }
+}
+function stopDemoVideo() {
+  document.getElementById("videobox").innerHTML =null;
+  $("#videobox").hide();
+}
+function showDemoVideo() {
+  document.getElementById("videobox").innerHTML = `style="display: none; border-radius: 0%; margin-top: 5rem;">
+  <div class="close">
+      <span aria-hidden="true" onclick="hideAllBoxes(); stopDemoVideo();">&times;</span>
+  </div>
+  <div>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/lXWX3sW9vwY?si=zZMIu36ZpMRVttp7"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+  </div>`
+  $("#videobox").show();
 }
 function getTransactionhistory() {
   // $(".navbar-collapse").collapse("toggle");
