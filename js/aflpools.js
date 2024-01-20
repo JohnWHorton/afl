@@ -650,16 +650,17 @@ function stopDemoVideo() {
   $("#videobox").hide();
 }
 function showDemoVideo() {
-  document.getElementById("videobox").innerHTML = `style="display: none; border-radius: 0%; margin-top: 5rem;">
+  document.getElementById("videobox").innerHTML = `
   <div class="close">
       <span aria-hidden="true" onclick="hideAllBoxes(); stopDemoVideo();">&times;</span>
   </div>
-  <div>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/lXWX3sW9vwY?si=zZMIu36ZpMRVttp7"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-  </div>`
+  <div style="width: 100%; min-width: 400px; max-width: 800px;">
+    <div style="position: relative; width: 100%; overflow: hidden; padding-top: 56.25%;">
+      <p>
+        <iframe style="position: absolute; top: 0; left: 0; right: 0; width: 100%; height: 100%; border: none; overflow: hidden;" src="https://www.youtube.com/embed/lXWX3sW9vwY?si=zZMIu36ZpMRVttp7" width="560" height="315" allowfullscreen="allowfullscreen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></p>
+    </div>
+  </div>`;
+
   $("#videobox").show();
 }
 function getTransactionhistory() {
