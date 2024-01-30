@@ -18,6 +18,8 @@ $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: " . $conn->connect_error;
   exit();
+} else {
+  echo "ok";
 }
 
 $postdata = file_get_contents("php://input");
