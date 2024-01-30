@@ -514,17 +514,8 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </pre>
             </div>
         </div>
-        <div id="videobox" class="container videocontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem;">
-            <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
-            </div>
-            <div>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/lXWX3sW9vwY?si=zZMIu36ZpMRVttp7"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe>
-            </div>
+        <div id="videobox" class="container videocontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; background: transparent; max-width: 40%; overflow-y:  hidden;">
+            
         </div>
 
         <div id="pp" class="paypalcontainer panel modal modal-content"
