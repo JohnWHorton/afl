@@ -932,7 +932,7 @@ function showPredictions() {
 
       predictionstable += `<tr>`;
       predictionstable += `
-      <td>Prediction: ${predictions[j].id}</td>
+      <td>Prediction: ${predictions[j].id} Round ${predictions[j].roundnumber}</td>
       </tr>
       `;
 
@@ -1001,7 +1001,7 @@ function showResults() {
       pid = results[k].predictionid;
       resultstable += `<tr>`;
       resultstable += `
-      <td>Prediction: ${pid}</td>
+      <td>Prediction: ${pid} Round ${results[k].roundnumber}</td>
       </tr>
       `;
     }
