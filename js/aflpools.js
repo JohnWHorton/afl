@@ -995,7 +995,7 @@ function getResults() {
 function showResults() {
   let resultstable = "";
   let pid = 0;
-  for (let k = 0; k < results.length; k++) {cd ~/.showMsg
+  for (let k = 0; k < results.length; k++) {
     // let result = JSON.parse(results[k].resultthisjson);
     if (pid != results[k].predictionid) {
       pid = results[k].predictionid;

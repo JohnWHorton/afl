@@ -177,7 +177,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%;" />
                 <div class="row">
                     <text id="prizepoolamt"
-                        style="color: yellow; font-size: 28px; font-style:italic; text-align: center"></text>
+                        style="color: yellow; font-size: 28px; font-style:italic; text-align: center; z-index: 9;"></text>
                 </div>
             </div>
             <center>
