@@ -594,7 +594,7 @@ pre {
 .registercontainer {
   display: flex;
   max-width: 300px;
-  max-height: 400px;
+  max-height: 500px;
   /* background-color: #b6bdb9 !important;   */
   background-color: #999999 !important;
   color: black;
