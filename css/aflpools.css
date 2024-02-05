@@ -506,7 +506,7 @@ p {
   background-color: #b6bdb9 !important;
   color: black;
   margin-top: 50px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .mybalancecontainer {

@@ -671,6 +671,10 @@ function getTransactionhistory() {
   }
   showHistory();
 }
+function showStripe() {
+  // $("#stripebox").show();
+  window.open("https://buy.stripe.com/test_aEUg0t4QR8Kv4YEdQR", "_self");
+}
 function showPayPal() {
   if (loggedin) {
     $("#pp").show();
