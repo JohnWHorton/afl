@@ -39,11 +39,12 @@ $(document).ready(function () {
       .then(function () { console.log("Service worker registered"); });
     window.location.reload();
   };
-
   document.getElementById("selectround").value = roundnumber.toString();
   document.getElementById("welcome").innerHTML = "Welcome to the game";
 
-
+  if (localStorage.aflusername && localStorage.aflusername !== "") {
+    loginEvent(); 
+  } 
 
 // Pause and play the video, and change the button text
 
@@ -356,9 +357,15 @@ function calBal(x) {
 }
 function loginEvent() {
   // e.preventDefault();
-
-  logemail = $("#loginEmail").val();
-  logpword = $("#loginPassword").val();
+  if (localStorage.aflusername && localStorage.aflusername !== "") {
+    logemail = localStorage.aflusername;
+    logpword = localStorage.afluserpswd;
+  } else {
+    logemail = $("#loginEmail").val();
+    logpword = $("#loginPassword").val();
+    localStorage.aflusername = logemail;
+    localStorage.afluserpswd = logpword;
+  }
 
   if ($("#defaultCheck1").is(":checked")) {
     chkbox = true;
@@ -671,9 +678,16 @@ function getTransactionhistory() {
   }
   showHistory();
 }
+
 function showStripe() {
-  // $("#stripebox").show();
-  window.open("https://buy.stripe.com/test_aEUg0t4QR8Kv4YEdQR", "_self");
+  if (!loggedin) {
+    $("#loginbox").show();
+    return;
+  }
+  fetch('http://localhost:4242/checkout.html')
+    .then(res => res.text())
+    .then(res => stripebox.innerHTML = res);
+  $("#stripebox").show();
 }
 function showPayPal() {
   if (loggedin) {

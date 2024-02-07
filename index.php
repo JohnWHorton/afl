@@ -1,6 +1,6 @@
 <?php
 // Include the configuration file
-require_once './paypal_standard_checkout_in_php/config.php';
+// require_once './paypal_standard_checkout_in_php/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
     <link rel="stylesheet" href="./css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="./css/aflpools.css" type="text/css">
     <link rel="manifest" href="./manifest.webmanifest">
+
     <!------ Include the above in your HEAD tag ---------->
 </head>
 
@@ -472,8 +473,11 @@ require_once './paypal_standard_checkout_in_php/config.php';
                 </div>
             </div>
         </div>
-        <!-- <div id="stripebox" class="container contactcontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
-        </div> -->
+        <div id="stripebox" class="container contactcontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+            <div id="checkout">
+                <!-- Checkout will insert the payment form here -->
+            </div>
+        </div>
 
         <div id="tcbox" class="container tccontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
             <div class="close">
@@ -535,12 +539,12 @@ require_once './paypal_standard_checkout_in_php/config.php';
         <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js">
         </script>
         <script src="https://kit.fontawesome.com/278fed373f.js" crossorigin="anonymous"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="./js/checkout.js" defer></script>
 
 
-        <script src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_SANDBOX ? PAYPAL_SANDBOX_CLIENT_ID : PAYPAL_PROD_CLIENT_ID; ?>&currency=<?php echo $currency; ?>">
-            consol.log("PayPal url", src)
-        </script>
-        <script>
+        <!--  -->
+        <!-- <script>
             paypal.Buttons({
                 // Sets up the transaction when a payment button is clicked
                 createOrder: (data, actions) => {
@@ -633,7 +637,7 @@ require_once './paypal_standard_checkout_in_php/config.php';
                     document.querySelector(".overlay").classList.add("hidden");
                 }
             }
-        </script>
+        </script> -->
         <!-- Footer -->
         <footer class="page-footer font-small blue pt-4">
 
