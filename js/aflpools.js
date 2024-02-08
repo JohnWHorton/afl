@@ -40,11 +40,13 @@ $(document).ready(function () {
     window.location.reload();
   };
   document.getElementById("selectround").value = roundnumber.toString();
-  document.getElementById("welcome").innerHTML = "Welcome to the game";
-
+  
+  $("#howtext").show();
   if (localStorage.aflusername && localStorage.aflusername !== "") {
     loginEvent(); 
-  } 
+  } else {
+    document.getElementById("welcome").innerHTML = "Welcome to the game";
+  }
 
 // Pause and play the video, and change the button text
 
@@ -53,6 +55,15 @@ $(document).ready(function () {
   getRounds();
   getGames();
   getRound();
+
+  const queryString = window.location.search;
+  console.log("queryString", queryString);
+  const urlParams = new URLSearchParams(queryString);
+  const deposit = urlParams.get('deposit');
+  if (deposit && deposit == "ok") {
+    // showMsg("You deposit was successful.");
+    depositEvent(20);
+  }
 });
 function togglePlay() {
   if (video.paused) {
@@ -585,8 +596,8 @@ function hideAllBoxes() {
   $("#videobox").hide();
   window.scrollTo(0, 0);
 }
-function depositEvent() {
-  amt = $("#depositamount").val();
+function depositEvent(amt) {
+  // amt = $("#depositamount").val();
   // validation here
   var parms = { operation: "deposit", email: loggedInUser.email, amount: amt };
 
@@ -689,16 +700,20 @@ function showStripe() {
     .then(res => stripebox.innerHTML = res);
   $("#stripebox").show();
 }
-function showPayPal() {
-  if (loggedin) {
-    $("#pp").show();
-  } else {
-    $("#loginbox").show();
-  }
-
-  // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
-  // document.getElementById("pt3").innerHTML = "";
+function cancelDeposit() {
+  // $("#stripebox").empty();
+  $("#stripebox").hide();
 }
+// function showPayPal() {
+//   if (loggedin) {
+//     $("#pp").show();
+//   } else {
+//     $("#loginbox").show();
+//   }
+
+//   // document.getElementById("pt2").innerHTML = `<b>Item Name:</b> ${itemName}`;
+//   // document.getElementById("pt3").innerHTML = "";
+// }
 function deposit(refid) {
   var parms = { operation: "deposit", email: loggedInUser.email, refid: refid };
 

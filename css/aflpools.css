@@ -195,6 +195,20 @@ a {
     font-size: 18px;
     padding: 2rem;
 }
+#stripecontainer {
+  
+    display: flex;
+    height: 500px;
+    background-color: transparent !important;
+    color: white!important;
+    margin-top: 50px;
+    /* height: 100%; */
+    /* overflow-x: hidden; */
+    overflow-y: auto;
+    padding-top: 0%!important;
+    font-size: 18px;
+
+}
 #contact-form {  
     font-size: 18px;
     padding: 2rem;
@@ -725,6 +739,15 @@ a:hover {
   }
   .tccontainer {
     width: 100%!important;
+  }
+  .stripecontainer {
+    width: 100%;
+    margin: 0;
+  }
+  .footerrow {
+    min-width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
   }
   #videobox {
     min-width: 90%;

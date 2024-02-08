@@ -71,11 +71,9 @@
         </div>
     </nav>
 
-
-
     <div class="container-fluid" style="width: 100%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
         <div class="row">
-            <video autoplay muted loop id="myVideo">
+            <video  muted loop id="myVideo">
                 <source src="videos/afl3.mp4" type="video/mp4">
             </video>
             <div class="col-sm-12">
@@ -85,7 +83,7 @@
                 </div>
             </div>
             <button id="btnSound" onclick="toggleSound()"><img src="images/soundbtn.png"></button>
-            <button id="btnPlay" onclick="togglePlay()"><img src="images/pausebtn.png"></button>
+            <button id="btnPlay" onclick="togglePlay()"><img src="images/playbtn.png"></button>
             <button id="btnStop" onclick="closeVideo()"><img src="images/stopbtn.png"></button>
 
         </div>
@@ -107,10 +105,10 @@
                         <br />
                         <div class="close">
                             <span aria-hidden="true" onclick="$('#whytext').hide(); $('#prizepool').show();">
-                                <img src="./images/toggle.svg" width=20 height=20 />
+                                &times;
                             </span>
                         </div>
-                        <section class="section how-it-works">
+                        <section class="section how-it-works" style="display: none;">
                             <div class="grid-container">
                                 <div class="grid-x grid-padding-x">
                                     <div class="small-12 cell">
@@ -140,28 +138,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
+                            <div style="font-size: 16px; padding: 15px 20px 5px 20px;">
+                                This site is not a gambling site.<br />
+                                Rather it is a platform for members to compete against each other. This involves members
+                                contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end
+                                of each round.
+                                <br /><br />
+                                At no time does this site collect or 'rake' any part of the prize pool. Instead we charge a
+                                $5 AUD membership fee. (FREE for 2024 season)
+                                <br /><br />
+                                Members compete in activities that require strategy, intelligence, creativity, or other
+                                skills.<br /><br />
+
+                                Select any 6 games and make a prediction for the Winner of each game.</br>
+                                Each set of 6 predictions will contribute $20 AUD into the pool.</br></br>
+                                The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
+                                this will be shared equally by the Best Predictions for each round.</br>
+                                If there are no Winners, the pool will be carried forward to the next round.</br></br>
+
+                            </div>
                         </section>
-                        <h4 style="text-align: center;"><b>What this site is and how to participate</b></h4>
-                        <div style="font-size: 16px; padding: 15px 20px 5px 20px;">
-                            This site is not a gambling site.<br />
-                            Rather it is a platform for members to compete against each other. This involves members
-                            contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end
-                            of each round.
-                            <br /><br />
-                            At no time does this site collect or 'rake' any part of the prize pool. Instead we charge a
-                            $5 AUD membership fee.
-                            <br /><br />
-                            Members compete in activities that require strategy, intelligence, creativity, or other
-                            skills.<br /><br />
-
-                            Select any 6 games and make a prediction for the Winner of each game.</br>
-                            Each set of 6 predictions will contribute $20 AUD into the pool.</br></br>
-                            The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
-                            this will be shared equally by the Best Predictions for each round.</br>
-                            If there are no Winners, the pool will be carried forward to the next round.</br></br>
-
-                        </div>
-                        <h4 style="text-align: center; color: gold;">Think hard!</h4>
+                        <h4 id="howtext" style="text-align: center; color: gold; cursor: pointer; display: none;" onclick="$('.how-it-works').show();">Click here to see how this works</h4>
                     </div>
                 </div>
             </div>
@@ -473,10 +472,11 @@
                 </div>
             </div>
         </div>
-        <div id="stripebox" class="container contactcontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="stripebox" class="container stripecontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto;">
             <div id="checkout">
                 <!-- Checkout will insert the payment form here -->
             </div>
+            <button onclick="cancelDeposit();" style="width: 100%;">Cancel Deposit</button>
         </div>
 
         <div id="tcbox" class="container tccontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
@@ -645,7 +645,7 @@
             <div class="container-fluid text-center">
 
                 <!-- Grid row -->
-                <div class="row" style="margin-left: 20%; margin-right: 20%;">
+                <div class="row footerrow" style="margin-left: 20%; margin-right: 20%;">
                     <!-- Grid column -->
                     <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
                     </div>

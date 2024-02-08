@@ -16,7 +16,7 @@ $checkout_session = $stripe->checkout->sessions->create([
     'quantity' => 1,
   ]],
   'mode' => 'payment',
-  'return_url' => 'http://localhost:82/afl',
+  'return_url' => 'http://localhost:82/afl?deposit=ok',
 ]);
 
   echo json_encode(array('clientSecret' => $checkout_session->client_secret));
