@@ -892,7 +892,7 @@ function predictioncnt() {
 }
 function makeprediction() {
   if (bal < 20) {
-    showHideDepositbox();
+    showStripe();
     return;
   }
   let predictthis = games.filter((games) => games.checked === true);
