@@ -73,7 +73,7 @@
 
     <div class="container-fluid" style="width: 100%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
         <div class="row">
-            <video  muted loop id="myVideo">
+            <video muted loop id="myVideo">
                 <source src="videos/afl3.mp4" type="video/mp4">
             </video>
             <div class="col-sm-12">
@@ -89,8 +89,8 @@
         </div>
 
         <div class="row">
-            <div id="predictnow" style="display: none;">
-                <button id="predictionnowbtn" class="btn" onclick="makeprediction()">Contribute</button>
+            <div id="predictnow" style="display: none; z-index: 3;">
+                <button id="predictionnowbtn" class="btn" onclick="makeprediction()">Save my Prediction</button>
             </div>
             <div class="col-sm-12" style="min-height: 60px; max-height: 60px;">
                 <div class="msg" style="text-align: center; display: none;">
@@ -104,10 +104,11 @@
                     <div class="col-sm-12" style="text-align: center; margin-left: 1rem; margin-right: -0.9rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
                         <div class="close">
-                            <span aria-hidden="true" onclick="$('#whytext').hide(); $('#prizepool').show();">
+                            <span aria-hidden="true" onclick="$('.how-it-works').hide(); $('#prizepool').show();">
                                 &times;
                             </span>
                         </div>
+                        <h4 style="text-align: center; color: gold; cursor: pointer;" onclick="$('.how-it-works').show();">Click here to see how this works</h4>
                         <section class="section how-it-works" style="display: none;">
                             <div class="grid-container">
                                 <div class="grid-x grid-padding-x">
@@ -160,12 +161,11 @@
 
                             </div>
                         </section>
-                        <h4 id="howtext" style="text-align: center; color: gold; cursor: pointer; display: none;" onclick="$('.how-it-works').show();">Click here to see how this works</h4>
                     </div>
                 </div>
             </div>
             <div id="prizepool" class="colcontainer" style="display: none; min-height: 65px">
-                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%;" />
+                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%; position: relative;" />
                 <div class="row">
                     <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; text-align: center; z-index: 9;"></text>
                 </div>
@@ -179,6 +179,7 @@
                                 <span class="sr-only">Loading...</span>
                             </div>
                             <div id="roundname" style="font-size: 24px; color: red;"></div>
+                            <div id="select6"></div>
                             <table class="table">
                                 <tbody id="tableleft">
                                 </tbody>

@@ -49,9 +49,9 @@ a {
   margin-right: auto;
 }
 #predictionnowbtn {
-  color: #000;
-  background-color: yellow !important;
-  border-color: #007bff;
+  color: #fff!important;
+  background-color: rgb(59 97 248) !important;
+  border-color: #0078f8!important;
 }
 
 .button:active {
@@ -128,6 +128,7 @@ a {
   background-color: transparent;
   cursor: pointer;
   margin-left: auto;
+  margin-right: 10px;
 }
 
 .colcenter {

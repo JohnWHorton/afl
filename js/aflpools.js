@@ -188,6 +188,7 @@ function getGames() {
       ).innerHTML = `Round ${roundnumber} Closed`;
     } else {
       document.getElementById("roundname").innerHTML = `Round ${roundnumber}`;
+      document.getElementById("select6").innerHTML = "Select any 6 games and predict the winners.";
     }
 
     tableleft += `
