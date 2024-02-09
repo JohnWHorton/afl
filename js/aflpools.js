@@ -44,7 +44,13 @@ $(document).ready(function () {
   $("#howtext").show();
   if (localStorage.aflusername && localStorage.aflusername !== "") {
     loginEvent();
+    $('#login').hide();
+    $('#logout').show();
+    $('#join').prop('disabled', true);
   } else {
+    $('#login').show();
+    $('#logout').hide();
+    $('#join').prop('disabled', false);
     document.getElementById("welcome").innerHTML = "Welcome to the game";
   }
 
@@ -66,6 +72,12 @@ $(document).ready(function () {
     depositEvent(20);
   }
 });
+function logout() {
+  loggedInUser = "";
+  $('#login').show();
+  $('#logout').hide();
+  $('#join').prop('disabled', false);
+}
 function togglePlay() {
   if (video.paused) {
     $("#myVideo").show();

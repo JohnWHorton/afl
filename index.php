@@ -61,10 +61,13 @@
                 <li class="nav-item">
                     <a id="welcome" class="nav-link" href="#">Welcome to the game</a>
                 </li>
-                <li class="nav-item">
+                <li id="login" class="nav-item">
                     <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
                 </li>
-                <li class="nav-item">
+                <li id="logout" class="nav-item" style="display: hidden;">
+                    <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>
+                </li>
+                <li id="join" class="nav-item">
                     <button type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
                 </li>
             </ul>
