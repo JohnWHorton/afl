@@ -40,15 +40,15 @@ $(document).ready(function () {
     window.location.reload();
   };
   document.getElementById("selectround").value = roundnumber.toString();
-  
+
   $("#howtext").show();
   if (localStorage.aflusername && localStorage.aflusername !== "") {
-    loginEvent(); 
+    loginEvent();
   } else {
     document.getElementById("welcome").innerHTML = "Welcome to the game";
   }
 
-// Pause and play the video, and change the button text
+  // Pause and play the video, and change the button text
 
   $("#funds").hide();
   $(".navbar-collapse").collapse("toggle");
@@ -61,7 +61,8 @@ $(document).ready(function () {
   const urlParams = new URLSearchParams(queryString);
   const deposit = urlParams.get('deposit');
   if (deposit && deposit == "ok") {
-    // showMsg("You deposit was successful.");
+    logemail = localStorage.payusername;
+    logpword = localStorage.payuserpswd;
     depositEvent(20);
   }
 });
@@ -368,14 +369,23 @@ function calBal(x) {
 }
 function loginEvent() {
   // e.preventDefault();
-  if (localStorage.aflusername && localStorage.aflusername !== "") {
-    logemail = localStorage.aflusername;
-    logpword = localStorage.afluserpswd;
+  if (document.getElementById('defaultCheck1').checked) {
+    if (localStorage.aflusername && localStorage.aflusername !== "") {
+      logemail = localStorage.aflusername;
+      logpword = localStorage.afluserpswd;
+    } else {
+      logemail = $("#loginEmail").val();
+      logpword = $("#loginPassword").val();
+      localStorage.aflusername = logemail;
+      localStorage.afluserpswd = logpword;
+      localStorage.payusername = logemail;
+      localStorage.payuserpswd = logpword;
+    }
   } else {
-    logemail = $("#loginEmail").val();
-    logpword = $("#loginPassword").val();
-    localStorage.aflusername = logemail;
-    localStorage.afluserpswd = logpword;
+    localStorage.aflusername = "";
+    localStorage.afluserpswd = "";
+    localStorage.payusername = logemail;
+    localStorage.payuserpswd = logpword;
   }
 
   if ($("#defaultCheck1").is(":checked")) {
@@ -594,6 +604,7 @@ function hideAllBoxes() {
   $("#contactbox").hide();
   $("#tcbox").hide();
   $("#videobox").hide();
+
   window.scrollTo(0, 0);
 }
 function depositEvent(amt) {
@@ -664,7 +675,7 @@ function chkValCode() {
   }
 }
 function stopDemoVideo() {
-  document.getElementById("videobox").innerHTML =null;
+  document.getElementById("videobox").innerHTML = null;
   $("#videobox").hide();
 }
 function showDemoVideo() {

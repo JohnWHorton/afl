@@ -210,7 +210,7 @@
                     <input type="password" class="form-control" id="loginPassword" value="" placeholder="Enter Password">
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value id="defaultCheck1">
+                    <input class="form-check-input" type="checkbox" value checked id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                         Remember me
                     </label>
