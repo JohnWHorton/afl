@@ -40,7 +40,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
                         <!-- <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a> -->
                         <a class="dropdown-item" onclick="hideAllBoxes();showStripe()">Deposit funds</a>
-                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Withdraw funds</a>
+                        <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Redeem tokens</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
                         <a class="dropdown-item" onclick="hideAllBoxes();getPredictions()">My predictions</a>
@@ -61,14 +61,14 @@
                 <li class="nav-item">
                     <a id="welcome" class="nav-link" href="#">Welcome to the game</a>
                 </li>
-                <li id="login" class="nav-item">
+                <li id="loginout" class="nav-item">
                     <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
                 </li>
-                <li id="logout" class="nav-item" style="display: hidden;">
+                <!-- <li id="logout" class="nav-item" style="display: hidden;">
                     <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>
-                </li>
-                <li id="join" class="nav-item">
-                    <button type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
+                </li> -->
+                <li class="nav-item">
+                    <button id="join" type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
                 </li>
             </ul>
         </div>
@@ -93,7 +93,7 @@
 
         <div class="row">
             <div id="predictnow" style="display: none; z-index: 3;">
-                <button id="predictionnowbtn" class="btn" onclick="makeprediction()">Save my Prediction</button>
+                <button class="btn predictionnowbtn" onclick="makeprediction()">Save my Prediction</button>
             </div>
             <div class="col-sm-12" style="min-height: 60px; max-height: 60px;">
                 <div class="msg" style="text-align: center; display: none;">
@@ -134,8 +134,8 @@
                                             <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-3.png" alt="" src="images/number-3.png">
                                                 <div class="how-it-works__item-inner">
                                                     <h4>Make a prediction for the next Round</h4>
-                                                    <p>Correct predictions will earn a share of the pool<br />
-                                                        Redeem your tokens at any time.</p><br />
+                                                    <p>Correct predictions will earn additional tokens<br />
+                                                        Redeem your tokens at the end of the season.</p><br />
                                                 </div>
                                             </div>
                                         </div>
@@ -351,18 +351,19 @@
             <form style="padding: 10px;" autocomplete="off">
                 <div class="form-group">
                     <p id="showBalance" style="font-size: 18px;"></p>
-                    <label for="withdrawamount">Withdraw amount</label>
-                    <input type="withdrawamount" class="form-control" id="withdrawamount" placeholder="amount">
+                    <!-- <label for="withdrawamount">Withdraw amount</label>
+                    <input type="withdrawamount" class="form-control" id="withdrawamount" placeholder="amount"> -->
+                    <p>Tokens can be redeemed at the end of the season</p>
                 </div>
 
-                <div style="justify-content: center">
+                <!-- <div style="justify-content: center">
                     <center>
                         <button type="button" class="btn btn-primary buttonlogin" onclick="withdrawEvent()">
                             Withdraw
                         </button>
                         <br>
                     </center>
-                </div>
+                </div> -->
             </form>
         </div>
 
@@ -643,7 +644,7 @@
             }
         </script> -->
         <!-- Footer -->
-        <footer class="page-footer font-small blue pt-4">
+        <footer class="page-footer font-small blue pt-4" style="position: relative; z-index: 3; color:#000000; background-color: #000000;">
 
             <!-- Footer Links -->
             <div class="container-fluid text-center">
@@ -651,11 +652,11 @@
                 <!-- Grid row -->
                 <div class="row footerrow" style="margin-left: 20%; margin-right: 20%;">
                     <!-- Grid column -->
-                    <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
+                    <div class="col mt-3" ><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
                     </div>
-                    <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
+                    <div class="col mt-3" ><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
                     </div>
-                    <div class="col mt-3"><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
+                    <div class="col mt-3" ><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
                     </div>
                     <!-- Links -->
                 </div>
@@ -664,7 +665,7 @@
 
             <!-- Copyright -->
 
-            <div class="footer-copyright text-center py-3">© 2024 Copyright:
+            <div class="footer-copyright text-center py-3" style="color: #ffffff!important;">© 2024 Copyright:
                 <a href="/"> AFL-pools.com</a>
             </div>
         </footer>

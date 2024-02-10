@@ -34,23 +34,22 @@ var video = document.getElementById("myVideo");
 // var btn2 = document.getElementById("myBtn2");
 
 $(document).ready(function () {
-  if ('service-worker' in navigator) {
-    navigator.serviceWorker.register("/service-worker.js")
-      .then(function () { console.log("Service worker registered"); });
+  if ("service-worker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js").then(function () {
+      console.log("Service worker registered");
+    });
     window.location.reload();
-  };
+  }
   document.getElementById("selectround").value = roundnumber.toString();
 
   $("#howtext").show();
   if (localStorage.aflusername && localStorage.aflusername !== "") {
     loginEvent();
-    $('#login').hide();
-    $('#logout').show();
-    $('#join').prop('disabled', true);
+    // $("#login").hide();
+    // $("#logout").show();
+    // $("#logout").prop("disabled", true);
   } else {
-    $('#login').show();
-    $('#logout').hide();
-    $('#join').prop('disabled', false);
+    // $("#join").prop("disabled", false);
     document.getElementById("welcome").innerHTML = "Welcome to the game";
   }
 
@@ -62,10 +61,15 @@ $(document).ready(function () {
   getGames();
   getRound();
 
-  const queryString = window.location.search;
+  const queryString = document.location.hash.substring(1);
+
+  // immediately change the hash
+  document.location.hash = '';
+
+  // const queryString = window.location.search;
   console.log("queryString", queryString);
   const urlParams = new URLSearchParams(queryString);
-  const deposit = urlParams.get('deposit');
+  const deposit = urlParams.get("deposit");
   if (deposit && deposit == "ok") {
     logemail = localStorage.payusername;
     logpword = localStorage.payuserpswd;
@@ -73,10 +77,16 @@ $(document).ready(function () {
   }
 });
 function logout() {
-  loggedInUser = "";
-  $('#login').show();
-  $('#logout').hide();
-  $('#join').prop('disabled', false);
+  localStorage.aflusername = "";
+  localStorage.afluserpswd = "";
+  localStorage.payusername = "";
+  localStorage.payuserpswd = "";
+  location.reload(true);
+
+  // loggedInUser = "";
+  // $('#login').show();
+  // $('#logout').hide();
+  // $('#join').prop('disabled', false);
 }
 function togglePlay() {
   if (video.paused) {
@@ -99,16 +109,16 @@ function closeVideo() {
   video.paused;
 }
 function getTCs() {
-  fetch('tc.txt')
-    .then(res => res.text())
-    .then(res => tc.innerHTML = res);
-  $('#tcbox').show();
+  fetch("tc.txt")
+    .then((res) => res.text())
+    .then((res) => (tc.innerHTML = res));
+  $("#tcbox").show();
 }
 function getPrivacy() {
-  fetch('privacy.txt')
-    .then(res => res.text())
-    .then(res => tc.innerHTML = res);
-  $('#tcbox').show();
+  fetch("privacy.txt")
+    .then((res) => res.text())
+    .then((res) => (tc.innerHTML = res));
+  $("#tcbox").show();
 }
 
 function getRounds() {
@@ -151,7 +161,9 @@ function getRound(e) {
         prizepool = rounds[i].prize_pool;
       }
     }
-    document.getElementById("prizepoolamt").innerHTML = `Current prize pool - $${prizepool} AUD`;
+    document.getElementById(
+      "prizepoolamt"
+    ).innerHTML = `Current prize pool - $${prizepool} AUD`;
     getGames();
   }
 }
@@ -200,7 +212,8 @@ function getGames() {
       ).innerHTML = `Round ${roundnumber} Closed`;
     } else {
       document.getElementById("roundname").innerHTML = `Round ${roundnumber}`;
-      document.getElementById("select6").innerHTML = "Select any 6 games and predict the winners.";
+      document.getElementById("select6").innerHTML =
+        "Select any 6 games and predict the winners.";
     }
 
     tableleft += `
@@ -294,25 +307,18 @@ function checkDisableGames() {
       // console.log("NOW is greater");
       $(`#${games[i].gameid}`).attr("checked", false);
       $(`#${games[i].gameid}`).attr("disabled", true);
-      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
-        "disabled",
-        true
-      );
-      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
-        "disabled",
-        true
-      );
-      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr(
-        "checked",
-        false
-      );
-      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr(
-        "checked",
-        false
-      );
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("disabled", true);
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("disabled", true);
+      $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("checked", false);
+      $(`#${games[i].awayteamname.replaceAll(" ", "")}`).attr("checked", false);
       games[i].winname = "";
-      if (!document.getElementById(`${games[i].gameid}started`).innerHTML.includes("Closed"))
-        document.getElementById(`${games[i].gameid}started`).innerHTML += " Closed";
+      if (
+        !document
+          .getElementById(`${games[i].gameid}started`)
+          .innerHTML.includes("Closed")
+      )
+        document.getElementById(`${games[i].gameid}started`).innerHTML +=
+          " Closed";
     }
   }
 }
@@ -382,7 +388,7 @@ function calBal(x) {
 }
 function loginEvent() {
   // e.preventDefault();
-  if (document.getElementById('defaultCheck1').checked) {
+  if (document.getElementById("defaultCheck1").checked) {
     if (localStorage.aflusername && localStorage.aflusername !== "") {
       logemail = localStorage.aflusername;
       logpword = localStorage.afluserpswd;
@@ -442,6 +448,9 @@ function loginEvent() {
         // document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
         $("#funds").show();
         loggedin = true;
+        document.getElementById("loginout").innerHTML = `<button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>`;
+        // $("#login").hide();
+        // $("#logout").show();
         // console.log("User", loggedInUser);
       }
     },
@@ -452,9 +461,12 @@ function loginEvent() {
 }
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
-  regemail = $("#remail").val();
-  regpwrd = $("#rpassword").val();
-  repregpword = $("#rrpassword").val();
+  regemail = "";
+  regpwrd = "";
+  repregpword = "";
+  // regemail = $("#remail").val();
+  // regpwrd = $("#rpassword").val();
+  // repregpword = $("#rrpassword").val();
 
   // console.log("regemail", regemail);
   // console.log("regpwrd", regpwrd);
@@ -603,7 +615,7 @@ function sendEmail() {
   $("#contactbox").hide();
 }
 function hideAllBoxes() {
-  $('.navbar .collapse').collapse('hide');
+  $(".navbar .collapse").collapse("hide");
   $("#loginbox").hide();
   $("#registerbox").hide();
   $("#forgotbox").hide();
@@ -659,7 +671,9 @@ function showHideWithdrawbox() {
     showMsg("You have no funds to withdraw");
     return;
   }
-  document.getElementById("showBalance").innerHTML = `Available Funds $ ${bal} AUD`;
+  document.getElementById(
+    "showBalance"
+  ).innerHTML = `Available Funds $ ${bal} AUD`;
   $("#withdrawbox").show();
 }
 function showMsg(m) {
@@ -719,9 +733,9 @@ function showStripe() {
     $("#loginbox").show();
     return;
   }
-  fetch('http://localhost:4242/checkout.html')
-    .then(res => res.text())
-    .then(res => stripebox.innerHTML = res);
+  fetch("http://localhost:4242/checkout.html")
+    .then((res) => res.text())
+    .then((res) => (stripebox.innerHTML = res));
   $("#stripebox").show();
 }
 function cancelDeposit() {
@@ -899,7 +913,6 @@ function predictioncnt() {
     $("#predictnowbtn").focus();
   } else {
     $("#predictnow").hide();
-
   }
 }
 function makeprediction() {
@@ -978,8 +991,6 @@ function getPredictions() {
     },
   });
   $("#spinner").hide();
-
-
 }
 function showPredictions() {
   let predictionstable = "";
@@ -1144,4 +1155,3 @@ function winnings() {
     },
   });
 }
-
