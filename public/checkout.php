@@ -22,8 +22,8 @@ $checkout_session = $stripe->checkout->sessions->create([
   ]],
   'mode' => 'payment',
   // 'ui_mode' => 'embedded',
-  // 'return_url' => 'http://localhost:82/afl?deposit=ok',
-  'return_url' => 'https://afl-pools.com?deposit=ok',
+  // 'return_url' => 'http://localhost:82/afl?#deposit=ok',
+  'return_url' => 'https://afl-pools.com?#deposit=ok',
 ]);
 
   echo json_encode(array('clientSecret' => $checkout_session->client_secret));
