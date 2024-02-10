@@ -4,7 +4,7 @@ var radiogrp = 1;
 var selectedgames = [];
 var logemail = "";
 var logpword = "";
-var chkbox = false;
+var rememberme = false;
 var loggedin = false;
 var loggedInUser = "";
 var regemail = "";
@@ -34,6 +34,7 @@ var video = document.getElementById("myVideo");
 // var btn2 = document.getElementById("myBtn2");
 
 $(document).ready(function () {
+  // clear();
   if ("service-worker" in navigator) {
     navigator.serviceWorker.register("/service-worker.js").then(function () {
       console.log("Service worker registered");
@@ -64,7 +65,7 @@ $(document).ready(function () {
   const queryString = document.location.hash.substring(1);
 
   // immediately change the hash
-  document.location.hash = '';
+  document.location.hash = "";
 
   // const queryString = window.location.search;
   console.log("queryString", queryString);
@@ -79,8 +80,10 @@ $(document).ready(function () {
 function logout() {
   localStorage.aflusername = "";
   localStorage.afluserpswd = "";
+  localStorage.rememberme = false;
   localStorage.payusername = "";
   localStorage.payuserpswd = "";
+  $("#joinup").attr("disabled", false);
   location.reload(true);
 
   // loggedInUser = "";
@@ -388,34 +391,38 @@ function calBal(x) {
 }
 function loginEvent() {
   // e.preventDefault();
-  if (document.getElementById("defaultCheck1").checked) {
-    if (localStorage.aflusername && localStorage.aflusername !== "") {
-      logemail = localStorage.aflusername;
-      logpword = localStorage.afluserpswd;
+  // localStorage.rememberme = false;
+  if (localStorage.rememberme && localStorage.rememberme==true) {
+    logemail = localStorage.aflusername;
+    logpword = localStorage.afluserpswd;
+  } else {
+    if ($("#defaultCheck1").is(":checked")) {
+      rememberme = true;
+    } else {
+      rememberme = false;
+    }
+    if (!rememberme) {
+      logemail = $("#loginEmail").val();
+      logpword = $("#loginPassword").val();
+      localStorage.aflusername = "";
+      localStorage.afluserpswd = "";
+      localStorage.rememberme = rememberme;
+      localStorage.payusername = logemail;
+      localStorage.payuserpswd = logpword;
     } else {
       logemail = $("#loginEmail").val();
       logpword = $("#loginPassword").val();
       localStorage.aflusername = logemail;
       localStorage.afluserpswd = logpword;
+      localStorage.rememberme = rememberme;
       localStorage.payusername = logemail;
       localStorage.payuserpswd = logpword;
     }
-  } else {
-    localStorage.aflusername = "";
-    localStorage.afluserpswd = "";
-    localStorage.payusername = logemail;
-    localStorage.payuserpswd = logpword;
   }
 
-  if ($("#defaultCheck1").is(":checked")) {
-    chkbox = true;
-  } else {
-    chkbox = false;
-  }
-
-  // console.log(logemail);
-  // console.log(logpword);
-  // console.log(chkbox);
+  console.log(logemail);
+  console.log(logpword);
+  console.log(rememberme);
 
   var parms = { operation: "loginUser", email: logemail, pswd: logpword };
 
@@ -448,7 +455,10 @@ function loginEvent() {
         // document.getElementById("funds").innerHTML = `Available Funds $ ${loggedInUser.funds} AUD`;
         $("#funds").show();
         loggedin = true;
-        document.getElementById("loginout").innerHTML = `<button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>`;
+        $("#joinup").attr("disabled", true);
+        document.getElementById(
+          "loginout"
+        ).innerHTML = `<button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>`;
         // $("#login").hide();
         // $("#logout").show();
         // console.log("User", loggedInUser);
