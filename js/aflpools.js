@@ -392,11 +392,12 @@ function calBal(x) {
 function loginEvent() {
   // e.preventDefault();
   // localStorage.rememberme = false;
-  if (localStorage.rememberme && localStorage.rememberme==true) {
+  if (localStorage.rememberme) {
     logemail = localStorage.aflusername;
     logpword = localStorage.afluserpswd;
+    rememberme = localStorage.rememberme;
   } else {
-    if ($("#defaultCheck1").is(":checked")) {
+    if ($("#rememberme").is(":checked")) {
       rememberme = true;
     } else {
       rememberme = false;
@@ -441,6 +442,13 @@ function loginEvent() {
       } else {
         response[0].pswd = "";
         loggedInUser = response[0];
+        if (rememberme) {
+          localStorage.aflusername = logemail;
+          localStorage.afluserpswd = logpword;
+          localStorage.rememberme = rememberme;
+          localStorage.payusername = logemail;
+          localStorage.payuserpswd = logpword;
+        }
         if (response["trans-history"]) {
           let x = response["trans-history"];
           // console.log("trans-history", x);
