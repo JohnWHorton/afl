@@ -392,7 +392,7 @@ function calBal(x) {
 function loginEvent() {
   // e.preventDefault();
   // localStorage.rememberme = false;
-  if (localStorage.rememberme) {
+  if (localStorage.rememberme && localStorage.rememberme=="true") {
     logemail = localStorage.aflusername;
     logpword = localStorage.afluserpswd;
     rememberme = localStorage.rememberme;
