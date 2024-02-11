@@ -209,7 +209,7 @@
 
         </div>
         <div id="loginbox" class="container registercontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
@@ -254,7 +254,7 @@
         </div>
         <!-- <form action="action_page.php"> -->
         <div id="registerbox" class="container registercontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
@@ -291,7 +291,7 @@
         </div>
 
         <div id="validatebox" class="container registercontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
@@ -308,7 +308,7 @@
         </div>
 
         <div id="forgotbox" class="container registercontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
@@ -347,7 +347,7 @@
         </div>
 
         <div id="depositbox" class="container registercontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
