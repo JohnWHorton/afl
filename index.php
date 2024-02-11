@@ -34,7 +34,8 @@
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
+                    <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown_target">
@@ -62,19 +63,22 @@
                     <a id="welcome" class="nav-link" href="#">Welcome to the game</a>
                 </li>
                 <li id="loginout" class="nav-item">
-                    <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
+                    <button type="button" class="btn btn-primary btnlogin"
+                        onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
                 </li>
                 <!-- <li id="logout" class="nav-item" style="display: hidden;">
                     <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>
                 </li> -->
                 <li class="nav-item">
-                    <button id="joinup" type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
+                    <button id="joinup" type="button" class="btn btn-secondary btnlogin"
+                        onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
                 </li>
-            </ul> 
+            </ul>
         </div>
     </nav>
 
-    <div class="container-fluid" style="width: 100%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
+    <div class="container-fluid"
+        style="width: 100%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
         <div class="row">
             <video muted loop id="myVideo">
                 <source src="videos/afl3.mp4" type="video/mp4">
@@ -102,36 +106,49 @@
         </div>
 
         <div id="afldata" class="main-content">
+            <div id="prizepool" class="colcontainer" style="min-height: 65px">
+                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%; position: relative;" />
+                <div class="row">
+                    <text id="prizepoolamt"
+                        style="color: yellow; font-size: 28px; font-style:italic; text-align: center; z-index: 3;"></text>
+                </div>
+            </div>
+            
             <div id="whytext" class="colcontainer">
                 <div class="row" style="width: 100%!important;">
-                    <div class="col-sm-12" style="text-align: center; margin-left: 1rem; margin-right: -0.9rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
+                    <div class="col-sm-12"
+                        style="text-align: center; margin-left: 1rem; margin-right: -0.9rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
                         <div class="close">
-                            <span aria-hidden="true" onclick="$('.how-it-works').hide(); $('#prizepool').show();">
-                                &times;
+                            <span aria-hidden="true" onclick="$('.how-it-works').hide(); ">
+                                x
                             </span>
                         </div>
-                        <h4 style="text-align: center; color: gold; cursor: pointer;" onclick="$('.how-it-works').show();">Click here to see how this works</h4>
+                        <h4 style="text-align: center; color: gold; cursor: pointer;"
+                            onclick="$('.how-it-works').show();">Click here to see how this works</h4>
                         <section class="section how-it-works" style="display: none;">
                             <div class="grid-container">
                                 <div class="grid-x grid-padding-x">
                                     <div class="small-12 cell">
                                         <h3>HOW IT WORKS</h3>
                                         <div class="how-it-works__items">
-                                            <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-1.png" alt="" src="images/number-1.png">
+                                            <div class="how-it-works__item"><img class=" lazyloaded"
+                                                    data-src="images/number-1.png" alt="" src="images/number-1.png">
                                                 <div class="how-it-works__item-inner">
                                                     <h4>JOIN AFL Pools Club</h4>
                                                     <p>Sign up! and verify your identity, it's easy and takes less than
                                                         2 minutes</p>
                                                 </div>
                                             </div>
-                                            <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-2.png" alt="" src="images/number-2.png">
+                                            <div class="how-it-works__item"><img class=" lazyloaded"
+                                                    data-src="images/number-2.png" alt="" src="images/number-2.png">
                                                 <div class="how-it-works__item-inner">
                                                     <h4>BUY YOUR PLAYING TOKENS</h4>
                                                     <p>Fund your account with $20 AUD+</p>
                                                 </div>
                                             </div>
-                                            <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-3.png" alt="" src="images/number-3.png">
+                                            <div class="how-it-works__item"><img class=" lazyloaded"
+                                                    data-src="images/number-3.png" alt="" src="images/number-3.png">
                                                 <div class="how-it-works__item-inner">
                                                     <h4>Make a prediction for the next Round</h4>
                                                     <p>Correct predictions will earn additional tokens<br />
@@ -147,10 +164,12 @@
                             <div style="font-size: 16px; padding: 15px 20px 5px 20px;">
                                 This site is not a gambling site.<br />
                                 Rather it is a platform for members to compete against each other. This involves members
-                                contributing to a Prize Pool, and the most skilled predictions sharing the pool at the end
+                                contributing to a Prize Pool, and the most skilled predictions sharing the pool at the
+                                end
                                 of each round.
                                 <br /><br />
-                                At no time does this site collect or 'rake' any part of the prize pool. Instead we charge a
+                                At no time does this site collect or 'rake' any part of the prize pool. Instead we
+                                charge a
                                 $5 AUD membership fee. (FREE for 2024 season)
                                 <br /><br />
                                 Members compete in activities that require strategy, intelligence, creativity, or other
@@ -158,19 +177,14 @@
 
                                 Select any 6 games and make a prediction for the Winner of each game.</br>
                                 Each set of 6 predictions will contribute $20 AUD into the pool.</br></br>
-                                The pool accumulates from the number of predictions and will form the <span style="color:Yellow">PRIZE POOL</span> and
+                                The pool accumulates from the number of predictions and will form the <span
+                                    style="color:Yellow">PRIZE POOL</span> and
                                 this will be shared equally by the Best Predictions for each round.</br>
                                 If there are no Winners, the pool will be carried forward to the next round.</br></br>
 
                             </div>
                         </section>
                     </div>
-                </div>
-            </div>
-            <div id="prizepool" class="colcontainer" style="display: none; min-height: 65px">
-                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%; position: relative;" />
-                <div class="row">
-                    <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; text-align: center; z-index: 9;"></text>
                 </div>
             </div>
             <center>
@@ -194,15 +208,17 @@
             </center>
 
         </div>
-        <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="loginbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <form style="padding: 10px;" autocomplete="off">
                 <div class="form-group">
                     <label for="emailaddress">Email address</label>
-                    <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp"
+                        placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">
                         We'll never share your
                         email with anyone
@@ -211,7 +227,8 @@
                 </div>
                 <div class="form-group">
                     <label for="current-password">Password</label>
-                    <input type="password" class="form-control" id="loginPassword" value="" placeholder="Enter Password">
+                    <input type="password" name="loginPassword" autocomplete="on" class="form-control"
+                        id="loginPassword" value="" placeholder="Enter Password">
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value checked id="rememberme">
@@ -236,9 +253,10 @@
             </form>
         </div>
         <!-- <form action="action_page.php"> -->
-        <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="registerbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <form style="padding: 10px;">
                 <div class="form-group">
@@ -247,11 +265,13 @@
                 </div>
                 <div class="form-group">
                     <label for="rpassword">Password</label>
-                    <input type="password" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
+                    <input type="password" name="rpassword" autocomplete="on" class="form-control" id="rpassword"
+                        placeholder="Enter Password" value="" required>
                 </div>
                 <div class="form-group">
                     <label for="rrpassword">Repeat Password</label>
-                    <input type="password" class="form-control" id="rrpassword" placeholder="Repeat Password" value="" required>
+                    <input type="password" name="rrpassword" autocomplete="on" class="form-control" id="rrpassword"
+                        placeholder="Repeat Password" value="" required>
                 </div>
                 <p>
                     By creating an account you agree to our
@@ -261,7 +281,8 @@
                     .
                 </p>
                 <center>
-                    <button type="button" class="btn btn-primary buttonlogin" onclick="verifyRegisterEmail()">Join</button>
+                    <button type="button" class="btn btn-primary buttonlogin"
+                        onclick="verifyRegisterEmail()">Join</button>
                     <br>
                     <a onclick="hideAllBoxes(); showHideLoginbox()" href="#" style="color: black;">
                         Already a member? Sign in
@@ -269,9 +290,10 @@
                 </center>
         </div>
 
-        <div id="validatebox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="validatebox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <form style="padding: 10px;">
                 <div id="valEmail" class="form-group"></div>
@@ -285,9 +307,10 @@
             </form>
         </div>
 
-        <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="forgotbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <form style="padding: 10px;">
                 <div id="valEmail" class="form-group"></div>
@@ -298,14 +321,17 @@
                 <div id="newpassword" style="display: none;">
                     <div class="form-group">
                         <label for="newpword">Password</label>
-                        <input type="password" class="form-control" id="newpword" placeholder="Enter Password" value="" required>
+                        <input type="password" name="newpword" autocomplete="on" class="form-control" id="newpword"
+                            placeholder="Enter Password" value="" required>
                     </div>
                     <div class="form-group">
                         <label for="rnewpword">Repeat Password</label>
-                        <input type="password" class="form-control" id="rnewpword" placeholder="Repeat Password" value="" required>
+                        <input type="password" name="rnewpword" autocomplete="on" class="form-control" id="rnewpword"
+                            placeholder="Repeat Password" value="" required>
                     </div>
                     <center>
-                        <button type="button" class="btn btn-primary buttonlogin" onclick="resetPassword()">Reset</button>
+                        <button type="button" class="btn btn-primary buttonlogin"
+                            onclick="resetPassword()">Reset</button>
                     </center>
                 </div>
                 <div id="chkemailmsg">
@@ -320,10 +346,11 @@
             </form>
         </div>
 
-        <div id="depositbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="depositbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <form style="padding: 10px;" autocomplete="off">
                 <div class="form-group">
@@ -343,10 +370,11 @@
             </form>
         </div>
         <!-- make a comment -->
-        <div id="withdrawbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="withdrawbox" class="container registercontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <form style="padding: 10px;" autocomplete="off">
                 <div class="form-group">
@@ -367,7 +395,8 @@
             </form>
         </div>
 
-        <div id="historybox" class="container historycontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="historybox" class="container historycontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
 
             <div class="container">
 
@@ -377,7 +406,7 @@
                             <th>Date</th>
                             <th>Transaction type</th>
                             <th>Amount</th>
-                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();">&times;</span></th>
+                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();"> x </span></th>
                         </tr>
                     </thead>
                     <tbody id="historybody">
@@ -387,7 +416,7 @@
             </div>
         </div>
 
-        <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="predictionsbox" class="container predictionscontainer modal modal-content">
 
             <div class="container">
                 <!-- <h2 class="sticky-top">Predictions</h2> -->
@@ -400,7 +429,7 @@
                             <th>Home team</th>
                             <th>Away team</th>
                             <th>Predicted winner</th>
-                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();">&times;</span></th>
+                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();"> x </span></th>
                         </tr>
                     </thead>
                     <tbody id="predictionsbody">
@@ -410,7 +439,8 @@
             </div>
 
         </div>
-        <div id="resultsbox" class="container resultscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="resultsbox" class="container resultscontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem;">
 
             <div class="container">
                 <!-- <h2 class="sticky-top">Results</h2> -->
@@ -424,7 +454,7 @@
                             <th>Winner</th>
                             <th>Predicted</th>
                             <th>Outcome</th>
-                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();">&times;</span></th>
+                            <th><span class="close" aria-hidden="true" onclick="hideAllBoxes();"> x </span></th>
                         </tr>
                     </thead>
 
@@ -436,9 +466,10 @@
 
         </div>
 
-        <div id="contactbox" class="container contactcontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="contactbox" class="container contactcontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <div id="contact-form">
                 <div class="controls">
@@ -450,7 +481,8 @@
                             <br /><br />
                             <div class="form-group">
                                 <label for="form_name">Subject *</label>
-                                <input id="form_name" type="text" name="subject" class="form-control" required="required">
+                                <input id="form_name" type="text" name="subject" class="form-control"
+                                    required="required">
 
                             </div>
                         </div>
@@ -461,7 +493,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="form_message">Message *</label>
-                                <textarea id="form_message" name="message" class="form-control" required="required" rows="5"></textarea>
+                                <textarea id="form_message" name="message" class="form-control" required="required"
+                                    rows="5"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -477,16 +510,18 @@
                 </div>
             </div>
         </div>
-        <div id="stripebox" class="container stripecontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto;">
+        <div id="stripebox" class="container stripecontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto;">
             <div id="checkout">
                 <!-- Checkout will insert the payment form here -->
             </div>
             <button onclick="cancelDeposit();" style="width: 100%;">Cancel Deposit</button>
         </div>
 
-        <div id="tcbox" class="container tccontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="tcbox" class="container tccontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
             <div class="close">
-                <span aria-hidden="true" onclick="hideAllBoxes();">&times;</span>
+                <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
             <div class="row">
                 <pre>
@@ -494,11 +529,12 @@
                 </pre>
             </div>
         </div>
-        <div id="videobox" class="container videocontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; background: transparent; max-width: 40%; overflow-y:  hidden;">
+        <div id="videobox" class="container videocontainer modal modal-content"
+            style="display: none; border-radius: 0%; margin-top: 5rem; background: transparent; max-width: 40%; overflow-y:  hidden;">
 
         </div>
 
-        <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; ;margin-top: 5rem;">
+        <!-- <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; ;margin-top: 5rem;">
 
             <div class="overlay hidden">
                 <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
@@ -520,36 +556,36 @@
                 </h5>
 
                 <!-- Product Info -->
-                <p id="pt2">
-                </p>
-                <p id="pt3">
+        <p id="pt2">
+        </p>
+        <p id="pt3">
 
-                </p>
+        </p>
 
-                <div class="panel-body">
-                    <!-- Display status message -->
-                    <div id="paymentResponse" class="hidden"></div>
+        <div class="panel-body">
+            <!-- Display status message -->
+            <div id="paymentResponse" class="hidden"></div>
 
-                    <!-- Set up a container element for the button -->
-                    <div id="paypal-button-container"></div>
-                </div>
-            </div>
+            <!-- Set up a container element for the button -->
+            <div id="paypal-button-container"></div>
         </div>
+    </div>
+    </div> -->
 
-        <script type="text/javascript" src="./js/smtp.js"></script>
-        <script type="text/javascript" src="./js/jquery.min.js"></script>
-        <script type="text/javascript" src="./js/popper.min.js"></script>
-        <script type="text/javascript" src="./js/aflpools.js"></script>
-        <script type="text/javascript" src="./js/moment.js"></script>
-        <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js">
-        </script>
-        <script src="https://kit.fontawesome.com/278fed373f.js" crossorigin="anonymous"></script>
-        <script src="https://js.stripe.com/v3/"></script>
-        <script src="./js/checkout.js" defer></script>
+    <script type="text/javascript" src="./js/smtp.js"></script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/popper.min.js"></script>
+    <script type="text/javascript" src="./js/aflpools.js"></script>
+    <script type="text/javascript" src="./js/moment.js"></script>
+    <script type="text/javascript" src="./js/bootstrapv4.3.1.min.js">
+    </script>
+    <script src="https://kit.fontawesome.com/278fed373f.js" crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="./js/checkout.js" defer></script>
 
 
-        <!--  -->
-        <!-- <script>
+    <!--  -->
+    <!-- <script>
             paypal.Buttons({
                 // Sets up the transaction when a payment button is clicked
                 createOrder: (data, actions) => {
@@ -643,31 +679,32 @@
                 }
             }
         </script> -->
-        <!-- Footer -->
-        <footer class="page-footer font-small blue pt-4" style="position: relative; z-index: 3; color:#000000; background-color: #000000;">
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4"
+        style="position: relative; z-index: 3; color:#000000; background-color: #000000;">
 
-            <!-- Footer Links -->
-            <div class="container-fluid text-center">
+        <!-- Footer Links -->
+        <div class="container-fluid text-center">
 
-                <!-- Grid row -->
-                <div class="row footerrow" style="margin-left: 20%; margin-right: 20%;">
-                    <!-- Grid column -->
-                    <div class="col mt-3" ><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
-                    </div>
-                    <div class="col mt-3" ><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
-                    </div>
-                    <div class="col mt-3" ><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
-                    </div>
-                    <!-- Links -->
+            <!-- Grid row -->
+            <div class="row footerrow" style="margin-left: 20%; margin-right: 20%;">
+                <!-- Grid column -->
+                <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getPrivacy();">Privacy and Security</a>
                 </div>
-                <!-- Grid row -->
+                <div class="col mt-3"><a href="#!" onclick="hideAllBoxes(); getTCs();">Terms and Conditions</a>
+                </div>
+                <div class="col mt-3"><a href="#" onclick="hideAllBoxes(); $('#contactbox').show();">Contact Us</a>
+                </div>
+                <!-- Links -->
             </div>
+            <!-- Grid row -->
+        </div>
 
-            <!-- Copyright -->
+        <!-- Copyright -->
 
-            <div class="footer-copyright text-center py-3" style="color: #ffffff!important;">© 2024 Copyright:
-                <a href="/"> AFL-pools.com</a>
-            </div>
-        </footer>
-        <!-- Footer -->
+        <div class="footer-copyright text-center py-3" style="color: #ffffff!important;">© 2024 Copyright:
+            <a href="/"> AFL-pools.com</a>
+        </div>
+    </footer>
+    <!-- Footer -->
 </body>

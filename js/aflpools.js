@@ -72,7 +72,14 @@ $(document).ready(function () {
     logpword = localStorage.payuserpswd;
     depositEvent(20);
   }
+
+  // const intervalID = setInterval(updatePrizeAmt, 15000);
+
 });
+// function updatePrizeAmt() {
+//   getPrizeAmt();
+// }
+
 function logout() {
   localStorage.aflusername = "";
   localStorage.afluserpswd = "";
@@ -148,7 +155,7 @@ function getRounds() {
   });
   // console.log("rounds", rounds);
 }
-function getRound(e) {
+function getRound() {
   // e.preventDefault();
   $(".navbar-collapse").collapse("toggle");
 
@@ -160,9 +167,7 @@ function getRound(e) {
         prizepool = rounds[i].prize_pool;
       }
     }
-    document.getElementById(
-      "prizepoolamt"
-    ).innerHTML = `Current prize pool - $${prizepool} AUD`;
+    document.getElementById("prizepoolamt").innerHTML = `Current prize pool - $${prizepool} AUD`;
     getGames();
   }
 }
@@ -369,6 +374,7 @@ function showMsg(m) {
 
   setTimeout(hideMsg, 5000);
 }
+
 function hideMsg() {
   $(".msg").hide();
 }
@@ -700,12 +706,7 @@ function showHideWithdrawbox() {
   ).innerHTML = `Available Funds $ ${bal} AUD`;
   $("#withdrawbox").show();
 }
-function showMsg(m) {
-  $(".msg").html(m);
-  $(".msg").show();
 
-  setTimeout(hideMsg, 5000);
-}
 function hideMsg() {
   $(".msg").hide();
 }

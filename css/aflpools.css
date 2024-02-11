@@ -177,7 +177,9 @@ a {
   overflow-x: hidden;
   overflow-y: auto;
   padding-top: 0% !important;
+  z-index: 4;
 }
+
 .contactcontainer {
   display: flex;
   max-height: 500px;
@@ -190,6 +192,7 @@ a {
   padding-top: 0% !important;
   font-size: 18px;
   padding: 2rem;
+  z-index: 4;
 }
 .stripecontainer {
   display: flex;
@@ -207,6 +210,7 @@ a {
 #contact-form {
   font-size: 18px;
   padding: 2rem;
+  z-index: 4;
 }
 .tccontainer {
   display: flex;
@@ -217,6 +221,7 @@ a {
   overflow-x: hidden;
   overflow-y: auto;
   padding-top: 0% !important;
+  z-index: 4;
 }
 .videocontainer {
   width: 100%;
@@ -254,6 +259,7 @@ a {
   overflow: hidden;
   opacity: 1;
   margin: 0 auto;
+  z-index: 4;
 }
 
 /* Modal Content */
@@ -266,6 +272,7 @@ a {
   color: white;
   background-color: rgba(0, 0, 0, 0.3);
   font-size: 0.9rem;
+  z-index: 4;
 }
 
 .modal-header {
@@ -544,7 +551,7 @@ pre {
   overflow-x: auto;
 }
 .predictionscontainer {
-  display: flex;
+  display: none;
   max-height: 500px;
   background-color: black !important;
   color: black;
@@ -553,7 +560,10 @@ pre {
   overflow: hidden;
   overflow-x: auto;
   overflow-y: auto;
-  padding-top: 0% !important;
+  padding-top: 0% !important;  
+  border-radius: 0%;
+  margin-top: 5rem;
+  z-index: 4;
 }
 .resultscontainer {
   display: flex;
@@ -566,6 +576,7 @@ pre {
   overflow-x: auto;
   overflow-y: auto;
   padding-top: 0% !important;
+  z-index: 4;
 }
 #predictionsbody {
   z-index: 1;
@@ -719,6 +730,18 @@ a:hover {
   .predictionnowbtn {
     padding: 0.75rem 1.5rem;
   }
+  .footerrow {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+  .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .modal-content {
+    width: 100%;
+    padding: 0 !important;
+  }
 }
 th:after,
 th:before {
@@ -756,7 +779,7 @@ th:after {
 #btnSound {
   color: #fff;
   cursor: pointer;
-  z-index: 9;
+  z-index: 3;
 }
 
 #btnSound:hover {
@@ -766,7 +789,7 @@ th:after {
 #btnPlay {
   color: #fff;
   cursor: pointer;
-  z-index: 9;
+  z-index: 3;
 }
 
 #btnPlay:hover {
@@ -777,7 +800,7 @@ th:after {
 #btnStop {
   color: #fff;
   cursor: pointer;
-  z-index: 9;
+  z-index: 3;
 }
 
 #btnStop:hover {
