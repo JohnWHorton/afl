@@ -74,6 +74,9 @@ if ($operation == "rounds") {
 if ($operation == "games") {
   $resparr = games($conn, $roundnumber);
 }
+if ($operation == "prizepool") {
+  $resparr = prizepool($conn, $roundnumber);
+}
 if ($operation == "transactionhistory") {
   $resparr = transactionhistory($conn, $email);
 }
@@ -101,6 +104,22 @@ function rounds($conn)
 
   $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = rounds.roundnumber), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = rounds.roundnumber)";
   $result = $conn->query($sql);
+
+  return $resparr;
+}
+function prizepool($conn, $roundnumber){
+  $resparr = array();
+  $sql = "SELECT IFNULL(sum(amount),0) as prizepoolamt FROM predictions where predictions.roundnumber = " . $roundnumber;
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      array_push($resparr, $row);
+    }
+  } else {
+    array_push($resparr, [$sql]);
+  }
 
   return $resparr;
 }

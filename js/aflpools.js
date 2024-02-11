@@ -73,12 +73,31 @@ $(document).ready(function () {
     depositEvent(20);
   }
 
-  // const intervalID = setInterval(updatePrizeAmt, 15000);
+  const intervalID = setInterval(updatePrizeAmt, 15000);
 
 });
-// function updatePrizeAmt() {
-//   getPrizeAmt();
-// }
+function updatePrizeAmt() {
+  rounds = [];
+  var parms = { operation: "prizepool", roundnumber: roundnumber };
+
+  $.ajax({
+    type: "POST",
+    async: false,
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      prizepool = response[0].prizepoolamt;
+      document.getElementById("prizepoolamt").innerHTML = `Current prize pool - $${prizepool} AUD`;
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    }
+  });
+}
 
 function logout() {
   localStorage.aflusername = "";
@@ -972,6 +991,7 @@ function makeprediction() {
       } else {
         loggedInUser.funds = 0;
       }
+      updatePrizeAmt();
       // display bet with ticket number
     },
     error: function () {
