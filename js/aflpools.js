@@ -46,11 +46,7 @@ $(document).ready(function () {
   $("#howtext").show();
   if (localStorage.aflusername && localStorage.aflusername !== "") {
     loginEvent();
-    // $("#login").hide();
-    // $("#logout").show();
-    // $("#logout").prop("disabled", true);
   } else {
-    // $("#join").prop("disabled", false);
     document.getElementById("welcome").innerHTML = "Welcome to the game";
   }
 
@@ -390,18 +386,26 @@ function calBal(x) {
   return bal;
 }
 function loginEvent() {
+  console.log("rememberme checkbox", $("#rememberme").is(":checked"));
+  if ($("#rememberme").is(":checked")) {
+    rememberme = true;
+  } else {
+    rememberme = false;
+    loginWithCredentials($("#loginEmail").val(), $("#loginPassword").val());
+    localStorage.aflusername = "";
+    localStorage.afluserpswd = "";
+    localStorage.rememberme = rememberme;
+    localStorage.payusername = $("#loginEmail").val();
+    localStorage.payuserpswd = $("#loginPassword").val();
+    return;
+  }
   // e.preventDefault();
   // localStorage.rememberme = false;
-  if (localStorage.rememberme && localStorage.rememberme=="true") {
+  if (localStorage.rememberme && localStorage.rememberme == "true") {
     logemail = localStorage.aflusername;
     logpword = localStorage.afluserpswd;
     rememberme = localStorage.rememberme;
   } else {
-    if ($("#rememberme").is(":checked")) {
-      rememberme = true;
-    } else {
-      rememberme = false;
-    }
     if (!rememberme) {
       logemail = $("#loginEmail").val();
       logpword = $("#loginPassword").val();
@@ -420,7 +424,9 @@ function loginEvent() {
       localStorage.payuserpswd = logpword;
     }
   }
-
+  loginWithCredentials(logemail, logpword);
+}
+function loginWithCredentials(logemail, logpword) {
   console.log(logemail);
   console.log(logpword);
   console.log(rememberme);
