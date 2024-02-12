@@ -8,9 +8,15 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://js.stripe.com/v3/"></script>
     <script src="checkout.js" defer></script>
+    <script>
+      fetch("http://localhost:4242/checkout.html")
+    .then((res) => res.text())
+    .then((res) => (document.getElementById("checkout").innerHTML = res));
+    </script>
   </head>
   <body>
     <!-- Display a payment form -->
+    <h1>Hello</h1>
       <div id="checkout">
         <!-- Checkout will insert the payment form here -->
       </div>
