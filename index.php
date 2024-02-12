@@ -511,7 +511,7 @@
             </div>
         </div>
         <div id="stripebox" class="container stripecontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto; z-index: 4;">
             <div id="checkout">
                 <!-- Checkout will insert the payment form here -->
             </div>
