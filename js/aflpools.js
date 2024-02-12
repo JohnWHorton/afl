@@ -473,12 +473,12 @@ function loginWithCredentials(logemail, logpword) {
       } else {
         response[0].pswd = "";
         loggedInUser = response[0];
+        localStorage.payusername = logemail;
+        localStorage.payuserpswd = logpword;
         if (rememberme) {
           localStorage.aflusername = logemail;
           localStorage.afluserpswd = logpword;
           localStorage.rememberme = rememberme;
-          localStorage.payusername = logemail;
-          localStorage.payuserpswd = logpword;
         }
         if (response["trans-history"]) {
           let x = response["trans-history"];
