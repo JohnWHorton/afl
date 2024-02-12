@@ -511,7 +511,7 @@
             </div>
         </div>
         <div id="stripebox" class="container stripecontainer modal modal-content"
-            style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto; z-index: 4;">
+            style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto; z-index: 4; margin-top: 100px;">
             <div id="checkout">
                 <!-- Checkout will insert the payment form here -->
             </div>
@@ -533,6 +533,7 @@
             style="display: none; border-radius: 0%; margin-top: 5rem; background: transparent; max-width: 40%; overflow-y:  hidden;">
 
         </div>
+        
 
         <!-- <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; ;margin-top: 5rem;">
 
