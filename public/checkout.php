@@ -6,7 +6,7 @@ require_once '../secrets.php';
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
 header('Content-Type: application/json');
 
-$YOUR_DOMAIN = 'http://localhost:4242';
+// $YOUR_DOMAIN = 'http://localhost:4242';
 
 $checkout_session = $stripe->checkout->sessions->create([
   'ui_mode' => 'embedded',
@@ -23,7 +23,7 @@ $checkout_session = $stripe->checkout->sessions->create([
   'mode' => 'payment',
   // 'ui_mode' => 'embedded',
   // 'return_url' => 'http://localhost:82/afl?#deposit=ok',
-  'return_url' => 'https://afl-pools.com?#deposit=ok',
+  'return_url' => 'https://localhost?#deposit=ok',
 ]);
 
   echo json_encode(array('clientSecret' => $checkout_session->client_secret));
