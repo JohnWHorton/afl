@@ -102,12 +102,7 @@
         </div>
 
         <div id="afldata" class="main-content">
-            <div id="stripebox" class="container stripecontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto; z-index: 4; margin-top: 200px; position: relative; height: 100%; overflow-y: scroll;">
-                <div id="checkout">
-                    <!-- Checkout will insert the payment form here -->
-                </div>
-                <button onclick="cancelDeposit();" style="width: 100%;">Cancel Deposit</button>
-            </div>
+
             <div id="prizepool" class="colcontainer" style="min-height: 65px">
                 <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%; position: relative;" />
                 <div class="row">
@@ -203,7 +198,13 @@
             </center>
 
         </div>
-        <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
+        <div id="stripebox" class="container stripecontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto; z-index: 4; margin-top: 200px; position: fixed; height: 100%; overflow-y: scroll;">
+            <div id="checkout">
+                <!-- Checkout will insert the payment form here -->
+            </div>
+            <button onclick="cancelDeposit();" style="width: 100%;">Cancel Deposit</button>
+        </div>
+        <div id="loginbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4; position: fixed;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
@@ -245,7 +246,7 @@
             </form>
         </div>
         <!-- <form action="action_page.php"> -->
-        <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
+        <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;position: fixed;">
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
@@ -278,7 +279,7 @@
                 </center>
         </div>
 
-        <div id="validatebox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
+        <div id="validatebox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;position: fixed;">
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
@@ -294,7 +295,7 @@
             </form>
         </div>
 
-        <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
+        <div id="forgotbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;position: fixed;">
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
@@ -329,7 +330,7 @@
             </form>
         </div>
 
-        <div id="depositbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
+        <div id="depositbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;position: fixed;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
@@ -352,7 +353,7 @@
             </form>
         </div>
         <!-- make a comment -->
-        <div id="withdrawbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="withdrawbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;position: fixed;">
 
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
@@ -376,7 +377,7 @@
             </form>
         </div>
 
-        <div id="historybox" class="container historycontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;">
+        <div id="historybox" class="container historycontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;position: fixed;">
 
             <div class="container">
 
@@ -396,7 +397,7 @@
             </div>
         </div>
 
-        <div id="predictionsbox" class="container predictionscontainer modal modal-content">
+        <div id="predictionsbox" class="container predictionscontainer modal modal-content" style="position: fixed;">
 
             <div class="container">
                 <!-- <h2 class="sticky-top">Predictions</h2> -->
@@ -419,7 +420,7 @@
             </div>
 
         </div>
-        <div id="resultsbox" class="container resultscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;">
+        <div id="resultsbox" class="container resultscontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem;position: fixed;">
 
             <div class="container">
                 <!-- <h2 class="sticky-top">Results</h2> -->
