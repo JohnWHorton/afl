@@ -107,6 +107,14 @@
             <button onclick="cancelDeposit();" style="width: 100%;">Cancel Deposit</button>
         </div>
         <div id="afldata" class="main-content">
+            <div id="stripebox" class="container stripecontainer modal modal-content"
+                style="display: none; border-radius: 0%; margin-top: 5rem; padding: 0; height:auto; z-index: 4; margin-top: 100px;">
+                <div id="checkout">
+                    <!-- Checkout will insert the payment form here -->
+                </div>
+                <button onclick="cancelDeposit();" style="width: 100%;">Cancel Deposit</button>
+            </div>
+
             <div id="prizepool" class="colcontainer" style="min-height: 65px">
                 <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%; position: relative;" />
                 <div class="row">
