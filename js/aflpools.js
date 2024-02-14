@@ -62,7 +62,6 @@ $(document).ready(function () {
 
   // immediately change the hash
   document.location.hash = "";
-  debugger;
   // const queryString = window.location.search;
   console.log("queryString", queryString);
   const urlParams = new URLSearchParams(queryString);
@@ -786,7 +785,7 @@ function showStripe() {
 
   // $("#stripebox").show();
   // window.open("http://localhost:82/afl/public/checkout.html");
-  window.open("http://localhost/afl/public/checkout.html");
+  window.open("http://afl-pools.com/public/checkout.html");
 }
 function cancelDeposit() {
   // $("#stripebox").empty();
