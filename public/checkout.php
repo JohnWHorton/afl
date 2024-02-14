@@ -9,7 +9,7 @@ header('Content-Type: text/html');
 $actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 // $YOUR_DOMAIN = 'http://localhost:82';
-$YOUR_DOMAIN = 'http://localhost';
+$YOUR_DOMAIN = 'http://afl-pools.com';
 $price = "20";
 
 if (isset($_POST)) {
