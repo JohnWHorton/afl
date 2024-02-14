@@ -23,8 +23,8 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'quantity' => $qty,
   ]],
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/afl?deposit=ok',
-  'cancel_url' => $YOUR_DOMAIN . '/afl?deposit=cancelled',
+  'success_url' => $YOUR_DOMAIN . '?deposit=ok',
+  'cancel_url' => $YOUR_DOMAIN . '?deposit=cancelled',
 ]);
 
 header("HTTP/1.1 303 See Other");
