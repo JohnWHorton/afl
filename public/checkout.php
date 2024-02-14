@@ -3,27 +3,29 @@
 require_once '../vendor/autoload.php';
 require_once '../secrets.php';
 
-$stripe = new \Stripe\StripeClient($stripeSecretKey);
-header('Content-Type: application/json');
+\Stripe\Stripe::setApiKey($stripeSecretKey);
+header('Content-Type: text/html');
 
-// $YOUR_DOMAIN = 'http://localhost:4242';
+$actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-$checkout_session = $stripe->checkout->sessions->create([
-  'ui_mode' => 'embedded',
+// $YOUR_DOMAIN = 'http://localhost:82';
+$YOUR_DOMAIN = 'http://localhost';
+$price = "20";
+
+if (isset($_POST)) {
+  // echo var_dump($_POST);
+  $qty = $_POST['qty'];
+}
+$checkout_session = \Stripe\Checkout\Session::create([
   'line_items' => [[
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
     'price' => 'price_1OgRECDol7H5bJPd5e7zpHaj',
-    'adjustable_quantity' => [
-      'enabled' => true,
-      'minimum' => 1,
-      'maximum' => 10,
-    ],
-    'quantity' => 1,
+    'quantity' => $qty,
   ]],
   'mode' => 'payment',
-  // 'ui_mode' => 'embedded',
-  // 'return_url' => 'http://localhost:82/afl?#deposit=ok',
-  'return_url' => 'https://afl-pools.com?#deposit=ok',
+  'success_url' => $YOUR_DOMAIN . '/afl?deposit=ok',
+  'cancel_url' => $YOUR_DOMAIN . '/afl?deposit=cancelled',
 ]);
 
-  echo json_encode(array('clientSecret' => $checkout_session->client_secret));
+header("HTTP/1.1 303 See Other");
+header("Location: " . $checkout_session->url);

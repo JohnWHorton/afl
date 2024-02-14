@@ -550,7 +550,8 @@
     </script>
     <script src="https://kit.fontawesome.com/278fed373f.js" crossorigin="anonymous"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="./js/checkout.js" defer></script>
+    <!-- <script src="./js/checkout.js" defer></script> -->
+    <!-- <script src="./js/return.js"></script> -->
 
 
     <!--  -->

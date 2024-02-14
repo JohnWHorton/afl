@@ -62,7 +62,7 @@ $(document).ready(function () {
 
   // immediately change the hash
   document.location.hash = "";
-
+  debugger;
   // const queryString = window.location.search;
   console.log("queryString", queryString);
   const urlParams = new URLSearchParams(queryString);
@@ -70,7 +70,9 @@ $(document).ready(function () {
   if (deposit && deposit == "ok") {
     logemail = localStorage.payusername;
     logpword = localStorage.payuserpswd;
-    depositEvent(20);
+    let amt = localStorage.qty * 20;
+    console.log("localStorage.amt", localStorage.amt);
+    depositEvent(amt);
   }
 
   const intervalID = setInterval(updatePrizeAmt, 15000);
@@ -772,14 +774,19 @@ function getTransactionhistory() {
 }
 
 function showStripe() {
+  localStorage.qty = 3;
+  localStorage.amt = 60;
   if (!loggedin) {
     $("#loginbox").show();
     return;
   }
-  fetch("http://localhost:4242/checkout.html")
-    .then((res) => res.text())
-    .then((res) => (stripebox.innerHTML = res));
-  $("#stripebox").show();
+  // fetch("http://localhost:82/afl/public/checkout.html")
+  //   .then((res) => res.text())
+  //   .then((res) => (stripebox.innerHTML = res));
+
+  // $("#stripebox").show();
+  // window.open("http://localhost:82/afl/public/checkout.html");
+  window.open("http://localhost/afl/public/checkout.html");
 }
 function cancelDeposit() {
   // $("#stripebox").empty();
