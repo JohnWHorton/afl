@@ -58,7 +58,7 @@ $(document).ready(function () {
     let amt = localStorage.qty * 20;
     console.log("localStorage", localStorage);
     loginWithCredentials(logemail, logpword);
-    depositEvent(amt);
+    depositEvent(logemail, amt);
   } else {
     if (localStorage.aflusername && localStorage.aflusername !== "") {
       loginEvent();
@@ -681,10 +681,9 @@ function hideAllBoxes() {
 
   window.scrollTo(0, 0);
 }
-function depositEvent(amt) {
-  // amt = $("#depositamount").val();
-  // validation here
-  var parms = { operation: "deposit", email: loggedInUser.email, amount: amt };
+function depositEvent(email, amt) {
+  console.log("depositEvent", email, amt);
+  var parms = { operation: "deposit", email: email, amount: amt };
 
   $.ajax({
     type: "POST",
