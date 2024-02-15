@@ -15,8 +15,8 @@ async function initialize() {
   const session = await response.json();
 
   if (session.status == 'open') {
-    window.replace('https://localhost:82/afl/public/checkout.html')
-    // window.replace('https://afl-pools.com/public/checkout.html')
+    // window.replace('https://localhost:82/afl/public/checkout.html')
+    window.replace('https://afl-pools.com/public/checkout.html')
   } else if (session.status == 'complete') {
     document.getElementById('success').classList.remove('hidden');
     document.getElementById('customer-email').textContent = session.customer_email

@@ -8,7 +8,7 @@ header('Content-Type: text/html');
 
 $actual_link = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-// $YOUR_DOMAIN = 'http://localhost:82';
+// $YOUR_DOMAIN = 'http://localhost:82/afl';
 $YOUR_DOMAIN = 'http://afl-pools.com';
 $price = "20";
 
@@ -23,8 +23,8 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'quantity' => $qty,
   ]],
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '?deposit=ok',
-  'cancel_url' => $YOUR_DOMAIN . '?deposit=cancelled',
+  'success_url' => $YOUR_DOMAIN . '?#deposit=ok',
+  'cancel_url' => $YOUR_DOMAIN . '?#deposit=cancelled',
 ]);
 
 header("HTTP/1.1 303 See Other");

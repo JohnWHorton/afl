@@ -44,12 +44,28 @@ $(document).ready(function () {
   document.getElementById("selectround").value = roundnumber.toString();
 
   $("#howtext").show();
-  if (localStorage.aflusername && localStorage.aflusername !== "") {
-    loginEvent();
-  } else {
-    document.getElementById("welcome").innerHTML = "Welcome to the game";
-  }
 
+  const queryString = document.location.hash.substring(1);
+  document.location.hash = "";
+  console.log("queryString", queryString);
+  const urlParams = new URLSearchParams(queryString);
+  const deposit = urlParams.get("deposit");
+  if (deposit && deposit == "ok") {
+    debugger
+    logemail = localStorage.payusername;
+    logpword = localStorage.payuserpswd;
+    rememberme = localStorage.rememberme;
+    let amt = localStorage.qty * 20;
+    console.log("localStorage", localStorage);
+    loginWithCredentials(logemail, logpword);
+    depositEvent(amt);
+  } else {
+    if (localStorage.aflusername && localStorage.aflusername !== "") {
+      loginEvent();
+    } else {
+      document.getElementById("welcome").innerHTML = "Welcome to the game";
+    }
+  }
   // Pause and play the video, and change the button text
 
   $("#funds").hide();
@@ -57,22 +73,6 @@ $(document).ready(function () {
   getRounds();
   getGames();
   getRound();
-
-  const queryString = document.location.hash.substring(1);
-
-  // immediately change the hash
-  document.location.hash = "";
-  // const queryString = window.location.search;
-  console.log("queryString", queryString);
-  const urlParams = new URLSearchParams(queryString);
-  const deposit = urlParams.get("deposit");
-  if (deposit && deposit == "ok") {
-    logemail = localStorage.payusername;
-    logpword = localStorage.payuserpswd;
-    let amt = localStorage.qty * 20;
-    console.log("localStorage.amt", localStorage.amt);
-    depositEvent(amt);
-  }
 
   const intervalID = setInterval(updatePrizeAmt, 15000);
 
@@ -452,14 +452,14 @@ function loginEvent() {
   }
   loginWithCredentials(logemail, logpword);
 }
-function loginWithCredentials(logemail, logpword) {
+async function loginWithCredentials(logemail, logpword) {
   console.log(logemail);
   console.log(logpword);
   console.log(rememberme);
 
   var parms = { operation: "loginUser", email: logemail, pswd: logpword };
 
-  $.ajax({
+  await $.ajax({
     type: "POST",
     url: "./php/afldb.php",
     contentType: "application/json; charset=UTF-8",
