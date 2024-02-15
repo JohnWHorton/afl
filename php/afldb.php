@@ -30,8 +30,9 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 $resultthisjson = isset($request->resultthisjson) ? $request->resultthisjson : "";
 // testing stand alone
-// $operation = "getResults";
+// $operation = "deposit";
 // $email = "john.horton86@gmail.com";
+// $amount = 66;
 // $pswd = "999";
 // $roundnumber = 1;
 //
@@ -268,6 +269,7 @@ function deposit($conn, $email, $amount)
 {
 
   $resparr = array();
+
 
   $sql = "INSERT INTO deposits (email, amount, datecreated) VALUES ('$email','$amount', now())";
 
