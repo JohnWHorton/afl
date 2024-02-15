@@ -6,17 +6,18 @@
   <link rel="stylesheet" href="style.css">
   <title>Stripe Payments</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="../css/checkout.css" type="text/css">
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
-  
+
   <section>
     <div class="product">
       <img src="../images/tickets.jpg" alt="Tickets for the pool" />
-      <div >
-        <p style="font-size: 18px;">A ticket contributes A$20 to the pool.</p>
-        <p style="font-size: 18px;">You can purchase 1 - 10 tickets at a time.</p>
+      <div style="width: 100%;font-size: 2rem;">
+        <p style="font-size: 2rem;">A ticket contributes A$20 to the pool.</p>
+        <p style="font-size: 2rem;">You can purchase 1 - 10 tickets at a time.</p>
       </div>
       <div class="description">
         <h3>ticket</h3>
@@ -26,10 +27,10 @@
     <form action="./checkout.php" method="POST">
       <label for="qty">Number of tickets</label>
       <input type="number" id="qty" name="qty" value="1" onchange="valNumber();" max-width: 50px;" />
-      <button type="submit" class="btn btn-primary" id="checkout-button">Checkout</button>
+      <button type="submit" class="btn btn-primary" id="checkout-button" style="font-size: 2rem;">Checkout</button>
     </form>
     <div style="margin-top: 3rem;">
-      <button class="btn btn-secondary" onclick="window.close();" style="width: 100%;">Cancel deposit</button>
+      <button class="btn btn-secondary" onclick="window.close();" style="font-size: 2rem; width: 100%;">Cancel deposit</button>
     </div>
 
   </section>
