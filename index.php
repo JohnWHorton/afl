@@ -32,7 +32,11 @@
 
         <div class="collapse navbar-collapse" id="collapse_target">
 
+
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
+                <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
+                    <a class="nav-item" onclick="hideAllBoxes();showStripe()">Deposit funds</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
@@ -64,9 +68,6 @@
                 <li id="loginout" class="nav-item">
                     <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();showHideLoginbox()">Login</button>
                 </li>
-                <!-- <li id="logout" class="nav-item" style="display: hidden;">
-                    <button type="button" class="btn btn-primary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();logout();">Logout</button>
-                </li> -->
                 <li class="nav-item">
                     <button id="joinup" type="button" class="btn btn-secondary btnlogin" onclick="$('.navbar .collapse').collapse('hide');hideAllBoxes();$('#registerbox').show();">Join</button>
                 </li>
