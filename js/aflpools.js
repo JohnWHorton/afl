@@ -41,7 +41,9 @@ $(document).ready(function () {
     });
     window.location.reload();
   }
+  try {
   document.getElementById("selectround").value = roundnumber.toString();
+  } catch{}
 
   $("#howtext").show();
 
@@ -772,17 +774,12 @@ function getTransactionhistory() {
 }
 
 function showStripe() {
-  localStorage.qty = 3;
-  localStorage.amt = 60;
+  localStorage.qty = 1;
+  localStorage.amt = 20;
   if (!loggedin) {
     $("#loginbox").show();
     return;
   }
-  // fetch("http://localhost:82/afl/public/checkout.html")
-  //   .then((res) => res.text())
-  //   .then((res) => (stripebox.innerHTML = res));
-
-  // $("#stripebox").show();
   // window.open("http://localhost/afl/public/checkout.html");
   window.location.href = "http://afl-pools.com/public/checkout.html";
 }
