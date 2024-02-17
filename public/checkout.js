@@ -1,5 +1,6 @@
 // This is your test publishable API key.
 // const stripe = Stripe("pk_test_51OBZslDol7H5bJPd7oj9015jzI7qJr3b1iLC7HTrogxiUhq7kYggUZPtfVszdxt3vRxPyUAgLTHwygSnUN31r09Y00AFYYhnHc");
+// This is your live publishable API key.
 const stripe = Stripe(process.env.STRIPE_PUBLISHABLE_KEY);
 
 initialize();

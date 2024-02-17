@@ -19,7 +19,8 @@ if (isset($_POST)) {
 $checkout_session = \Stripe\Checkout\Session::create([
   'line_items' => [[
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-    'price' => 'price_1OgRECDol7H5bJPd5e7zpHaj',
+    // 'price' => 'price_1OgRECDol7H5bJPd5e7zpHaj',
+    'price' => 'price_1OkiwQDol7H5bJPdtajr6Vkr',    // live Ticket
     'quantity' => $qty,
   ]],
   'mode' => 'payment',
