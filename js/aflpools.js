@@ -53,7 +53,6 @@ $(document).ready(function () {
   const urlParams = new URLSearchParams(queryString);
   const deposit = urlParams.get("deposit");
   if (deposit && deposit == "ok") {
-    debugger
     logemail = localStorage.payusername;
     logpword = localStorage.payuserpswd;
     rememberme = localStorage.rememberme;
