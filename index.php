@@ -232,7 +232,8 @@
                 </div>
                 <div style="justify-content: center">
                     <center>
-                        <button type="button" class="btn btn-primary buttonlogin" onclick="loginEvent()">
+                        <button type="button" class="btn btn-primary buttonlogin" 
+                        onclick="loginWithCredential($('#loginEmail').val(), $('#loginPassword').val())">
                             Login
                         </button>
                         <br>
