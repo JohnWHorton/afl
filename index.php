@@ -288,6 +288,7 @@
             <form style="padding: 10px;">
                 <div id="valEmail" class="form-group"></div>
                 <div id="vc" class="form-group">
+                    <p>Check you emails (including spam folder)</p>
                     <label for="regvalcode">Enter validation code</label>
                     <input type="text" class="form-control" id="regvalcode" required onchange="chkRegValCode()">
                 </div>

@@ -779,8 +779,8 @@ function showStripe() {
     $("#loginbox").show();
     return;
   }
-  // window.open("http://localhost/afl/public/checkout.html");
-  window.location.href = "http://afl-pools.com/public/checkout.html";
+  window.open("http://localhost/afl/public/checkout.html");
+  // window.location.href = "http://afl-pools.com/public/checkout.html";
 }
 function cancelDeposit() {
   // $("#stripebox").empty();
