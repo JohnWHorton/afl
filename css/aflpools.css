@@ -586,6 +586,9 @@ pre {
 #resultsbody {
   z-index: 1;
 }
+#videobox {
+  z-index: 4;
+}
 .registercontainer {
   display: flex;
   max-width: 300px;

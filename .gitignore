@@ -1,2 +1,5 @@
 secrets.php
 php/secrets.php
+public/secrets.php
+.env
+public/.env
