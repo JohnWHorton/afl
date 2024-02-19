@@ -30,10 +30,10 @@ $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 $resultthisjson = isset($request->resultthisjson) ? $request->resultthisjson : "";
 // testing stand alone
-// $operation = "deposit";
+// $operation = "loginUser";
 // $email = "john.horton86@gmail.com";
+// $pswd = "123";
 // $amount = 66;
-// $pswd = "999";
 // $roundnumber = 1;
 //
 
@@ -173,6 +173,7 @@ function loginUser($conn, $email, $pswd)
 {
   $resparr = array();
   $sql = "SELECT * FROM users WHERE email = '$email' AND pswd = MD5('$pswd')";
+  // echo $sql."\n";
 
   $result = $conn->query($sql);
 
