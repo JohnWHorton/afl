@@ -76,7 +76,7 @@
     </nav>
 
     <div class="container-fluid" style="width: 100%!important; margin-top: 0; background-color: rgba(0,0,0,0.3); overflow: auto;">
-        <div class="row">
+        <!-- <div class="row">
             <video muted loop id="myVideo">
                 <source src="videos/afl3.mp4" type="video/mp4">
             </video>
@@ -90,7 +90,7 @@
             <button id="btnPlay" onclick="togglePlay()"><img src="images/playbtn.png"></button>
             <button id="btnStop" onclick="closeVideo()"><img src="images/stopbtn.png"></button>
 
-        </div>
+        </div> -->
 
         <div class="row">
             <div id="predictnow" style="display: none; z-index: 3;">
@@ -105,26 +105,24 @@
         <div id="afldata" class="main-content">
 
             <div id="prizepool" class="colcontainer" style="min-height: 65px">
-                <img src="./images/saco.svg" width=60 height=60 style="margin-left: 30%; position: relative;" />
-                <div class="row">
-                    <text id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; text-align: center; z-index: 3;"></text>
-                </div>
+                <img src="./images/saco.svg" width=60 height=60 style="display: block; margin: auto;" />
+                    <div id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; margin: auto; z-index: 3;"></div>
             </div>
 
             <div id="whytext" class="colcontainer">
                 <div class="row" style="width: 100%!important;">
                     <div class="col-sm-12" style="text-align: center; margin-left: 1rem; margin-right: -0.9rem; background-color: rgba(0,0,0,0.7); overflow: auto;">
                         <br />
-                        <div class="close">
-                            <span aria-hidden="true" onclick="$('.how-it-works').hide(); ">
-                                x
-                            </span>
-                        </div>
                         <h4 style="text-align: center; color: gold; cursor: pointer;" onclick="$('.how-it-works').show();">Click here to see how this works</h4>
                         <section class="section how-it-works" style="display: none;">
                             <div class="grid-container">
                                 <div class="grid-x grid-padding-x">
                                     <div class="small-12 cell">
+                                        <div class="close">
+                                            <span aria-hidden="true" onclick="$('.how-it-works').hide(); ">
+                                                x
+                                            </span>
+                                        </div>
                                         <h3>HOW IT WORKS</h3>
                                         <div class="how-it-works__items">
                                             <div class="how-it-works__item"><img class=" lazyloaded" data-src="images/number-1.png" alt="" src="images/number-1.png">
@@ -232,8 +230,7 @@
                 </div>
                 <div style="justify-content: center">
                     <center>
-                        <button type="button" class="btn btn-primary buttonlogin" 
-                        onclick="loginWithCredentials($('#loginEmail').val(), $('#loginPassword').val())">
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="loginWithCredentials($('#loginEmail').val(), $('#loginPassword').val())">
                             Login
                         </button>
                         <br>
@@ -249,16 +246,21 @@
         </div>
         <!-- <form action="action_page.php"> -->
         <div id="registerbox" class="container registercontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; z-index: 4;position: fixed;">
+
             <div class="close">
                 <span aria-hidden="true" onclick="hideAllBoxes();"> x </span>
             </div>
+
             <form style="padding: 10px;">
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="remail" placeholder="Enter Email" required>
+                <div>
+                    <h4>Join the club</h4>
                 </div>
                 <div class="form-group">
-                    <label for="rpassword">Password</label>
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="remail" value="" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="rpassword">Password (min 6 chars including at least 1 letter and 1 number)</label>
                     <input type="password" name="rpassword" autocomplete="on" class="form-control" id="rpassword" placeholder="Enter Password" value="" required>
                 </div>
                 <div class="form-group">

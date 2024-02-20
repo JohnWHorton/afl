@@ -42,8 +42,8 @@ $(document).ready(function () {
     window.location.reload();
   }
   try {
-  document.getElementById("selectround").value = roundnumber.toString();
-  } catch{}
+    document.getElementById("selectround").value = roundnumber.toString();
+  } catch { }
 
   $("#howtext").show();
 
@@ -53,6 +53,7 @@ $(document).ready(function () {
   const urlParams = new URLSearchParams(queryString);
   const deposit = urlParams.get("deposit");
   if (deposit && deposit == "ok") {
+    debugger
     logemail = localStorage.payusername;
     logpword = localStorage.payuserpswd;
     rememberme = localStorage.rememberme;
@@ -467,7 +468,7 @@ async function loginWithCredentials(logemail, logpword) {
     dataType: "json",
     data: JSON.stringify(parms),
     success: function (response) {
-      if (response.length == 0 || response[0] == "error") {
+      if (!response[0] || response[0] == "error") {
         showMsg("Login is incorrect. Try again");
         logemail = "";
         logpword = "";
@@ -511,51 +512,61 @@ async function loginWithCredentials(logemail, logpword) {
 }
 function registerEvent() {
   // loginemail=document.getElementById("emailaddress").value;
-  regemail = "";
-  regpwrd = "";
-  repregpword = "";
-  // regemail = $("#remail").val();
-  // regpwrd = $("#rpassword").val();
-  // repregpword = $("#rrpassword").val();
+  
+  regemail = $("#remail").val();
+  regpwrd = $("#rpassword").val();
+  repregpword = $("#rrpassword").val();
 
-  // console.log("regemail", regemail);
-  // console.log("regpwrd", regpwrd);
-  // console.log("repregpword", repregpword);
+  console.log("regemail", regemail);
+  console.log("regpwrd", regpwrd);
+  console.log("repregpword", repregpword);
 
-  if (regpwrd > "" && regpwrd == repregpword) {
-    var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
 
-    $.ajax({
-      type: "POST",
-      url: "./php/afldb.php",
-      contentType: "application/json; charset=UTF-8",
-      dataType: "json",
-      data: JSON.stringify(parms),
-      success: function (response) {
-        if (response[1] == "exists") {
-          // console.log("response", response);
-          showMsg("User already exists, please login");
-          $("#loginbox").show();
-          $("#registerbox").hide();
-        }
-        if (response[0] == "success") {
-          $("#loginbox").hide();
-          $("#registerbox").hide();
-          logemail = regemail;
-          document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
-          loggedin = true;
-        }
-      },
-      error: function (xhr, textStatus, error) {
-        console.log(xhr.statusText);
-        console.log(textStatus);
-        console.log(error);
-      },
-    });
-    hideAllBoxes();
-  } else {
-    showMsg("Invalid password or passwords do not match");
+  var parms = { operation: "addUser", email: regemail, pswd: regpwrd };
+
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+      if (response[1] == "exists") {
+        // console.log("response", response);
+        showMsg("User already exists, please login");
+        $("#loginbox").show();
+        $("#registerbox").hide();
+      }
+      if (response[0] == "success") {
+        $("#loginbox").hide();
+        $("#registerbox").hide();
+        logemail = regemail;
+        document.getElementById("welcome").innerHTML = `Welcome ${logemail}`;
+        loggedin = true;
+      }
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
+  hideAllBoxes();
+}
+
+function checkPwd(str) {
+  if (str.length < 6) {
+    return ("too_short");
+  } else if (str.length > 50) {
+    return ("too_long");
+  } else if (str.search(/\d/) == -1) {
+    return ("no_num");
+  } else if (str.search(/[a-zA-Z]/) == -1) {
+    return ("no_letter");
+  } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
+    return ("bad_char");
   }
+  return ("ok");
 }
 function resetPassword() {
   regemail = $("#loginEmail").val();
@@ -622,6 +633,17 @@ function verifyRegisterEmail() {
   regemail = $("#remail").val();
   regpwrd = $("#rpassword").val();
   repregpword = $("#rrpassword").val();
+  let pwordchk = checkPwd(regpwrd);
+  console.log("pwordchk", pwordchk);
+
+  if (pwordchk != "ok") {
+    showMsg("Invalid password - " + pwordchk);
+    return false;
+  }
+  if (regpwrd != repregpword) {
+    showMsg("Invalid - Passwords do not match");
+    return false;
+  }
 
   if (regemail > "" && regpwrd > "" && regpwrd == repregpword) {
     rndvalcode = Math.trunc(Math.random() * (999999 - 111111) + 111111);

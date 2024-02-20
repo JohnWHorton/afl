@@ -712,7 +712,8 @@ a:hover {
   margin-right: 25% !important;
 }
 #prizepool {
-  margin-left: 200px;
+    display: flex;
+    flex-direction: column;
 }
 @media (max-width: 1030px) {
   .main-content {
