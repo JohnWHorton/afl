@@ -106,7 +106,7 @@
 
             <div id="prizepool" class="colcontainer" style="min-height: 65px">
                 <img src="./images/saco.svg" width=60 height=60 style="display: block; margin: auto;" />
-                    <div id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; margin: auto; z-index: 3;"></div>
+                <div id="prizepoolamt" style="color: yellow; font-size: 28px; font-style:italic; margin: auto; z-index: 3;"></div>
             </div>
 
             <div id="whytext" class="colcontainer">
@@ -230,7 +230,7 @@
                 </div>
                 <div style="justify-content: center">
                     <center>
-                        <button type="button" class="btn btn-primary buttonlogin" onclick="loginWithCredentials($('#loginEmail').val(), $('#loginPassword').val())">
+                        <button type="button" class="btn btn-primary buttonlogin" onclick="loginEvent($('#loginEmail').val(), $('#loginPassword').val(), $('#rememberme').is(':checked'))">
                             Login
                         </button>
                         <br>

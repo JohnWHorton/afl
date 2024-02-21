@@ -62,8 +62,12 @@ $(document).ready(function () {
     loginWithCredentials(logemail, logpword);
     depositEvent(logemail, amt);
   } else {
-    if (localStorage.aflusername && localStorage.aflusername !== "") {
-      loginEvent();
+    // if (localStorage.aflusername && localStorage.aflusername !== "") {
+    //   loginEvent();
+    if (localStorage.aflusername && localStorage.aflusername !== "" && localStorage.rememberme == "true") {
+      logemail = localStorage.aflusername;
+      logpword = localStorage.afluserpswd;
+      loginWithCredentials(logemail, logpword);
     } else {
       document.getElementById("welcome").innerHTML = "Welcome to the game";
     }
@@ -413,45 +417,11 @@ function calBal(x) {
   document.getElementById("funds").innerHTML = `Available Funds $ ${bal} AUD`;
   return bal;
 }
-function loginEvent() {
-  console.log("rememberme checkbox", $("#rememberme").is(":checked"));
-  if ($("#rememberme").is(":checked")) {
-    rememberme = true;
-  } else {
-    rememberme = false;
-    loginWithCredentials($("#loginEmail").val(), $("#loginPassword").val());
-    localStorage.aflusername = "";
-    localStorage.afluserpswd = "";
-    localStorage.rememberme = rememberme;
-    localStorage.payusername = $("#loginEmail").val();
-    localStorage.payuserpswd = $("#loginPassword").val();
-    return;
-  }
-  // e.preventDefault();
-  // localStorage.rememberme = false;
-  if (localStorage.rememberme && localStorage.rememberme == "true") {
-    logemail = localStorage.aflusername;
-    logpword = localStorage.afluserpswd;
-    rememberme = localStorage.rememberme;
-  } else {
-    if (!rememberme) {
-      logemail = $("#loginEmail").val();
-      logpword = $("#loginPassword").val();
-      localStorage.aflusername = "";
-      localStorage.afluserpswd = "";
-      localStorage.rememberme = rememberme;
-      localStorage.payusername = logemail;
-      localStorage.payuserpswd = logpword;
-    } else {
-      logemail = $("#loginEmail").val();
-      logpword = $("#loginPassword").val();
-      localStorage.aflusername = logemail;
-      localStorage.afluserpswd = logpword;
-      localStorage.rememberme = rememberme;
-      localStorage.payusername = logemail;
-      localStorage.payuserpswd = logpword;
-    }
-  }
+function loginEvent(u, p, r) {
+  logemail = u;
+  logpword = p;
+  rememberme = r;
+  console.log(logemail, logpword, rememberme);
   loginWithCredentials(logemail, logpword);
 }
 async function loginWithCredentials(logemail, logpword) {
