@@ -503,48 +503,10 @@
                 </pre>
             </div>
         </div>
+        
         <div id="videobox" class="container videocontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; background: transparent; max-width: 40%; overflow-y:  hidden;">
-
-        </div>
-
-
-        <!-- <div id="pp" class="paypalcontainer panel modal modal-content" style="display: none; border-radius: 10%; ;margin-top: 5rem;">
-
-            <div class="overlay hidden">
-                <div class="overlay-content"><img src="css/loading.gif" alt="Processing..." /></div>
-            </div>
-            <div class="form-group">
-                <label for="amt" style="color: #000000; font-size: 18px; font-weight: 700; display: flex;
-                    justify-content: space-between;">
-                    <span>Deposit amount (min $20)</span>
-                    <span style="font-weight: 700; font-size: 22px;" onclick="$('.paypalcontainer').hide();">
-                        X
-                    </span>
-                </label>
-                <input type="number" class="form-control" id="amt" name="amt" value=20 onchange="deposit()">
-            </div>
-
-
-            <div class="panel-heading">
-                <h5 id="pt" class="panel-title">
-                </h5>
-
-                <!-- Product Info -->
-        <p id="pt2">
-        </p>
-        <p id="pt3">
-
-        </p>
-
-        <div class="panel-body">
-            <!-- Display status message -->
-            <div id="paymentResponse" class="hidden"></div>
-
-            <!-- Set up a container element for the button -->
-            <div id="paypal-button-container"></div>
         </div>
     </div>
-    </div> -->
 
     <script type="text/javascript" src="./js/smtp.js"></script>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
