@@ -7,6 +7,8 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="description" content="Fans of AFL can make predictions forthe winners of each round, with the best predictions sharing a Prize pool. Free membership." />
+    <meta name="keywords" content="afl aussie rules footie prediction prize pool " />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -503,7 +505,7 @@
                 </pre>
             </div>
         </div>
-        
+
         <div id="videobox" class="container videocontainer modal modal-content" style="display: none; border-radius: 0%; margin-top: 5rem; background: transparent; max-width: 40%; overflow-y:  hidden;">
         </div>
     </div>
