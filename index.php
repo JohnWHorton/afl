@@ -35,17 +35,29 @@
         <div class="collapse navbar-collapse" id="collapse_target">
 
 
-            <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 5px;">
+            <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 15px;">
                 <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
                     <a class="nav-item" onclick="hideAllBoxes();showStripe()">Deposit funds</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
+                    <a class="nav-item" onclick="hideAllBoxes();showHideWithdrawbox()">Redeem tokens</a>
+                </li>
+                <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
+                    <a class="nav-item" onclick="hideAllBoxes();getPredictions()">Predictions</a>
+                </li>
+                <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
+                    <a class="nav-item" onclick="hideAllBoxes();getResults()">Results</a>
+                </li>
+                <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
+                    <a class="nav-item" onclick="hideAllBoxes();getTransactionhistory()">Transactions</a>
+                </li>
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-target="dropdown_target" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;">
                         My account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                        <!-- <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a> -->
-                        <a class="dropdown-item" onclick="hideAllBoxes();showStripe()">Deposit funds</a>
+                    </a> -->
+                <!-- <div class="dropdown-menu" aria-labelledby="dropdown_target"> -->
+                <!-- <a class="dropdown-item" onclick="hideAllBoxes();showHideDepositbox()">Deposit funds</a> -->
+                <!-- <a class="dropdown-item" onclick="hideAllBoxes();showStripe()">Deposit funds</a>
                         <a class="dropdown-item" onclick="hideAllBoxes();showHideWithdrawbox()">Redeem tokens</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" onclick="hideAllBoxes();getResults()">My results</a>
@@ -54,7 +66,7 @@
                             transactions</a>
                         <a class="dropdown-item" onclick="hideAllBoxes();showDemoVideo()">Watch demo video</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="form-inline">
                     <label style="color: #ffffff; margin: 0;">Round</label> &nbsp;
                     <!-- <input class="form-control " type="text" id="selectround" oninput="getRound()"> -->
