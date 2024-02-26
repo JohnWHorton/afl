@@ -647,13 +647,32 @@ function sendEmail() {
     SecureToken: "e897669f-4158-4aa8-9ec9-b427bb86a779",
     To: "aflpools@gmail.com",
     From: "" + loggedInUser.email,
-    Subject: "" + $("#subject").val(),
-    Body: "" + $("#message").val(),
+    Subject: "" + $("#form_name").val(),
+    Body: "" + $("#form_message").val(),
   };
 
   Email.send(dummyobj).then(function (message) {
     showMsg("Email successfully sent");
   });
+
+  var parms = { operation: "saveemail", email: loggedInUser.email, subject: $("#form_name").val(), body: $("#form_message").val() };
+  console.log($("#subject").val(), $("#message").val());
+  $.ajax({
+    type: "POST",
+    url: "./php/afldb.php",
+    contentType: "application/json; charset=UTF-8",
+    dataType: "json",
+    data: JSON.stringify(parms),
+    success: function (response) {
+        console.log("saveemail response", response);
+    },
+    error: function (xhr, textStatus, error) {
+      console.log(xhr.statusText);
+      console.log(textStatus);
+      console.log(error);
+    },
+  });
+
   $("#contactbox").hide();
 }
 function hideAllBoxes() {

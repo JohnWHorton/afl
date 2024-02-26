@@ -29,6 +29,9 @@ $predictthisjson = isset($request->predictthisjson) ? $request->predictthisjson 
 $amount = isset($request->amount) ? $request->amount : 0;
 $roundnumber = isset($request->roundnumber) ? $request->roundnumber : 0;
 $resultthisjson = isset($request->resultthisjson) ? $request->resultthisjson : "";
+$subject = isset($request->subject) ? $request->subject : "";
+$body = isset($request->body) ? $request->body : "";
+
 // testing stand alone
 // $operation = "loginUser";
 // $email = "john.horton86@gmail.com";
@@ -59,6 +62,9 @@ if ($operation == "makeprediction") {
 }
 if ($operation == "deposit") {
   $resparr = deposit($conn, $email, $amount);
+}
+if ($operation == "saveemail") {
+  $resparr = saveemail($conn, $email, $subject, $body);
 }
 if ($operation == "withdrawalrequest") {
   $resparr = withdrawalrequest($conn, $email, $amount);
@@ -268,20 +274,27 @@ function getResults($conn, $email, $roundnumber)
 }
 function deposit($conn, $email, $amount)
 {
-
   $resparr = array();
-
-
   $sql = "INSERT INTO deposits (email, amount, datecreated) VALUES ('$email','$amount', now())";
-
   if ($conn->query($sql) === true) {
     array_push($resparr, 'success', "success");
   } else {
     array_push($resparr, 'error', $sql);
   }
-
   return $resparr;
 }
+
+function saveemail($conn,$email,$subject,$body) {
+  $resparr = array();
+  $sql = "INSERT INTO emails(email, `subject`, body, datecreated) VALUES ('$email','$subject', '$body', now())";
+  if ($conn->query($sql) === true) {
+    array_push($resparr, 'success', "success");
+  } else {
+    array_push($resparr, 'error', $sql);
+  }
+  return $resparr;
+}
+//
 function withdrawalrequest($conn, $email, $amount)
 {
 

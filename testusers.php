@@ -1,16 +1,16 @@
 <?php
 
-$host = 'localhost';
-$db = 'afl';
-$user = 'john';
-$pass = 'john';
-$charset = 'utf8mb4';
-
-// $host = '13.49.223.11';
+// $host = 'localhost';
 // $db = 'afl';
-// $user = 'tiffaman@gmail.com';
-// $pass = 'V4513john';
+// $user = 'john';
+// $pass = 'john';
 // $charset = 'utf8mb4';
+
+$host = '13.49.223.11';
+$db = 'afl';
+$user = 'tiffaman@gmail.com';
+$pass = 'V4513john';
+$charset = 'utf8mb4';
 
 
 /*
