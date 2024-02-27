@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Fans of AFL can make predictions for the winners of each round, with the best predictions sharing a Prize pool. Free membership." />
+    <meta name="description" content="Fans of AFL can make predictions for git pullthe winners of each round, with the best predictions sharing a Prize pool. Free membership." />
     <meta name="keywords" content="afl aussie rules footie prediction prize pool " />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content>
