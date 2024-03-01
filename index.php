@@ -37,6 +37,9 @@
 
             <ul class="navbar-nav" style="width: 100%; justify-content: flex-end; gap: 15px;">
                 <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
+                    <a class="nav-item" onclick="hideAllBoxes();showDemoVideo()">Watch demo</a>
+                </li>
+                <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
                     <a class="nav-item" onclick="hideAllBoxes();showStripe()">Deposit funds</a>
                 </li>
                 <li class="nav-item" style="padding-top: 8px; cursor: pointer;">
