@@ -598,11 +598,14 @@ pre {
   max-width: 300px;
   max-height: 500px;
   /* background-color: #b6bdb9 !important;   */
-  background-color: #999999 !important;
-  color: black;
+  /* background-color: #999999 !important;
+  color: black; */
+  background-color: black !important;
+  color: rgb(204, 203, 203);
   margin-top: 50px;
   overflow: hidden;
-  position: fixed;
+  position: fixed;  
+  z-index: 4;
 }
 .row {
   display: -ms-flexbox;
