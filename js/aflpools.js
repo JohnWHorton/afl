@@ -104,6 +104,7 @@ function updatePrizeAmt() {
       console.log(error);
     }
   });
+  checkDisableGames();
 }
 
 function logout() {
