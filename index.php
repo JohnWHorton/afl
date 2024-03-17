@@ -6,6 +6,18 @@
 <html>
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNBQRMJJ92"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-BNBQRMJJ92');
+    </script>
     <meta charset="utf-8">
     <meta name="description" content="Fans of AFL can make predictions for git pullthe winners of each round, with the best predictions sharing a Prize pool. Free membership." />
     <meta name="keywords" content="afl aussie rules footie prediction prize pool " />

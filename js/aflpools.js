@@ -104,6 +104,7 @@ function updatePrizeAmt() {
       console.log(error);
     }
   });
+  checkDisableGames();
 }
 
 function logout() {
@@ -328,13 +329,13 @@ function getGames() {
   checkDisableGames();
 }
 function checkDisableGames() {
-  // console.log("checking...");
+  console.log("checking...");
   for (let i = 0; i < games.length; i++) {
     let utcStartTime = games[i].utcStartTime;
     if (moment(utcStartTime).diff() < 0) {
-      // console.log("utcStartTime", utcStartTime);
-      // console.log("utcnow is ", moment.utc().toString());
-      // console.log("NOW is greater");
+      console.log("utcStartTime", utcStartTime);
+      console.log("utcnow is ", moment.utc().toString());
+      console.log("NOW is greater");
       $(`#${games[i].gameid}`).attr("checked", false);
       $(`#${games[i].gameid}`).attr("disabled", true);
       $(`#${games[i].hometeamname.replaceAll(" ", "")}`).attr("disabled", true);
