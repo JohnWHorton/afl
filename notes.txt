@@ -1,1 +1,6 @@
 https://stripe.com/docs/checkout/quickstart
+
+
+get results from AFL data
+
+https://aflapi.afl.com.au/afl/v2/matches?pageSize=300&competitionId=1&compSeasonId=62&roundNumber=1

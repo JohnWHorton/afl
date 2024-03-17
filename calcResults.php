@@ -41,6 +41,10 @@ if ($result->num_rows > 0) {
 }
 // var_dump($gamesarray);
 
+$sql = "DELETE FROM results
+          WHERE roundnumber = '$roundnumber'";
+
+$result = $conn->query($sql);
 
 $predictionsarray = array();
 $sql = "SELECT * FROM predictions
