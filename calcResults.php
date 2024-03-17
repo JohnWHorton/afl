@@ -83,8 +83,12 @@ foreach ($predictionsarray as $obj) {
             $desc = "GREEN TICK";
             $outcome = 1;
           } else {
-            $desc = "RED CROSS";
-            $outcome = 0;
+            if ($p["winname"] == "" || $p["winname"] == null) {
+              $desc = "";
+            } else {
+              $desc = "RED CROSS";
+              $outcome = 0;
+            }
           }
           echo $roundnumber . " " . $predictions_id . " " . $objjson['gameid'] . " " . $objjson['hometeamname'] . " vs " . $objjson['awayteamname'] . " " . "winner " . $g["result"] . " predicted " . $p["winname"] . " " . $desc . " " . $tot . "\n";
 
