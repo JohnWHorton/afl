@@ -46,7 +46,7 @@ $subject = isset($request->subject) ? $request->subject : "";
 $body = isset($request->body) ? $request->body : "";
 
 // testing stand alone
-// $operation = "loginUser";
+// $operation = "rounds";
 // $email = "john.horton86@gmail.com";
 // $pswd = "123";
 // $amount = 66;
@@ -123,10 +123,10 @@ function rounds($conn)
   }
 
   for ($i = 1; $i < 25; $i++) {
-    $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = $i), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = $i)";
+    $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = $i), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = $i) where roundnumber = $i";
     $result = $conn->query($sql);
   }
-
+  
   return $resparr;
 }
 function prizepool($conn, $roundnumber)
