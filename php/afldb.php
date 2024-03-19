@@ -132,6 +132,9 @@ function rounds($conn)
 function prizepool($conn, $roundnumber)
 {
   $resparr = array();
+
+  $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = $roundnumber), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = $roundnumber) where roundnumber = $roundnumber";
+
   $sql = "SELECT IFNULL(sum(amount),0) as prizepoolamt FROM predictions where predictions.roundnumber = " . $roundnumber;
 
   $result = $conn->query($sql);
