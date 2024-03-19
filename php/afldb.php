@@ -1,17 +1,17 @@
 <?php
 
-    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
-        header('Access-Control-Allow-Headers: token, Content-Type');
-        header('Access-Control-Max-Age: 1728000');
-        header('Content-Length: 0');
-        header('Content-Type: text/plain');
-        die();
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+  header('Access-Control-Allow-Headers: token, Content-Type');
+  header('Access-Control-Max-Age: 1728000');
+  header('Content-Length: 0');
+  header('Content-Type: text/plain');
+  die();
+}
 
-    header('Access-Control-Allow-Origin: *');
-    header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
 
 // $host = 'localhost';
 // $db = 'afl';
@@ -31,7 +31,7 @@ $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: " . $conn->connect_error;
   exit();
-} 
+}
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
@@ -122,12 +122,15 @@ function rounds($conn)
     array_push($resparr, [$sql]);
   }
 
-  $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = rounds.roundnumber), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = rounds.roundnumber)";
-  $result = $conn->query($sql);
+  for ($i = 1; $i < 25; $i++) {
+    $sql = "UPDATE `rounds` SET `no_of_predictions` = (SELECT count(*) FROM predictions where predictions.roundnumber = $i), `prize_pool` = (SELECT IFNULL(sum(amount),0) FROM predictions where predictions.roundnumber = $i)";
+    $result = $conn->query($sql);
+  }
 
   return $resparr;
 }
-function prizepool($conn, $roundnumber){
+function prizepool($conn, $roundnumber)
+{
   $resparr = array();
   $sql = "SELECT IFNULL(sum(amount),0) as prizepoolamt FROM predictions where predictions.roundnumber = " . $roundnumber;
 
@@ -297,7 +300,8 @@ function deposit($conn, $email, $amount)
   return $resparr;
 }
 
-function saveemail($conn,$email,$subject,$body) {
+function saveemail($conn, $email, $subject, $body)
+{
   $resparr = array();
   $sql = "INSERT INTO emails(email, `subject`, body, datecreated) VALUES ('$email','$subject', '$body', now())";
   if ($conn->query($sql) === true) {
